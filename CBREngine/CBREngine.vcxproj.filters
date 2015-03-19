@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{7e333ad4-f9d0-469d-9659-bb67ad32ad6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{4bd2da41-ca93-4cc3-8548-07ea5c0bb9fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Engines">
+      <UniqueIdentifier>{e5ba2c87-4d44-4907-a1cc-f937b5ff170f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\GameWindow.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Vector2.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Engines\LimitedGraphicsEngineCore.cpp">
+      <Filter>Graphics\Engines</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Size2.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\GraphicsEvents.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Engines\GraphicsEngineCore.cpp">
+      <Filter>Graphics\Engines</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Engines\DirectXGraphicsEngine.cpp">
+      <Filter>Graphics\Engines</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\GraphicsEventHandlers.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Color.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Size2f.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\GameWindow.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vector2.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Engines\LimitedGraphicsEngineCore.h">
+      <Filter>Graphics\Engines</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="Graphics\Engines.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Core\Size2.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\GraphicsEvents.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Event.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Engines\GraphicsEngineCore.h">
+      <Filter>Graphics\Engines</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Engines\DirectXGraphicsEngine.h">
+      <Filter>Graphics\Engines</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\GraphicsEventHandlers.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Color.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Size2f.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
