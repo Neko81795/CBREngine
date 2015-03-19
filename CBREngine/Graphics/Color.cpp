@@ -34,9 +34,9 @@ namespace CBREngine
         arr[0] = 1;
     }
 
-    void Color::SetR(unsigned char _r)
+    void Color::SetR(int _r)
     {
-      arr[0] = _r / 255.0f;
+      SetR(_r / 255.0f);
     }
 
     void Color::SetG(float _g)
@@ -49,9 +49,9 @@ namespace CBREngine
         arr[1] = 1;
     }
 
-    void Color::SetG(unsigned char _g)
+    void Color::SetG(int _g)
     {
-      arr[1] = _g / 255.0f;
+      SetG(_g / 255.0f);
     }
 
     void Color::SetB(float _b)
@@ -64,9 +64,9 @@ namespace CBREngine
         arr[2] = 1;
     }
 
-    void Color::SetB(unsigned char _b)
+    void Color::SetB(int _b)
     {
-      arr[2] = _b / 255.0f;
+      SetB(_b / 255.0f);
     }
 
     void Color::SetA(float _a)
@@ -79,9 +79,9 @@ namespace CBREngine
         arr[3] = 1;
     }
 
-    void Color::SetA(unsigned char _a)
+    void Color::SetA(int _a)
     {
-      arr[3] = _a / 255.0f;
+      SetA(_a / 255.0f);
     }
 
     const float * Color::ToRGBA() const
@@ -113,17 +113,17 @@ namespace CBREngine
 
     Color Color::operator+(const Color & other) const
     {
-      return Color(R() + other.R(), G() + other.G(), B() + other.B, A() + other.A());
+      return Color(R() + other.R(), G() + other.G(), B() + other.B(), A() + other.A());
     }
 
     Color Color::operator-(const Color & other) const
     {
-      return Color(R() - other.R(), G() - other.G(), B() - other.B, A() - other.A());
+      return Color(R() - other.R(), G() - other.G(), B() - other.B(), A() - other.A());
     }
 
     Color Color::operator*(const Color & other) const
     {
-      return Color(R() * other.R(), G() * other.G(), B() * other.B, A() * other.A());
+      return Color(R() * other.R(), G() * other.G(), B() * other.B(), A() * other.A());
     }
 
     Color & Color::operator+=(const Color & other)
@@ -179,7 +179,7 @@ namespace CBREngine
       SetA(a);
     }
 
-    Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+    Color::Color(int r, int g, int b, int a)
     {
       SetR(r / 255.0f);
       SetG(g / 255.0f);

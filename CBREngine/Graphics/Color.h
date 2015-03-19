@@ -21,7 +21,7 @@ namespace CBREngine
       /// <summary>
       /// Sets the R value between 0 and 255
       /// </summary>
-      void SetR(unsigned char _r);
+      void SetR(int _r);
       /// <summary>
       /// Sets the G value between 0 and 1
       /// </summary>
@@ -29,7 +29,7 @@ namespace CBREngine
       /// <summary>
       /// Sets the G value between 0 and 255
       /// </summary>
-      void SetG(unsigned char _g);
+      void SetG(int _g);
       /// <summary>
       /// Sets the B value between 0 and 1
       /// </summary>
@@ -37,7 +37,7 @@ namespace CBREngine
       /// <summary>
       /// Sets the B value between 0 and 255
       /// </summary>
-      void SetB(unsigned char _b);
+      void SetB(int _b);
       /// <summary>
       /// Sets the A value between 0 and 1
       /// </summary>
@@ -45,7 +45,7 @@ namespace CBREngine
       /// <summary>
       /// Sets the A value between 0 and 255
       /// </summary>
-      void SetA(unsigned char _a);
+      void SetA(int _a);
 
       /// <summary>
       /// returns the underlying array
@@ -90,7 +90,7 @@ namespace CBREngine
       /// <summary>
       /// Creates a new Color object using the given r g b and a values
       /// </summary>
-      Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 255);
+      Color(int r, int g, int b, int a = 255);
       /// <summary>
       /// Creates a new Color object using the given r g b and a values
       /// </summary>

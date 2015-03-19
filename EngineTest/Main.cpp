@@ -5,7 +5,7 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-  CBREngine::Core::GameWindow gameWindow(hInstance, "HUGHO:DSUFHKJBEGHS");
+  CBREngine::Core::GameWindow gameWindow(hInstance, "CBREngine Test");
 
   gameWindow.Show(nShowCmd);
 
@@ -22,6 +22,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
       if (msg.message == WM_QUIT)
         exit(0);
     }
+
 
     dxE.Clear(clearColor);
     dxE.EndDraw();
