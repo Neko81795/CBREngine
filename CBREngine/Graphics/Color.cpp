@@ -4,6 +4,7 @@ namespace CBREngine
 {
   namespace Graphics
   {
+
     float Color::R() const
     {
       return arr[0];
