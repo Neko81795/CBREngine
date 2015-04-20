@@ -6,38 +6,38 @@ namespace CBREngine
 {
   namespace Core
   {
-    static double PI = 3.141592653589793238;
+    static float PI = 3.141592653589793238f;
 
-    double Vector2::GetAngleRadians() const
+    float Vector2::GetAngleRadians() const
     {
       return std::atan2(Y, X);
     }
 
-    void Vector2::SetAngleRadians(double value)
+    void Vector2::SetAngleRadians(float value)
     {
-      double mag = GetMagnitude();
+      float mag = GetMagnitude();
       X = std::cos(value) * mag;
       Y = std::sin(value) * mag;
     }
 
-    double Vector2::GetAngleDegrees() const
+    float Vector2::GetAngleDegrees() const
     {
       return GetAngleRadians() * (180 / PI);
     }
 
-    void Vector2::SetAngleDegrees(double value)
+    void Vector2::SetAngleDegrees(float value)
     {
       SetAngleRadians(value * (PI / 180));
     }
 
-    double Vector2::GetMagnitude() const
+    float Vector2::GetMagnitude() const
     {
       return std::sqrt((X * X) + (Y * Y));
     }
 
-    void Vector2::SetMagintude(double value)
+    void Vector2::SetMagintude(float value)
     {
-      double theta = GetAngleRadians();
+      float theta = GetAngleRadians();
       X = std::cos(theta) * value;
       Y = std::sin(theta) * value;
     }
@@ -49,7 +49,7 @@ namespace CBREngine
 
     Vector2 Vector2::Normalize() const
     {
-      double inv = 1 / GetMagnitude();
+      float inv = 1 / GetMagnitude();
       Vector2 normalizedVector;
       normalizedVector.X = X * inv;
       normalizedVector.Y = Y * inv;
@@ -59,6 +59,11 @@ namespace CBREngine
     float Vector2::DistanceTo(const Vector2 & other) const
     {
       return (float)std::sqrt((other.X - X) * (other.X - X) + (other.Y - Y) * (other.Y - Y));
+    }
+
+    float Vector2::DistanceSquaredTo(const Vector2 & other) const
+    {
+      return (other.X - X) * (other.X - X) + (other.Y - Y) * (other.Y - Y);
     }
 
     Vector2 Vector2::SwapVariables() const
@@ -71,7 +76,7 @@ namespace CBREngine
       return Vector2(X + rhs.X, Y + rhs.Y);
     }
 
-    Vector2 Vector2::operator+(double rhs) const
+    Vector2 Vector2::operator+(float rhs) const
     {
       return Vector2(X + rhs, Y + rhs);
     }
@@ -81,7 +86,7 @@ namespace CBREngine
       return Vector2(X - rhs.X, Y - rhs.Y);;
     }
 
-    Vector2 Vector2::operator-(double rhs) const
+    Vector2 Vector2::operator-(float rhs) const
     {
       return Vector2(X - rhs, Y - rhs);
     }
@@ -96,7 +101,7 @@ namespace CBREngine
       return Vector2(X * rhs.X, Y * rhs.Y);
     }
 
-    Vector2 Vector2::operator*(double rhs) const
+    Vector2 Vector2::operator*(float rhs) const
     {
       return Vector2(X * rhs, Y * rhs);
     }
@@ -106,9 +111,65 @@ namespace CBREngine
       return Vector2(X / rhs.X, Y / rhs.Y);
     }
 
-    Vector2 Vector2::operator/(double rhs) const
+    Vector2 Vector2::operator/(float rhs) const
     {
       return Vector2(X / rhs, Y / rhs);
+    }
+
+    Vector2 & Vector2::operator+=(const Vector2 & rhs)
+    {
+      X += rhs.X;
+      Y += rhs.Y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator+=(float rhs)
+    {
+      X += rhs;
+      Y += rhs;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator-=(const Vector2 & rhs)
+    {
+      X -= rhs.X;
+      Y -= rhs.Y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator-=(float rhs)
+    {
+      X -= rhs;
+      Y -= rhs;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator*=(const Vector2 & rhs)
+    {
+      X *= rhs.X;
+      Y *= rhs.Y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator*=(float rhs)
+    {
+      X *= rhs;
+      Y *= rhs;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator/=(const Vector2 & rhs)
+    {
+      X /= rhs.X;
+      Y /= rhs.Y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator/=(float rhs)
+    {
+      X /= rhs;
+      Y /= rhs;
+      return *this;
     }
 
     bool Vector2::operator==(const Vector2 & rhs) const
@@ -125,7 +186,15 @@ namespace CBREngine
       return !(*this == rhs);
     }
 
-    Vector2::Vector2(double x, double y)
+    float * Vector2::ToArray(float * arr) const
+    {
+      arr[0] = X;
+      arr[1] = Y;
+      return arr;
+    }
+
+
+    Vector2::Vector2(float x, float y)
     {
       X = x;
       Y = y;
@@ -148,7 +217,7 @@ namespace CBREngine
       stream << "(" << vector.X << ", " << vector.Y << ")";
       return stream;
     }
-    Vector2 operator*(double lhs, const Vector2 & rhs)
+    Vector2 operator*(float lhs, const Vector2 & rhs)
     {
       return rhs * lhs;
     }

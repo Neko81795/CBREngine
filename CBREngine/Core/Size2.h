@@ -36,13 +36,13 @@ namespace CBREngine
       Size2 operator/(int rhs);
       bool operator==(const Size2 &rhs);
       bool operator!=(const Size2 &rhs);
-      explicit operator Size2f();
+      explicit operator Size2F();
 
       /// <summary>
       /// Converts the size2d into a size2
       /// </summary>
       /// <param name="size">The size2d to get the value from</param>
-      Size2(Size2f size);
+      Size2(Size2F size);
       /// <summary>
       /// Creates a size with two values being given Width and Height
       /// </summary>

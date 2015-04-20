@@ -1,6 +1,10 @@
 #pragma once
 #include "Core\Event.h"
 #include "Core\GameWindow.h"
+#include "Core\Game.h"
 #include "Core\Size2.h"
 #include "Core\Size2f.h"
 #include "Core\Vector2.h"
+#include "Core\CoreEventHandlers.h"
+#include "Core\CoreEvents.h"
+#include "Core\RectangleF.h"

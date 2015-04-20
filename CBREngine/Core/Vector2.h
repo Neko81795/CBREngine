@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include <iostream> //operator <<
 
 namespace CBREngine
 {
@@ -10,39 +10,39 @@ namespace CBREngine
       /// <summary>
       /// the X value of the Vector
       /// </summary>
-      double X;
+      float X;
       /// <summary>
       /// the Y value of the Vector
       /// </summary>
-      double Y;
+      float Y;
 
       /// <summary>
       /// Gets the angle(in radians) of a triangle defined by the x and y values of this vector. Y is vertical, X is horizontal.
       /// </summary>
-      double GetAngleRadians() const;
+      float GetAngleRadians() const;
       /// <summary>
       /// Sets the angle(in radians) of a triangle defined by the x and y values of this vector. Y is vertical, X is horizontal.
       /// </summary>
-      void SetAngleRadians(double value);
+      void SetAngleRadians(float value);
 
       /// <summary>
       /// Gets the angle(in degrees) of a triangle defined by the x and y values of this vector. Y is vertical, X is horizontal.
       /// </summary>
-      double GetAngleDegrees() const;
+      float GetAngleDegrees() const;
       /// <summary>
       /// Sets the angle(in degrees) of a triangle defined by the x and y values of this vector. Y is vertical, X is horizontal.
       /// </summary>
       /// <param name="value">The angle to set the Vector at</param>
-      void SetAngleDegrees(double value);
+      void SetAngleDegrees(float value);
 
       /// <summary>
       /// Gets the magnitude of this vector, with the square root computed. Slower.
       /// </summary>
-      double GetMagnitude() const;
+      float GetMagnitude() const;
       /// <summary>
       /// Sets the magnitude of the vector
       /// </summary>
-      void SetMagintude(double value);
+      void SetMagintude(float value);
 
       /// <summary>
       /// Returns a new Vector2 that has been translated x units along theta's axis
@@ -58,11 +58,18 @@ namespace CBREngine
       Vector2 Normalize() const;
 
       /// <summary>
-      /// the distance to another vector2, assuming you are using it like a crappy point.
+      /// the distance to another vector2
       /// </summary>
-      /// <param name="other"></param>
-      /// <returns>that distance</returns>
+      /// <param name="other"> the other vector </param>
+      /// <returns> that distance </returns>
       float DistanceTo(const Vector2 &other) const;
+
+      /// <summary>
+      /// the squared distance to another vector2
+      /// </summary>
+      /// <param name="other"> the other vector </param>
+      /// <returns> that distance </returns>
+      float DistanceSquaredTo(const Vector2 &other) const;
 
       /// <summary>
       /// swaps the x and y vales in the vector. Eg: Before- (x, y)  ->  After- (y, x) 
@@ -71,17 +78,31 @@ namespace CBREngine
       
       friend std::ostream &operator<<(std::ostream &stream, const Vector2& vector);
       Vector2 operator+(const Vector2 &rhs) const;
-      Vector2 operator+(double rhs) const;
+      Vector2 operator+(float rhs) const;
       Vector2 operator-(const Vector2 &rhs) const;
-      Vector2 operator-(double rhs) const;
+      Vector2 operator-(float rhs) const;
       Vector2 operator-() const;
       Vector2 operator*(const Vector2 &rhs) const;
-      Vector2 operator*(double rhs) const;
-      friend Vector2 operator*(double lhs, const Vector2 &rhs);
+      Vector2 operator*(float rhs) const;
       Vector2 operator/(const Vector2 &rhs) const;
-      Vector2 operator/(double rhs) const;
+      Vector2 operator/(float rhs) const;
+
+      Vector2 &operator+=(const Vector2 &rhs);
+      Vector2 &operator+=(float rhs);
+      Vector2 &operator-=(const Vector2 &rhs);
+      Vector2 &operator-=(float rhs);
+      Vector2 &operator*=(const Vector2 &rhs);
+      Vector2 &operator*=(float rhs);
+      Vector2 &operator/=(const Vector2 &rhs);
+      Vector2 &operator/=(float rhs);
       bool operator==(const Vector2 &rhs) const;
       bool operator!=(const Vector2 &rhs) const;
+
+      /// <summary>
+      /// Populates an array of size 2 with the values of X and Y
+      /// </summary>
+      /// <param name="arr"> The array to populate. MUST BE OF SIZE 2 </param>
+      float *ToArray(float * arr)const;
 
 
       /// <summary>
@@ -89,7 +110,7 @@ namespace CBREngine
       /// </summary>
       /// <param name="x">The X value</param>
       /// <param name="y">The Y value</param>
-      Vector2(double x, double y);
+      Vector2(float x, float y);
       /// <summary>
       /// Creates a vector2 with the given value as both variables.
       /// </summary>

@@ -9,15 +9,13 @@ namespace CBREngine
     {
       class GraphicsEngineCore;
     }
-    class WindowResizedEvent : CBREngine::Core::Event
+    class RenderTargetResizedEvent : public CBREngine::Core::Event
     {
     private:
-      WindowResizedEvent();
-      void operator=(WindowResizedEvent evnt);
+      void operator=(RenderTargetResizedEvent &evnt);
     public:
       Engines::GraphicsEngineCore &Engine;
-      WindowResizedEvent(Engines::GraphicsEngineCore &engine);
-      WindowResizedEvent(const WindowResizedEvent &other);
+      RenderTargetResizedEvent(Engines::GraphicsEngineCore &engine) :  Engine(engine) {}
     };
   }
 }

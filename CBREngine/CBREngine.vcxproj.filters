@@ -45,6 +45,18 @@
     <ClCompile Include="Core\Size2f.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\CoreEventHandlers.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Game.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CoreEvents.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\RectangleF.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -60,7 +72,6 @@
     <ClInclude Include="Graphics\Engines.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h" />
     <ClInclude Include="Core\Size2.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -83,6 +94,19 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Core\Size2f.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreEventHandlers.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Game.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreEvents.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Core\RectangleF.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

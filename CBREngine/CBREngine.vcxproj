@@ -11,8 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\CoreEventHandlers.cpp" />
+    <ClCompile Include="Core\CoreEvents.cpp" />
     <ClCompile Include="Core\Event.cpp" />
+    <ClCompile Include="Core\Game.cpp" />
     <ClCompile Include="Core\GameWindow.cpp" />
+    <ClCompile Include="Core\RectangleF.cpp" />
     <ClCompile Include="Core\Size2.cpp" />
     <ClCompile Include="Core\Size2f.cpp" />
     <ClCompile Include="Core\Vector2.cpp" />
@@ -25,8 +29,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
+    <ClInclude Include="Core\CoreEventHandlers.h" />
+    <ClInclude Include="Core\CoreEvents.h" />
     <ClInclude Include="Core\Event.h" />
+    <ClInclude Include="Core\Game.h" />
     <ClInclude Include="Core\GameWindow.h" />
+    <ClInclude Include="Core\RectangleF.h" />
     <ClInclude Include="Core\Size2.h" />
     <ClInclude Include="Core\Size2f.h" />
     <ClInclude Include="Core\Vector2.h" />

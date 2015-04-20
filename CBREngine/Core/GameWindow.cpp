@@ -1,82 +1,54 @@
 #pragma
 #include <Windows.h>
 #include "GameWindow.h"
+#include "Size2.h"
 
 
 namespace CBREngine
 {
   namespace Core
   {
-    static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+    LRESULT GameWindow::Paint(UINT, WPARAM, LPARAM, BOOL &)
     {
-      HDC deviceContext;
-      PAINTSTRUCT paintStructure;
+      PAINTSTRUCT ps;
 
-      switch (msg)
-      {
-        case WM_PAINT:
-          deviceContext = BeginPaint(hWnd, &paintStructure);
-          // TODO: Add any drawing code here...
-          EndPaint(hWnd, &paintStructure);
-          break;
+      BeginPaint(&ps);
 
-        case WM_DESTROY:
-          PostQuitMessage(0);
-          break;
-          
-        default:
-          return DefWindowProc(hWnd, msg, wParam, lParam);
-      }
+      EndPaint(&ps);
+
       return 0;
     }
 
-    void GameWindow::RegisterWindow()
+    LRESULT GameWindow::Destroy(UINT, WPARAM, LPARAM, BOOL &)
     {
-      WNDCLASS wClass;
-
-      wClass.style = CS_HREDRAW | CS_VREDRAW;
-      wClass.lpfnWndProc = WndProc;
-      wClass.cbClsExtra = NULL;
-      wClass.cbWndExtra = NULL;
-      wClass.hInstance = Instance;
-      wClass.hIcon = NULL;
-      wClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-      wClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-      wClass.lpszMenuName = NULL;
-      wClass.lpszClassName = Name;
-
-      RegisterClass(&wClass);
+      PostQuitMessage(0);
+      return 0;
     }
 
-    void GameWindow::UnregisterWindow()
+    LRESULT GameWindow::Resize(UINT, WPARAM, LPARAM, BOOL &)
     {
-      UnregisterClass(Name, Instance);
+      WindowEvent evnt(*this);
+      OnResize(evnt);
+      return 0;
     }
 
-    void GameWindow::Show(int nShowCmd)
+    LRESULT GameWindow::DisplayChange(UINT, WPARAM, LPARAM, BOOL &)
     {
-      ShowWindow(Handle, nShowCmd);
-      UpdateWindow(Handle);
+      WindowEvent evnt(*this);
+      OnDisplayChange(evnt);
+      return 0;
     }
 
-    GameWindow::GameWindow(HINSTANCE instance, char *name, int width, int height)
+    Size2 GameWindow::GetClientSize()
     {
-      Name = new char[std::strlen(name)];
-      std::strcpy(Name, name);
-      Instance = instance;
-
-      RegisterWindow();
-
-      Handle = CreateWindow(name, name, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, width, height, NULL, NULL, Instance, NULL);
-
-      if (!Handle)
-        throw new std::exception("Failed to create Window");
+      RECT rect = {};
+      GetClientRect(&rect);
+      return Size2(static_cast<int>(rect.right), static_cast<int>(rect.bottom));
     }
 
-    GameWindow::~GameWindow()
+    GameWindow::GameWindow(char * name)
     {
-      UnregisterWindow();
-      delete[] Name;
+      Handle = Create(NULL, 0, name);
     }
   }
 }

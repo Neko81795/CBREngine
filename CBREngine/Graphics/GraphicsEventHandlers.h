@@ -6,14 +6,14 @@ namespace CBREngine
 {
   namespace Graphics
   {
-    class WindowResizedEventHandler
+    class RenderTargetResizedEventHandler
     {
     private:
-      std::list<void(*)(WindowResizedEvent)> ls;
+      std::list<void(*)(RenderTargetResizedEvent)> ls;
     public:
-      WindowResizedEventHandler &operator+=(void(*func)(WindowResizedEvent));
-      WindowResizedEventHandler &operator-=(void(*func)(WindowResizedEvent));
-      void operator()(WindowResizedEvent &evnt);
+      RenderTargetResizedEventHandler &operator+=(void(*func)(RenderTargetResizedEvent));
+      RenderTargetResizedEventHandler &operator-=(void(*func)(RenderTargetResizedEvent));
+      void operator()(RenderTargetResizedEvent &evnt);
     };
   }
 }

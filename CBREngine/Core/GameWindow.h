@@ -1,6 +1,11 @@
 #pragma once
-#include <Windows.h>
+#include <atlbase.h>
+#include <atlwin.h>
 #include <string>
+#include <map>
+
+#include "CoreEventHandlers.h"
+#include "Size2.h"
 
 namespace CBREngine
 {
@@ -13,55 +18,50 @@ namespace CBREngine
   }
   namespace Core
   {
+    class Game; //forward declaration
+
     class GameWindow
+#if WIN32
+      : public CWindowImpl<GameWindow, CWindow, CWinTraits<WS_OVERLAPPEDWINDOW | WS_VISIBLE>>
+#endif
     {
-      //variables
-    private:
-      HWND Handle;
-      HINSTANCE Instance;
-      char *Name;
+      ////////////////////////////////// Start of class //////////////////////////////////////
+      //win32 stuff
+#if WIN32
       friend class Graphics::Engines::DirectXGraphicsEngine;
-
-      //methods
+    public:
+      DECLARE_WND_CLASS_EX("Game_Window", CS_VREDRAW | CS_HREDRAW, -1)
     private:
-      /// <summary>
-      /// Creates and registers a new window class
-      /// </summary>
-      /// <param name="name">the handle of the window</param>
-      /// <param name="instance">the message from the operating system</param>
-      /// <param name="instance">a parameter</param>
-      /// <param name="instance">another parameter</param>
-      friend static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+      BEGIN_MSG_MAP(GameWindow)
+        MESSAGE_HANDLER(WM_PAINT, Paint)
+        MESSAGE_HANDLER(WM_DESTROY, Destroy)
+        MESSAGE_HANDLER(WM_SIZE, Resize)
+        MESSAGE_HANDLER(WM_DISPLAYCHANGE, DisplayChange)
+      END_MSG_MAP()
 
-      /// <summary>
-      /// Creates and registers a new window class
-      /// </summary>
-      void RegisterWindow();
+      LRESULT Paint(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT Destroy(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT Resize(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT DisplayChange(UINT, WPARAM, LPARAM, BOOL &);
+#endif
+      //variables
+    protected:
+      HWND Handle;
+    public:
+      WindowEventHandler OnResize;
+      WindowEventHandler OnDisplayChange;
 
-      /// <summary>
-      /// Unregisters our window
-      /// </summary>
-      void UnregisterWindow();
+      //Methods
     public:
       /// <summary>
-      /// Shows the Window
+      /// Gets the size of the usable area of the window
       /// </summary>
-      /// <param name="nShowCmd">How to display the window</param>
-      void Show(int nShowCmd = 1);
-
+      Size2 GetClientSize();
       /// <summary>
       /// Creates a new game window
       /// </summary>
-      /// <param name="instance">the instance of the application</instance>
       /// <param name="name">the name of the window</param>
-      /// <param name="width">the starting height of the window</param>
-      /// <param name="height">the starting width of the window</param>
-      GameWindow(HINSTANCE instance, char *name, int width = 640, int height = 480);
-      
-      /// <summary>
-      /// Destroys the game window and all assets
-      /// </summary>
-      ~GameWindow();
+      GameWindow(char *name);
     };
   }
 }

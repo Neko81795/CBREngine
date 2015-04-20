@@ -1,6 +1,7 @@
 #include "GraphicsEngineCore.h"
 #include "DirectXGraphicsEngine.h"
 #include "../Color.h"
+#include <d2d1helper.h>
 
 
 namespace CBREngine
@@ -17,6 +18,35 @@ namespace CBREngine
       void DirectXGraphicsEngine::SetDefaultFontSize(double /*size*/)
       {
 
+      }
+
+      void DirectXGraphicsEngine::CreateDeviceResources()
+      {
+        RenderTarget->CreateSolidColorBrush(D2D1::ColorF(0, 0),
+                                            SolidBrush.ReleaseAndGetAddressOf());
+      }
+
+      void DirectXGraphicsEngine::CreateDeviceIndependentResources()
+      {
+
+      }
+
+      static void WindowResized(Core::WindowEvent & evnt)
+      {
+        DirectXGraphicsEngine * graphics = static_cast<DirectXGraphicsEngine *>(evnt.Game->Graphics);
+        if (graphics->RenderTarget)
+        {
+          Size2 size = evnt.Window.GetClientSize();
+          if (graphics->RenderTarget->Resize(D2D1_SIZE_U{static_cast<UINT32>(size.Width), static_cast<UINT32>(size.Height)}) != S_OK)
+          {
+            graphics->RenderTarget.Reset();
+          }
+        }
+      }
+
+      static void DisplayChanged(Core::WindowEvent & evnt)
+      {
+        evnt.Window.Invalidate();
       }
 
       const char *DirectXGraphicsEngine::GetDefaultFont() const
@@ -51,116 +81,69 @@ namespace CBREngine
 
       void DirectXGraphicsEngine::BeginDraw()
       {
+        if (!RenderTarget)
+        {
+          Size2 size = Core::Game::CurrentGame->Window->GetClientSize();
+          HWND hwnd = Core::Game::CurrentGame->Window->Handle;
 
+          Factory->CreateHwndRenderTarget(D2D1::RenderTargetProperties(),
+                                          D2D1::HwndRenderTargetProperties(hwnd, D2D1_SIZE_U{static_cast<UINT32>(size.Width), static_cast<UINT32>(size.Height)}),
+                                          RenderTarget.GetAddressOf());
+          CreateDeviceResources();
+        }
+        RenderTarget->BeginDraw();
       }
 
-      void DirectXGraphicsEngine::Clear(const Color &color)
+      void DirectXGraphicsEngine::Clear(const Color & color)
       {
-        pDeviceContext->ClearRenderTargetView(pRenderTargetView, color.ToRGBA());
+        RenderTarget->Clear(D2D1::ColorF(color.ToIntRGB(), color.A()));
       }
 
       void DirectXGraphicsEngine::EndDraw()
       {
-        
-        pSwapChain->Present(1, 0); //present next vBlank, discard previously queued now
+        if (RenderTarget->EndDraw() == D2DERR_RECREATE_TARGET)
+          RenderTarget.Reset();
+        //pSwapChain->Present(1, 0); //present next vBlank, discard previously queued now
       }
 
-      HRESULT DirectXGraphicsEngine::CreateDeviceSwapChainBackBufferAndRenderTargetView(const Core::GameWindow &gameWindow, int width, int height)
+      void DirectXGraphicsEngine::DrawRectangle(const Core::RectangleF &rectangle, const Color &color, float stroke, float rotation, const Vector2 &center)
       {
-        HRESULT hr;
-        DXGI_MODE_DESC bufferDescription;
-
-        bufferDescription.Width = width;
-        bufferDescription.Height = height;
-        bufferDescription.RefreshRate.Numerator = 60;
-        bufferDescription.RefreshRate.Denominator = 1;
-        bufferDescription.Format = DXGI_FORMAT_R8G8B8A8_UNORM; //32bit(RGBA), unsigned, normalized
-        bufferDescription.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;//double buffer don't care
-        bufferDescription.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-
-        DXGI_SWAP_CHAIN_DESC swapChainDescription;
-
-        swapChainDescription.BufferDesc = bufferDescription;
-        swapChainDescription.SampleDesc.Count = 1;  // anti aliasing multi-sampling
-        swapChainDescription.SampleDesc.Quality = 0;// anti aliasing multi-sampling
-        swapChainDescription.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-        swapChainDescription.BufferCount = 2;
-        swapChainDescription.OutputWindow = gameWindow.Handle;
-        swapChainDescription.Windowed = true;
-        swapChainDescription.SwapEffect = DXGI_SWAP_EFFECT_DISCARD; //we don't care about it anymore. let the graphics decide
-        swapChainDescription.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
-
-        // This array defines the ordering of feature levels that D3D should attempt to create.
-        D3D_FEATURE_LEVEL featureLevels[] =
-        {
-          D3D_FEATURE_LEVEL_11_1,
-          D3D_FEATURE_LEVEL_11_0,
-          D3D_FEATURE_LEVEL_10_1,
-          D3D_FEATURE_LEVEL_10_0,
-          D3D_FEATURE_LEVEL_9_3,
-          D3D_FEATURE_LEVEL_9_1
-        };
-
-        if (FAILED(hr = D3D11CreateDeviceAndSwapChain(
-          NULL, // use default adapter
-          D3D_DRIVER_TYPE_HARDWARE,
-          NULL,// Software (not needed by hardware driver)
-          0,// flags
-          featureLevels,
-          ARRAYSIZE(featureLevels),
-          D3D11_SDK_VERSION,
-          &swapChainDescription,
-          &pSwapChain,
-          &pDevice,
-          NULL, //? Feature Level
-          &pDeviceContext)))
-          return hr;
-
-        if (FAILED(hr = pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBackBuffer)))
-          return hr;
-
-        if (FAILED(hr = pDevice->CreateRenderTargetView(pBackBuffer, NULL /*Render target view description*/, &pRenderTargetView)))
-          return hr;
-
-        return hr;
+        SolidBrush->SetColor(color);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) * D2D1::Matrix3x2F::Rotation(rotation, D2D1::Point2F(rectangle.X, rectangle.Y)));
+        RenderTarget->DrawRectangle(rectangle, SolidBrush.Get(), stroke);
       }
 
-      DirectXGraphicsEngine::DirectXGraphicsEngine(const Core::GameWindow &gameWindow, int width, int height)
+      void DirectXGraphicsEngine::DrawEllipse(const Core::Vector2 & position, const Core::Size2F size, const Color & color, float stroke, float rotation, const Vector2 & center)
       {
-        
-        if(FAILED(CreateDeviceSwapChainBackBufferAndRenderTargetView(gameWindow, width, height)))
-          throw std::exception("Failed to initialize DirectX");//TODO add why we failed
+        SolidBrush->SetColor(color);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(size.Width / 4 - center.X/2, size.Height / 4 - center.Y/2) * D2D1::Matrix3x2F::Rotation(rotation, D2D1::Point2F(position.X, position.Y)));
+        RenderTarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(position.X, position.Y), size.Width / 2, size.Height / 2), SolidBrush.Get(), stroke);
+      }
 
-        pDeviceContext->OMSetRenderTargets(1, &pRenderTargetView, NULL /*depth stencil view*/);
+      void DirectXGraphicsEngine::FillEllipse(const Core::Vector2 & position, const Core::Size2F size, const Color & color, float rotation, const Vector2 & center)
+      {
+        SolidBrush->SetColor(color);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(size.Width / 4 - center.X / 2, size.Height / 4 - center.Y / 2) * D2D1::Matrix3x2F::Rotation(rotation, D2D1::Point2F(position.X, position.Y)));
+        RenderTarget->FillEllipse(D2D1::Ellipse(D2D1::Point2F(position.X, position.Y), size.Width / 2, size.Height / 2), SolidBrush.Get());
+      }
 
+      DirectXGraphicsEngine::DirectXGraphicsEngine(Core::GameWindow &window)
+      {
+        window.OnResize += WindowResized;
+        window.OnDisplayChange += DisplayChanged;
+
+        D2D1_FACTORY_OPTIONS fo = {};
+
+#ifdef DEBUG
+        fo.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
+#endif
+        //TODO add why we failed
+        if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, fo, Factory.GetAddressOf())))
+          throw std::exception("Failed to create D2D");
       }
 
       DirectXGraphicsEngine::~DirectXGraphicsEngine()
-      {
-        pDevice->Release();
-        pDeviceContext->Release();
-        pSwapChain->Release();
-        pRenderTargetView->Release();
-        pBackBuffer->Release();
-        pVertexBuffer->Release();
-        pVS->Release();
-        pPS->Release();
-        pVS_Buffer->Release();
-        pPS_Buffer->Release();
-        pVertexLayout->Release();
-
-        delete pDevice;
-        delete pDeviceContext;
-        delete pSwapChain;
-        delete pRenderTargetView;
-        delete pBackBuffer;
-        delete pVertexBuffer;
-        delete pVS;
-        delete pPS;
-        delete pVS_Buffer;
-        delete pPS_Buffer;
-        delete pVertexLayout;
-      }
+      {}
     }
   }
 }

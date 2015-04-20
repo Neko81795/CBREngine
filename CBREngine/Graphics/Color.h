@@ -1,4 +1,14 @@
 #pragma once
+
+#if WIN32
+#pragma warning(disable: 4838) //disable conversion warnings
+#pragma warning(disable: 4458) //disable hiding class members
+#include <d2d1.h>
+#include <d2d1helper.h>
+#pragma warning(default: 4458) //enable hiding class members
+#pragma warning(default: 4838) //enable conversion warnings
+#endif
+
 namespace CBREngine
 {
   namespace Graphics
@@ -69,6 +79,8 @@ namespace CBREngine
       /// <param name="_arr"> The array to populate.  MUST BE SIZE 3 </param>
       float *ToRGB(float * _arr) const;
 
+      int ToIntRGB() const;
+
       Color operator+(const Color &other) const;
       Color operator-(const Color &other) const;
       Color operator*(const Color &other) const;
@@ -76,6 +88,12 @@ namespace CBREngine
       Color &operator+=(const Color &other);
       Color &operator-=(const Color &other);
       Color &operator*=(const Color &other);
+
+#if WIN32
+      operator D2D_COLOR_F&();
+      D2D_COLOR_F Col;
+      operator D2D_COLOR_F() const;
+#endif
 
       /// <summary>
       /// Creates a new Color object using a float[4] array in either RGBA or ARGB format

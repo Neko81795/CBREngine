@@ -31,14 +31,14 @@ namespace CBREngine
         if (point.X < 0)
           reference.X = 0;
         else if (point.X > GetWindowBounds().Width)
-          reference.X = GetWindowBounds().Width;
+          reference.X = (float)GetWindowBounds().Width;
         else
           reference.X = point.X;
 
         if (point.Y < 0)
           reference.Y = 0;
         else if (point.Y > GetWindowBounds().Height)
-          reference.Y = GetWindowBounds().Height;
+          reference.Y = (float)GetWindowBounds().Height;
         else
           reference.Y = point.Y;
 

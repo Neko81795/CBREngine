@@ -70,12 +70,12 @@ namespace CBREngine
       return !(*this == rhs);
     }
 
-    Size2::operator Size2f()
+    Size2::operator Size2F()
     {
-      return Size2f((float)Width, (float)Height);
+      return Size2F((float)Width, (float)Height);
     }
 
-    Size2::Size2(Size2f size)
+    Size2::Size2(Size2F size)
     {
       Height = (int)size.Height;
       Width = (int)size.Width;

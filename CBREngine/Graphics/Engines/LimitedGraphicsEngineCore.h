@@ -12,13 +12,18 @@ namespace CBREngine
     {
       using Vector2 = CBREngine::Core::Vector2;
       using Size2 = CBREngine::Core::Size2;
+
       /// <summary>
       /// All the fun of graphics, without the actual graphics.
       /// This class is abstract
       /// </summary>
       class LimitedGraphicsEngineCore
       {
-      private:
+      public:
+        /// <summary>
+        /// An event that is called when the window is resizing
+        /// </summary>
+        RenderTargetResizedEventHandler OnRenderTargetResize;
 
       protected:
         /// <summary>
@@ -31,10 +36,6 @@ namespace CBREngine
         virtual void SetDefaultFontSize(double size) __ABSTRACT;
 
       public:
-        /// <summary>
-        /// An event that is called when the window is resizing
-        /// </summary>
-        WindowResizedEventHandler OnWindowResize;
 
         /// <summary>
         /// Gets the default font
@@ -53,7 +54,6 @@ namespace CBREngine
         /// </summary>
         virtual Size2 GetWindowBounds() const __ABSTRACT;
 
-
         /// <summary>
         /// returns the size of the text the string would display
         /// </summary>
@@ -61,7 +61,7 @@ namespace CBREngine
         /// <param name="font">the font family</param>
         /// <param name="size">the size of the font (in point)</param>
         virtual Vector2 MeasureString(const char *text, const char *font, double size) const __ABSTRACT;
-        
+
         /// <summary>
         /// toggles the full Screen mode
         /// </summary>
@@ -85,6 +85,9 @@ namespace CBREngine
         /// </summary>
         /// <param name="text">the string</param>
         Vector2 MeasureString(const char *text) const;
+
+
+        virtual ~LimitedGraphicsEngineCore() {}
       };
     }
   }

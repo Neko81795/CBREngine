@@ -111,6 +111,13 @@ namespace CBREngine
       return _arr;
     }
 
+    int Color::ToIntRGB() const
+    {
+      return static_cast<int>(B() * 255) +
+        (static_cast<int>(G() * 255) << 8) +
+        (static_cast<int>(R() * 255) << 16);
+    }
+
     Color Color::operator+(const Color & other) const
     {
       return Color(R() + other.R(), G() + other.G(), B() + other.B(), A() + other.A());
@@ -152,6 +159,22 @@ namespace CBREngine
       SetA(A() * other.A());
       return *this;
     }
+
+#if WIN32
+    Color::operator D2D_COLOR_F&()
+    {
+      Col.r = arr[0];
+      Col.g = arr[1];
+      Col.b = arr[2];
+      Col.a = arr[3];
+      return Col;
+    }
+
+    Color::operator D2D_COLOR_F() const
+    {
+      return D2D1::ColorF(arr[0], arr[1], arr[2], arr[3]);
+    }
+#endif
 
     Color::Color(float * _arr, bool useARGB)
     {
