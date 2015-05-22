@@ -32,6 +32,10 @@ namespace CBREngine
         arr[0] = 0;
       if (arr[0] > 1)
         arr[0] = 1;
+
+#if WIN32
+      Col.r = arr[0];
+#endif
     }
 
     void Color::SetR(int _r)
@@ -47,6 +51,10 @@ namespace CBREngine
         arr[1] = 0;
       if (arr[1] > 1)
         arr[1] = 1;
+
+#if WIN32
+      Col.g = arr[1];
+#endif
     }
 
     void Color::SetG(int _g)
@@ -62,6 +70,9 @@ namespace CBREngine
         arr[2] = 0;
       if (arr[2] > 1)
         arr[2] = 1;
+#if WIN32
+      Col.b = arr[2];
+#endif
     }
 
     void Color::SetB(int _b)
@@ -77,6 +88,10 @@ namespace CBREngine
         arr[3] = 0;
       if (arr[3] > 1)
         arr[3] = 1;
+
+#if WIN32
+      Col.a = arr[3];
+#endif
     }
 
     void Color::SetA(int _a)
@@ -163,16 +178,12 @@ namespace CBREngine
 #if WIN32
     Color::operator D2D_COLOR_F&()
     {
-      Col.r = arr[0];
-      Col.g = arr[1];
-      Col.b = arr[2];
-      Col.a = arr[3];
       return Col;
     }
 
-    Color::operator D2D_COLOR_F() const
+    Color::operator const D2D_COLOR_F&() const
     {
-      return D2D1::ColorF(arr[0], arr[1], arr[2], arr[3]);
+      return Col;
     }
 #endif
 

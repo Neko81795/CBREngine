@@ -27,6 +27,12 @@ namespace CBREngine
 
     LRESULT GameWindow::Resize(UINT, WPARAM, LPARAM, BOOL &)
     {
+      RECT rect = {};
+      GetClientRect(&rect);
+      if (rect.bottom <= 10)
+      {
+        ResizeClient(rect.right, 10);
+      }
       WindowEvent evnt(*this);
       OnResize(evnt);
       return 0;

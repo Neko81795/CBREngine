@@ -92,7 +92,7 @@ namespace CBREngine
 #if WIN32
       operator D2D_COLOR_F&();
       D2D_COLOR_F Col;
-      operator D2D_COLOR_F() const;
+      operator const D2D_COLOR_F&() const;
 #endif
 
       /// <summary>

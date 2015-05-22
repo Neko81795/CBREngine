@@ -14,12 +14,20 @@
     <ClCompile Include="Core\CoreEventHandlers.cpp" />
     <ClCompile Include="Core\CoreEvents.cpp" />
     <ClCompile Include="Core\Event.cpp" />
+    <ClCompile Include="Core\Eventful.cpp" />
     <ClCompile Include="Core\Game.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\Component.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\DrawComponent.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\TransformComponent.cpp" />
+    <ClCompile Include="Core\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Core\GameObjects\Space.cpp" />
+    <ClCompile Include="Core\GameTime.cpp" />
     <ClCompile Include="Core\GameWindow.cpp" />
     <ClCompile Include="Core\RectangleF.cpp" />
     <ClCompile Include="Core\Size2.cpp" />
     <ClCompile Include="Core\Size2f.cpp" />
     <ClCompile Include="Core\Vector2.cpp" />
+    <ClCompile Include="Graphics\Bitmap.cpp" />
     <ClCompile Include="Graphics\Color.cpp" />
     <ClCompile Include="Graphics\Engines\DirectXGraphicsEngine.cpp" />
     <ClCompile Include="Graphics\Engines\GraphicsEngineCore.cpp" />
@@ -31,14 +39,28 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Core\CoreEventHandlers.h" />
     <ClInclude Include="Core\CoreEvents.h" />
+    <ClInclude Include="Core\Delegate.h" />
     <ClInclude Include="Core\Event.h" />
+    <ClInclude Include="Core\Eventful.h" />
+    <ClInclude Include="Core\EventHandler.h" />
     <ClInclude Include="Core\Game.h" />
+    <ClInclude Include="Core\GameObjects.h" />
+    <ClInclude Include="Core\GameObjects\Components.h" />
+    <ClInclude Include="Core\GameObjects\Components\Component.h" />
+    <ClInclude Include="Core\GameObjects\Components\DrawEvent.h" />
+    <ClInclude Include="Core\GameObjects\Components\DrawComponent.h" />
+    <ClInclude Include="Core\GameObjects\Components\TransformComponent.h" />
+    <ClInclude Include="Core\GameObjects\Components\UpdateEvent.h" />
+    <ClInclude Include="Core\GameObjects\GameObject.h" />
+    <ClInclude Include="Core\GameObjects\Space.h" />
+    <ClInclude Include="Core\GameTime.h" />
     <ClInclude Include="Core\GameWindow.h" />
     <ClInclude Include="Core\RectangleF.h" />
     <ClInclude Include="Core\Size2.h" />
     <ClInclude Include="Core\Size2f.h" />
     <ClInclude Include="Core\Vector2.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Graphics\Bitmap.h" />
     <ClInclude Include="Graphics\Color.h" />
     <ClInclude Include="Graphics\Engines.h" />
     <ClInclude Include="Graphics\Engines\DirectXGraphicsEngine.h" />
@@ -94,6 +116,10 @@
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

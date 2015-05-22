@@ -5,9 +5,9 @@ namespace CBREngine
 {
   namespace Core
   {
-      Event::Event()
-      {
-        Game = Core::Game::CurrentGame;
-      }
+    Event::Event()
+    {
+      Game = Core::Game::CurrentGame;
+    }
   }
 }

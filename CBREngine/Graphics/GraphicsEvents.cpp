@@ -4,6 +4,11 @@ namespace CBREngine
 {
   namespace Graphics
   {
-    void RenderTargetResizedEvent::operator=(RenderTargetResizedEvent &) {}
+    void GraphicsEvent::operator=(GraphicsEvent &) {}
+        
+    GraphicsEvent::GraphicsEvent(Engines::GraphicsEngineCore & graphics)
+    {
+      Graphics = &graphics;
+    }
   }
 }

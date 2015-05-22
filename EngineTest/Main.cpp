@@ -1,43 +1,80 @@
-#include <Windows.h>
-#include <atlbase.h>
-#include <atlwin.h>
 #include "../CBREngine/Core.h"
 #include "../CBREngine/Graphics.h"
+#include "SpinComponent.h"
+#include "SinXComponent.h"
 
+//TODO REMOVE THIS SHIT IT'S BAD PRACTICE
+using namespace CBREngine;
+using namespace CBREngine::Core;
+using namespace CBREngine::Core::GameObjects;
+using namespace CBREngine::Core::GameObjects::Components;
 
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nShowCmd)
 {
-  CBREngine::Core::GameWindow gameWindow("CBREngine Test oh boy");
+  GameWindow gameWindow("CBREngine Test oh boy");
+  CBREngine::Graphics::Engines::DirectXGraphicsEngine graphics(gameWindow);
+  Game game(&gameWindow, &graphics);
+
+
+  GameObject &obj = game.Spaces.front().CreateObject();
+  TransformComponent& trans = obj.AddComponent<TransformComponent>();
+  trans.Position.X = 3;
+  trans.Position.Y = 3;
+  trans.Scale.Height = 3;
+  trans.Scale.Width = 3;
+  DrawComponent& draw = obj.AddComponent<DrawComponent>();
+  draw.Color = Graphics::Color(0xFF006A6A);
+
+  GameObject &obj2 = game.Spaces.front().CreateObject();
+  TransformComponent& trans2 = obj2.AddComponent<TransformComponent>();
+  trans2.Position.X = 12;
+  trans2.Position.Y = 16;
+  trans2.Scale.Height = 16;
+  trans2.Scale.Width = 2;
+  DrawComponent& draw2 = obj2.AddComponent<DrawComponent>();
+  draw2.Color = Graphics::Color(0xFFFF00FF);
+  draw2.Mode = DrawComponent::Fill;
+  SpinComponent& spin2 = obj2.AddComponent<SpinComponent>();
+  spin2.RotationSpeed = 1;
+
+  GameObject &obj3 = game.Spaces.front().CreateObject();
+  TransformComponent& trans3 = obj3.AddComponent<TransformComponent>();
+  trans3.Position.X = 8;
+  trans3.Position.Y = 8;
+  trans3.Scale.Height = 12;
+  trans3.Scale.Width = 6;
+  DrawComponent& draw3 = obj3.AddComponent<DrawComponent>();
+  draw3.Color = Graphics::Color(0xFFFFFF00);
+  draw3.Mode = DrawComponent::Fill;
+  draw3.Type = DrawComponent::Elipse;
+  SpinComponent& spin3 = obj3.AddComponent<SpinComponent>();
+  spin3.RotationSpeed = 1;
+  spin3.Acceleration = 0.2f;
+  SinXComponent& sin3 = obj3.AddComponent<SinXComponent>();
+  sin3.Period = 1;
+  sin3.Scale = 9;
+  sin3.Offset = 18;
+
+  GameObject &obj4 = game.Spaces.front().CreateObject();
+  TransformComponent& trans4 = obj4.AddComponent<TransformComponent>();
+  trans4.Position.X = 8;
+  trans4.Position.Y = 8;
+  trans4.Scale.Height = 12;
+  trans4.Scale.Width = 6;
+  DrawComponent& draw4 = obj4.AddComponent<DrawComponent>();
+  draw4.Color = Graphics::Color(0xFF006A6A);
+  draw4.Stroke = 30;
+  draw4.Type = DrawComponent::Elipse;
+  SpinComponent& spin4 = obj4.AddComponent<SpinComponent>();
+  spin4.RotationSpeed = 1;
+  spin4.Acceleration = 0.2f;
+  SinXComponent& sin4 = obj4.AddComponent<SinXComponent>();
+  sin4.Period = 1.01f;
+  sin4.Scale = 9;
+  sin4.Offset = 18;
   
-  CBREngine::Graphics::Engines::DirectXGraphicsEngine dxE(gameWindow);
-  CBREngine::Graphics::Engines::GraphicsEngineCore *graphics = &dxE;
-  CBREngine::Graphics::Color clearColor(75, 120, 255);
 
-  CBREngine::Core::Game game(&gameWindow, &dxE);
-
-  bool run = true;
-
-  MSG msg;
-  float rot = 0;
-  while (run)
-  {
-    while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-    {
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
-      if (msg.message == WM_QUIT)
-        run = false;
-    }
-
-    dxE.BeginDraw();
-    dxE.Clear(clearColor);
-    dxE.DrawRectangle(CBREngine::Core::RectangleF(400, 500, 300, 500), CBREngine::Graphics::Color(0xFFFF00FF), 20, rot++, CBREngine::Core::Vector2(150, 250));
-    graphics->DrawRectangle(CBREngine::Core::RectangleF(40, 40, 100, 100), CBREngine::Graphics::Color(0xFF006A6A));
-    graphics->DrawEllipse(CBREngine::Core::Vector2((std::sinf(rot * 0.1f) * 400) + 600, 200), CBREngine::Core::Size2F(200, 400), CBREngine::Graphics::Color(0xFF006A6A), 30, -(rot * rot) * 0.1, CBREngine::Core::Vector2(100, 200));
-    dxE.EndDraw();
-
-    clearColor.SetB(clearColor.B() + 0.001f);
-  }
+  game.Start();
 
   return 0;
 }

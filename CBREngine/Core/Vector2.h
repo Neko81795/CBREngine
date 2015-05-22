@@ -75,7 +75,7 @@ namespace CBREngine
       /// swaps the x and y vales in the vector. Eg: Before- (x, y)  ->  After- (y, x) 
       /// </summary>
       Vector2 SwapVariables() const;
-      
+
       friend std::ostream &operator<<(std::ostream &stream, const Vector2& vector);
       Vector2 operator+(const Vector2 &rhs) const;
       Vector2 operator+(float rhs) const;
@@ -120,6 +120,13 @@ namespace CBREngine
       /// Creates a vector in the 2D plane with the values of X and Y both being 0
       /// </summary>
       Vector2();
+
+      static const Vector2 Up;
+      static const Vector2 Down;
+      static const Vector2 Left;
+      static const Vector2 Right;
+      static const Vector2 Zero;
+      static const Vector2 One;
     };
   }
 }

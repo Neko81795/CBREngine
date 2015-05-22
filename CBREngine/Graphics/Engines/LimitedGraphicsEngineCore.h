@@ -1,6 +1,8 @@
 #pragma once
-#include "../../Core.h"
 #include "../GraphicsEventHandlers.h"
+#include "../../Core/Vector2.h"
+#include "../../Core/Size2.h"
+#include <string>
 
 #define __ABSTRACT = 0
 
@@ -21,9 +23,9 @@ namespace CBREngine
       {
       public:
         /// <summary>
-        /// An event that is called when the window is resizing
+        /// An event that is called when the device is recreated
         /// </summary>
-        RenderTargetResizedEventHandler OnRenderTargetResize;
+        GraphicsEventHandler DeviceRecreated;
 
       protected:
         /// <summary>

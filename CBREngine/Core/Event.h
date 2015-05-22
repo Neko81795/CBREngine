@@ -4,6 +4,7 @@ namespace CBREngine
   namespace Core
   {
     class Game; //forward declaration
+
     class Event
     {
     public:

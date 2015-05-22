@@ -14,10 +14,9 @@
 #pragma warning(default: 4458) //enable hiding class members
 #pragma warning(default: 4838) //enable conversion warnings
 #include <dwrite_2.h>
+#include <wincodec.h>
 
 
-template <typename T>
-using ComPtr = Microsoft::WRL::ComPtr<T>;
 
 
 namespace CBREngine
@@ -32,10 +31,14 @@ namespace CBREngine
     {
       class DirectXGraphicsEngine : public GraphicsEngineCore
       {
+        template <typename T>
+        using ComPtr = Microsoft::WRL::ComPtr<T>;
+
         //variables
       protected:
         ComPtr<ID2D1Factory> Factory;
         ComPtr<ID2D1HwndRenderTarget> RenderTarget;
+        ComPtr<IWICImagingFactory> ImageFactory;
         ComPtr<ID2D1SolidColorBrush> SolidBrush;
 
 
@@ -55,10 +58,20 @@ namespace CBREngine
         void CreateDeviceResources();
         void CreateDeviceIndependentResources();
 
-        friend static void WindowResized(Core::WindowEvent &evnt);
-        friend static void DisplayChanged(Core::WindowEvent &evnt);
+        void WindowResized(Core::WindowEvent & evnt);
+        void DisplayChanged(Core::WindowEvent &evnt);
 
       public:
+        /// <summary>
+        /// loads a bitmap from the specified file
+        /// </summary>
+        /// <param name="path"> the path to the image file </param>
+        /// <param name="bitmap"> the bitmap to store the loaded image in </param>
+        virtual void LoadBitmapFromFile(const std::string &path, Bitmap &bitmap);
+        /// <summary>
+        /// Reloads the given bitmap
+        /// </summary>
+        virtual void ReloadBitmap(Bitmap &bitmap);
         /// <summary>
         /// Gets the default font
         /// </summary>
@@ -118,15 +131,34 @@ namespace CBREngine
         /// <param name="center">The center of the Ellipse</param>
         virtual void DrawEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float stroke, float rotation, const Vector2 &center) override;
         /// <summary>
-        /// Draws the outline of an Ellipse
+        /// Draws a bitmap to the screen
+        /// </summary>
+        /// <param name="image">The bitmap to draw</param>
+        /// <param name="position">Where to draw it</param>
+        /// <param name="opacity">The opacity of the bitmap</param>
+        /// <param name="center">The center of the bitmap</param>
+        /// <param name="rotation">The rotation of the bitmap</param>
+        /// <param name="scale">The Scaling of the bitmap</param>
+        /// <param name="source">The Rectangle of the image to use</param>
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void DrawBitmap(const Bitmap &image, const Vector2 &position, float opacity, const Vector2 &center, float rotation, const Vector2 &scale, const Core::RectangleF *source = NULL, float zLayer = 0) override;
+        /// <summary>
+        /// Draws the an Ellipse
         /// </summary>
         /// <param name="position">Where to draw</param>
         /// <param name="size">the size of the Ellipse</param>
         /// <param name="color">The color to draw</param>
-        /// <param name="stroke">The stroke of the lines</param>
         /// <param name="rotation">The rotation of the Ellipse</param>
         /// <param name="center">The center of the Ellipse</param>
         virtual void FillEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float rotation, const Vector2 &center) override;
+        /// <summary>
+        /// Draws a rectangle
+        /// </summary>
+        /// <param name="rectangle">The rectangle to draw</param>
+        /// <param name="color">The color of the rectangle</param>
+        /// <param name="rotation">The rotation of the Rectangle</param>
+        /// <param name="center">The center of the Rectangle</param>
+        virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center) override;
 
         DirectXGraphicsEngine(Core::GameWindow &gameWindow);
         ~DirectXGraphicsEngine();

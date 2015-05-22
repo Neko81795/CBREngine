@@ -1,19 +1,16 @@
 #pragma once
 #include <list>
 #include "GraphicsEvents.h"
+#include "../Core/EventHandler.h"
 
 namespace CBREngine
 {
   namespace Graphics
   {
-    class RenderTargetResizedEventHandler
+    class GraphicsEventHandler : public Core::EventHandler<GraphicsEvent &>
     {
-    private:
-      std::list<void(*)(RenderTargetResizedEvent)> ls;
     public:
-      RenderTargetResizedEventHandler &operator+=(void(*func)(RenderTargetResizedEvent));
-      RenderTargetResizedEventHandler &operator-=(void(*func)(RenderTargetResizedEvent));
-      void operator()(RenderTargetResizedEvent &evnt);
+      virtual ~GraphicsEventHandler() {}
     };
   }
 }

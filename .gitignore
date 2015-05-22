@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CBREngine/Debug
+/CBREngine/Debug
+/CBREngine/x64
+/EngineTest/Debug
+/EngineTest/x64
+/ipch
+/x64
+*.user
+*.obj
+*.sdf
+*.opensdf

@@ -39,6 +39,8 @@ namespace CBREngine
         MESSAGE_HANDLER(WM_DISPLAYCHANGE, DisplayChange)
       END_MSG_MAP()
 
+      
+
       LRESULT Paint(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT Destroy(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT Resize(UINT, WPARAM, LPARAM, BOOL &);
