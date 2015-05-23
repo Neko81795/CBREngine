@@ -39,9 +39,9 @@ namespace CBREngine
       /// When the event is dispatched the object will call the given delegate.
       /// </summary>
       /// <param name="eventID"> the ID of the event to listen to </param>
-      /// <param name="delegate"> the delegate to call back when the event is dispatched </param>
+      /// <param name="func"> the function to call when the event happens </param>
       /// <param name="listener"> the object listening for this event </param>
-      void AttachEventHandler(const std::string &eventID, Delegate<Event *> delegate, GameObjects::Components::Component *listener);
+      void AttachEventHandler(const std::string &eventID, void(*func)(void*, Event*), GameObjects::Components::Component *listener);
       /// <summary>
       /// Informs the object that you would like to stop listening to the given event.
       /// </summary>

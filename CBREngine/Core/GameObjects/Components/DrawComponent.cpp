@@ -34,10 +34,12 @@ namespace CBREngine
         void DrawComponent::Initialize()
         {
           Transform = static_cast<TransformComponent*>(Owner.GetComponentByName("Transform"));
-          Space.AttachEventHandler("Draw", Delegate<Event *>([](void * obj, Event* event)
-          {
-            reinterpret_cast<DrawComponent *>(obj)->Draw(static_cast<DrawEvent *>(event));
-          }, this), this);
+
+          //lambda
+          Space.AttachEventHandler(
+            "Draw", 
+            [](void * obj, Event* event){ static_cast<DrawComponent *>(obj)->Draw(static_cast<DrawEvent *>(event)); }, 
+            this);
         }
 
         DrawComponent::DrawComponent(GameObjects::GameObject * owner) : Component(owner, "Transform"), Color(1.0f, 1.0f, 1.0f)

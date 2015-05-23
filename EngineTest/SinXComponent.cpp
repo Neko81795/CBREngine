@@ -12,9 +12,7 @@ void SinXComponent::Initialize()
 
   Space.AttachEventHandler(
     "Update",
-    CBREngine::Core::Delegate<Event *>(
-      [](void * obj, Event* event) { static_cast<SinXComponent *>(obj)->Update(static_cast<UpdateEvent *>(event)); },
-      this),
+    [](void * obj, Event* event) { static_cast<SinXComponent *>(obj)->Update(static_cast<UpdateEvent *>(event)); },
     this);
 }
 

@@ -13,9 +13,7 @@ void SpinComponent::Initialize()
 
   Space.AttachEventHandler(
     "Update",
-    CBREngine::Core::Delegate<Event *>(
-      [](void * obj, Event* event) { static_cast<SpinComponent *>(obj)->Update(static_cast<UpdateEvent *>(event)); }, 
-      this),
+    [](void * obj, Event* event) { static_cast<SpinComponent *>(obj)->Update(static_cast<UpdateEvent *>(event)); },
     this);
 }
 

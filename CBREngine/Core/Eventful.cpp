@@ -15,11 +15,12 @@ namespace CBREngine
       return true;
     }
 
-    void Eventful::AttachEventHandler(const std::string & eventID, Delegate<Event*> delegate, GameObjects::Components::Component *listener)
+    void Eventful::AttachEventHandler(const std::string & eventID, void (*func)(void*,Event*), GameObjects::Components::Component *listener)
     {
-      EventListeners[eventID].push_back(delegate);
-      listener->EventDispatchers[this].push_back(delegate);
-      listener->DelegateIDs[delegate] = eventID;
+
+      EventListeners[eventID].push_back(Delegate<Event*>(func, listener));
+      listener->EventDispatchers[this].push_back(Delegate<Event*>(func, listener));
+      listener->DelegateIDs[Delegate<Event*>(func, listener)] = eventID;
     }
 
     void Eventful::DetachEventHandler(const std::string & eventID, Delegate<Event*> delegate, GameObjects::Components::Component *listener)
