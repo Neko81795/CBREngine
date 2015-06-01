@@ -13,3 +13,7 @@
 *.obj
 *.sdf
 *.opensdf
+/Alchemy/alchemy/alchemy/Debug
+/Alchemy/alchemy/Debug
+*.suo
+/Alchemy/data/~$LetterFreq.xlsx

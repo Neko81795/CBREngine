@@ -21,15 +21,6 @@ namespace CBREngine
     void Run(bool * run, Game * game)
     {
       CBREngine::Graphics::Color clearColor(75, 120, 255);
-      float rot = 0;
-
-      CBREngine::Graphics::Bitmap b(*game->Graphics);
-
-
-      game->Graphics->LoadBitmapFromFile("C:\\Users\\Neko\\Documents\\Visual Studio 2015\\Projects\\CBREngine\\x64\\Debug\\bit.png", b);
-      CBREngine::Core::Size2 s = b.GetSize() / 2;
-      CBREngine::Core::Vector2 bcenter((float)s.Width, (float)s.Height);
-      CBREngine::Core::RectangleF rect(400, 500, 400, 400);
       CBREngine::Core::GameTime g;
 
       game->Spaces.front().Initialize();
@@ -45,10 +36,6 @@ namespace CBREngine
         game->Graphics->BeginDraw();
         game->Graphics->Clear(clearColor);
 
-
-
-        game->Graphics->DrawBitmap(b, CBREngine::Core::Vector2(400, 500), 1, bcenter, -rot, CBREngine::Core::Vector2(0.25f, 0.5f));
-        game->Graphics->DrawBitmap(b, CBREngine::Core::Vector2(400, 500), 1, CBREngine::Core::Vector2(200, 200), rot++, CBREngine::Core::Vector2(0.25f, 1), &rect);
 
         for (GameObjects::Space &space : game->Spaces)
         {
