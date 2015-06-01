@@ -37,11 +37,19 @@ namespace alchemy
 		Clear();
 
 		//Populate with new data regardless of uppercase or lowercase.
-		for (unsigned int i = 0; i < str.size(); ++i)
-			if (isupper(str.at(i)))
-				++(data_[str.at(i) - UPPERCASE_ASCII_INDEX]);
-			else if (islower(str.at(i)))
-				++(data_[str.at(i) - LOWERCASE_ASCII_INDEX]);
+    for (unsigned int i = 0; i < str.size(); ++i)
+      if (isupper(str.at(i)))
+      {
+        auto index = str.at(i) - UPPERCASE_ASCII_INDEX;
+        ++(data_[index]);
+        FactorIn(static_cast<alchemy::SpellSymbols>(index));
+      }
+      else if (islower(str.at(i)))
+      {
+        auto index = str.at(i) - LOWERCASE_ASCII_INDEX;
+        ++(data_[index]);
+        FactorIn(static_cast<alchemy::SpellSymbols>(index));
+      }
 
 		//Return a reference in case someone wants to use it.
 		return *data_;
@@ -52,7 +60,11 @@ namespace alchemy
 	{
 		FactorInAtPercentage(toAdd, 1);
 	}
-
+  
+  void SpellData::FactorIn(SpellSymbols symbol)
+  {
+    FactorIn(alchemy::Symbol::symbolStats[symbol]);
+  }
 
 	void Scale(double &toScale, double scalar, double intensityScalar) { toScale *= (scalar * intensityScalar); }
 	void SpellData::FactorInAtPercentage(Symbol &toAdd, float intensityScalar)

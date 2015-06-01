@@ -1,5 +1,4 @@
-#ifndef Symbol_H
-#define Symbol_H
+#pragma once
 
 #include "tempCBR\Color.h"
 #include <vector>
@@ -14,8 +13,8 @@ namespace alchemy
 		double durationScalar = 1;      //A scalar for the duration of the spell.
 		double instanceCountScalar = 1; //A scalar for the number of different instances of the spell parts are produced. (An attack that shoots 3 balls out instead of 1. This would increase the number of balls.)
 		double aoeScalar = 1;           //A scalar to determine the size of the Area of Effect.
-		double knockbackScalar = 1;		//A Scalar to adjust the knockback caused by the spell.
-		double recoilScalar = 1;		//A Scalar to determine recoil of the caster.
+		double knockbackScalar = 1;		  //A Scalar to adjust the knock-back caused by the spell.
+		double recoilScalar = 1;		    //A Scalar to determine recoil of the caster.
 
 		void(*effect)() = 0;            //A pointer to an effect function. Called on a per-cycle basis.
 		
@@ -58,4 +57,3 @@ namespace alchemy
 	};
 }
 
-#endif //Symbol

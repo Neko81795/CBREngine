@@ -13,7 +13,7 @@ namespace alchemy
 
 	std::string& toUpper(std::string &str)
 	{
-		//make the spell uppercase.
+		//Make the spell uppercase.
 		for (unsigned int i = 0; i < str.size(); ++i)
 			str.at(i) = alchemy::toUpper(str.at(i));
 
@@ -30,7 +30,7 @@ namespace alchemy
 
 	std::string& toLower(std::string &str)
 	{
-		//make the spell lowrcase.
+		//make the spell lowercase.
 		for (unsigned int i = 0; i < str.size(); ++i)
 			str.at(i) = toLower(str.at(i));
 

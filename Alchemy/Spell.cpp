@@ -34,8 +34,8 @@ namespace alchemy
 		double numberValid = 0;          //Number of valid words.
 		string tempStr = string(spell_); //A temp version of our string to butcher.
 		vector<string> splitWords;       //A vector to hold what we split.
-		string tempBuffer;				 //A temp buffer to hold the output mid-process.
-		stringstream ss(tempStr);        //A stringstream to auto feed to the buffer split on spaces.
+		string tempBuffer;				       //A temp buffer to hold the output mid-process.
+		stringstream ss(tempStr);        //A string stream to auto feed to the buffer split on spaces.
 
 		//While there are still spaces, split on the spaces.
 		while (ss >> tempBuffer)
@@ -61,7 +61,7 @@ namespace alchemy
 
 	Spell& Spell::toLower()
 	{
-		//make the spell lowrcase.
+		//make the spell lowercase.
 		alchemy::toLower(spell_);
 
 		return *this;
@@ -75,7 +75,7 @@ namespace alchemy
 
 	Spell& Spell::operator=(Spell& rhs)
 	{
-		//Perform a deep copy usnig existing functions.
+		//Perform a deep copy using existing functions.
 		spell_ = rhs.getString().substr(0, rhs.getString().size());
 		spellData_ = rhs.spellData_;
 

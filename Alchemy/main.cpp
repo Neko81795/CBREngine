@@ -18,11 +18,11 @@ void setToBeginning(ifstream &ifs);
 
 void main()
 {
-	alchemy::Spell spell;					//Storage for the spell we will cast, and subsiquently the word that was read in.
-	std::string input;							//The input string for the spell we will cast.
+	alchemy::Spell spell;					//Storage for the spell we will cast, and subsequently the word that was read in.
+	std::string input;						//The input string for the spell we will cast.
 	vector<string> words;					//A pointer to an array of words.
 	ifstream iFile("sorted_lexicon.txt");	//Input File Stream for the words we have.
-	int lines = 0;							//The number of lines in the wordsFile, as of now.
+	int lines = 0;							  //The number of lines in the wordsFile, as of now.
 	
 	//Test things.
 	//quickSpellTest();
@@ -50,7 +50,7 @@ void main()
 		int currLine = 0;
 		while (getline(iFile, words.at(currLine)))
 			++currLine;
-
+    
 		//Update the user.
 		cout << "Making words a uniform case...\n";
 
@@ -59,12 +59,15 @@ void main()
 			alchemy::toUpper(words.at(i));
 
 		//Update the user.
-		//cout << "Sorthing the dictionary...\n";
+		//cout << "Sorting the dictionary...\n";
 		//Sorting dictionary.
 		//std::sort(words.begin(), words.end(), localComparator);
-
+    
 		//Update the user.
-		cout << "Lexicon ready for searching.\n\n";
+		cout << "Lexicon ready for searching.\n";
+
+    cout << "Reading in scalar configuration for symbols...\n";
+    alchemy::Symbol::ImportFromFile("scalar_config.txt");
 	}
 	else
 	{
@@ -77,7 +80,7 @@ void main()
 	while (1)
 	{
 		//Prompt and read in a word.
-		cout << "Please enter a word: ";
+		cout << "Please enter a word or phrase: ";
 		getline(cin, input);
 		spell = alchemy::Spell(input);
 
