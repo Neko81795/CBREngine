@@ -67,7 +67,7 @@ namespace CBREngine
         /// <param name="scale">The Scaling of the bitmap</param>
         /// <param name="source">The Rectangle of the image to use</param>
         /// <param name="zLayer">The zlayer of the bitmap</param>
-        virtual void DrawBitmap(const Bitmap &image, const Vector2 &position, float opacity, const Vector2 &center, float rotation, const Vector2 &scale, const Core::RectangleF *source = NULL, float zLayer = 0) __ABSTRACT;
+        virtual void DrawBitmap(const Bitmap &image, const Vector2 &position, float opacity, const Vector2 &center, float rotation, const Core::Size2F &scale, const Core::RectangleF *source = NULL, float zLayer = 0) __ABSTRACT;
         /// <summary>
         /// Draws the an Ellipse
         /// </summary>

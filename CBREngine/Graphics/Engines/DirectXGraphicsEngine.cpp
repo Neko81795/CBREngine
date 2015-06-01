@@ -163,11 +163,11 @@ namespace CBREngine
         RenderTarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(position.X, position.Y), size.Width / 2, size.Height / 2), SolidBrush.Get(), stroke);
       }
 
-      void DirectXGraphicsEngine::DrawBitmap(const Bitmap &image, const Vector2 &position, float opacity, const Vector2 &center, float rotation, const Vector2 &scale, const Core::RectangleF * source, float /*zLayer*/)
+      void DirectXGraphicsEngine::DrawBitmap(const Bitmap &image, const Vector2 &position, float opacity, const Vector2 &center, float rotation, const Core::Size2F &scale, const Core::RectangleF * source, float /*zLayer*/)
       {
         D2D1::Matrix3x2F trans = D2D1::Matrix3x2F::Translation(position.X, position.Y);
         D2D1::Matrix3x2F rot = D2D1::Matrix3x2F::Rotation(rotation);
-        D2D1::Matrix3x2F scal = D2D1::Matrix3x2F::Scale(D2D1::SizeF(scale.X, scale.Y));
+        D2D1::Matrix3x2F scal = D2D1::Matrix3x2F::Scale(D2D1::SizeF(scale.Width, scale.Height));
         D2D1::Matrix3x2F tran2 = D2D1::Matrix3x2F::Translation(-center.X, -center.Y);
         D2D1::Matrix3x2F m = tran2 * scal;
         D2D1::Matrix3x2F m2 = m * rot;

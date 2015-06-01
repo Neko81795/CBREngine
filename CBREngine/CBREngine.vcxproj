@@ -17,6 +17,7 @@
     <ClCompile Include="Core\Eventful.cpp" />
     <ClCompile Include="Core\Game.cpp" />
     <ClCompile Include="Core\GameObjects\Components\Component.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\DrawBitmapComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\TransformComponent.cpp" />
     <ClCompile Include="Core\GameObjects\GameObject.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="Core\GameObjects.h" />
     <ClInclude Include="Core\GameObjects\Components.h" />
     <ClInclude Include="Core\GameObjects\Components\Component.h" />
+    <ClInclude Include="Core\GameObjects\Components\DrawBitmapComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawEvent.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\TransformComponent.h" />
