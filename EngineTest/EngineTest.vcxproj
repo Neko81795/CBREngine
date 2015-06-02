@@ -86,8 +86,8 @@
     <ClCompile Include="SpinComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CBREngine\CBREngine.vcxproj">
-      <Project>{b0bb5184-8358-44de-8ff7-c205c48f5422}</Project>
+    <ProjectReference Include="..\MistThread\MistThread.vcxproj">
+      <Project>{708b0d22-6bff-442b-8ed1-0c25710f544f}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

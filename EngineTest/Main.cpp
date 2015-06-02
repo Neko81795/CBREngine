@@ -1,18 +1,18 @@
-#include "../CBREngine/Core.h"
-#include "../CBREngine/Graphics.h"
+#include "../MistThread/Core.h"
+#include "../MistThread/Graphics.h"
 #include "SpinComponent.h"
 #include "SinXComponent.h"
 
 //TODO REMOVE THIS SHIT IT'S BAD PRACTICE
-using namespace CBREngine;
-using namespace CBREngine::Core;
-using namespace CBREngine::Core::GameObjects;
-using namespace CBREngine::Core::GameObjects::Components;
+using namespace MistThread;
+using namespace MistThread::Core;
+using namespace MistThread::Core::GameObjects;
+using namespace MistThread::Core::GameObjects::Components;
 
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nShowCmd)
 {
-  GameWindow gameWindow("CBREngine Test oh boy");
-  CBREngine::Graphics::Engines::DirectXGraphicsEngine graphics(gameWindow);
+  GameWindow gameWindow("MistThread Test oh boy");
+  MistThread::Graphics::Engines::DirectXGraphicsEngine graphics(gameWindow);
   Game game(&gameWindow, &graphics);
 
 
@@ -81,7 +81,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   trans5.Scale.Width = 0.5;
   DrawBitmapComponent& draw5 = obj5.AddComponent<DrawBitmapComponent>();
   Graphics::Bitmap b(graphics);
-  graphics.LoadBitmapFromFile("C:/Users/Neko/Documents/Visual Studio 2015/Projects/CBREngine/x64/Debug/bit.png", b);
+  graphics.LoadBitmapFromFile("C:/Users/Neko/Documents/Visual Studio 2015/Projects/MistThread/x64/Debug/bit.png", b);
   draw5.Image = &b;
   SpinComponent& spin5 = obj5.AddComponent<SpinComponent>();
   spin5.RotationSpeed = 1;

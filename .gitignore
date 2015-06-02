@@ -17,3 +17,6 @@
 /Alchemy/alchemy/Debug
 *.suo
 /Alchemy/data/~$LetterFreq.xlsx
+/MistThread/Debug
+/MistThread/x64
+/MistThread/MistThread.aps

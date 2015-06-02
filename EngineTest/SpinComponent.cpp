@@ -9,7 +9,7 @@ void SpinComponent::Update(UpdateEvent *)
 
 void SpinComponent::Initialize()
 {
-  Transform = static_cast<CBREngine::Core::GameObjects::Components::TransformComponent*>(Owner.GetComponentByName("Transform"));
+  Transform = static_cast<MistThread::Core::GameObjects::Components::TransformComponent*>(Owner.GetComponentByName("Transform"));
 
   Space.AttachEventHandler(
     "Update",
@@ -17,7 +17,7 @@ void SpinComponent::Initialize()
     this);
 }
 
-SpinComponent::SpinComponent(CBREngine::Core::GameObjects::GameObject * owner) : Component(owner, "Transform")
+SpinComponent::SpinComponent(MistThread::Core::GameObjects::GameObject * owner) : Component(owner, "Transform")
 {
   Name = "Spin";
 }

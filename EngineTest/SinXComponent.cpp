@@ -8,7 +8,7 @@ void SinXComponent::Update(UpdateEvent * event)
 
 void SinXComponent::Initialize()
 {
-  Transform = static_cast<CBREngine::Core::GameObjects::Components::TransformComponent*>(Owner.GetComponentByName("Transform"));
+  Transform = static_cast<MistThread::Core::GameObjects::Components::TransformComponent*>(Owner.GetComponentByName("Transform"));
 
   Space.AttachEventHandler(
     "Update",
@@ -16,7 +16,7 @@ void SinXComponent::Initialize()
     this);
 }
 
-SinXComponent::SinXComponent(CBREngine::Core::GameObjects::GameObject * owner) : Component(owner, "Transform")
+SinXComponent::SinXComponent(MistThread::Core::GameObjects::GameObject * owner) : Component(owner, "Transform")
 {
   Name = "SinX";
 }
