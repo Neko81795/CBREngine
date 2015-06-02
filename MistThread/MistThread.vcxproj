@@ -35,6 +35,7 @@
     <ClCompile Include="Graphics\Engines\LimitedGraphicsEngineCore.cpp" />
     <ClCompile Include="Graphics\GraphicsEventHandlers.cpp" />
     <ClCompile Include="Graphics\GraphicsEvents.cpp" />
+    <ClCompile Include="Utilities\ContentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
@@ -70,6 +71,7 @@
     <ClInclude Include="Graphics\Engines\LimitedGraphicsEngineCore.h" />
     <ClInclude Include="Graphics\GraphicsEventHandlers.h" />
     <ClInclude Include="Graphics\GraphicsEvents.h" />
+    <ClInclude Include="Utilities\ContentManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{708B0D22-6BFF-442B-8ED1-0C25710F544F}</ProjectGuid>

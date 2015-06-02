@@ -93,6 +93,9 @@
     <ClCompile Include="Core\GameObjects\Components\DrawBitmapComponent.cpp">
       <Filter>Core\GameObjects\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\ContentManager.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -189,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="Core\GameObjects\Components\DrawBitmapComponent.h">
       <Filter>Core\GameObjects\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\ContentManager.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
