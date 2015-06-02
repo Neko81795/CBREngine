@@ -19,7 +19,6 @@ namespace MistThread
       public:
         bool Persistant;
         T* Content;
-        bool UsedInLoaded;
         std::string Path;
 
       public:
@@ -35,6 +34,9 @@ namespace MistThread
     private:
       static std::list<ContentInfo<Graphics::Bitmap> *> LoadedBitmaps;
     public:
+      /// <summary>
+      /// the folder where all the content is located
+      /// </summary>
       static std::string RootFolder;
 
     public:
