@@ -73,22 +73,22 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   sin4.Scale = 9;
   sin4.Offset = 18;
 
-  GameObject &obj5 = game.Spaces.front().CreateObject();
-  TransformComponent& trans5 = obj5.AddComponent<TransformComponent>();
-  trans5.Position.X = 8;
-  trans5.Position.Y = 8;
-  trans5.Scale.Height = 0.5;
-  trans5.Scale.Width = 0.5;
-  DrawBitmapComponent& draw5 = obj5.AddComponent<DrawBitmapComponent>();
-  Graphics::Bitmap b(graphics);
-  graphics.LoadBitmapFromFile("C:/Users/Neko/Documents/Visual Studio 2015/Projects/MistThread/x64/Debug/bit.png", b);
-  draw5.Image = &b;
-  SpinComponent& spin5 = obj5.AddComponent<SpinComponent>();
-  spin5.RotationSpeed = 1;
-  SinXComponent& sin5 = obj5.AddComponent<SinXComponent>();
-  sin5.Period = 1.01f;
-  sin5.Scale = 9;
-  sin5.Offset = 18;
+  ////GameObject &obj5 = game.Spaces.front().CreateObject();
+  ////TransformComponent& trans5 = obj5.AddComponent<TransformComponent>();
+  ////trans5.Position.X = 8;
+  ////trans5.Position.Y = 8;
+  ////trans5.Scale.Height = 0.5;
+  ////trans5.Scale.Width = 0.5;
+  ////DrawBitmapComponent& draw5 = obj5.AddComponent<DrawBitmapComponent>();
+  ////Graphics::Bitmap b(graphics);
+  ////graphics.LoadBitmapFromFile("C:/Users/Neko/Documents/Visual Studio 2015/Projects/MistThread/x64/Debug/bit.png", b);
+  ////draw5.Image = &b;
+  ////SpinComponent& spin5 = obj5.AddComponent<SpinComponent>();
+  ////spin5.RotationSpeed = 1;
+  ////SinXComponent& sin5 = obj5.AddComponent<SinXComponent>();
+  ////sin5.Period = 1.01f;
+  ////sin5.Scale = 9;
+  ////sin5.Offset = 18;
   
 
   game.Start();
