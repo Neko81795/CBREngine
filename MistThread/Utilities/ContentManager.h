@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <map>
 #include <string>
 
 namespace MistThread
@@ -32,7 +33,7 @@ namespace MistThread
       };
 
     private:
-      static std::list<ContentInfo<Graphics::Bitmap> *> LoadedBitmaps;
+      static std::map<std::string, ContentInfo<Graphics::Bitmap> *> LoadedBitmaps;
     public:
       /// <summary>
       /// the folder where all the content is located

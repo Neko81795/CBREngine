@@ -22,19 +22,17 @@ namespace MistThread
       Content = NULL;
     }
 
-    std::list<ContentManager::ContentInfo<Graphics::Bitmap> *> ContentManager::LoadedBitmaps;
+    std::map<std::string, ContentManager::ContentInfo<Graphics::Bitmap> *> ContentManager::LoadedBitmaps;
     std::string ContentManager::RootFolder;
 
     Graphics::Bitmap & ContentManager::LoadBitmapFile(const std::string &path)
     {
-      for (auto content : LoadedBitmaps)
-      {
-        if (content->Path == path)
-          return *content->Content;
-      }
+      auto &content = LoadedBitmaps[path];
 
-      LoadedBitmaps.push_back(new ContentInfo<Graphics::Bitmap>(new Graphics::Bitmap(*Core::Game::CurrentGame->Graphics), path));
-      auto content = LoadedBitmaps.back();
+      if (content)
+        return *content->Content;
+
+      content = new ContentInfo<Graphics::Bitmap>(new Graphics::Bitmap(*Core::Game::CurrentGame->Graphics), path);
 
       Core::Game::CurrentGame->Graphics->LoadBitmapFromFile(RootFolder + path, *content->Content);
       
