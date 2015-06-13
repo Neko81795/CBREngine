@@ -42,7 +42,7 @@ namespace MistThread
             this);
         }
 
-        DrawComponent::DrawComponent(GameObjects::GameObject * owner) : Component(owner, "Transform"), Color(1.0f, 1.0f, 1.0f)
+        DrawComponent::DrawComponent(GameObjects::GameObjectBase * owner) : Component(owner, "Transform"), Color(1.0f, 1.0f, 1.0f)
         {
           Stroke = 1;
           Name = "Draw";

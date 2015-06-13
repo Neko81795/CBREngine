@@ -9,7 +9,7 @@ namespace MistThread
     {
       namespace Components
       {
-        TransformComponent::TransformComponent(GameObjects::GameObject *owner) : Component(owner)
+        TransformComponent::TransformComponent(GameObjects::GameObjectBase *owner) : Component(owner)
         {
           Scale.Height = 1;
           Scale.Width = 1;

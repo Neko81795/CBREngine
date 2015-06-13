@@ -3,7 +3,6 @@
 #include "Core/CoreEvents.h"
 #include "Core/Delegate.h"
 #include "Core/Event.h"
-#include "Core/Eventful.h"
 #include "Core/EventHandler.h"
 #include "Core/Game.h"
 #include "Core/GameObjects.h"

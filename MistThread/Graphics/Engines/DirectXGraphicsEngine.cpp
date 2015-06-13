@@ -36,6 +36,8 @@ namespace MistThread
       {
         CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, __uuidof(IWICImagingFactory),
                          reinterpret_cast<void **>(ImageFactory.GetAddressOf()));
+
+        DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(TextFactory), reinterpret_cast<IUnknown**>(TextFactory.GetAddressOf()));
       }
 
       void DirectXGraphicsEngine::WindowResized(Core::WindowEvent & evnt)
@@ -199,6 +201,10 @@ namespace MistThread
         RenderTarget->FillRectangle(rectangle, SolidBrush.Get());
       }
 
+      void Engines::DirectXGraphicsEngine::DrawString()
+      {
+      }
+
 
 
       DirectXGraphicsEngine::DirectXGraphicsEngine(Core::GameWindow &window)
@@ -214,7 +220,7 @@ namespace MistThread
 
         D2D1_FACTORY_OPTIONS fo = {};
 
-#ifdef DEBUG
+#ifdef _DEBUG
         fo.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
 #endif
         //TODO add why we failed

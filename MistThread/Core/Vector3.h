@@ -2,7 +2,7 @@
 #include <iostream> //operator <<
 #include "Vector2.h"
 
-namespace CBREngine
+namespace MistThread
 {
   namespace Core
   {
@@ -80,7 +80,7 @@ namespace CBREngine
       Vector3 operator*(float rhs) const;
       Vector3 operator/(const Vector3 &rhs) const;
       Vector3 operator/(float rhs) const;
-      
+
       Vector3 &operator+=(const Vector3 &rhs);
       Vector3 &operator+=(float rhs);
       Vector3 &operator-=(const Vector3 &rhs);

@@ -30,7 +30,7 @@ namespace MistThread
             this);
         }
 
-        DrawBitmapComponent::DrawBitmapComponent(GameObjects::GameObject *owner) : Component(owner, "Transform")
+        DrawBitmapComponent::DrawBitmapComponent(GameObjects::GameObjectBase *owner) : Component(owner, "Transform")
         {
           Name = "DrawBitmap";
           Image = NULL;

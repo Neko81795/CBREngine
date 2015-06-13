@@ -67,16 +67,21 @@ namespace MistThread
     }
 #endif
 
-    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics)
+    GameObjects::Space &Game::CreateMainSpace()
     {
-      Graphics = graphics;
-      Window = window;
-      CurrentGame = this;
-
       GameObjects::Space main(*this, Graphics);
       main.Name = "Main";
 
       Spaces.push_back(main);
+
+      return Spaces.front();
+    }
+
+    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics) : GameObjectBase(*this, CreateMainSpace())
+    {
+      Graphics = graphics;
+      Window = window;
+      CurrentGame = this;
     }
 
     Game::~Game()

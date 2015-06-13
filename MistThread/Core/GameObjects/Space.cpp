@@ -1,6 +1,5 @@
 #include "Space.h"
 #include "Components/UpdateEvent.h"
-#include "Components/DrawEvent.h"
 
 namespace MistThread
 {
@@ -12,21 +11,6 @@ namespace MistThread
       {
         Components::UpdateEvent ue(gameTime);
         DispatchEvent("Update", &ue);
-      }
-
-      void Space::Draw(Graphics::Engines::GraphicsEngineCore & graphics)
-      {
-        Components::DrawEvent de(graphics);
-        DispatchEvent("Draw", &de);
-      }
-
-      void Space::Initialize()
-      {
-        for (GameObject & go : Objects)
-        {
-          for (Components::Component *com : go._components)
-            com->Initialize();
-        }
       }
 
       GameObject& Space::CreateObject()
@@ -44,7 +28,7 @@ namespace MistThread
         return obj;
       }
 
-      Space::Space(Core::Game & game, Graphics::Engines::LimitedGraphicsEngineCore *graphics) : Game(game)
+      Space::Space(Core::Game & game, Graphics::Engines::LimitedGraphicsEngineCore *graphics) : GameObjectBase(game, *this)
       {
         pGraphics = graphics;
       }

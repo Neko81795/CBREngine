@@ -1,6 +1,7 @@
 #pragma once
 
 #pragma comment(lib, "d2d1")
+#pragma comment(lib, "dwrite")
 
 #include "GraphicsEngineCore.h"
 #include "..\..\Core\CoreEvents.h"
@@ -39,6 +40,7 @@ namespace MistThread
         ComPtr<ID2D1Factory> Factory;
         ComPtr<ID2D1HwndRenderTarget> RenderTarget;
         ComPtr<IWICImagingFactory> ImageFactory;
+        ComPtr<IDWriteFactory> TextFactory;
         ComPtr<ID2D1SolidColorBrush> SolidBrush;
 
 
@@ -159,6 +161,8 @@ namespace MistThread
         /// <param name="rotation">The rotation of the Rectangle</param>
         /// <param name="center">The center of the Rectangle</param>
         virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center) override;
+
+        virtual void DrawString();
 
         DirectXGraphicsEngine(Core::GameWindow &gameWindow);
         ~DirectXGraphicsEngine();

@@ -26,12 +26,16 @@ namespace MistThread
           /// the rotation in degrees
           /// </summary>
           float Rotation;
+          /// <summary>
+          /// how far back the object should appear to be
+          /// </summary>
+          float ZLayer;
 
           /// <summary>
           /// Creates a new Transform Component
           /// </summary>
           /// <param name="owner">the owner of this component</param>
-          TransformComponent(GameObjects::GameObject *owner);
+          TransformComponent(GameObjects::GameObjectBase *owner);
           ~TransformComponent();
         };
       }

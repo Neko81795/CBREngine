@@ -85,6 +85,7 @@ namespace MistThread
         /// <param name="rotation">The rotation of the Rectangle</param>
         /// <param name="center">The center of the Rectangle</param>
         virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center) __ABSTRACT;
+        
         /// <summary>
         /// ends the draw
         /// </summary>

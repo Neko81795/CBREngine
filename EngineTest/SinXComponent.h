@@ -15,7 +15,7 @@ public:
   float Offset;
   void Update(UpdateEvent * event);
   void Initialize() override;
-  SinXComponent(MistThread::Core::GameObjects::GameObject* owner);
+  SinXComponent(MistThread::Core::GameObjects::GameObjectBase* owner);
   ~SinXComponent() {}
 };
 

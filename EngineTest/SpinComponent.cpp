@@ -17,7 +17,7 @@ void SpinComponent::Initialize()
     this);
 }
 
-SpinComponent::SpinComponent(MistThread::Core::GameObjects::GameObject * owner) : Component(owner, "Transform")
+SpinComponent::SpinComponent(MistThread::Core::GameObjects::GameObjectBase * owner) : Component(owner, "Transform")
 {
   Name = "Spin";
 }

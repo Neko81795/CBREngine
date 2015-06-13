@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include "GameObjects/GameObjectBase.h"
 
 namespace MistThread
 {
@@ -19,30 +20,31 @@ namespace MistThread
 
     class GameWindow; //forward declaration
 
-    class Game
+    class Game : GameObjects::GameObjectBase
     {
-      ///////////////////////////////
-      //static Variable
-      ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Variables
+//////////////////////////////////////////////////////////////
     public:
       static Game *CurrentGame;
-      
-      ///////////////////////////////
-      //Variables
-      ///////////////////////////////
-    public:
+
       Graphics::Engines::GraphicsEngineCore *Graphics;
       GameWindow *Window;
       std::list<GameObjects::Space> Spaces;
 
-      ///////////////////////////////
-      //Methods
-      ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Methods
+//////////////////////////////////////////////////////////////
     private:
       /// <summary>
       /// the main game loop.
       /// </summary>
       friend void Run(bool *run, Game * game);
+      /// <summary>
+      /// Helper function to create main space. used in constructor :D
+      /// </summary>
+      GameObjects::Space &CreateMainSpace();
+
     public:
       /// <summary>
       /// Starts the main game loop.
@@ -50,6 +52,9 @@ namespace MistThread
       /// </summary>
       void Start();
 
+//////////////////////////////////////////////////////////////
+//Constructors
+//////////////////////////////////////////////////////////////
       /// <summary>
       /// Creates a Game
       /// </summary>

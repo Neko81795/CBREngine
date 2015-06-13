@@ -14,13 +14,13 @@
     <ClCompile Include="Core\CoreEventHandlers.cpp" />
     <ClCompile Include="Core\CoreEvents.cpp" />
     <ClCompile Include="Core\Event.cpp" />
-    <ClCompile Include="Core\Eventful.cpp" />
     <ClCompile Include="Core\Game.cpp" />
     <ClCompile Include="Core\GameObjects\Components\Component.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawBitmapComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\TransformComponent.cpp" />
     <ClCompile Include="Core\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Core\GameObjects\GameObjectBase.cpp" />
     <ClCompile Include="Core\GameObjects\Space.cpp" />
     <ClCompile Include="Core\GameTime.cpp" />
     <ClCompile Include="Core\GameWindow.cpp" />
@@ -43,7 +43,6 @@
     <ClInclude Include="Core\CoreEvents.h" />
     <ClInclude Include="Core\Delegate.h" />
     <ClInclude Include="Core\Event.h" />
-    <ClInclude Include="Core\Eventful.h" />
     <ClInclude Include="Core\EventHandler.h" />
     <ClInclude Include="Core\Game.h" />
     <ClInclude Include="Core\GameObjects.h" />
@@ -55,6 +54,7 @@
     <ClInclude Include="Core\GameObjects\Components\TransformComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\UpdateEvent.h" />
     <ClInclude Include="Core\GameObjects\GameObject.h" />
+    <ClInclude Include="Core\GameObjects\GameObjectBase.h" />
     <ClInclude Include="Core\GameObjects\Space.h" />
     <ClInclude Include="Core\GameTime.h" />
     <ClInclude Include="Core\GameWindow.h" />
@@ -72,6 +72,9 @@
     <ClInclude Include="Graphics\GraphicsEventHandlers.h" />
     <ClInclude Include="Graphics\GraphicsEvents.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{708B0D22-6BFF-442B-8ED1-0C25710F544F}</ProjectGuid>

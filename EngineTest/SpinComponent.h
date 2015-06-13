@@ -14,7 +14,7 @@ public:
   void Update(UpdateEvent * event);
   void Initialize() override;
 
-  SpinComponent(MistThread::Core::GameObjects::GameObject* owner);
+  SpinComponent(MistThread::Core::GameObjects::GameObjectBase* owner);
   ~SpinComponent() {}
 };
 

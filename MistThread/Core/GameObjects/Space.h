@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "../Eventful.h"
+#include "GameObjectBase.h"
 #include "../Game.h"
 #include "../GameTime.h"
 #include "../../Graphics/Engines/LimitedGraphicsEngineCore.h"
@@ -13,21 +13,19 @@ namespace MistThread
   {
     namespace GameObjects
     {
-      class Space : public Eventful
+      class Space : public GameObjectBase
       {
         friend class Core::Game;
-        ///////////////////////////////
-        //Variables
-        ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Variables
+//////////////////////////////////////////////////////////////
       public:
-        std::string Name;
-        Core::Game &Game;
         Graphics::Engines::LimitedGraphicsEngineCore *pGraphics;
         std::list<GameObject> Objects;
 
-        ///////////////////////////////
-        //Methods
-        ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Methods
+//////////////////////////////////////////////////////////////
       private:
         Space& operator=(const Space&) {}
       public:
@@ -36,15 +34,6 @@ namespace MistThread
         /// </summary>
         /// <param name="gameTime">the current game time</param>
         void Update(const GameTime &gameTime);
-        /// <summary>
-        /// Draws all components listening to the draw event
-        /// </summary>
-        /// <param name="graphics">the graphics engine of the game</param>
-        void Draw(Graphics::Engines::GraphicsEngineCore &graphics);
-        /// <summary>
-        /// runs initialization on all components
-        /// </summary>
-        void Initialize();
         /// <summary>
         /// creates a new game object in the space
         /// </summary>
@@ -57,9 +46,9 @@ namespace MistThread
         /// <returns> a reference to the new object </returns>
         GameObject& CreateObjectAt(Vector2 pos);
 
-        ///////////////////////////////
-        //Constructors
-        ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Constructors
+//////////////////////////////////////////////////////////////
       private:
         Space(Core::Game &game, Graphics::Engines::LimitedGraphicsEngineCore *graphics);
       public:

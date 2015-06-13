@@ -75,9 +75,6 @@
     <ClCompile Include="Core\GameTime.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Eventful.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Core\GameObjects\Components\Component.cpp">
       <Filter>Core\GameObjects\Components</Filter>
     </ClCompile>
@@ -95,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="Utilities\ContentManager.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\GameObjects\GameObjectBase.cpp">
+      <Filter>Core\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,9 +163,6 @@
     <ClInclude Include="Core\GameTime.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Eventful.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\GameObjects\Components\Component.h">
       <Filter>Core\GameObjects\Components</Filter>
     </ClInclude>
@@ -196,5 +193,11 @@
     <ClInclude Include="Utilities\ContentManager.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Core\GameObjects\GameObjectBase.h">
+      <Filter>Core\GameObjects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
