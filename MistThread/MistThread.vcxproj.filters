@@ -20,10 +20,10 @@
       <UniqueIdentifier>{e9ff6e3f-4339-4aaf-8023-d6de3a6e7dd6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Audio">
-      <UniqueIdentifier>{443948cb-9c83-47ce-8a76-ab0b035a46e1}</UniqueIdentifier>
+      <UniqueIdentifier>{0b3194f0-a2a2-4bab-8466-17c7da296715}</UniqueIdentifier>
     </Filter>
     <Filter Include="Audio\Engines">
-      <UniqueIdentifier>{28bf9b2f-88ae-43c7-867f-c999703d4219}</UniqueIdentifier>
+      <UniqueIdentifier>{c946caaf-1500-4198-b976-f7cdfdb4f060}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -102,11 +102,11 @@
     <ClCompile Include="Core\GameObjects\GameObjectBase.cpp">
       <Filter>Core\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Audio\Engines\AudioEngineCore.cpp">
-      <Filter>Audio\Engines</Filter>
-    </ClCompile>
     <ClCompile Include="Audio\Sound.cpp">
       <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\Engines\AudioEngineCore.cpp">
+      <Filter>Audio\Engines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,14 +208,11 @@
     <ClInclude Include="Core\GameObjects\GameObjectBase.h">
       <Filter>Core\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\Engines\AudioEngineCore.h">
-      <Filter>Audio\Engines</Filter>
-    </ClInclude>
     <ClInclude Include="Audio\Sound.h">
       <Filter>Audio</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="Audio\Engines\AudioEngineCore.h">
+      <Filter>Audio\Engines</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

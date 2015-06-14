@@ -77,9 +77,6 @@
     <ClInclude Include="Graphics\GraphicsEvents.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{708B0D22-6BFF-442B-8ED1-0C25710F544F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
