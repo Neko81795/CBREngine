@@ -13,6 +13,11 @@ namespace MistThread
       {
         class TransformComponent : public Component
         {
+        private:
+          /// <summary>
+          /// how far back the object should appear to be
+          /// </summary>
+          float ZLayer;
         public:
           /// <summary>
           /// the position in game units
@@ -26,10 +31,11 @@ namespace MistThread
           /// the rotation in degrees
           /// </summary>
           float Rotation;
-          /// <summary>
-          /// how far back the object should appear to be
-          /// </summary>
-          float ZLayer;
+
+
+          float GetZLayer() const;
+
+          void SetZLayer(float value);
 
           /// <summary>
           /// Creates a new Transform Component

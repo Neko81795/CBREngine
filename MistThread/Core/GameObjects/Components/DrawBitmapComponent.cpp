@@ -22,9 +22,8 @@ namespace MistThread
         void DrawBitmapComponent::Initialize()
         {
           Transform = static_cast<TransformComponent*>(Owner.GetComponentByName("Transform"));
-
-          //lambda
-          Space.AttachEventHandler(
+          
+          Owner.AttachEventHandler(
             "Draw",
             [](void * obj, Event* event) { static_cast<DrawBitmapComponent *>(obj)->Draw(static_cast<DrawEvent *>(event)); },
             this);

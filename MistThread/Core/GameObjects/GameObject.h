@@ -29,17 +29,16 @@ namespace MistThread
       private:
         GameObject& operator =(const GameObject&) {}
       public:
-
-        /// <summary>
-        /// Removes the component with the given name
-        /// </summary>
-        /// <param name="name">The name of the component to remove</param>
-        void RemoveComponentByName(const std::string& name);
         /// <summary>
         /// Draws all components listening to the draw event
         /// </summary>
         /// <param name="graphics">the graphics engine of the game</param>
         void Draw(Graphics::Engines::GraphicsEngineCore &graphics);
+        /// <summary>
+        /// compares this object to another for sorting
+        /// value will be less than, greater than, or equal to 0.
+        /// </summary>
+        int CompareTo(const GameObjectBase* other)const override;
 
 //////////////////////////////////////////////////////////////
 //Constructors

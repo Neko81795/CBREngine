@@ -19,10 +19,8 @@ namespace MistThread
 //////////////////////////////////////////////////////////////
 //Variables
 //////////////////////////////////////////////////////////////
-      public:
-        Graphics::Engines::LimitedGraphicsEngineCore *pGraphics;
-        std::list<GameObject> Objects;
-
+      protected:
+        int SpaceLayer;
 //////////////////////////////////////////////////////////////
 //Methods
 //////////////////////////////////////////////////////////////
@@ -43,14 +41,36 @@ namespace MistThread
         /// creates a new game object in the space at the given position
         /// </summary>
         /// <param name="pos">where to spawn the object</param>
+        /// <param name="zLayer">the zLayer to spawn the object at</param>
         /// <returns> a reference to the new object </returns>
-        GameObject& CreateObjectAt(Vector2 pos);
+        GameObject& CreateObjectAt(const Vector2 &pos, float zLayer = 0);
+        /// <summary>
+        /// Finds the first object with the given name. returns NULL if not found
+        /// </summary>
+        /// <param name="name">the name of the object to find</param>
+        /// <exception cref="std::exception">thrown when object doesn't exist</exception>
+        GameObject& FindObjectByName(const std::string &name);
+        /// <summary>
+        /// Finds all objects with the given name.
+        /// </summary>
+        /// <param name="name">the name of the objects to find</param>
+        const std::list<GameObject*> FindObjectsByName(const std::string &name);
+        /// <summary>
+        /// removes the first object with a matching named
+        /// </summary>
+        /// <param name="name">the name of the object to remove</param>
+        void RemoveObjectByName(const std::string &name);
+        /// <summary>
+        /// compares this object to another for sorting
+        /// value will be less than, greater than, or equal to 0.
+        /// </summary>
+        int CompareTo(const GameObjectBase* other)const override;
 
 //////////////////////////////////////////////////////////////
 //Constructors
 //////////////////////////////////////////////////////////////
       private:
-        Space(Core::Game &game, Graphics::Engines::LimitedGraphicsEngineCore *graphics);
+        Space(Core::Game &game);
       public:
         ~Space();
       };

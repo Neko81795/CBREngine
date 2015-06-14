@@ -36,7 +36,7 @@ namespace MistThread
           Transform = static_cast<TransformComponent*>(Owner.GetComponentByName("Transform"));
 
           //lambda
-          Space.AttachEventHandler(
+          Owner.AttachEventHandler(
             "Draw", 
             [](void * obj, Event* event){ static_cast<DrawComponent *>(obj)->Draw(static_cast<DrawEvent *>(event)); }, 
             this);
