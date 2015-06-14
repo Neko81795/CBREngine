@@ -29,8 +29,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   GameObject &obj2 = mainSpace.CreateObject();
   TransformComponent& trans2 = obj2.AddComponent<TransformComponent>();
-  trans2.Position.X = 12;
-  trans2.Position.Y = 16;
+  trans2.Position.X = 0;
+  trans2.Position.Y = 0;
   trans2.Scale.Height = 16;
   trans2.Scale.Width = 2;
   DrawComponent& draw2 = obj2.AddComponent<DrawComponent>();
@@ -42,8 +42,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   GameObject &obj2_2 = mainSpace.CreateObject();
   TransformComponent& trans2_2 = obj2_2.AddComponent<TransformComponent>();
-  trans2_2.Position.X = 12;
-  trans2_2.Position.Y = 16;
+  trans2_2.Position.X = 0;
+  trans2_2.Position.Y = 0;
   trans2_2.Scale.Height = 16;
   trans2_2.Scale.Width = 2;
   DrawComponent& draw2_2 = obj2_2.AddComponent<DrawComponent>();

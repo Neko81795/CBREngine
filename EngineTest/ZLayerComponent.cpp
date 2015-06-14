@@ -4,7 +4,7 @@
 
 void ZLayerComponent::Update(UpdateEvent * event)
 {
-  Transform->SetZLayer(std::sinf(static_cast<float>(event->GameTime.TotalTime * 2.2)));
+  Transform->SetZLayer(std::sinf(static_cast<float>(event->GameTime.TotalTime * 2.2)) * 4);
 }
 
 void ZLayerComponent::Initialize()
