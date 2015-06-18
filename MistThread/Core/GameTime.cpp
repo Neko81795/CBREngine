@@ -14,6 +14,11 @@ namespace MistThread
       _FramesPerSecond = 0;
     }
 
+    double GameTime::operator-(const GameTime & gt) const
+    {
+      return GetActualElapsedTime() - gt.GetActualElapsedTime();
+    }
+
     GameTime & GameTime::operator=(const GameTime & gt)
     {
       _Frames = gt._Frames;

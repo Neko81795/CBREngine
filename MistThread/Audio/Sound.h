@@ -114,7 +114,7 @@ namespace MistThread
       /// </summary>
       /// <param name="isLooping">Whether or not the sound is looping.</param>
       void SetLooping(bool isLooping);
-
+      
       //-- GetWaveData( ??? )
       Spectrum GetSpectrum(SpectrumSize s, FMOD_DSP_FFT_WINDOW window);
 

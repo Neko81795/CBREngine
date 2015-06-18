@@ -32,6 +32,8 @@
     <ClCompile Include="Core\Size2.cpp" />
     <ClCompile Include="Core\Size2f.cpp" />
     <ClCompile Include="Core\Vector2.cpp" />
+    <ClCompile Include="Input\KeyboardEventHandler.cpp" />
+    <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
     <ClCompile Include="Graphics\Bitmap.cpp" />
     <ClCompile Include="Graphics\Color.cpp" />
     <ClCompile Include="Graphics\Engines\DirectXGraphicsEngine.cpp" />
@@ -39,6 +41,12 @@
     <ClCompile Include="Graphics\Engines\LimitedGraphicsEngineCore.cpp" />
     <ClCompile Include="Graphics\GraphicsEventHandlers.cpp" />
     <ClCompile Include="Graphics\GraphicsEvents.cpp" />
+    <ClCompile Include="Input\Engines\InputEngineCore.cpp" />
+    <ClCompile Include="Input\Keyboard.cpp" />
+    <ClCompile Include="Input\KeyboardState.cpp" />
+    <ClCompile Include="Input\KeyCombo.cpp" />
+    <ClCompile Include="Input\KeyEventInfo.cpp" />
+    <ClCompile Include="Input\KeyboardEvent.cpp" />
     <ClCompile Include="Utilities\ContentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +78,9 @@
     <ClInclude Include="Core\Size2.h" />
     <ClInclude Include="Core\Size2f.h" />
     <ClInclude Include="Core\Vector2.h" />
+    <ClInclude Include="Input\Engines.h" />
+    <ClInclude Include="Input\KeyboardEventHandler.h" />
+    <ClInclude Include="Input\Engines\DirectXInputEngine.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Graphics\Bitmap.h" />
     <ClInclude Include="Graphics\Color.h" />
@@ -79,6 +90,15 @@
     <ClInclude Include="Graphics\Engines\LimitedGraphicsEngineCore.h" />
     <ClInclude Include="Graphics\GraphicsEventHandlers.h" />
     <ClInclude Include="Graphics\GraphicsEvents.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Input\Engines\InputEngineCore.h" />
+    <ClInclude Include="Input\InputTypes.h" />
+    <ClInclude Include="Input\Keyboard.h" />
+    <ClInclude Include="Input\KeyboardState.h" />
+    <ClInclude Include="Input\Key.h" />
+    <ClInclude Include="Input\KeyCombo.h" />
+    <ClInclude Include="Input\KeyEventInfo.h" />
+    <ClInclude Include="Input\KeyboardEvent.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

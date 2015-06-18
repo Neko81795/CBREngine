@@ -109,7 +109,8 @@ namespace MistThread
 
       Size2 DirectXGraphicsEngine::GetWindowBounds() const
       {
-        return Size2();
+        D2D1_SIZE_F size = RenderTarget->GetSize();
+        return Size2(static_cast<int>(size.width), static_cast<int>(size.height));
       }
 
       Vector2 DirectXGraphicsEngine::MeasureString(const char * /*text*/, const char * /*font*/, double /*size*/) const
@@ -119,7 +120,7 @@ namespace MistThread
 
       void DirectXGraphicsEngine::ToggleFullScreen()
       {
-
+        
       }
 
       void DirectXGraphicsEngine::BeginDraw()
@@ -253,11 +254,11 @@ namespace MistThread
       {
         window.OnResize += Core::Delegate<Core::WindowEvent &>([](void * obj, Core::WindowEvent &evnt)
         {
-          reinterpret_cast<DirectXGraphicsEngine*>(obj)->WindowResized(evnt);
+          static_cast<DirectXGraphicsEngine*>(obj)->WindowResized(evnt);
         }, this);
         window.OnDisplayChange += Core::Delegate<Core::WindowEvent &>([](void * obj, Core::WindowEvent &evnt)
         {
-          reinterpret_cast<DirectXGraphicsEngine*>(obj)->DisplayChanged(evnt);
+          static_cast<DirectXGraphicsEngine*>(obj)->DisplayChanged(evnt);
         }, this);
 
         D2D1_FACTORY_OPTIONS fo = {};

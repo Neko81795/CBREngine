@@ -5,6 +5,7 @@
 #include <map>
 
 #include "CoreEventHandlers.h"
+#include "../Input/KeyboardEventHandler.h"
 #include "Size2.h"
 
 namespace MistThread
@@ -37,6 +38,8 @@ namespace MistThread
         MESSAGE_HANDLER(WM_DESTROY, Destroy)
         MESSAGE_HANDLER(WM_SIZE, Resize)
         MESSAGE_HANDLER(WM_DISPLAYCHANGE, DisplayChange)
+        MESSAGE_HANDLER(WM_KEYDOWN, KeyDown)
+        MESSAGE_HANDLER(WM_KEYUP, KeyUp)
       END_MSG_MAP()
 
       
@@ -45,6 +48,8 @@ namespace MistThread
       LRESULT Destroy(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT Resize(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT DisplayChange(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT KeyDown(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT KeyUp(UINT, WPARAM, LPARAM, BOOL &);
 #endif
       //variables
     protected:
@@ -52,6 +57,8 @@ namespace MistThread
     public:
       WindowEventHandler OnResize;
       WindowEventHandler OnDisplayChange;
+      Input::KeyboardEventHandler OnKeyDown;
+      Input::KeyboardEventHandler OnKeyUp;
 
       //Methods
     public:

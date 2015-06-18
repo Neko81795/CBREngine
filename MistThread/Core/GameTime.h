@@ -44,6 +44,7 @@ namespace MistThread
     public:
       void Tick();
 
+      double operator-(const GameTime & gt) const;
       GameTime &operator=(const GameTime & gt);
 
       GameTime();

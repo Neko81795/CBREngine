@@ -21,6 +21,8 @@ namespace MistThread
 //////////////////////////////////////////////////////////////
       protected:
         int SpaceLayer;
+      public:
+        Core::GameTime GameTime;
 //////////////////////////////////////////////////////////////
 //Methods
 //////////////////////////////////////////////////////////////
@@ -31,7 +33,7 @@ namespace MistThread
         /// Updates all components listening to the update event
         /// </summary>
         /// <param name="gameTime">the current game time</param>
-        void Update(const GameTime &gameTime);
+        void Update();
         /// <summary>
         /// creates a new game object in the space
         /// </summary>

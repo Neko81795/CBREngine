@@ -12,6 +12,7 @@
 #include "GameObjects/Space.h"
 #include "Delegate.h"
 #include "GameObjects/Components/Component.h"
+#include "../Input/Engines/InputEngineCore.h"
 
 
 namespace MistThread
@@ -20,21 +21,18 @@ namespace MistThread
   {
     void Run(bool * run, Game * game)
     {
-      MistThread::Graphics::Color clearColor(75, 120, 255);
-      MistThread::Core::GameTime g;
-
       game->Initialize();
 
       while (*run)
       {
-        g.Tick();
+        game->Input->Update(game->Space.GameTime);
 
         for (GameObjects::GameObjectBase *space : game->Objects)
         {
-          static_cast<GameObjects::Space*>(space)->Update(g);
+          static_cast<GameObjects::Space*>(space)->Update();
         }
         game->Graphics->BeginDraw();
-        game->Graphics->Clear(clearColor);
+        game->Graphics->Clear(game->ClearColor);
 
         game->Draw(*game->Graphics);
 
@@ -99,7 +97,7 @@ namespace MistThread
       return 0;
     }
 
-    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio) : GameObjectBase(*this, *new GameObjects::Space(*this))
+    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio, Input::Engines::InputEngineCore *input) : GameObjectBase(*this, *new GameObjects::Space(*this)), ClearColor(75, 120, 255)
     {
       Type = "Game";
       Name = "Game";
@@ -111,11 +109,13 @@ namespace MistThread
       CurrentGame = this;
 
       Audio = audio;
+
+      Input = input;
     }
 
     Game::~Game()
     {
-
+      
     }
 
     Game *Game::CurrentGame;

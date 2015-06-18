@@ -82,15 +82,15 @@ namespace MistThread
     }
     void Sound::ToggleMute()
     {
-      FMOD_RESULT result;
-      bool isMuted;
+        FMOD_RESULT result;
+        bool isMuted;
 
-      result = channel->getMute(&isMuted);
-      check(result);
+        result = channel->getMute(&isMuted);
+        check(result);
 
-      result = channel->setMute(!isMuted);
-      check(result);
-    }
+        result = channel->setMute(!isMuted);
+        check(result);
+      }
     bool Sound::IsPlaying()
     {
       if (channel)
@@ -102,7 +102,7 @@ namespace MistThread
         check(result);
 
         return playing;
-      }
+    }
       return false;
     }
 
@@ -136,7 +136,7 @@ namespace MistThread
 
         return isPaused;
     }
-   
+
     void Sound::SetMute(bool isMuted)
     {
       FMOD_RESULT result;

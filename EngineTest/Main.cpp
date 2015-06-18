@@ -5,6 +5,8 @@
 #include "../MistThread/Audio/Sound.h"
 #include "../MistThread/Audio/Engines/FMODAudioEngine.h"
 #include "ZLayerComponent.h"
+#include "KeyMoveComponent.h"
+#include "../MistThread/Input.h"
 
 //TODO REMOVE THIS SHIT IT'S BAD PRACTICE
 using namespace MistThread;
@@ -21,7 +23,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   GameWindow gameWindow("MistThread Test oh boy");
   MistThread::Graphics::Engines::DirectXGraphicsEngine graphics(gameWindow);
   MistThread::Audio::Engines::FMODAudioEngine audio = MistThread::Audio::Engines::FMODAudioEngine();
-  Game game(&gameWindow, &graphics, &audio);
+  MistThread::Input::Engines::DirectXInputEngine input(gameWindow);
+  Game game(&gameWindow, &graphics, &audio, &input);
   
   Sound s;
   s.Stream("AudioTest.ogg");
@@ -30,12 +33,13 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   GameObject &obj = mainSpace.CreateObject();
   TransformComponent& trans = obj.AddComponent<TransformComponent>();
-  trans.Position.X = 3;
-  trans.Position.Y = 3;
+  trans.Position.X = 0;
+  trans.Position.Y = 0;
   trans.Scale.Height = 3;
   trans.Scale.Width = 3;
   DrawComponent& draw = obj.AddComponent<DrawComponent>();
   draw.Color = Graphics::Color(0xFF006A6A);
+  obj.AddComponent<KeyMoveComponent>();
 
   GameObject &obj2 = mainSpace.CreateObject();
   TransformComponent& trans2 = obj2.AddComponent<TransformComponent>();
