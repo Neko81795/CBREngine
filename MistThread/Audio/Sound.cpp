@@ -24,6 +24,9 @@ namespace MistThread
     {
       channel = 0;
     }
+    Sound::~Sound()
+    {
+    }
 
     void Sound::Load(const std::string &localPath)
     {
@@ -66,14 +69,17 @@ namespace MistThread
     }
     void Sound::ToggleMute()
     {
-      FMOD_RESULT result;
-      bool isMuted;
+      if (channel)
+      {
+        FMOD_RESULT result;
+        bool isMuted;
 
-      result = channel->getMute(&isMuted);
-      check(result);
+        result = channel->getMute(&isMuted);
+        check(result);
 
-      result = channel->setMute(!isMuted);
-      check(result);
+        result = channel->setMute(!isMuted);
+        check(result);
+      }
     }
 
     float Sound::GetVolume()
@@ -98,13 +104,13 @@ namespace MistThread
     }
     bool Sound::GetPaused()
     {
-      FMOD_RESULT result;
-      bool isPaused;
+        FMOD_RESULT result;
+        bool isPaused;
 
-      result = channel->getPaused(&isPaused);
-      check(result);
+        result = channel->getPaused(&isPaused);
+        check(result);
 
-      return isPaused;
+        return isPaused;
     }
 
     void Sound::SetMute(bool isMuted)
@@ -116,26 +122,22 @@ namespace MistThread
     }
     void Sound::SetVolume(float newVolume)
     {
-      FMOD_RESULT result;
+        FMOD_RESULT result;
 
-      if (newVolume > 1)
-        newVolume = 1;
-      else if (newVolume < 0)
-        newVolume = 0;
+        if (newVolume > 1)
+          newVolume = 1;
+        else if (newVolume < 0)
+          newVolume = 0;
 
-      result = channel->setVolume(newVolume);
-      check(result);
+        result = channel->setVolume(newVolume);
+        check(result);
     }
     void Sound::SetPaused(bool isPaused)
     {
-      FMOD_RESULT result;
+        FMOD_RESULT result;
 
-      result = channel->setPaused(isPaused);
-      check(result);
-    }
-
-    Sound::~Sound()
-    {
+        result = channel->setPaused(isPaused);
+        check(result);
     }
   }
 }
