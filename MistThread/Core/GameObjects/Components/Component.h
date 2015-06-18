@@ -17,30 +17,32 @@ namespace MistThread
     {
       class Space; //forward declaration
       class GameObject; //forward declaration
+      class GameObjectBase; //forward declaration
 
       namespace Components
       {
         class Component
         {
-          friend class Eventful;
+          friend class GameObjectBase;
           ///////////////////////////////
           //Variables
           ///////////////////////////////
         private:
-          std::map<Eventful *, std::list<Delegate<Event *>>> EventDispatchers;
+          std::map<GameObjectBase *, std::list<Delegate<Event *>>> EventDispatchers;
           std::map<Delegate<Event *>, std::string> DelegateIDs;
           Component& operator=(const Component&) {}
         public:
           std::string Name;
           GameObjects::Space &Space;
           Core::Game &Game;
-          GameObjects::GameObject &Owner;
+          GameObjects::GameObjectBase &Owner;
           std::vector<std::string> Dependencies;
 
 
           ///////////////////////////////
           //Methods
           ///////////////////////////////
+        public:
           /// <summary>
           /// Initializes the component
           /// Called when the level is loaded
@@ -54,19 +56,19 @@ namespace MistThread
           /// Creates a new component
           /// </summary>
           /// <param name="owner">the owner of the component</param>
-          Component(GameObjects::GameObject * owner);
+          Component(GameObjects::GameObjectBase * owner);
           /// <summary>
           /// Creates a new component
           /// </summary>
           /// <param name="owner">The owner of the component</param>
           /// <param name="dependencies">a list of dependencies</param>
-          Component(GameObjects::GameObject * owner, const std::vector<std::string>& dependencies);
+          Component(GameObjects::GameObjectBase * owner, const std::vector<std::string>& dependencies);
           /// <summary>
           /// Creates a new component
           /// </summary>
           /// <param name="owner">the owner of the new component</param>
           /// <param name="dependencies">a space delimited list of names of components that must be present</param>
-          Component(GameObjects::GameObject * owner, const std::string& dependencies);
+          Component(GameObjects::GameObjectBase * owner, const std::string& dependencies);
           virtual ~Component();
         };
       }

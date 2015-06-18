@@ -7,7 +7,6 @@ namespace MistThread
   {
     namespace Engines
     {
-
       void GraphicsEngineCore::DrawRectangle(const Core::RectangleF & rectangle, const Color & color)
       {
         DrawRectangle(rectangle, color, 1, 0, Vector2::Zero);
@@ -33,10 +32,10 @@ namespace MistThread
         DrawRectangle(position, size, color, stroke, 0);
       }
 
-      void GraphicsEngineCore::DrawRectangle(const Core::Vector2 & position, const Core::Size2F & size, const Color & color, float stroke, float rotation)
+      void GraphicsEngineCore::DrawRectangle(const Core::Vector2 & position, const Core::Size2F & size, const Color & color, float stroke, float rotation, float zLayer)
       {
         Core::RectangleF rect(position.X, position.Y, size.Width, size.Height);
-        DrawRectangle(rect, color, stroke, rotation, Vector2(size.Width/2, size.Height/2));
+        DrawRectangle(rect, color, stroke, rotation, Vector2(size.Width/2, size.Height/2), zLayer);
       }
 
       void GraphicsEngineCore::DrawEllipse(const Core::Vector2 & posistion, const Core::Size2F size, const Color & color)
@@ -79,10 +78,10 @@ namespace MistThread
         FillRectangle(position, size, color, 0);
       }
 
-      void GraphicsEngineCore::FillRectangle(const Core::Vector2 & position, const Core::Size2F & size, const Color & color, float rotation)
+      void GraphicsEngineCore::FillRectangle(const Core::Vector2 & position, const Core::Size2F & size, const Color & color, float rotation, float zLayer)
       {
         Core::RectangleF rect(position.X, position.Y, size.Width, size.Height);
-        FillRectangle(rect, color, rotation, Vector2(size.Width / 2, size.Height / 2));
+        FillRectangle(rect, color, rotation, Vector2(size.Width / 2, size.Height / 2), zLayer);
       }
     }
   }

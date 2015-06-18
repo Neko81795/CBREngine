@@ -17,16 +17,16 @@ namespace MistThread
           {
             case DrawComponent::Rectangle:
               if (Mode == DrawMode::Fill)
-                drawEvent->Graphics.FillRectangle(Transform->Position * 32, Transform->Scale  * 32, Color, Transform->Rotation);
+                drawEvent->Graphics.FillRectangle(Transform->Position * 32, Transform->Scale  * 32, Color, Transform->Rotation, Transform->GetZLayer());
               else
-                drawEvent->Graphics.DrawRectangle(Transform->Position * 32, Transform->Scale  * 32, Color, Stroke, Transform->Rotation);
+                drawEvent->Graphics.DrawRectangle(Transform->Position * 32, Transform->Scale  * 32, Color, Stroke, Transform->Rotation, Transform->GetZLayer());
               break;
             case DrawComponent::Elipse:
               Vector2 center(Transform->Scale.Width * 16, Transform->Scale.Height * 16);
               if (Mode == DrawMode::Fill)
-                drawEvent->Graphics.FillEllipse(Transform->Position  * 32, Transform->Scale  * 32, Color, Transform->Rotation, center);
+                drawEvent->Graphics.FillEllipse(Transform->Position  * 32, Transform->Scale  * 32, Color, Transform->Rotation, center, Transform->GetZLayer());
               else
-                drawEvent->Graphics.DrawEllipse(Transform->Position  * 32, Transform->Scale  * 32, Color, Stroke, Transform->Rotation, center);
+                drawEvent->Graphics.DrawEllipse(Transform->Position  * 32, Transform->Scale  * 32, Color, Stroke, Transform->Rotation, center, Transform->GetZLayer());
               break;
           }
         }
@@ -36,13 +36,13 @@ namespace MistThread
           Transform = static_cast<TransformComponent*>(Owner.GetComponentByName("Transform"));
 
           //lambda
-          Space.AttachEventHandler(
+          Owner.AttachEventHandler(
             "Draw", 
             [](void * obj, Event* event){ static_cast<DrawComponent *>(obj)->Draw(static_cast<DrawEvent *>(event)); }, 
             this);
         }
 
-        DrawComponent::DrawComponent(GameObjects::GameObject * owner) : Component(owner, "Transform"), Color(1.0f, 1.0f, 1.0f)
+        DrawComponent::DrawComponent(GameObjects::GameObjectBase * owner) : Component(owner, "Transform"), Color(1.0f, 1.0f, 1.0f)
         {
           Stroke = 1;
           Name = "Draw";

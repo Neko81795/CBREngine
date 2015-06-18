@@ -23,24 +23,21 @@ namespace MistThread
       MistThread::Graphics::Color clearColor(75, 120, 255);
       MistThread::Core::GameTime g;
 
-      game->Spaces.front().Initialize();
+      game->Initialize();
 
       while (*run)
       {
         g.Tick();
 
-        for (GameObjects::Space &space : game->Spaces)
+        for (GameObjects::GameObjectBase *space : game->Objects)
         {
-          space.Update(g);
+          static_cast<GameObjects::Space*>(space)->Update(g);
         }
         game->Graphics->BeginDraw();
         game->Graphics->Clear(clearColor);
 
+        game->Draw(*game->Graphics);
 
-        for (GameObjects::Space &space : game->Spaces)
-        {
-          space.Draw(*game->Graphics);
-        }
         game->Graphics->EndDraw();
       }
     }
@@ -67,18 +64,51 @@ namespace MistThread
     }
 #endif
 
-    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio)
+    GameObjects::Space &Game::CreateNamedSpace(const std::string &name)
     {
+      GameObjects::Space *space = new GameObjects::Space(*this);
+      space->Name = name;
+
+      Objects.push_back(space);
+      RegisterDraw(space);
+
+      return *space;
+    }
+
+    GameObjects::Space &Game::FindSpaceByName(const std::string &name)
+    {
+      for(auto space : Objects)
+      {
+        if(space->Name == name)
+          return *dynamic_cast<GameObjects::Space*>(space);
+      }
+      throw std::exception("Space could not be found");
+    }
+
+    void Game::RemoveSpaceByName(const std::string &name)
+    {
+      RemoveGameObjectBaseByName(name);
+    }
+
+    int Game::CompareTo(const GameObjectBase* other)const
+    {
+      if(other->Type != "Game")
+        return 1;
+
+      //all games are equal
+      return 0;
+    }
+
+    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics) : GameObjectBase(*this, *new GameObjects::Space(*this))
+    {
+      Type = "Game";
+      Name = "Game";
+      Space.Name = "Main";
+      Objects.push_back(&Space);
+      RegisterDraw(&Space);
       Graphics = graphics;
       Window = window;
       CurrentGame = this;
-
-      Audio = audio;
-
-      GameObjects::Space main(*this, Graphics);
-      main.Name = "Main";
-
-      Spaces.push_back(main);
     }
 
     Game::~Game()

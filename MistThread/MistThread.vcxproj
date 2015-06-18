@@ -17,13 +17,13 @@
     <ClCompile Include="Core\CoreEventHandlers.cpp" />
     <ClCompile Include="Core\CoreEvents.cpp" />
     <ClCompile Include="Core\Event.cpp" />
-    <ClCompile Include="Core\Eventful.cpp" />
     <ClCompile Include="Core\Game.cpp" />
     <ClCompile Include="Core\GameObjects\Components\Component.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawBitmapComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\TransformComponent.cpp" />
     <ClCompile Include="Core\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Core\GameObjects\GameObjectBase.cpp" />
     <ClCompile Include="Core\GameObjects\Space.cpp" />
     <ClCompile Include="Core\GameTime.cpp" />
     <ClCompile Include="Core\GameWindow.cpp" />
@@ -49,7 +49,6 @@
     <ClInclude Include="Core\CoreEvents.h" />
     <ClInclude Include="Core\Delegate.h" />
     <ClInclude Include="Core\Event.h" />
-    <ClInclude Include="Core\Eventful.h" />
     <ClInclude Include="Core\EventHandler.h" />
     <ClInclude Include="Core\Game.h" />
     <ClInclude Include="Core\GameObjects.h" />
@@ -61,6 +60,7 @@
     <ClInclude Include="Core\GameObjects\Components\TransformComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\UpdateEvent.h" />
     <ClInclude Include="Core\GameObjects\GameObject.h" />
+    <ClInclude Include="Core\GameObjects\GameObjectBase.h" />
     <ClInclude Include="Core\GameObjects\Space.h" />
     <ClInclude Include="Core\GameTime.h" />
     <ClInclude Include="Core\GameWindow.h" />
@@ -125,7 +125,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;DEBUG;_WINDOWS;_USRDLL;CBRENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CBRENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>

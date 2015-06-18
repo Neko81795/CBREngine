@@ -1,7 +1,7 @@
 #include "Component.h"
 #include "../../Event.h"
-#include "../../Eventful.h"
 #include "../GameObject.h"
+#include "../GameObjectBase.h"
 #include "../Space.h"
 #include "../../Game.h"
 
@@ -20,17 +20,17 @@ namespace MistThread
 
         }
 
-        Component::Component(GameObjects::GameObject * owner) : Owner(*owner), Space(owner->Space), Game(owner->Game)
+        Component::Component(GameObjects::GameObjectBase * owner) : Owner(*owner), Space(owner->Space), Game(owner->Game)
         {
           
         }
 
-        Component::Component(GameObjects::GameObject * owner, const std::vector<std::string>& dependencies) : Owner(*owner), Space(owner->Space), Game(owner->Game)
+        Component::Component(GameObjects::GameObjectBase * owner, const std::vector<std::string>& dependencies) : Owner(*owner), Space(owner->Space), Game(owner->Game)
         {
           Dependencies = std::vector<std::string>(dependencies);
         }
 
-        Component::Component(GameObjects::GameObject * owner, const std::string & dependencies) : Owner(*owner), Space(owner->Space), Game(owner->Game)
+        Component::Component(GameObjects::GameObjectBase * owner, const std::string & dependencies) : Owner(*owner), Space(owner->Space), Game(owner->Game)
         {
           std::stringstream stream;
           stream << dependencies;

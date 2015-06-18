@@ -13,11 +13,18 @@ namespace MistThread
     {
       class GraphicsEngineCore : public LimitedGraphicsEngineCore
       {
-        //variables
+//////////////////////////////////////////////////////////////
+//Variables
+//////////////////////////////////////////////////////////////
       protected:
         std::atomic_flag Lock;
       public:
-        //methods
+        float CameraZ = 30;
+        Vector2 CameraPos;
+        bool ZLayeringAffectsScale = true;
+//////////////////////////////////////////////////////////////
+//Methods
+//////////////////////////////////////////////////////////////
       public:
         /// <summary>
         /// loads a bitmap from the specified file
@@ -45,7 +52,8 @@ namespace MistThread
         /// <param name="stroke">The stroke of the lines</param>
         /// <param name="rotation">The rotation of the Rectangle</param>
         /// <param name="center">The center of the Rectangle</param>
-        virtual void DrawRectangle(const Core::RectangleF &rectangle, const Color &color, float stroke, float rotation, const Vector2 &center) __ABSTRACT;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void DrawRectangle(const Core::RectangleF &rectangle, const Color &color, float stroke, float rotation, const Vector2 &center, float zLayer = 0) __ABSTRACT;
         /// <summary>
         /// Draws the outline of an Ellipse
         /// </summary>
@@ -55,7 +63,8 @@ namespace MistThread
         /// <param name="stroke">The stroke of the lines</param>
         /// <param name="rotation">The rotation of the Ellipse</param>
         /// <param name="center">The center of the Ellipse</param>
-        virtual void DrawEllipse(const Core::Vector2 &posistion, const Core::Size2F size, const Color &color, float stroke, float rotation, const Vector2 &center)__ABSTRACT;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void DrawEllipse(const Core::Vector2 &posistion, const Core::Size2F size, const Color &color, float stroke, float rotation, const Vector2 &center, float zLayer = 0)__ABSTRACT;
         /// <summary>
         /// Draws a bitmap to the screen
         /// </summary>
@@ -76,7 +85,8 @@ namespace MistThread
         /// <param name="color">The color to draw</param>
         /// <param name="rotation">The rotation of the Ellipse</param>
         /// <param name="center">The center of the Ellipse</param>
-        virtual void FillEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float rotation, const Vector2 &center) __ABSTRACT;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void FillEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float rotation, const Vector2 &center, float zLayer = 0) __ABSTRACT;
         /// <summary>
         /// Draws a rectangle
         /// </summary>
@@ -84,12 +94,14 @@ namespace MistThread
         /// <param name="color">The color of the rectangle</param>
         /// <param name="rotation">The rotation of the Rectangle</param>
         /// <param name="center">The center of the Rectangle</param>
-        virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center) __ABSTRACT;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center, float zLayer = 0) __ABSTRACT;
+        
         /// <summary>
         /// ends the draw
         /// </summary>
         virtual void EndDraw() __ABSTRACT;
-        
+
 
         /// <summary>
         /// Draws the outline of a rectangle
@@ -135,7 +147,7 @@ namespace MistThread
         /// <param name="color">The color of the rectangle</param>
         /// <param name="stroke">The width of the outline</param>
         /// <param name="rotation">The rotation of the Rectangle</param>
-        void DrawRectangle(const Core::Vector2 &position, const Core::Size2F &size, const Color &color, float stroke, float rotation);
+        void DrawRectangle(const Core::Vector2 &position, const Core::Size2F &size, const Color &color, float stroke, float rotation, float zLayer = 0);
         /// <summary>
         /// Draws the outline of an Ellipse
         /// </summary>
@@ -202,8 +214,11 @@ namespace MistThread
         /// <param name="size">the dimensions of the rectangle</param>
         /// <param name="color">The color of the rectangle</param>
         /// <param name="rotation">The rotation of the Rectangle</param>
-        void FillRectangle(const Core::Vector2 &position, const Core::Size2F &size, const Color &color, float rotation);
+        void FillRectangle(const Core::Vector2 &position, const Core::Size2F &size, const Color &color, float rotation, float zLayer = 0);
 
+//////////////////////////////////////////////////////////////
+//Constructors
+//////////////////////////////////////////////////////////////
         virtual ~GraphicsEngineCore() {}
       };
     }

@@ -48,7 +48,7 @@ namespace MistThread
           ///////////////////////////////
           //Constructors
           ///////////////////////////////
-          DrawComponent(GameObjects::GameObject *owner);
+          DrawComponent(GameObjects::GameObjectBase *owner);
           ~DrawComponent();
         };
       }

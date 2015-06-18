@@ -1,4 +1,6 @@
 #include "GameObject.h"
+#include "Components/DrawEvent.h"
+#include "Components/TransformComponent.h"
 
 namespace MistThread
 {
@@ -6,51 +8,39 @@ namespace MistThread
   {
     namespace GameObjects
     {
-      long long GameObject::Count = 0;
-
-      void GameObject::RemoveComponentByName(const std::string& name)
+      int GameObject::CompareTo(const GameObjectBase* other)const
       {
-        for (auto it = _components.begin(); it != _components.end(); ++it)
-        {
-          if ((*it)->Name == name)
-          {
-            Components::Component *comp = *it;
-            _components.erase(it);
-            delete comp;
-            break;
-          }
-        }
+        if(other->Type != "GameObject")
+          return -1;
+
+        const GameObject &g = *dynamic_cast<const GameObject *>(other);
+        
+        const Components::TransformComponent * myTrans = dynamic_cast<const Components::TransformComponent *>(GetComponentByName("Transform"));
+        const Components::TransformComponent * gTrans = dynamic_cast<const Components::TransformComponent *>(g.GetComponentByName("Transform"));
+
+        if(!myTrans && !gTrans)
+          return 0;
+        else if(!myTrans)
+          return 1;
+        else if(!gTrans)
+          return -1;
+
+        if(myTrans->GetZLayer() < gTrans->GetZLayer())
+          return -1;
+        else if(myTrans->GetZLayer() > gTrans->GetZLayer())
+          return 1;
+        else
+          return 0;
       }
 
-      const std::list<Components::Component*>& GameObject::GetComponents()
+      GameObject::GameObject(Core::Game &game, GameObjects::Space &space) : GameObjectBase(game,space)
       {
-        return _components;
-      }
-      
-      Components::Component* GameObject::GetComponentByName(std::string name)
-      {
-        for (Components::Component* current : _components)
-        {
-          if (current->Name == name)
-            return current;
-        }
-        return NULL;
-      }
-
-      GameObject::GameObject(Core::Game &game, GameObjects::Space &space) : Game(game), Space(space)
-      {
-        ID = GameObject::Count++;
-        Name = std::to_string(ID);
+        Type = "GameObject";
       }
 
       GameObject::~GameObject()
       {
-        for (auto it = _components.begin(); it != _components.end(); it = _components.begin())
-        {
-          Components::Component *comp = *it;
-          _components.pop_front();
-          delete comp;
-        }
+        
       }
     }
   }

@@ -3,6 +3,7 @@
 #include "SpinComponent.h"
 #include "SinXComponent.h"
 #include "../MistThread/Audio/Sound.h"
+#include "ZLayerComponent.h"
 
 //TODO REMOVE THIS SHIT IT'S BAD PRACTICE
 using namespace MistThread;
@@ -23,8 +24,9 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   Sound s;
   s.Play("AudioTest.ogg");
+  Space &mainSpace = game.FindSpaceByName("Main");
 
-  GameObject &obj = game.Spaces.front().CreateObject();
+  GameObject &obj = mainSpace.CreateObject();
   TransformComponent& trans = obj.AddComponent<TransformComponent>();
   trans.Position.X = 3;
   trans.Position.Y = 3;
@@ -33,10 +35,10 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   DrawComponent& draw = obj.AddComponent<DrawComponent>();
   draw.Color = Graphics::Color(0xFF006A6A);
 
-  GameObject &obj2 = game.Spaces.front().CreateObject();
+  GameObject &obj2 = mainSpace.CreateObject();
   TransformComponent& trans2 = obj2.AddComponent<TransformComponent>();
-  trans2.Position.X = 12;
-  trans2.Position.Y = 16;
+  trans2.Position.X = 3;
+  trans2.Position.Y = 3;
   trans2.Scale.Height = 16;
   trans2.Scale.Width = 2;
   DrawComponent& draw2 = obj2.AddComponent<DrawComponent>();
@@ -44,8 +46,21 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   draw2.Mode = DrawComponent::Fill;
   SpinComponent& spin2 = obj2.AddComponent<SpinComponent>();
   spin2.RotationSpeed = 1;
+  obj2.AddComponent<ZLayerComponent>();
 
-  GameObject &obj3 = game.Spaces.front().CreateObject();
+  GameObject &obj2_2 = mainSpace.CreateObject();
+  TransformComponent& trans2_2 = obj2_2.AddComponent<TransformComponent>();
+  trans2_2.Position.X = 3;
+  trans2_2.Position.Y = 3;
+  trans2_2.Scale.Height = 16;
+  trans2_2.Scale.Width = 2;
+  DrawComponent& draw2_2 = obj2_2.AddComponent<DrawComponent>();
+  draw2_2.Color = Graphics::Color(0xFF00FFFF);
+  draw2_2.Mode = DrawComponent::Fill;
+  SpinComponent& spin2_2 = obj2_2.AddComponent<SpinComponent>();
+  spin2_2.RotationSpeed = -1;
+
+  GameObject &obj3 = mainSpace.CreateObject();
   TransformComponent& trans3 = obj3.AddComponent<TransformComponent>();
   trans3.Position.X = 8;
   trans3.Position.Y = 8;
@@ -63,7 +78,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   sin3.Scale = 9;
   sin3.Offset = 18;
 
-  GameObject &obj4 = game.Spaces.front().CreateObject();
+  GameObject &obj4 = mainSpace.CreateObject();
   TransformComponent& trans4 = obj4.AddComponent<TransformComponent>();
   trans4.Position.X = 8;
   trans4.Position.Y = 8;

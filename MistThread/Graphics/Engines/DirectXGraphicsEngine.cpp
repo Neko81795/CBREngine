@@ -36,15 +36,17 @@ namespace MistThread
       {
         CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, __uuidof(IWICImagingFactory),
                          reinterpret_cast<void **>(ImageFactory.GetAddressOf()));
+
+        DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(TextFactory), reinterpret_cast<IUnknown**>(TextFactory.GetAddressOf()));
       }
 
       void DirectXGraphicsEngine::WindowResized(Core::WindowEvent & evnt)
       {
-        while (Lock.test_and_set());
-        if (RenderTarget)
+        while(Lock.test_and_set());
+        if(RenderTarget)
         {
           Size2 size = evnt.Window.GetClientSize();
-          if (RenderTarget->Resize(D2D1_SIZE_U{static_cast<UINT32>(size.Width), static_cast<UINT32>(size.Height)}) != S_OK)
+          if(RenderTarget->Resize(D2D1_SIZE_U{static_cast<UINT32>(size.Width), static_cast<UINT32>(size.Height)}) != S_OK)
           {
             RenderTarget.Reset();
           }
@@ -54,7 +56,7 @@ namespace MistThread
 
       void DirectXGraphicsEngine::DisplayChanged(Core::WindowEvent & evnt)
       {
-        while (Lock.test_and_set());
+        while(Lock.test_and_set());
         evnt.Window.Invalidate();
         Lock.clear();
       }
@@ -66,26 +68,26 @@ namespace MistThread
 
         std::wstring d(path.begin(), path.end());
 
-        if (FAILED((hr = ImageFactory->CreateDecoderFromFilename(reinterpret_cast<LPCWSTR>(d.c_str()), NULL, GENERIC_READ,
-          WICDecodeMetadataCacheOnLoad, decoder.GetAddressOf()))))
+        if(FAILED((hr = ImageFactory->CreateDecoderFromFilename(reinterpret_cast<LPCWSTR>(d.c_str()), NULL, GENERIC_READ,
+                                                                WICDecodeMetadataCacheOnLoad, decoder.GetAddressOf()))))
           throw std::exception("Failed to load Bitmap: ");
 
         ComPtr<IWICBitmapFrameDecode> frame;
-        if (FAILED(decoder->GetFrame(0, frame.GetAddressOf())))
+        if(FAILED(decoder->GetFrame(0, frame.GetAddressOf())))
           throw std::exception("Failed to load Bitmap");
 
 
-        if (FAILED(ImageFactory->CreateFormatConverter(bitmap.WICImage.GetAddressOf())))
+        if(FAILED(ImageFactory->CreateFormatConverter(bitmap.WICImage.GetAddressOf())))
           throw std::exception("Failed to load Bitmap");
 
-        if (FAILED(bitmap.WICImage->Initialize(frame.Get(), GUID_WICPixelFormat32bppPBGRA,
-          WICBitmapDitherTypeNone, NULL, 0.0, WICBitmapPaletteTypeCustom)))
+        if(FAILED(bitmap.WICImage->Initialize(frame.Get(), GUID_WICPixelFormat32bppPBGRA,
+                                              WICBitmapDitherTypeNone, NULL, 0.0, WICBitmapPaletteTypeCustom)))
           throw std::exception("Failed to load Bitmap");
       }
 
       void DirectXGraphicsEngine::ReloadBitmap(Bitmap & bitmap)
       {
-        if (FAILED(RenderTarget->CreateBitmapFromWicBitmap(bitmap.WICImage.Get(), bitmap.D2DImage.ReleaseAndGetAddressOf())))
+        if(FAILED(RenderTarget->CreateBitmapFromWicBitmap(bitmap.WICImage.Get(), bitmap.D2DImage.ReleaseAndGetAddressOf())))
           throw std::exception("Failed to load Bitmap");
       }
 
@@ -122,8 +124,8 @@ namespace MistThread
 
       void DirectXGraphicsEngine::BeginDraw()
       {
-        while (Lock.test_and_set());
-        if (!RenderTarget)
+        while(Lock.test_and_set());
+        if(!RenderTarget)
         {
           Size2 size = Core::Game::CurrentGame->Window->GetClientSize();
           HWND hwnd = Core::Game::CurrentGame->Window->Handle;
@@ -143,38 +145,61 @@ namespace MistThread
 
       void DirectXGraphicsEngine::EndDraw()
       {
-        if (RenderTarget->EndDraw() == D2DERR_RECREATE_TARGET)
+        if(RenderTarget->EndDraw() == D2DERR_RECREATE_TARGET)
           RenderTarget.Reset();
         Lock.clear();
         //pSwapChain->Present(1, 0); //present next vBlank, discard previously queued now
       }
 
-      void DirectXGraphicsEngine::DrawRectangle(const Core::RectangleF &rectangle, const Color &color, float stroke, float rotation, const Vector2 &center)
+      void DirectXGraphicsEngine::DrawRectangle(const Core::RectangleF &rectangle, const Color &color, float stroke, float rotation, const Vector2 &center, float zLayer)
       {
+        Vector2 windowCenter = GetWindowCenter();
+        if(ZLayeringAffectsScale && zLayer >= CameraZ)
+          return;
+        float scale = 1;
+        if(ZLayeringAffectsScale)
+          scale = 1 / (-(zLayer - CameraZ) / 30);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
+                                   D2D1::Matrix3x2F::Scale(scale, scale) *
+                                   D2D1::Matrix3x2F::Rotation(rotation) *
+                                   D2D1::Matrix3x2F::Translation(((rectangle.X - (CameraPos.X * 32)) * scale) + windowCenter.X, ((rectangle.Y - (CameraPos.Y * 32)) * scale) + windowCenter.Y));
+
         SolidBrush->SetColor(color);
-        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) * D2D1::Matrix3x2F::Rotation(rotation, D2D1::Point2F(rectangle.X, rectangle.Y)));
-        RenderTarget->DrawRectangle(rectangle, SolidBrush.Get(), stroke);
+        RenderTarget->DrawRectangle(D2D1::RectF(0, 0, rectangle.Width, rectangle.Height), SolidBrush.Get(), stroke);
       }
 
-      void DirectXGraphicsEngine::DrawEllipse(const Core::Vector2 & position, const Core::Size2F size, const Color & color, float stroke, float rotation, const Vector2 & center)
+      void DirectXGraphicsEngine::DrawEllipse(const Core::Vector2 & position, const Core::Size2F size, const Color & color, float stroke, float rotation, const Vector2 & center, float zLayer)
       {
+        Vector2 windowCenter = GetWindowCenter();
+        if(ZLayeringAffectsScale && zLayer >= CameraZ)
+          return;
+        float scale = 1;
+        if(ZLayeringAffectsScale)
+          scale = 1 / (-(zLayer - CameraZ) / 30);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
+                                   D2D1::Matrix3x2F::Scale(scale, scale) *
+                                   D2D1::Matrix3x2F::Rotation(rotation) *
+                                   D2D1::Matrix3x2F::Translation(((position.X - (CameraPos.X * 32)) * scale) + windowCenter.X, ((position.Y - (CameraPos.Y * 32)) * scale) + windowCenter.Y));
+
         SolidBrush->SetColor(color);
-        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(size.Width / 4 - center.X / 2, size.Height / 4 - center.Y / 2) * D2D1::Matrix3x2F::Rotation(rotation, D2D1::Point2F(position.X, position.Y)));
-        RenderTarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(position.X, position.Y), size.Width / 2, size.Height / 2), SolidBrush.Get(), stroke);
+        RenderTarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(center.X, center.Y), size.Width / 2, size.Height / 2), SolidBrush.Get(), stroke);
       }
 
-      void DirectXGraphicsEngine::DrawBitmap(const Bitmap &image, const Vector2 &position, float opacity, const Vector2 &center, float rotation, const Core::Size2F &scale, const Core::RectangleF * source, float /*zLayer*/)
+      void DirectXGraphicsEngine::DrawBitmap(const Bitmap &image, const Vector2 &position, float opacity, const Vector2 &center, float rotation, const Core::Size2F &scale, const Core::RectangleF * source, float zLayer)
       {
-        D2D1::Matrix3x2F trans = D2D1::Matrix3x2F::Translation(position.X, position.Y);
-        D2D1::Matrix3x2F rot = D2D1::Matrix3x2F::Rotation(rotation);
-        D2D1::Matrix3x2F scal = D2D1::Matrix3x2F::Scale(D2D1::SizeF(scale.Width, scale.Height));
-        D2D1::Matrix3x2F tran2 = D2D1::Matrix3x2F::Translation(-center.X, -center.Y);
-        D2D1::Matrix3x2F m = tran2 * scal;
-        D2D1::Matrix3x2F m2 = m * rot;
-        D2D1::Matrix3x2F m3 = m2 * trans;
-        RenderTarget->SetTransform(m3);
+        Vector2 windowCenter = GetWindowCenter();
+        if(ZLayeringAffectsScale && zLayer >= CameraZ)
+          return;
+        float addscale = 1;
+        if(ZLayeringAffectsScale)
+          addscale = 1 / (-(zLayer - CameraZ) / 30);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
+                                   D2D1::Matrix3x2F::Scale(scale.Width * addscale, scale.Height * addscale) *
+                                   D2D1::Matrix3x2F::Rotation(rotation) *
+                                   D2D1::Matrix3x2F::Translation(((position.X - (CameraPos.X * 32)) * addscale) + windowCenter.X, ((position.Y - (CameraPos.Y * 32)) * addscale) + windowCenter.Y));
 
-        if (source == NULL)
+
+        if(source == NULL)
         {
           RenderTarget->DrawBitmap(image.D2DImage.Get(), NULL, opacity, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, NULL);
         }
@@ -185,19 +210,42 @@ namespace MistThread
         }
       }
 
-      void DirectXGraphicsEngine::FillEllipse(const Core::Vector2 & position, const Core::Size2F size, const Color & color, float rotation, const Vector2 & center)
+      void DirectXGraphicsEngine::FillEllipse(const Core::Vector2 & position, const Core::Size2F size, const Color & color, float rotation, const Vector2 & center, float zLayer)
       {
+        Vector2 windowCenter = GetWindowCenter();
+        if(ZLayeringAffectsScale && zLayer >= CameraZ)
+          return;
+        float scale = 1;
+        if(ZLayeringAffectsScale)
+          scale = 1 / (-(zLayer - CameraZ) / 30);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
+                                   D2D1::Matrix3x2F::Scale(scale, scale) *
+                                   D2D1::Matrix3x2F::Rotation(rotation) *
+                                   D2D1::Matrix3x2F::Translation(((position.X - (CameraPos.X * 32)) * scale) + windowCenter.X, ((position.Y - (CameraPos.Y * 32)) * scale) + windowCenter.Y));
+
         SolidBrush->SetColor(color);
-        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(size.Width / 4 - center.X / 2, size.Height / 4 - center.Y / 2) * D2D1::Matrix3x2F::Rotation(rotation, D2D1::Point2F(position.X, position.Y)));
-        RenderTarget->FillEllipse(D2D1::Ellipse(D2D1::Point2F(position.X, position.Y), size.Width / 2, size.Height / 2), SolidBrush.Get());
+        RenderTarget->FillEllipse(D2D1::Ellipse(D2D1::Point2F(center.X, center.Y), size.Width / 2, size.Height / 2), SolidBrush.Get());
       }
 
-      void DirectXGraphicsEngine::FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center)
+      void DirectXGraphicsEngine::FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center, float zLayer)
       {
+        Vector2 windowCenter = GetWindowCenter();
+        if(ZLayeringAffectsScale && zLayer >= CameraZ)
+          return;
+        float scale = 1;
+        if(ZLayeringAffectsScale)
+          scale = 1 / (-(zLayer - CameraZ) / 30);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
+                                   D2D1::Matrix3x2F::Scale(scale, scale) *
+                                   D2D1::Matrix3x2F::Rotation(rotation) *
+                                   D2D1::Matrix3x2F::Translation(((rectangle.X - (CameraPos.X * 32)) * scale) + windowCenter.X, ((rectangle.Y - (CameraPos.Y * 32)) * scale) + windowCenter.Y));
+
         SolidBrush->SetColor(color);
-        RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) * D2D1::Matrix3x2F::Rotation(rotation, D2D1::Point2F(rectangle.X, rectangle.Y)));
-        RenderTarget->FillRectangle(rectangle, SolidBrush.Get());
+        RenderTarget->FillRectangle(D2D1::RectF(0, 0, rectangle.Width, rectangle.Height), SolidBrush.Get());
       }
+
+      void Engines::DirectXGraphicsEngine::DrawString()
+      {}
 
 
 
@@ -214,14 +262,14 @@ namespace MistThread
 
         D2D1_FACTORY_OPTIONS fo = {};
 
-#ifdef DEBUG
+#ifdef _DEBUG
         fo.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
 #endif
         //TODO add why we failed
-        if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, fo, Factory.GetAddressOf())))
+        if(FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, fo, Factory.GetAddressOf())))
           throw std::exception("Failed to create D2D");
 
-        if (FAILED(CoInitialize(NULL)))
+        if(FAILED(CoInitialize(NULL)))
           throw std::exception("Failed to create D2D");
 
         CreateDeviceIndependentResources();

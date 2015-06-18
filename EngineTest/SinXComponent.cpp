@@ -16,7 +16,7 @@ void SinXComponent::Initialize()
     this);
 }
 
-SinXComponent::SinXComponent(MistThread::Core::GameObjects::GameObject * owner) : Component(owner, "Transform")
+SinXComponent::SinXComponent(MistThread::Core::GameObjects::GameObjectBase * owner) : Component(owner, "Transform")
 {
   Name = "SinX";
 }

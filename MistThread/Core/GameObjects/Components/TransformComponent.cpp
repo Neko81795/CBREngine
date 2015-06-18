@@ -1,4 +1,5 @@
 #include "TransformComponent.h"
+#include "../GameObjectBase.h"
 
 
 namespace MistThread
@@ -9,7 +10,20 @@ namespace MistThread
     {
       namespace Components
       {
-        TransformComponent::TransformComponent(GameObjects::GameObject *owner) : Component(owner)
+        float TransformComponent::GetZLayer() const
+        {
+          return ZLayer;
+        }
+
+        void TransformComponent::SetZLayer(float value)
+        {
+          ZLayer = value;
+          if(Owner.DrawnBy)
+            Owner.DrawnBy->UpdateObjectDrawOrder(&Owner);
+          Owner.UpdateOwnDrawOrder();
+        }
+
+        TransformComponent::TransformComponent(GameObjects::GameObjectBase *owner) : Component(owner)
         {
           Scale.Height = 1;
           Scale.Width = 1;

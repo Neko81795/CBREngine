@@ -1,6 +1,7 @@
 #pragma once
 
 #pragma comment(lib, "d2d1")
+#pragma comment(lib, "dwrite")
 
 #include "GraphicsEngineCore.h"
 #include "..\..\Core\CoreEvents.h"
@@ -34,15 +35,20 @@ namespace MistThread
         template <typename T>
         using ComPtr = Microsoft::WRL::ComPtr<T>;
 
-        //variables
+//////////////////////////////////////////////////////////////
+//Variables
+//////////////////////////////////////////////////////////////
       protected:
         ComPtr<ID2D1Factory> Factory;
         ComPtr<ID2D1HwndRenderTarget> RenderTarget;
         ComPtr<IWICImagingFactory> ImageFactory;
+        ComPtr<IDWriteFactory> TextFactory;
         ComPtr<ID2D1SolidColorBrush> SolidBrush;
 
 
-        //methods
+//////////////////////////////////////////////////////////////
+//Methods
+//////////////////////////////////////////////////////////////
       private:
 
       protected:
@@ -67,10 +73,12 @@ namespace MistThread
         /// </summary>
         /// <param name="path"> the path to the image file </param>
         /// <param name="bitmap"> the bitmap to store the loaded image in </param>
+        /// <exception cref="std::exception"> thrown when the image fails to load </exception>
         virtual void LoadBitmapFromFile(const std::string &path, Bitmap &bitmap);
         /// <summary>
         /// Reloads the given bitmap
         /// </summary>
+        /// <exception cref="std::exception"> thrown when the image fails to load </exception>
         virtual void ReloadBitmap(Bitmap &bitmap);
         /// <summary>
         /// Gets the default font
@@ -119,7 +127,8 @@ namespace MistThread
         /// <param name="stroke">The stroke of the lines</param>
         /// <param name="rotation">The rotation of the Rectangle in degrees</param>
         /// <param name="center">The center of the Rectangle</param>
-        virtual void DrawRectangle(const Core::RectangleF &rectangle, const Color &color, float stroke, float rotation, const Vector2 &center) override;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void DrawRectangle(const Core::RectangleF &rectangle, const Color &color, float stroke, float rotation, const Vector2 &center, float zLayer = 0) override;
         /// <summary>
         /// Draws the outline of an Ellipse
         /// </summary>
@@ -129,7 +138,8 @@ namespace MistThread
         /// <param name="stroke">The stroke of the lines</param>
         /// <param name="rotation">The rotation of the Ellipse</param>
         /// <param name="center">The center of the Ellipse</param>
-        virtual void DrawEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float stroke, float rotation, const Vector2 &center) override;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void DrawEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float stroke, float rotation, const Vector2 &center, float zLayer = 0) override;
         /// <summary>
         /// Draws a bitmap to the screen
         /// </summary>
@@ -150,7 +160,8 @@ namespace MistThread
         /// <param name="color">The color to draw</param>
         /// <param name="rotation">The rotation of the Ellipse</param>
         /// <param name="center">The center of the Ellipse</param>
-        virtual void FillEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float rotation, const Vector2 &center) override;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void FillEllipse(const Core::Vector2 &position, const Core::Size2F size, const Color &color, float rotation, const Vector2 &center, float ZLayer = 0) override;
         /// <summary>
         /// Draws a rectangle
         /// </summary>
@@ -158,8 +169,15 @@ namespace MistThread
         /// <param name="color">The color of the rectangle</param>
         /// <param name="rotation">The rotation of the Rectangle</param>
         /// <param name="center">The center of the Rectangle</param>
-        virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center) override;
+        /// <param name="zLayer">The zlayer of the bitmap</param>
+        virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center, float zLayer = 0) override;
 
+        virtual void DrawString();
+
+//////////////////////////////////////////////////////////////
+//Constructors
+//////////////////////////////////////////////////////////////
+      public:
         DirectXGraphicsEngine(Core::GameWindow &gameWindow);
         ~DirectXGraphicsEngine();
       };

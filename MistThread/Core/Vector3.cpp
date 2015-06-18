@@ -2,7 +2,7 @@
 #include <cmath>
 
 
-namespace CBREngine
+namespace MistThread
 {
   namespace Core
   {
@@ -153,11 +153,11 @@ namespace CBREngine
 
     bool Vector3::operator==(const Vector3 & rhs) const
     {
-      if (X != rhs.X)
+      if(X != rhs.X)
         return false;
-      if (Y != rhs.Y)
+      if(Y != rhs.Y)
         return false;
-      if (Z != rhs.Z)
+      if(Z != rhs.Z)
         return false;
       return true;
     }

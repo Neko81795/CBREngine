@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "../Eventful.h"
+#include "GameObjectBase.h"
 #include "../Game.h"
 #include "../GameTime.h"
 #include "../../Graphics/Engines/LimitedGraphicsEngineCore.h"
@@ -13,21 +13,17 @@ namespace MistThread
   {
     namespace GameObjects
     {
-      class Space : public Eventful
+      class Space : public GameObjectBase
       {
         friend class Core::Game;
-        ///////////////////////////////
-        //Variables
-        ///////////////////////////////
-      public:
-        std::string Name;
-        Core::Game &Game;
-        Graphics::Engines::LimitedGraphicsEngineCore *pGraphics;
-        std::list<GameObject> Objects;
-
-        ///////////////////////////////
-        //Methods
-        ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Variables
+//////////////////////////////////////////////////////////////
+      protected:
+        int SpaceLayer;
+//////////////////////////////////////////////////////////////
+//Methods
+//////////////////////////////////////////////////////////////
       private:
         Space& operator=(const Space&) {}
       public:
@@ -37,15 +33,6 @@ namespace MistThread
         /// <param name="gameTime">the current game time</param>
         void Update(const GameTime &gameTime);
         /// <summary>
-        /// Draws all components listening to the draw event
-        /// </summary>
-        /// <param name="graphics">the graphics engine of the game</param>
-        void Draw(Graphics::Engines::GraphicsEngineCore &graphics);
-        /// <summary>
-        /// runs initialization on all components
-        /// </summary>
-        void Initialize();
-        /// <summary>
         /// creates a new game object in the space
         /// </summary>
         /// <returns> a reference to the new object </returns>
@@ -54,14 +41,36 @@ namespace MistThread
         /// creates a new game object in the space at the given position
         /// </summary>
         /// <param name="pos">where to spawn the object</param>
+        /// <param name="zLayer">the zLayer to spawn the object at</param>
         /// <returns> a reference to the new object </returns>
-        GameObject& CreateObjectAt(Vector2 pos);
+        GameObject& CreateObjectAt(const Vector2 &pos, float zLayer = 0);
+        /// <summary>
+        /// Finds the first object with the given name. returns NULL if not found
+        /// </summary>
+        /// <param name="name">the name of the object to find</param>
+        /// <exception cref="std::exception">thrown when object doesn't exist</exception>
+        GameObject& FindObjectByName(const std::string &name);
+        /// <summary>
+        /// Finds all objects with the given name.
+        /// </summary>
+        /// <param name="name">the name of the objects to find</param>
+        const std::list<GameObject*> FindObjectsByName(const std::string &name);
+        /// <summary>
+        /// removes the first object with a matching named
+        /// </summary>
+        /// <param name="name">the name of the object to remove</param>
+        void RemoveObjectByName(const std::string &name);
+        /// <summary>
+        /// compares this object to another for sorting
+        /// value will be less than, greater than, or equal to 0.
+        /// </summary>
+        int CompareTo(const GameObjectBase* other)const override;
 
-        ///////////////////////////////
-        //Constructors
-        ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Constructors
+//////////////////////////////////////////////////////////////
       private:
-        Space(Core::Game &game, Graphics::Engines::LimitedGraphicsEngineCore *graphics);
+        Space(Core::Game &game);
       public:
         ~Space();
       };

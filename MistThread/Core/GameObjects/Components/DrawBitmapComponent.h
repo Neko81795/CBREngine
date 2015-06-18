@@ -36,7 +36,7 @@ namespace MistThread
           //Constructors
           ///////////////////////////////
         public:
-          DrawBitmapComponent(GameObjects::GameObject *owner);
+          DrawBitmapComponent(GameObjects::GameObjectBase *owner);
           ~DrawBitmapComponent() {}
         };
       }

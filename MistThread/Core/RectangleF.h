@@ -31,8 +31,6 @@ namespace MistThread
       void SetBottom(float bottom);
 
 #if WIN32
-      operator D2D_RECT_F&();
-      D2D_RECT_F Rect;
       operator D2D_RECT_F() const;
 #endif
 

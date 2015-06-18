@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include "GameObjects/GameObjectBase.h"
 
 namespace MistThread
 {
@@ -27,38 +28,56 @@ namespace MistThread
 
     class GameWindow; //forward declaration
 
-    class Game
+    class Game : GameObjects::GameObjectBase
     {
-      ///////////////////////////////
-      //static Variable
-      ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Variables
+//////////////////////////////////////////////////////////////
     public:
       static Game *CurrentGame;
-      
-      ///////////////////////////////
-      //Variables
-      ///////////////////////////////
-    public:
+
       Graphics::Engines::GraphicsEngineCore *Graphics;
       Audio::Engines::AudioEngineCore *Audio;
       GameWindow *Window;
-      std::list<GameObjects::Space> Spaces;
 
-      ///////////////////////////////
-      //Methods
-      ///////////////////////////////
+//////////////////////////////////////////////////////////////
+//Methods
+//////////////////////////////////////////////////////////////
     private:
       /// <summary>
       /// the main game loop.
       /// </summary>
       friend void Run(bool *run, Game * game);
+
     public:
       /// <summary>
       /// Starts the main game loop.
       /// Blocks until the game exits
       /// </summary>
       void Start();
-
+      /// <summary>
+      /// Creates a new space with the given name
+      /// </summary>
+      GameObjects::Space &CreateNamedSpace(const std::string& name);
+      /// <summary>
+      /// returns a reference to the space named
+      /// </summary>
+      /// <param name="name">the name of the space to find</param>
+      /// <exception cref="std::exception">Thrown when the space cannot be found</exception>
+      GameObjects::Space &FindSpaceByName(const std::string& name);
+      /// <summary>
+      /// removes the space with the name given
+      /// </summary>
+      /// <param name="name">the name of the space to remove</param>
+      void RemoveSpaceByName(const std::string& name);
+      /// <summary>
+      /// compares this object to another for sorting
+      /// value will be less than, greater than, or equal to 0.
+      /// </summary>
+      int CompareTo(const GameObjectBase* other)const override;
+//////////////////////////////////////////////////////////////
+//Constructors
+//////////////////////////////////////////////////////////////
       /// <summary>
       /// Creates a Game
       /// </summary>

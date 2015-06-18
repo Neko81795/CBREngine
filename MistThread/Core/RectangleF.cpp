@@ -45,15 +45,6 @@ namespace MistThread
     }
 
 #if WIN32
-    RectangleF::operator D2D_RECT_F&()
-    {
-      Rect.left = X;
-      Rect.top = Y;
-      Rect.right = GetRight();
-      Rect.bottom = GetBottom();
-      return Rect;
-    }
-
     RectangleF::operator D2D_RECT_F() const
     {
       return D2D1::RectF(X, Y, GetRight(), GetBottom());
