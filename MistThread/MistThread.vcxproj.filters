@@ -111,6 +111,9 @@
     <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp">
       <Filter>Audio\Engines</Filter>
     </ClCompile>
+    <ClCompile Include="Audio\Spectrum.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -219,6 +222,9 @@
     </ClInclude>
     <ClInclude Include="Audio\Engines\FMODAudioEngine.h">
       <Filter>Audio\Engines</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\Spectrum.h">
+      <Filter>Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

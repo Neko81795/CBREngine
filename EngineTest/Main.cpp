@@ -24,7 +24,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   Game game(&gameWindow, &graphics, &audio);
   
   Sound s;
-  s.Play("AudioTest.ogg");
+  s.Stream("AudioTest.ogg");
+
   Space &mainSpace = game.FindSpaceByName("Main");
 
   GameObject &obj = mainSpace.CreateObject();

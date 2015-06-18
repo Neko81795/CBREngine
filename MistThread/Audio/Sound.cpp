@@ -28,10 +28,12 @@ namespace MistThread
     {
     }
 
-    void Sound::Load(const std::string &localPath)
+    Sound& Sound::Load(const std::string &localPath)
     {
       GAME_AUDIO->LoadFile(localPath);
       GAME_AUDIO->Bind(localPath, &channel);
+
+      return *this;
     }
     Sound& Sound::Stream(const std::string &localPath)
     {
@@ -44,6 +46,17 @@ namespace MistThread
 
       GAME_AUDIO->Bind(localPath, &channel);
       result = channel->setPaused(false);
+      check(result);
+
+      return *this;
+    }
+    Sound& Sound::Loop(const std::string &localPath)
+    {
+      FMOD_MODE *prevMode;
+      FMOD_RESULT result;
+
+      Play(localPath);
+      result = channel->setMode(FMOD_LOOP_NORMAL);
       check(result);
 
       return *this;
@@ -69,20 +82,31 @@ namespace MistThread
     }
     void Sound::ToggleMute()
     {
+      FMOD_RESULT result;
+      bool isMuted;
+
+      result = channel->getMute(&isMuted);
+      check(result);
+
+      result = channel->setMute(!isMuted);
+      check(result);
+    }
+    bool Sound::IsPlaying()
+    {
       if (channel)
       {
         FMOD_RESULT result;
-        bool isMuted;
+        bool playing;
 
-        result = channel->getMute(&isMuted);
+        result = channel->isPlaying(&playing);
         check(result);
 
-        result = channel->setMute(!isMuted);
-        check(result);
+        return playing;
       }
+      return false;
     }
 
-    float Sound::GetVolume()
+    float Sound::GetVolume() const
     {
       FMOD_RESULT result;
       float channelVolume;
@@ -92,7 +116,7 @@ namespace MistThread
 
       return channelVolume;
     }
-    bool Sound::GetMute()
+    bool Sound::GetMute() const
     {
       FMOD_RESULT result;
       bool isMuted;
@@ -102,7 +126,7 @@ namespace MistThread
 
       return isMuted;
     }
-    bool Sound::GetPaused()
+    bool Sound::GetPaused() const
     {
         FMOD_RESULT result;
         bool isPaused;
@@ -112,7 +136,7 @@ namespace MistThread
 
         return isPaused;
     }
-
+   
     void Sound::SetMute(bool isMuted)
     {
       FMOD_RESULT result;
@@ -138,6 +162,25 @@ namespace MistThread
 
         result = channel->setPaused(isPaused);
         check(result);
+    }
+    void Sound::SetLooping(bool isLooping)
+    {
+      if (isLooping)
+        channel->setMode(FMOD_LOOP_NORMAL);
+      else
+        channel->setMode(FMOD_LOOP_OFF);
+    }
+
+    Spectrum Sound::GetSpectrum(SpectrumSize s, FMOD_DSP_FFT_WINDOW window)
+    {
+      if (IsPlaying())
+      {
+      Spectrum spectrum(static_cast<int>(s));
+        channel->getSpectrum(spectrum, s, 0, window);
+        return spectrum;
+      }
+
+      return NULL;
     }
   }
 }
