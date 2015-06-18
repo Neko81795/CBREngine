@@ -108,6 +108,7 @@
     <ClCompile Include="Audio\Sound.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
+    <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -214,5 +215,6 @@
     <ClInclude Include="Audio\Sound.h">
       <Filter>Audio</Filter>
     </ClInclude>
+    <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
   </ItemGroup>
 </Project>

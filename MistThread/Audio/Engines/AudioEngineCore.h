@@ -4,7 +4,7 @@
 #include <list>
 #include <string>
 
-#include "fmod.hpp"
+#include <fmod.hpp>
 
 namespace MistThread
 {
@@ -18,10 +18,12 @@ namespace MistThread
         AudioEngineCore();
         ~AudioEngineCore();
 
+        void LoadFile(const std::string &soundToAdd);
+        void Bind(const std::string &soundToBind, FMOD::Channel *channel);
+        void Stream(const std::string &toStream, FMOD::Channel *channel);
       private:
-        static std::map<std::string, FMOD::Sound *> LoadedSounds;
-        static std::map<std::string, std::list<FMOD::Sound>> SoundGroups;
-        void CheckFMODResult(FMOD_RESULT result);
+        std::map<std::string, FMOD::Sound *> LoadedSounds;
+        std::map<std::string, std::list<FMOD::Sound>> SoundGroups;
 
         FMOD::System *AudioSystem;    //Handle to the system we use to initialize and play all sounds.
         FMOD_SPEAKERMODE Speakermode; //The speaker mode- 5.1, 7.1, etc.

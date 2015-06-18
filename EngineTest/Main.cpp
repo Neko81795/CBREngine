@@ -2,6 +2,7 @@
 #include "../MistThread/Graphics.h"
 #include "SpinComponent.h"
 #include "SinXComponent.h"
+#include "../MistThread/Audio/Sound.h"
 
 //TODO REMOVE THIS SHIT IT'S BAD PRACTICE
 using namespace MistThread;
@@ -9,12 +10,19 @@ using namespace MistThread::Core;
 using namespace MistThread::Core::GameObjects;
 using namespace MistThread::Core::GameObjects::Components;
 
+//YUP YUP MORE BAD PRACTICE BELOW
+using namespace MistThread::Audio;
+
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nShowCmd)
 {
   GameWindow gameWindow("MistThread Test oh boy");
   MistThread::Graphics::Engines::DirectXGraphicsEngine graphics(gameWindow);
-  Game game(&gameWindow, &graphics);
+  MistThread::Audio::Engines::AudioEngineCore audio();
+  Game game(&gameWindow, &graphics, &audio);
+  
 
+  Sound s;
+  s.Play("AudioTest.ogg");
 
   GameObject &obj = game.Spaces.front().CreateObject();
   TransformComponent& trans = obj.AddComponent<TransformComponent>();

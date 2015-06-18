@@ -67,11 +67,13 @@ namespace MistThread
     }
 #endif
 
-    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics)
+    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio)
     {
       Graphics = graphics;
       Window = window;
       CurrentGame = this;
+
+      Audio = audio;
 
       GameObjects::Space main(*this, Graphics);
       main.Name = "Main";

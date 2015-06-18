@@ -14,20 +14,21 @@ namespace MistThread
       Sound();
       ~Sound();
 
-      void Load(std::string localPath);
-      Sound& Stream(std::string localPath);
-      Sound& Play(std::string localPath);
+      void Load(const std::string &localPath);
+      Sound& Stream(const std::string &localPath);
+      Sound& Play(const std::string &localPath);
 
       void Stop();
       void TogglePaused();
+      void ToggleMute();
 
       float GetVolume();
       bool GetMute();
-      void GetPaused();
+      bool GetPaused();
 
       void SetMute(bool isMuted);
-      void SetVolume(float); //0.0 - 1.0
-      void SetPaused();
+      void SetVolume(float newVolume); //0.0 - 1.0
+      void SetPaused(bool isPaused);
       
       //-- GetWaveData( ??? )
       //-- GetSpectrumData( ??? 
