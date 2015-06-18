@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio\Engines\AudioEngineCore.cpp" />
+    <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
     <ClCompile Include="Audio\Sound.cpp" />
     <ClCompile Include="Core\CoreEventHandlers.cpp" />
     <ClCompile Include="Core\CoreEvents.cpp" />
@@ -47,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\Engines\AudioEngineCore.h" />
+    <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
     <ClInclude Include="Audio\Sound.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Core\CoreEventHandlers.h" />

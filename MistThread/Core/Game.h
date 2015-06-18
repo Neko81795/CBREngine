@@ -11,6 +11,14 @@ namespace MistThread
       class GraphicsEngineCore; //forward declaration
     }
   }
+  namespace Audio
+  {
+    namespace Engines
+    {
+      class AudioEngineCore; 
+    }
+  }
+
   namespace Core
   {
     namespace GameObjects
@@ -29,6 +37,7 @@ namespace MistThread
       static Game *CurrentGame;
 
       Graphics::Engines::GraphicsEngineCore *Graphics;
+      Audio::Engines::AudioEngineCore *Audio;
       GameWindow *Window;
 
 //////////////////////////////////////////////////////////////
@@ -74,7 +83,7 @@ namespace MistThread
       /// </summary>
       /// <param name="window"> The window to draw the game on </param>
       /// <param name="graphics"> The Graphics implementation for the game </param>
-      Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics);
+      Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio);
       ~Game();
     };
   }
