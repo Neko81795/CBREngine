@@ -8,9 +8,10 @@ namespace MistThread
   {
     namespace GameObjects
     {
-      void Space::Update(const GameTime & gameTime)
+      void Space::Update()
       {
-        Components::UpdateEvent ue(gameTime);
+        GameTime.Tick();
+        Components::UpdateEvent ue(GameTime);
         DispatchEvent("Update", &ue);
       }
 

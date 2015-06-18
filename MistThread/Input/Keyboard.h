@@ -7,8 +7,13 @@ namespace MistThread
 {
   namespace Input
   {
+    namespace Engines
+    {
+      class DirectXInputEngine; //forward declaration
+    }
     class Keyboard
     {
+      friend Engines::DirectXInputEngine;
     private:
       static KeyboardState Last;
       static KeyboardState Current;

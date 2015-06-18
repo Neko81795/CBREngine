@@ -5,10 +5,10 @@ namespace MistThread
   {
     enum InputTypes
     {
-      Keyboard = 0x0001,
-      Mouse = 0x0010,
-      Touch = 0x0100,
-      GamePad = 0x1000
+      IT_Keyboard = 0x0001,
+      IT_Mouse = 0x0010,
+      IT_Touch = 0x0100,
+      IT_GamePad = 0x1000
     };
   }
 }

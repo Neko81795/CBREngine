@@ -45,14 +45,18 @@ namespace MistThread
       return 0;
     }
 
-    LRESULT GameWindow::KeyDown(UINT, WPARAM, LPARAM, BOOL &)
+    LRESULT GameWindow::KeyDown(UINT, WPARAM key, LPARAM, BOOL &)
     {
-
+      Input::KeyboardEvent evnt(static_cast<Input::Key>(key), true);
+      OnKeyDown(evnt);
+      return 0;
     }
 
-    LRESULT GameWindow::KeyUp(UINT, WPARAM, LPARAM, BOOL &)
+    LRESULT GameWindow::KeyUp(UINT, WPARAM key, LPARAM, BOOL &)
     {
-
+      Input::KeyboardEvent evnt(static_cast<Input::Key>(key), false);
+      OnKeyUp(evnt);
+      return 0;
     }
 
     Size2 GameWindow::GetClientSize()

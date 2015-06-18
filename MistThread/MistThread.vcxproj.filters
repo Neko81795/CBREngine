@@ -114,9 +114,6 @@
     <ClCompile Include="Audio\Engines\AudioEngineCore.cpp">
       <Filter>Audio\Engines</Filter>
     </ClCompile>
-    <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp">
-      <Filter>Audio\Engines</Filter>
-    </ClCompile>
     <ClCompile Include="Input\KeyboardState.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -133,6 +130,9 @@
       <Filter>Input\Engines</Filter>
     </ClCompile>
     <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
+    <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
+    <ClCompile Include="Input\KeyboardEvent.cpp" />
+    <ClCompile Include="Input\KeyboardEventHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -239,9 +239,6 @@
     <ClInclude Include="Audio\Engines\AudioEngineCore.h">
       <Filter>Audio\Engines</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\Engines\FMODAudioEngine.h">
-      <Filter>Audio\Engines</Filter>
-    </ClInclude>
     <ClInclude Include="Input.h" />
     <ClInclude Include="Input\InputTypes.h">
       <Filter>Input</Filter>
@@ -265,5 +262,9 @@
       <Filter>Input\Engines</Filter>
     </ClInclude>
     <ClInclude Include="Input\Engines\DirectXInputEngine.h" />
+    <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
+    <ClInclude Include="Input\KeyboardEvent.h" />
+    <ClInclude Include="Input\KeyboardEventHandler.h" />
+    <ClInclude Include="Input\Engines.h" />
   </ItemGroup>
 </Project>

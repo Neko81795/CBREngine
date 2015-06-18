@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include "GameObjects/GameObjectBase.h"
+#include "../Graphics/Color.h"
 
 namespace MistThread
 {
@@ -19,6 +20,14 @@ namespace MistThread
     }
   }
 
+  namespace Input
+  {
+    namespace Engines
+    {
+      class InputEngineCore; //forward declaration
+    }
+  }
+
   namespace Core
   {
     namespace GameObjects
@@ -28,7 +37,7 @@ namespace MistThread
 
     class GameWindow; //forward declaration
 
-    class Game : GameObjects::GameObjectBase
+    class Game : public GameObjects::GameObjectBase
     {
 //////////////////////////////////////////////////////////////
 //Variables
@@ -38,7 +47,9 @@ namespace MistThread
 
       Graphics::Engines::GraphicsEngineCore *Graphics;
       Audio::Engines::AudioEngineCore *Audio;
+      Input::Engines::InputEngineCore *Input;
       GameWindow *Window;
+      MistThread::Graphics::Color ClearColor;
 
 //////////////////////////////////////////////////////////////
 //Methods
@@ -83,7 +94,7 @@ namespace MistThread
       /// </summary>
       /// <param name="window"> The window to draw the game on </param>
       /// <param name="graphics"> The Graphics implementation for the game </param>
-      Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio);
+      Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio, Input::Engines::InputEngineCore *input);
       ~Game();
     };
   }

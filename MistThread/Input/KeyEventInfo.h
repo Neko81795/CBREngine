@@ -11,8 +11,9 @@ namespace MistThread
     public:
       Input::Key Key;
       Core::GameTime TimePressed;
+      bool Pressed;
 
-      KeyEventInfo(Input::Key key, Core::GameTime timePressed);
+      KeyEventInfo(Input::Key key, Core::GameTime timePressed, bool pressed = true);
       KeyEventInfo(Input::Key key);
       ~KeyEventInfo();
     };

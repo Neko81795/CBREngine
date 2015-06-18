@@ -5,10 +5,12 @@
     <ClCompile Include="SpinComponent.cpp" />
     <ClCompile Include="SinXComponent.cpp" />
     <ClCompile Include="ZLayerComponent.cpp" />
+    <ClCompile Include="KeyMoveComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpinComponent.h" />
     <ClInclude Include="SinXComponent.h" />
     <ClInclude Include="ZLayerComponent.h" />
+    <ClInclude Include="KeyMoveComponent.h" />
   </ItemGroup>
 </Project>

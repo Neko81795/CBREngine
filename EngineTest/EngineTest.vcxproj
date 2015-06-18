@@ -84,6 +84,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="KeyMoveComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SinXComponent.cpp" />
     <ClCompile Include="SpinComponent.cpp" />
@@ -95,6 +96,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="SinXComponent.h" />
     <ClInclude Include="SpinComponent.h" />
     <ClInclude Include="ZLayerComponent.h" />
