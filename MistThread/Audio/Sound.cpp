@@ -22,6 +22,7 @@ namespace MistThread
 
     Sound::Sound()
     {
+      channel = 0;
     }
 
     void Sound::Load(const std::string &localPath)
@@ -38,11 +39,11 @@ namespace MistThread
     }
     Sound& Sound::Play(const std::string &localPath)
     {
-      FMOD_RESULT result;
+      //FMOD_RESULT result;
 
       GAME_AUDIO->Bind(localPath, channel);
-      result = channel->setPaused(false);
-      check(result);
+      //result = channel->setPaused(false);
+      //check(result);
 
       return *this;
     }

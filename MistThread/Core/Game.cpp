@@ -99,7 +99,7 @@ namespace MistThread
       return 0;
     }
 
-    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics) : GameObjectBase(*this, *new GameObjects::Space(*this))
+    Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio) : GameObjectBase(*this, *new GameObjects::Space(*this))
     {
       Type = "Game";
       Name = "Game";
@@ -109,6 +109,8 @@ namespace MistThread
       Graphics = graphics;
       Window = window;
       CurrentGame = this;
+
+      Audio = audio;
     }
 
     Game::~Game()

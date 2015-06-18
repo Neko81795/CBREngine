@@ -3,6 +3,7 @@
 #include "SpinComponent.h"
 #include "SinXComponent.h"
 #include "../MistThread/Audio/Sound.h"
+#include "../MistThread/Audio/Engines/FMODAudioEngine.h"
 #include "ZLayerComponent.h"
 
 //TODO REMOVE THIS SHIT IT'S BAD PRACTICE
@@ -11,19 +12,20 @@ using namespace MistThread::Core;
 using namespace MistThread::Core::GameObjects;
 using namespace MistThread::Core::GameObjects::Components;
 
-//YUP YUP MORE BAD PRACTICE BELOW
+//YUP YUP MORE BAD PRACTICE HERE
 using namespace MistThread::Audio;
+using namespace MistThread::Audio::Engines;
 
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nShowCmd)
 {
   GameWindow gameWindow("MistThread Test oh boy");
   MistThread::Graphics::Engines::DirectXGraphicsEngine graphics(gameWindow);
-  MistThread::Audio::Engines::AudioEngineCore audio();
+  MistThread::Audio::Engines::FMODAudioEngine audio = MistThread::Audio::Engines::FMODAudioEngine();
   Game game(&gameWindow, &graphics, &audio);
   
-
   Sound s;
   s.Play("AudioTest.ogg");
+
   Space &mainSpace = game.FindSpaceByName("Main");
 
   GameObject &obj = mainSpace.CreateObject();
