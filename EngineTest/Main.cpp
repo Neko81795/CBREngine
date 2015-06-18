@@ -20,8 +20,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   GameObject &obj = mainSpace.CreateObject();
   TransformComponent& trans = obj.AddComponent<TransformComponent>();
-  trans.Position.X = 3;
-  trans.Position.Y = 3;
+  trans.Position.X = 0;
+  trans.Position.Y = 0;
   trans.Scale.Height = 3;
   trans.Scale.Width = 3;
   DrawComponent& draw = obj.AddComponent<DrawComponent>();

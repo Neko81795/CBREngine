@@ -45,6 +45,16 @@ namespace MistThread
       return 0;
     }
 
+    LRESULT GameWindow::KeyDown(UINT, WPARAM, LPARAM, BOOL &)
+    {
+
+    }
+
+    LRESULT GameWindow::KeyUp(UINT, WPARAM, LPARAM, BOOL &)
+    {
+
+    }
+
     Size2 GameWindow::GetClientSize()
     {
       RECT rect = {};

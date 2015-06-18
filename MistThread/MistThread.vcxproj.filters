@@ -25,6 +25,12 @@
     <Filter Include="Audio\Engines">
       <UniqueIdentifier>{c946caaf-1500-4198-b976-f7cdfdb4f060}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{1d619473-b495-40c9-a8ef-1b356bb81e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Engines">
+      <UniqueIdentifier>{382cc571-05cb-4c11-9458-304d450206c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\GameWindow.cpp">
@@ -108,6 +114,22 @@
     <ClCompile Include="Audio\Engines\AudioEngineCore.cpp">
       <Filter>Audio\Engines</Filter>
     </ClCompile>
+    <ClCompile Include="Input\KeyboardState.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\KeyCombo.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\KeyEventInfo.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Keyboard.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Engines\InputEngineCore.cpp">
+      <Filter>Input\Engines</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -214,5 +236,28 @@
     <ClInclude Include="Audio\Engines\AudioEngineCore.h">
       <Filter>Audio\Engines</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Input\InputTypes.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Key.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\KeyboardState.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\KeyEventInfo.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\KeyCombo.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keyboard.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Engines\InputEngineCore.h">
+      <Filter>Input\Engines</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Engines\DirectXInputEngine.h" />
   </ItemGroup>
 </Project>
