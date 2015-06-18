@@ -28,22 +28,20 @@ namespace MistThread
     void Sound::Load(const std::string &localPath)
     {
       GAME_AUDIO->LoadFile(localPath);
-      GAME_AUDIO->Bind(localPath, channel);
+      GAME_AUDIO->Bind(localPath, &channel);
     }
     Sound& Sound::Stream(const std::string &localPath)
     {
-      //TODO: STREAM DAT DANK AUDIOS! ALSO, REVISE HOW THIS WORKS! WE ARE NOT USING IT FULLY!
-      
-      GAME_AUDIO->Stream(localPath, channel);
+      GAME_AUDIO->Stream(localPath, &channel);
       return *this;
     }
     Sound& Sound::Play(const std::string &localPath)
     {
-      //FMOD_RESULT result;
+      FMOD_RESULT result;
 
-      GAME_AUDIO->Bind(localPath, channel);
-      //result = channel->setPaused(false);
-      //check(result);
+      GAME_AUDIO->Bind(localPath, &channel);
+      result = channel->setPaused(false);
+      check(result);
 
       return *this;
     }
@@ -120,7 +118,10 @@ namespace MistThread
     {
       FMOD_RESULT result;
 
-      newVolume = std::min(std::max(newVolume, 1.0f), 0.0f);
+      if (newVolume > 1)
+        newVolume = 1;
+      else if (newVolume < 0)
+        newVolume = 0;
 
       result = channel->setVolume(newVolume);
       check(result);

@@ -120,7 +120,7 @@ namespace MistThread
         }
       }
 
-      void FMODAudioEngine::Bind(const std::string &soundToBind, FMOD::Channel *channel)
+      void FMODAudioEngine::Bind(const std::string &soundToBind, FMOD::Channel **channel)
       {
         //Bind it by playing it through a channel if applicable.
         if (LoadedSounds.find(soundToBind) == LoadedSounds.end())
@@ -128,15 +128,15 @@ namespace MistThread
           LoadFile(soundToBind);
           std::cout << "NOTE: That sound was loaded into the map at this time.\n";
         }
-        check(AudioSystem->playSound(FMOD_CHANNEL_FREE, LoadedSounds[soundToBind], false, &channel));
+        check(AudioSystem->playSound(FMOD_CHANNEL_FREE, LoadedSounds[soundToBind], false, channel));
       }
 
-      void FMODAudioEngine::Stream(const std::string &, FMOD::Channel *)
+      void FMODAudioEngine::Stream(const std::string &toStream, FMOD::Channel **channel)
       {
         //TODO: REVISE STREAMING AND WHAT IT DOES.
-        //FMOD::Sound *stream;
-        //check(AudioSystem->createStream("C:/Users/Reverie/Source/Repos/CBREngine/EngineTest\AudioTest.ogg", FMOD_DEFAULT, 0, &stream));
-        //check(AudioSystem->playSound(FMOD_CHANNEL_FREE, stream, false, &channel));
+        FMOD::Sound *stream;
+        check(AudioSystem->createStream(toStream.c_str(), FMOD_DEFAULT, 0, &stream));
+        check(AudioSystem->playSound(FMOD_CHANNEL_FREE, stream, false, channel));
       }
 
       FMODAudioEngine::~FMODAudioEngine()

@@ -21,8 +21,8 @@ namespace MistThread
         ~FMODAudioEngine();
 
         void LoadFile(const std::string &soundToAdd);
-        void Stream(const std::string &toStream, FMOD::Channel *channel);
-        void Bind(const std::string &soundToBind, FMOD::Channel *channel);
+        void Stream(const std::string &toStream, FMOD::Channel **channel);
+        void Bind(const std::string &soundToBind, FMOD::Channel **channel);
       private:
         std::map<std::string, FMOD::Sound *> LoadedSounds;
         std::map<std::string, std::list<FMOD::Sound>> SoundGroups;
