@@ -33,7 +33,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   Game::RegisterComponent<SinXComponent>("SinX");
 
   Sound s;
-  //s.Play("AudioTest.ogg");
+  //s.Stream("AudioTest.ogg");
+
   Space &mainSpace = game.FindSpaceByName("Main");
 
   GameObject &obj = mainSpace.CreateObject();
@@ -94,7 +95,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   trans4.Position.X = 8;
   trans4.Position.Y = 8;
   trans4.Scale.Height = 12;
-  trans4.Scale.Width = 6; 
+  trans4.Scale.Width = 6;
   DrawComponent& draw4 = *obj4.AddComponentByName<DrawComponent>("Draw");
   draw4.Color = Graphics::Color(0xFF006A6A);
   draw4.Stroke = 30;

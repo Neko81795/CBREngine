@@ -135,6 +135,9 @@
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Input\InputEventHandlers.cpp" />
     <ClCompile Include="Input\InputEvents.cpp" />
+    <ClCompile Include="Audio\Spectrum.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
