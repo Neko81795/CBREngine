@@ -55,6 +55,37 @@ namespace MistThread
           }
         }
       }
+      
+      Components::Component* GameObjectBase::AddComponentByName(const std::string &name)
+      {
+        GameObjects::Components::Component* (*construct)(GameObjectBase*) = Game::ComponetConstructors[name];
+
+        //if we don't know about this component, complain
+        if(!construct)
+          throw std::exception("Component does not exist");
+
+        Components::Component *ptr = construct(this);
+
+        //if its already there, delete the one you just made and return the original
+        if(Components[ptr->Name])
+        {
+          delete ptr;
+          throw std::exception("Component already exists on this Object");
+        }
+
+        //check that the dependencies are there
+        for(const std::string &dep : ptr->Dependencies)
+        {
+          if(!Components[dep])
+          {
+            delete ptr;
+            throw std::exception("Component dependency could not be found"); //TODO add what component was not found
+          }
+        }
+
+        Components[ptr->Name] = ptr;
+        return ptr;
+      }
 
       const std::map<std::string, Components::Component*>& GameObjectBase::GetComponents()
       {

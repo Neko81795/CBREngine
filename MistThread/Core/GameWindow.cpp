@@ -29,7 +29,7 @@ namespace MistThread
     {
       RECT rect = {};
       GetClientRect(&rect);
-      if (rect.bottom <= 10)
+      if(rect.bottom <= 10)
       {
         ResizeClient(rect.right, 10);
       }
@@ -56,6 +56,23 @@ namespace MistThread
     {
       Input::KeyboardEvent evnt(static_cast<Input::Key>(key), false);
       OnKeyUp(evnt);
+      return 0;
+    }
+
+    LRESULT GameWindow::MouseMove(UINT, WPARAM flag, LPARAM position, BOOL &)
+    {
+      Vector2 pos(static_cast<float>(GET_X_LPARAM(position)),
+                  static_cast<float>(GET_Y_LPARAM(position)));
+
+      Input::MouseEvent evnt(pos,
+                             (flag & MK_LBUTTON) != 0,
+                             (flag & MK_MBUTTON) != 0,
+                             (flag & MK_RBUTTON) != 0,
+                             (flag & MK_CONTROL) != 0,
+                             (flag & MK_SHIFT) != 0,
+                             (flag & MK_ALT) != 0);
+
+      OnMouseMove(evnt);
       return 0;
     }
 

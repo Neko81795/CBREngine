@@ -5,9 +5,9 @@ namespace MistThread
 {
   namespace Input
   {
-    KeyboardState Keyboard::Last;
-    KeyboardState Keyboard::Current;
-    KeyCombo Keyboard::CurrentCombo;
+    KeyboardState Keyboard::Last_;
+    KeyboardState Keyboard::Current_;
+    KeyCombo Keyboard::CurrentCombo_;
 
     int Keyboard::KeyCoolDown = 500;
     int Keyboard::maxKeyComboLength = 25;
@@ -17,19 +17,10 @@ namespace MistThread
       return Current.IsKeyDown(key) && !Last.IsKeyDown(key);
     }
 
-    const KeyboardState &Keyboard::GetLast()
-    {
-      return Last;
-    }
+    const KeyboardState &Keyboard::Last = Last_;
 
-    const KeyboardState &Keyboard::GetCurrent()
-    {
-      return Current;
-    }
+    const KeyboardState &Keyboard::Current = Current_;
 
-    const KeyCombo &Keyboard::GetCombo()
-    {
-      return CurrentCombo;
-    }
+    const KeyCombo &Keyboard::CurrentCombo = CurrentCombo_;
   }
 }

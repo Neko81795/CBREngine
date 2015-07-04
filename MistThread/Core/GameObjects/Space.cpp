@@ -27,7 +27,7 @@ namespace MistThread
       {
         GameObject &obj = *new MistThread::Core::GameObjects::GameObject(Game, *this);
         Objects.push_back(&obj);
-        auto &trans = obj.AddComponent<Components::TransformComponent>();
+        auto& trans = *dynamic_cast<Components::TransformComponent*>(obj.AddComponentByName("Transform"));
         trans.Position = pos;
         trans.SetZLayer(zLayer);
         RegisterDraw(&obj);

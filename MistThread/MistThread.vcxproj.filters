@@ -131,8 +131,10 @@
     </ClCompile>
     <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
     <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
-    <ClCompile Include="Input\KeyboardEvent.cpp" />
-    <ClCompile Include="Input\KeyboardEventHandler.cpp" />
+    <ClCompile Include="Input\MouseState.cpp" />
+    <ClCompile Include="Input\Mouse.cpp" />
+    <ClCompile Include="Input\InputEventHandlers.cpp" />
+    <ClCompile Include="Input\InputEvents.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -263,8 +265,10 @@
     </ClInclude>
     <ClInclude Include="Input\Engines\DirectXInputEngine.h" />
     <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
-    <ClInclude Include="Input\KeyboardEvent.h" />
-    <ClInclude Include="Input\KeyboardEventHandler.h" />
     <ClInclude Include="Input\Engines.h" />
+    <ClInclude Include="Input\MouseState.h" />
+    <ClInclude Include="Input\Mouse.h" />
+    <ClInclude Include="Input\InputEventHandlers.h" />
+    <ClInclude Include="Input\InputEvents.h" />
   </ItemGroup>
 </Project>

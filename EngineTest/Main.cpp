@@ -17,6 +17,7 @@ using namespace MistThread::Core::GameObjects::Components;
 //YUP YUP MORE BAD PRACTICE HERE
 using namespace MistThread::Audio;
 using namespace MistThread::Audio::Engines;
+//If you wanna see some real bad practice you should see GameObjectBase.cpp
 
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nShowCmd)
 {
@@ -26,77 +27,82 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   MistThread::Input::Engines::DirectXInputEngine input(gameWindow);
   Game game(&gameWindow, &graphics, &audio, &input);
 
+  Game::RegisterComponent<KeyMoveComponent>("KeyMove");
+  Game::RegisterComponent<SpinComponent>("Spin");
+  Game::RegisterComponent<ZLayerComponent>("ZLayer");
+  Game::RegisterComponent<SinXComponent>("SinX");
+
   Sound s;
-  s.Play("AudioTest.ogg");
+  //s.Play("AudioTest.ogg");
   Space &mainSpace = game.FindSpaceByName("Main");
 
   GameObject &obj = mainSpace.CreateObject();
-  TransformComponent& trans = obj.AddComponent<TransformComponent>();
+  TransformComponent& trans = *obj.AddComponentByName<TransformComponent>("Transform");
   trans.Position.X = 0;
   trans.Position.Y = 0;
   trans.Scale.Height = 3;
   trans.Scale.Width = 3;
-  DrawComponent& draw = obj.AddComponent<DrawComponent>();
+  DrawComponent& draw = *dynamic_cast<DrawComponent*>(obj.AddComponentByName("Draw")); //the other way of doing it for comparison
   draw.Color = Graphics::Color(0xFF006A6A);
-  obj.AddComponent<KeyMoveComponent>();
+  obj.AddComponentByName("KeyMove");
 
   GameObject &obj2 = mainSpace.CreateObject();
-  TransformComponent& trans2 = obj2.AddComponent<TransformComponent>();
+  TransformComponent& trans2 = *obj2.AddComponentByName<TransformComponent>("Transform");
   trans2.Position.X = 3;
   trans2.Position.Y = 3;
   trans2.Scale.Height = 16;
   trans2.Scale.Width = 2;
-  DrawComponent& draw2 = obj2.AddComponent<DrawComponent>();
+  DrawComponent& draw2 = *obj2.AddComponentByName<DrawComponent>("Draw");
   draw2.Color = Graphics::Color(0xFFFF00FF);
   draw2.Mode = DrawComponent::Fill;
-  SpinComponent& spin2 = obj2.AddComponent<SpinComponent>();
+  SpinComponent& spin2 = *obj2.AddComponentByName<SpinComponent>("Spin");
   spin2.RotationSpeed = 1;
-  obj2.AddComponent<ZLayerComponent>();
+  *obj2.AddComponentByName<ZLayerComponent>("ZLayer");
 
   GameObject &obj2_2 = mainSpace.CreateObject();
-  TransformComponent& trans2_2 = obj2_2.AddComponent<TransformComponent>();
+  TransformComponent& trans2_2 = *obj2_2.AddComponentByName<TransformComponent>("Transform");
   trans2_2.Position.X = 3;
   trans2_2.Position.Y = 3;
   trans2_2.Scale.Height = 16;
   trans2_2.Scale.Width = 2;
-  DrawComponent& draw2_2 = obj2_2.AddComponent<DrawComponent>();
+  DrawComponent& draw2_2 = *obj2_2.AddComponentByName<DrawComponent>("Draw");
   draw2_2.Color = Graphics::Color(0xFF00FFFF);
   draw2_2.Mode = DrawComponent::Fill;
-  SpinComponent& spin2_2 = obj2_2.AddComponent<SpinComponent>();
+  SpinComponent& spin2_2 = *obj2_2.AddComponentByName<SpinComponent>("Spin");
   spin2_2.RotationSpeed = -1;
 
   GameObject &obj3 = mainSpace.CreateObject();
-  TransformComponent& trans3 = obj3.AddComponent<TransformComponent>();
+  TransformComponent& trans3 = *obj3.AddComponentByName<TransformComponent>("Transform");
   trans3.Position.X = 8;
   trans3.Position.Y = 8;
   trans3.Scale.Height = 12;
   trans3.Scale.Width = 6;
-  DrawComponent& draw3 = obj3.AddComponent<DrawComponent>();
+  DrawComponent& draw3 = *obj3.AddComponentByName<DrawComponent>("Draw");
   draw3.Color = Graphics::Color(0xFFFFFF00);
   draw3.Mode = DrawComponent::Fill;
   draw3.Type = DrawComponent::Elipse;
-  SpinComponent& spin3 = obj3.AddComponent<SpinComponent>();
+  SpinComponent& spin3 = *obj3.AddComponentByName<SpinComponent>("Spin");
   spin3.RotationSpeed = 1;
   spin3.Acceleration = 0.2f;
-  SinXComponent& sin3 = obj3.AddComponent<SinXComponent>();
+  SinXComponent& sin3 = *obj3.AddComponentByName<SinXComponent>("SinX");
   sin3.Period = 1;
   sin3.Scale = 9;
   sin3.Offset = 18;
 
   GameObject &obj4 = mainSpace.CreateObject();
-  TransformComponent& trans4 = obj4.AddComponent<TransformComponent>();
+  TransformComponent& trans4 = *obj4.AddComponentByName<TransformComponent>("Transform");
   trans4.Position.X = 8;
   trans4.Position.Y = 8;
   trans4.Scale.Height = 12;
-  trans4.Scale.Width = 6;
-  DrawComponent& draw4 = obj4.AddComponent<DrawComponent>();
+  trans4.Scale.Width = 6; 
+  DrawComponent& draw4 = *obj4.AddComponentByName<DrawComponent>("Draw");
   draw4.Color = Graphics::Color(0xFF006A6A);
   draw4.Stroke = 30;
   draw4.Type = DrawComponent::Elipse;
-  SpinComponent& spin4 = obj4.AddComponent<SpinComponent>();
+  SpinComponent& spin4 = *obj4.AddComponentByName<SpinComponent>("Spin");
   spin4.RotationSpeed = 1;
   spin4.Acceleration = 0.2f;
-  SinXComponent& sin4 = obj4.AddComponent<SinXComponent>();
+  SinXComponent& sin4 = *obj4.AddComponentByName<SinXComponent>("SinX");
   sin4.Period = 1.01f;
   sin4.Scale = 9;
   sin4.Offset = 18;

@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "InputEngineCore.h"
-#include "../KeyboardEvent.h"
+#include "../InputEvents.h"
 #include "../KeyEventInfo.h"
 
 namespace MistThread

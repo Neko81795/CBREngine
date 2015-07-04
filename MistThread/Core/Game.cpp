@@ -11,7 +11,7 @@
 #include "../Graphics.h"
 #include "GameObjects/Space.h"
 #include "Delegate.h"
-#include "GameObjects/Components/Component.h"
+#include "GameObjects/Components.h"
 #include "../Input/Engines/InputEngineCore.h"
 
 
@@ -23,11 +23,11 @@ namespace MistThread
     {
       game->Initialize();
 
-      while (*run)
+      while(*run)
       {
         game->Input->Update(game->Space.GameTime);
 
-        for (GameObjects::GameObjectBase *space : game->Objects)
+        for(GameObjects::GameObjectBase *space : game->Objects)
         {
           static_cast<GameObjects::Space*>(space)->Update();
         }
@@ -47,14 +47,14 @@ namespace MistThread
       MSG msg;
 
       auto f = std::async(Run, &run, this);
-      
-      while (run)
+
+      while(run)
       {
-        while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+        while(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
         {
           TranslateMessage(&msg);
           DispatchMessage(&msg);
-          if (msg.message == WM_QUIT)
+          if(msg.message == WM_QUIT)
             run = false;
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -111,13 +111,19 @@ namespace MistThread
       Audio = audio;
 
       Input = input;
+
+      RegisterComponent<GameObjects::Components::TransformComponent>("Transform");
+      RegisterComponent<GameObjects::Components::DrawBitmapComponent>("DrawBitmap");
+      RegisterComponent<GameObjects::Components::DrawComponent>("Draw");
     }
 
     Game::~Game()
     {
-      
+
     }
 
+
     Game *Game::CurrentGame;
+    std::map<std::string, GameObjects::Components::Component*(*)(GameObjects::GameObjectBase*)> Game::ComponetConstructors;
   }
 }

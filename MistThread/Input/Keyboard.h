@@ -15,9 +15,9 @@ namespace MistThread
     {
       friend Engines::DirectXInputEngine;
     private:
-      static KeyboardState Last;
-      static KeyboardState Current;
-      static KeyCombo CurrentCombo;
+      static KeyboardState Last_;
+      static KeyboardState Current_;
+      static KeyCombo CurrentCombo_;
     public:
       /// <summary>
       /// returns if the key was pressed this loop
@@ -27,15 +27,15 @@ namespace MistThread
       /// <summary>
       /// returns a read-only copy of the last keyboard state
       /// </summary>
-      static const KeyboardState &GetLast();
+      static const KeyboardState &Last;
       /// <summary>
       /// returns a read-only copy of the current keyboard state
       /// </summary>
-      static const KeyboardState &GetCurrent();
+      static const KeyboardState &Current;
       /// <summary>
       /// returns a read-only copy of the current keyboard user combo
       /// </summary>
-      static const KeyCombo &GetCombo();
+      static const KeyCombo &CurrentCombo;
       /// <summary>
       /// the time in milliseconds from the last key pressed before the key combo is cleared
       /// </summary>

@@ -31,7 +31,7 @@
     <ClCompile Include="Core\Size2.cpp" />
     <ClCompile Include="Core\Size2f.cpp" />
     <ClCompile Include="Core\Vector2.cpp" />
-    <ClCompile Include="Input\KeyboardEventHandler.cpp" />
+    <ClCompile Include="Input\InputEventHandlers.cpp" />
     <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
     <ClCompile Include="Graphics\Bitmap.cpp" />
     <ClCompile Include="Graphics\Color.cpp" />
@@ -45,7 +45,9 @@
     <ClCompile Include="Input\KeyboardState.cpp" />
     <ClCompile Include="Input\KeyCombo.cpp" />
     <ClCompile Include="Input\KeyEventInfo.cpp" />
-    <ClCompile Include="Input\KeyboardEvent.cpp" />
+    <ClCompile Include="Input\InputEvents.cpp" />
+    <ClCompile Include="Input\MouseState.cpp" />
+    <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Utilities\ContentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -77,7 +79,7 @@
     <ClInclude Include="Core\Size2f.h" />
     <ClInclude Include="Core\Vector2.h" />
     <ClInclude Include="Input\Engines.h" />
-    <ClInclude Include="Input\KeyboardEventHandler.h" />
+    <ClInclude Include="Input\InputEventHandlers.h" />
     <ClInclude Include="Input\Engines\DirectXInputEngine.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Graphics\Bitmap.h" />
@@ -96,7 +98,9 @@
     <ClInclude Include="Input\Key.h" />
     <ClInclude Include="Input\KeyCombo.h" />
     <ClInclude Include="Input\KeyEventInfo.h" />
-    <ClInclude Include="Input\KeyboardEvent.h" />
+    <ClInclude Include="Input\InputEvents.h" />
+    <ClInclude Include="Input\MouseState.h" />
+    <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

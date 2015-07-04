@@ -104,8 +104,21 @@ namespace MistThread
         /// <param name="name">the name of the object to remove</param>
         void RemoveGameObjectBaseByName(const std::string &name);
       public:
-        template <typename CType>
-        CType& AddComponent();
+        /// <summary>
+        /// Adds the component with the given name
+        /// </summary>
+        /// <param name="name"> The name of the component to add </typeParam>
+        /// <exception cref="std::exception"> thrown if needed dependencies don't exist </exception>
+        /// <exception cref="std::exception"> thrown when component is already present on the object </exception>
+        Components::Component* AddComponentByName(const std::string &name);
+        /// <summary>
+        /// Adds the component with the given name and returns a pointer of the given type
+        /// </summary>
+        /// <param name="name"> The name of the component to add </typeParam>
+        /// <exception cref="std::exception"> thrown if needed dependencies don't exist </exception>
+        /// <exception cref="std::exception"> thrown when component is already present on the object </exception>
+        template <typename T>
+        T* AddComponentByName(const std::string &name);
         /// <summary>
         /// returns all of the components
         /// </summary>
@@ -194,46 +207,16 @@ namespace MistThread
         virtual ~GameObjectBase();
       };
 
-
-
-
-
-
-//////////////////////////////////////////////////////////////
-//Template Definitions
-//////////////////////////////////////////////////////////////
-
       /// <summary>
-      /// Adds the component of the given type
+      /// Adds the component with the given name and returns a pointer of the given type
       /// </summary>
-      /// <typeParam name="CType"> The type of the component to add </typeParam>
-      /// <example> obj.AddComponent[DrawComponent]() </example>
+      /// <param name="name"> The name of the component to add </typeParam>
       /// <exception cref="std::exception"> thrown if needed dependencies don't exist </exception>
       /// <exception cref="std::exception"> thrown when component is already present on the object </exception>
-      template <typename CType>
-      CType& GameObjectBase::AddComponent()
+      template <typename T>
+      T* GameObjectBase::AddComponentByName(const std::string &name)
       {
-        CType *ctypeptr = new CType(this);
-        Components::Component *ptr = ctypeptr;
-        //if its already there, delete the one you just made and return the original
-        if(Components[ptr->Name])
-        {
-          delete ctypeptr;
-          throw new std::exception("Component already exists on this Object");
-        }
-
-        //check that the dependencies are there
-        for(const std::string &dep : ptr->Dependencies)
-        {
-          if(!Components[dep])
-          {
-            delete ctypeptr;
-            throw new std::exception("Component dependency could not be found"); //TODO add what component was not found
-          }
-        }
-
-        Components[ptr->Name] = ptr;
-        return *ctypeptr;
+        return dynamic_cast<T*>(AddComponentByName(name));
       }
     }
   }

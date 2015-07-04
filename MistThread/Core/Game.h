@@ -39,9 +39,15 @@ namespace MistThread
 
     class Game : public GameObjects::GameObjectBase
     {
+      friend GameObjectBase;
 //////////////////////////////////////////////////////////////
 //Variables
 //////////////////////////////////////////////////////////////
+    private:
+      /// <summary>
+      /// Holds the constructors for all the components that have been registered
+      /// </summary>
+      static std::map < std::string, GameObjects::Components::Component*(*)(GameObjectBase*)> ComponetConstructors;
     public:
       static Game *CurrentGame;
 
@@ -61,6 +67,9 @@ namespace MistThread
       friend void Run(bool *run, Game * game);
 
     public:
+      template<typename T>
+      static void RegisterComponent(std::string name);
+
       /// <summary>
       /// Starts the main game loop.
       /// Blocks until the game exits
@@ -97,6 +106,19 @@ namespace MistThread
       Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio, Input::Engines::InputEngineCore *input);
       ~Game();
     };
+
+//////////////////////////////////////////////////////////////
+//Template Definitions
+//////////////////////////////////////////////////////////////
+    /// <summary>
+    /// Allows the Game to use the Component
+    /// </summary>
+    /// <param name="name">the name of the component</param>
+    template<typename T>
+    void Game::RegisterComponent(std::string name)
+    {
+      Game::ComponetConstructors[name] = [](GameObjectBase* owner) -> GameObjects::Components::Component* { return new T(owner); };
+    }
   }
 }
 

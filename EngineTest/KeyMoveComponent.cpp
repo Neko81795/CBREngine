@@ -6,19 +6,19 @@ using Key = MistThread::Input::Key;
 
 void KeyMoveComponent::Update(UpdateEvent * event)
 {
-  if(Keyboard::GetCurrent().IsKeyDown(Key::W))
+  if(Keyboard::Current.IsKeyDown(Key::W))
   {
     Transform->Position.Y -= static_cast<float>(10 * event->GameTime.ElapsedTime);
   }
-  if(Keyboard::GetCurrent().IsKeyDown(Key::S))
+  if(Keyboard::Current.IsKeyDown(Key::S))
   {
     Transform->Position.Y += static_cast<float>(10 * event->GameTime.ElapsedTime);
   }
-  if(Keyboard::GetCurrent().IsKeyDown(Key::A))
+  if(Keyboard::Current.IsKeyDown(Key::A))
   {
     Transform->Position.X -= static_cast<float>(10 * event->GameTime.ElapsedTime);
   }
-  if(Keyboard::GetCurrent().IsKeyDown(Key::D))
+  if(Keyboard::Current.IsKeyDown(Key::D))
   {
     Transform->Position.X += static_cast<float>(10 * event->GameTime.ElapsedTime);
   }

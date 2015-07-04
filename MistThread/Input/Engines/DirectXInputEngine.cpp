@@ -1,6 +1,6 @@
 #include "DirectXInputEngine.h"
 #include "../../Core/GameWindow.h"
-#include "../KeyboardEventHandler.h"
+#include "../InputEventHandlers.h"
 #include "../../Core/Game.h"
 #include "../../Core/GameObjects/Space.h"
 #include "../Keyboard.h"
@@ -23,23 +23,23 @@ namespace MistThread
 
       void DirectXInputEngine::Update(Core::GameTime gameTime)
       {
-        Keyboard::Last = Keyboard::Current;
+        Keyboard::Last_ = Keyboard::Current_;
 
         for(auto& info : Queue)
         {
-          Keyboard::Current.SetKeyDown(info.Key, info.Pressed);
+          Keyboard::Current_.SetKeyDown(info.Key, info.Pressed);
           if(info.Pressed)
-            Keyboard::CurrentCombo.Keys.push_back(KeyEventInfo(info.Key, gameTime));
+            Keyboard::CurrentCombo_.Keys.push_back(KeyEventInfo(info.Key, gameTime));
         }
         Queue.clear();
 
-        while(Keyboard::CurrentCombo.Keys.size() > Keyboard::maxKeyComboLength)
-          Keyboard::CurrentCombo.Keys.erase(Keyboard::CurrentCombo.Keys.begin());
+        while(Keyboard::CurrentCombo_.Keys.size() > Keyboard::maxKeyComboLength)
+          Keyboard::CurrentCombo_.Keys.erase(Keyboard::CurrentCombo_.Keys.begin());
 
-        if(Keyboard::CurrentCombo.Keys.size() > 0 &&
-           gameTime - Keyboard::CurrentCombo.Keys.back().TimePressed > Keyboard::KeyCoolDown)
+        if(Keyboard::CurrentCombo_.Keys.size() > 0 &&
+           gameTime - Keyboard::CurrentCombo_.Keys.back().TimePressed > Keyboard::KeyCoolDown)
         {
-          Keyboard::CurrentCombo.Keys.clear();
+          Keyboard::CurrentCombo_.Keys.clear();
         }
       }
 
