@@ -52,7 +52,7 @@ namespace MistThread
     }
     Sound& Sound::Loop(const std::string &localPath)
     {
-      FMOD_MODE *prevMode;
+      //FMOD_MODE *prevMode;
       FMOD_RESULT result;
 
       Play(localPath);
