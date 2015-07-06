@@ -115,6 +115,8 @@ namespace MistThread
       RegisterComponent<GameObjects::Components::TransformComponent>("Transform");
       RegisterComponent<GameObjects::Components::DrawBitmapComponent>("DrawBitmap");
       RegisterComponent<GameObjects::Components::DrawComponent>("Draw");
+      RegisterComponent<GameObjects::Components::DrawTextComponent>("DrawText");
+
     }
 
     Game::~Game()

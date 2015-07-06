@@ -31,22 +31,22 @@ namespace MistThread
         /// <summary>
         /// Sets the default font
         /// </summary>
-        virtual void SetDefaultFont(char *font) __ABSTRACT;
+        virtual void SetDefaultFont(const std::string& font) __ABSTRACT;
         /// <summary>
         /// Sets the default font size
         /// </summary>
-        virtual void SetDefaultFontSize(double size) __ABSTRACT;
+        virtual void SetDefaultFontSize(float size) __ABSTRACT;
 
       public:
 
         /// <summary>
         /// Gets the default font
         /// </summary>
-        virtual const char *GetDefaultFont() const __ABSTRACT;
+        virtual std::string GetDefaultFont() const __ABSTRACT;
         /// <summary>
         /// Gets the default font size
         /// </summary>
-        virtual double GetDefaultFontSize() const __ABSTRACT;
+        virtual float GetDefaultFontSize() const __ABSTRACT;
         /// <summary>
         /// Gets the center of the window (in pixels)
         /// </summary>
@@ -62,7 +62,7 @@ namespace MistThread
         /// <param name="text">the string</param>
         /// <param name="font">the font family</param>
         /// <param name="size">the size of the font (in point)</param>
-        virtual Vector2 MeasureString(const char *text, const char *font, double size) const __ABSTRACT;
+        virtual Vector2 MeasureString(const std::string &text, const std::string &font, float size) const __ABSTRACT;
 
         /// <summary>
         /// toggles the full Screen mode

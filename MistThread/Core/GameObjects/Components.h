@@ -5,3 +5,4 @@
 #include "Components/TransformComponent.h"
 #include "Components/UpdateEvent.h"
 #include "Components/DrawBitmapComponent.h"
+#include "Components/DrawTextComponent.h"

@@ -13,20 +13,54 @@ namespace MistThread
   {
     namespace Engines
     {
-      void DirectXGraphicsEngine::SetDefaultFont(char * /*font*/)
+      float DirectXGraphicsEngine::ConvertDIPToPoint(float DIPunits)
       {
+        float DPIY;
+        float DPIX;
+        RenderTarget->GetDpi(&DPIX, &DPIY);
 
+        //assume X and Y are the same. if not, oh well.
+        float denom = DPIX / DIPunits;
+        return 72 / denom;
       }
 
-      void DirectXGraphicsEngine::SetDefaultFontSize(double /*size*/)
+      float DirectXGraphicsEngine::ConvertPointToDIP(float point)
       {
+        float DPIY;
+        float DPIX;
+        RenderTarget->GetDpi(&DPIX, &DPIY);
 
+        //assume X and Y are the same. if not, oh well.
+        return point / 72 * DPIX;
+      }
+
+      void DirectXGraphicsEngine::SetDefaultFont(const std::string &font)
+      {
+        std::wstring fontfam(font.begin(), font.end());
+        TextFactory->CreateTextFormat(fontfam.c_str(), NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, DefaultFont->GetFontSize(), L"", DefaultFont.ReleaseAndGetAddressOf());
+      }
+
+      void DirectXGraphicsEngine::SetDefaultFontSize(float size)
+      {
+        WCHAR fontFamily[50];
+        DefaultFont->GetFontFamilyName(fontFamily, sizeof(fontFamily) / sizeof(*fontFamily));
+        TextFactory->CreateTextFormat(fontFamily, NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", DefaultFont.ReleaseAndGetAddressOf());
       }
 
       void DirectXGraphicsEngine::CreateDeviceResources()
       {
         RenderTarget->CreateSolidColorBrush(D2D1::ColorF(0, 0),
                                             SolidBrush.ReleaseAndGetAddressOf());
+
+        if(!DefaultFont)
+          TextFactory->CreateTextFormat(L"Calibri", NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, ConvertPointToDIP(10), L"", DefaultFont.ReleaseAndGetAddressOf());
+        else
+        {
+          WCHAR fontFamily[50];
+          DefaultFont->GetFontFamilyName(fontFamily, sizeof(fontFamily) / sizeof(*fontFamily));
+          TextFactory->CreateTextFormat(fontFamily, NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, DefaultFont->GetFontSize(), L"", DefaultFont.ReleaseAndGetAddressOf());
+        }
+          
 
         GraphicsEvent evnt(*this);
         DeviceRecreated(evnt);
@@ -91,14 +125,17 @@ namespace MistThread
           throw std::exception("Failed to load Bitmap");
       }
 
-      const char *DirectXGraphicsEngine::GetDefaultFont() const
+      std::string DirectXGraphicsEngine::GetDefaultFont() const
       {
-        return NULL;
+        WCHAR fontFamily[50];
+        DefaultFont->GetFontFamilyName(fontFamily, sizeof(fontFamily) / sizeof(*fontFamily));
+        std::wstring font(fontFamily);
+        return std::string(font.begin(), font.end());
       }
 
-      double DirectXGraphicsEngine::GetDefaultFontSize() const
+      float DirectXGraphicsEngine::GetDefaultFontSize() const
       {
-        return 0.0;
+        return DefaultFont->GetFontSize();
       }
 
       Vector2 DirectXGraphicsEngine::GetWindowCenter() const
@@ -113,7 +150,7 @@ namespace MistThread
         return Size2(static_cast<int>(size.width), static_cast<int>(size.height));
       }
 
-      Vector2 DirectXGraphicsEngine::MeasureString(const char * /*text*/, const char * /*font*/, double /*size*/) const
+      Vector2 DirectXGraphicsEngine::MeasureString(const std::string &/*text*/, const std::string &/*font*/, float /*size*/) const
       {
         return Vector2();
       }
@@ -245,8 +282,26 @@ namespace MistThread
         RenderTarget->FillRectangle(D2D1::RectF(0, 0, rectangle.Width, rectangle.Height), SolidBrush.Get());
       }
 
-      void Engines::DirectXGraphicsEngine::DrawString()
-      {}
+      void Engines::DirectXGraphicsEngine::DrawString(const std::string &text, const Vector2 &position, const Color &color, float rotation, float zLayer)
+      {
+        D2D1_SIZE_F renderTargetSize = RenderTarget->GetSize();
+
+        Vector2 windowCenter = GetWindowCenter();
+        if(ZLayeringAffectsScale && zLayer >= CameraZ)
+          return;
+        float scale = 1;
+        if(ZLayeringAffectsScale)
+          scale = 1 / (-(zLayer - CameraZ) / 30);
+        RenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(scale, scale) *
+                                   D2D1::Matrix3x2F::Rotation(rotation) *
+                                   D2D1::Matrix3x2F::Translation(((position.X - (CameraPos.X * 32)) * scale) + windowCenter.X, ((position.Y - (CameraPos.Y * 32)) * scale) + windowCenter.Y));
+
+        SolidBrush->SetColor(color);
+        std::wstring wtext(text.begin(), text.end());
+        //the rectangle defines where it draws and it will wrap automatically
+        //this box sets the center to the top left corner and will allow it to draw to the full size of the screen
+        RenderTarget->DrawTextA(wtext.c_str(), static_cast<UINT32>(text.length()), DefaultFont.Get(), D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), SolidBrush.Get());
+      }
 
 
 

@@ -44,22 +44,24 @@ namespace MistThread
         ComPtr<IWICImagingFactory> ImageFactory;
         ComPtr<IDWriteFactory> TextFactory;
         ComPtr<ID2D1SolidColorBrush> SolidBrush;
+        ComPtr<IDWriteTextFormat> DefaultFont;
 
 
 //////////////////////////////////////////////////////////////
 //Methods
 //////////////////////////////////////////////////////////////
       private:
-
+        float ConvertDIPToPoint(float DIPUnits);
+        float ConvertPointToDIP(float point);
       protected:
         /// <summary>
         /// Sets the default font
         /// </summary>
-        virtual void SetDefaultFont(char *font) override;
+        virtual void SetDefaultFont(const std::string &font) override;
         /// <summary>
         /// Sets the default font size
         /// </summary>
-        virtual void SetDefaultFontSize(double size) override;
+        virtual void SetDefaultFontSize(float size) override;
 
         void CreateDeviceResources();
         void CreateDeviceIndependentResources();
@@ -83,11 +85,11 @@ namespace MistThread
         /// <summary>
         /// Gets the default font
         /// </summary>
-        virtual const char *GetDefaultFont() const override;
+        virtual std::string GetDefaultFont() const override;
         /// <summary>
         /// Gets the default font size
         /// </summary>
-        virtual double GetDefaultFontSize() const override;
+        virtual float GetDefaultFontSize() const override;
         /// <summary>
         /// Gets the center of the window (in pixels)
         /// </summary>
@@ -102,7 +104,7 @@ namespace MistThread
         /// <param name="text">the string</param>
         /// <param name="font">the font family</param>
         /// <param name="size">the size of the font (in point)</param>
-        virtual Vector2 MeasureString(const char *text, const char *font, double size) const override;
+        virtual Vector2 MeasureString(const std::string &text, const std::string &font, float size) const override;
         /// <summary>
         /// toggles the full Screen mode
         /// </summary>
@@ -172,7 +174,7 @@ namespace MistThread
         /// <param name="zLayer">The zlayer of the bitmap</param>
         virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center, float zLayer = 0) override;
 
-        virtual void DrawString();
+        virtual void DrawString(const std::string &text, const Vector2 &position, const Color &color, float rotation, float zLayer = 0);
 
 //////////////////////////////////////////////////////////////
 //Constructors

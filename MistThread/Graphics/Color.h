@@ -112,7 +112,7 @@ namespace MistThread
       /// <summary>
       /// Creates a new Color object using the given r g b and a values
       /// </summary>
-      Color(unsigned int argb);
+      Color(unsigned int argb = 0xFFFFFFFF);
     };
   }
 }

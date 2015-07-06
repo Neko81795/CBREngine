@@ -138,6 +138,8 @@
     <ClCompile Include="Audio\Spectrum.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\TextFormat.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\DrawTextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -273,5 +275,8 @@
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Input\InputEventHandlers.h" />
     <ClInclude Include="Input\InputEvents.h" />
+    <ClInclude Include="Audio\Spectrum.h" />
+    <ClInclude Include="Graphics\TextFormat.h" />
+    <ClInclude Include="Core\GameObjects\Components\DrawTextComponent.h" />
   </ItemGroup>
 </Project>

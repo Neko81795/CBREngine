@@ -32,6 +32,7 @@
     <ClCompile Include="Core\Size2.cpp" />
     <ClCompile Include="Core\Size2f.cpp" />
     <ClCompile Include="Core\Vector2.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\DrawTextComponent.cpp" />
     <ClCompile Include="Input\InputEventHandlers.cpp" />
     <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
     <ClCompile Include="Graphics\Bitmap.cpp" />
@@ -49,6 +50,7 @@
     <ClCompile Include="Input\InputEvents.cpp" />
     <ClCompile Include="Input\MouseState.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
+    <ClCompile Include="Graphics\TextFormat.cpp" />
     <ClCompile Include="Utilities\ContentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +82,7 @@
     <ClInclude Include="Core\Size2.h" />
     <ClInclude Include="Core\Size2f.h" />
     <ClInclude Include="Core\Vector2.h" />
+    <ClInclude Include="Core\GameObjects\Components\DrawTextComponent.h" />
     <ClInclude Include="Input\Engines.h" />
     <ClInclude Include="Input\InputEventHandlers.h" />
     <ClInclude Include="Input\Engines\DirectXInputEngine.h" />
@@ -103,6 +106,7 @@
     <ClInclude Include="Input\InputEvents.h" />
     <ClInclude Include="Input\MouseState.h" />
     <ClInclude Include="Input\Mouse.h" />
+    <ClInclude Include="Graphics\TextFormat.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

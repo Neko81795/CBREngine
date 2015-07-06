@@ -46,6 +46,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   DrawComponent& draw = *dynamic_cast<DrawComponent*>(obj.AddComponentByName("Draw")); //the other way of doing it for comparison
   draw.Color = Graphics::Color(0xFF006A6A);
   obj.AddComponentByName("KeyMove");
+  DrawTextComponent& drawText = *obj.AddComponentByName<DrawTextComponent>("DrawText");
+  drawText.Text = "How are you today?";
 
   GameObject &obj2 = mainSpace.CreateObject();
   TransformComponent& trans2 = *obj2.AddComponentByName<TransformComponent>("Transform");
@@ -58,7 +60,9 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   draw2.Mode = DrawComponent::Fill;
   SpinComponent& spin2 = *obj2.AddComponentByName<SpinComponent>("Spin");
   spin2.RotationSpeed = 1;
-  *obj2.AddComponentByName<ZLayerComponent>("ZLayer");
+  obj2.AddComponentByName<ZLayerComponent>("ZLayer");
+  DrawTextComponent& drawText2 = *obj2.AddComponentByName<DrawTextComponent>("DrawText");
+  drawText2.Text = "Hello there";
 
   GameObject &obj2_2 = mainSpace.CreateObject();
   TransformComponent& trans2_2 = *obj2_2.AddComponentByName<TransformComponent>("Transform");

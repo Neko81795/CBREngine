@@ -2,7 +2,6 @@
 #include "Component.h"
 #include "DrawEvent.h"
 #include "TransformComponent.h"
-#include "../../../Graphics/Bitmap.h"
 
 namespace MistThread
 {
@@ -12,21 +11,22 @@ namespace MistThread
     {
       namespace Components
       {
-        class DrawBitmapComponent : public Component
+        class DrawTextComponent : public Component
         {
-
           ///////////////////////////////
           //Variables
           ///////////////////////////////
         public:
           Graphics::Bitmap *Image;
           TransformComponent *Transform;
+          std::string Text;
+          Graphics::Color Color;
 
 
           ///////////////////////////////
           //Methods
           ///////////////////////////////
-       public:
+        public:
           void Draw(DrawEvent *drawEvent);
           void Initialize() override;
 
@@ -35,8 +35,8 @@ namespace MistThread
           //Constructors
           ///////////////////////////////
         public:
-          DrawBitmapComponent(GameObjects::GameObjectBase *owner);
-          ~DrawBitmapComponent() {}
+          DrawTextComponent(GameObjects::GameObjectBase *owner);
+          ~DrawTextComponent();
         };
       }
     }
