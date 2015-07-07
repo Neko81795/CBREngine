@@ -172,7 +172,7 @@ namespace MistThread
         /// <param name="zLayer">The zlayer of the bitmap</param>
         virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center, float zLayer = 0) override;
 
-        virtual void DrawString(const std::string &text, const Vector2 &position, const Color &color, float rotation, float zLayer = 0);
+        virtual void DrawString(const std::string &text, const TextFormat &font, const Core::RectangleF &bounds, const Vector2 &position, const Color &color, float rotation, float zLayer = 0) override;
 
 //////////////////////////////////////////////////////////////
 //Constructors

@@ -264,7 +264,7 @@ namespace MistThread
         RenderTarget->FillRectangle(D2D1::RectF(0, 0, rectangle.Width, rectangle.Height), SolidBrush.Get());
       }
 
-      void Engines::DirectXGraphicsEngine::DrawString(const std::string &text, const Vector2 &position, const Color &color, float rotation, float zLayer)
+      void Engines::DirectXGraphicsEngine::DrawString(const std::string &text, const TextFormat &font, const Core::RectangleF &bounds, const Vector2 &position, const Color &color, float rotation, float zLayer)
       {
         D2D1_SIZE_F renderTargetSize = RenderTarget->GetSize();
 
@@ -282,7 +282,7 @@ namespace MistThread
         std::wstring wtext(text.begin(), text.end());
         //the rectangle defines where it draws and it will wrap automatically
         //this box sets the center to the top left corner and will allow it to draw to the full size of the screen
-        RenderTarget->DrawTextA(wtext.c_str(), static_cast<UINT32>(text.length()), DefaultTextFormat.Format_.Get(), D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), SolidBrush.Get());
+        RenderTarget->DrawTextA(wtext.c_str(), static_cast<UINT32>(text.length()), font.Format_.Get(), bounds, SolidBrush.Get());
       }
 
 

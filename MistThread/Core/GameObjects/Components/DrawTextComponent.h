@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "DrawEvent.h"
 #include "TransformComponent.h"
+#include "../../../Graphics/TextFormat.h"
 
 namespace MistThread
 {
@@ -21,6 +22,7 @@ namespace MistThread
           TransformComponent *Transform;
           std::string Text;
           Graphics::Color Color;
+          Graphics::TextFormat Font;
 
 
           ///////////////////////////////

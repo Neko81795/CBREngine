@@ -1,6 +1,7 @@
 #include "DrawTextComponent.h"
 #include "../GameObject.h"
 #include "../Space.h"
+#include "../../Game.h"
 
 namespace MistThread
 {
@@ -12,7 +13,7 @@ namespace MistThread
       {
         void DrawTextComponent::Draw(DrawEvent * drawEvent)
         {
-          drawEvent->Graphics.DrawString(Text, Transform->Position * 32, Color, Transform->Rotation, Transform->GetZLayer());
+          drawEvent->Graphics.DrawString(Text, Font, Transform->Position * 32, Color, Transform->Rotation, Transform->GetZLayer());
         }
 
         void DrawTextComponent::Initialize()
@@ -25,7 +26,7 @@ namespace MistThread
             this);
         }
 
-        DrawTextComponent::DrawTextComponent(GameObjects::GameObjectBase *owner) : Component(owner, "Transform")
+        DrawTextComponent::DrawTextComponent(GameObjects::GameObjectBase *owner) : Component(owner, "Transform"), Font(owner->Game.Graphics->GetDefaultTextFormat())
         {
           Name = "DrawText";
         }

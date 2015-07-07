@@ -86,8 +86,17 @@ namespace MistThread
         /// <param name="center">The center of the Rectangle</param>
         /// <param name="zLayer">The zlayer of the bitmap</param>
         virtual void FillRectangle(const Core::RectangleF &rectangle, const Color &color, float rotation, const Vector2 &center, float zLayer = 0) __ABSTRACT;
-
-        virtual void DrawString(const std::string &text, const Vector2 &position, const Color &color, float rotation, float zLayer = 0) __ABSTRACT;
+        /// <summary>
+        /// Draws a string of text to the screen
+        /// </summary>
+        /// <param name="text">The string to draw</param>
+        /// <param name="font">The font to use to draw the string</param>
+        /// <param name="bounds">the rectangle to draw the string in</param>
+        /// <param name="position">where in the world to draw the string</param>
+        /// <param name="color">the color to draw the string</param>
+        /// <param name="rotation">the rotation of the text</param>
+        /// <param name="zLayer">the zLayer at which to draw the text</param>
+        virtual void DrawString(const std::string &text, const TextFormat &font, const Core::RectangleF &bounds, const Vector2 &position, const Color &color, float rotation, float zLayer = 0) __ABSTRACT;
         /// <summary>
         /// ends the draw
         /// </summary>
@@ -206,6 +215,25 @@ namespace MistThread
         /// <param name="color">The color of the rectangle</param>
         /// <param name="rotation">The rotation of the Rectangle</param>
         void FillRectangle(const Core::Vector2 &position, const Core::Size2F &size, const Color &color, float rotation, float zLayer = 0);
+        /// <summary>
+        /// Draws a string of text to the screen
+        /// </summary>
+        /// <param name="text">The string to draw</param>
+        /// <param name="font">The font to use to draw the string</param>
+        /// <param name="position">where in the world to draw the string</param>
+        /// <param name="color">the color to draw the string</param>
+        /// <param name="rotation">the rotation of the text</param>
+        /// <param name="zLayer">the zLayer at which to draw the text</param>
+        virtual void DrawString(const std::string &text, const TextFormat &font, const Vector2 &position, const Color &color, float rotation = 0, float zLayer = 0);
+        /// <summary>
+        /// Draws a string of text to the screen using the default font
+        /// </summary>
+        /// <param name="text">The string to draw</param>
+        /// <param name="position">where in the world to draw the string</param>
+        /// <param name="color">the color to draw the string</param>
+        /// <param name="rotation">the rotation of the text</param>
+        /// <param name="zLayer">the zLayer at which to draw the text</param>
+        virtual void DrawString(const std::string &text, const Vector2 &position, const Color &color, float rotation = 0, float zLayer = 0);
 
 
 //////////////////////////////////////////////////////////////

@@ -83,6 +83,18 @@ namespace MistThread
         Core::RectangleF rect(position.X, position.Y, size.Width, size.Height);
         FillRectangle(rect, color, rotation, Vector2(size.Width / 2, size.Height / 2), zLayer);
       }
+
+      void GraphicsEngineCore::DrawString(const std::string & text, const TextFormat & font, const Vector2 & position, const Color & color, float rotation, float zLayer)
+      {
+        Size2 bounds = GetWindowBounds();
+        DrawString(text, font, Core::RectangleF(0.0f, 0.0f, static_cast<float>(bounds.Width), static_cast<float>(bounds.Height)), position, color, rotation, zLayer);
+      }
+
+      void GraphicsEngineCore::DrawString(const std::string & text, const Vector2 & position, const Color & color, float rotation, float zLayer)
+      {
+        Size2 bounds = GetWindowBounds();
+        DrawString(text, GetDefaultTextFormat(), Core::RectangleF(0.0f, 0.0f, static_cast<float>(bounds.Width), static_cast<float>(bounds.Height)), position, color, rotation, zLayer);
+      }
     }
   }
 }

@@ -50,6 +50,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   obj.AddComponentByName("KeyMove");
   DrawTextComponent& drawText = *obj.AddComponentByName<DrawTextComponent>("DrawText");
   drawText.Text = "How are you today?";
+  drawText.Font.SetFont("Calibri");
+  drawText.Font.SetSize(35.0f);
 
   GameObject &obj2 = mainSpace.CreateObject();
   TransformComponent& trans2 = *obj2.AddComponentByName<TransformComponent>("Transform");
