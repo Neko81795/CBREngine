@@ -45,7 +45,7 @@ namespace MistThread
         ComPtr<IWICImagingFactory> ImageFactory;
         ComPtr<IDWriteFactory> TextFactory;
         ComPtr<ID2D1SolidColorBrush> SolidBrush;
-        TextFormat DefaultText;
+        TextFormat DefaultTextFormat;
 
 
 //////////////////////////////////////////////////////////////

@@ -37,6 +37,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   Space &mainSpace = game.FindSpaceByName("Main");
 
+  graphics.GetDefaultTextFormat().SetFont("Wingdings");
+
   GameObject &obj = mainSpace.CreateObject();
   TransformComponent& trans = *obj.AddComponentByName<TransformComponent>("Transform");
   trans.Position.X = 0;

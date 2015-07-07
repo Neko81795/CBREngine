@@ -16,12 +16,12 @@ namespace MistThread
     {
       const TextFormat &DirectXGraphicsEngine::GetDefaultTextFormat() const
       {
-        return DefaultText;
+        return DefaultTextFormat;
       }
 
       TextFormat &DirectXGraphicsEngine::GetDefaultTextFormat()
       {
-        return DefaultText;
+        return DefaultTextFormat;
       }
 
       float DirectXGraphicsEngine::ConvertDIPToPoint(float DIPunits)
@@ -50,7 +50,7 @@ namespace MistThread
         RenderTarget->CreateSolidColorBrush(D2D1::ColorF(0, 0),
                                             SolidBrush.ReleaseAndGetAddressOf());
 
-        DefaultText = TextFormat(this, "Calibri", 10);
+        DefaultTextFormat = TextFormat(this, DefaultTextFormat.Font, DefaultTextFormat.Size);
         GraphicsEvent evnt(this);
         DeviceRecreated(evnt);
       }
@@ -282,7 +282,7 @@ namespace MistThread
         std::wstring wtext(text.begin(), text.end());
         //the rectangle defines where it draws and it will wrap automatically
         //this box sets the center to the top left corner and will allow it to draw to the full size of the screen
-        RenderTarget->DrawTextA(wtext.c_str(), static_cast<UINT32>(text.length()), DefaultText.Format_.Get(), D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), SolidBrush.Get());
+        RenderTarget->DrawTextA(wtext.c_str(), static_cast<UINT32>(text.length()), DefaultTextFormat.Format_.Get(), D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), SolidBrush.Get());
       }
 
 
@@ -309,6 +309,9 @@ namespace MistThread
 
         if(FAILED(CoInitialize(NULL)))
           throw std::exception("Failed to create D2D");
+
+        DefaultTextFormat.Font = "Calibri";
+        DefaultTextFormat.Size = 10;
 
         CreateDeviceIndependentResources();
       }
