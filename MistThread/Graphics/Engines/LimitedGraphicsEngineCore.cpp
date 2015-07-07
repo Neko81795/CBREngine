@@ -1,4 +1,5 @@
 #include "LimitedGraphicsEngineCore.h"
+#include "../TextFormat.h"
 
 namespace MistThread
 {
@@ -47,7 +48,7 @@ namespace MistThread
 
       Vector2 LimitedGraphicsEngineCore::MeasureString(const char * text) const
       {
-        return MeasureString(text, GetDefaultFont(), GetDefaultFontSize());
+        return MeasureString(text, GetDefaultTextFormat().GetFont(), GetDefaultTextFormat().GetSize());
       }
     }
   }

@@ -4,7 +4,8 @@
 #pragma comment(lib, "dwrite")
 
 #include "GraphicsEngineCore.h"
-#include "..\..\Core\CoreEvents.h"
+#include "../../Core/CoreEvents.h"
+#include "../TextFormat.h"
 #include <wrl.h>
 
 #pragma warning(disable: 4838) //disable conversion warnings
@@ -44,7 +45,7 @@ namespace MistThread
         ComPtr<IWICImagingFactory> ImageFactory;
         ComPtr<IDWriteFactory> TextFactory;
         ComPtr<ID2D1SolidColorBrush> SolidBrush;
-        ComPtr<IDWriteTextFormat> DefaultFont;
+        TextFormat DefaultText;
 
 
 //////////////////////////////////////////////////////////////
@@ -54,15 +55,6 @@ namespace MistThread
         float ConvertDIPToPoint(float DIPUnits);
         float ConvertPointToDIP(float point);
       protected:
-        /// <summary>
-        /// Sets the default font
-        /// </summary>
-        virtual void SetDefaultFont(const std::string &font) override;
-        /// <summary>
-        /// Sets the default font size
-        /// </summary>
-        virtual void SetDefaultFontSize(float size) override;
-
         void CreateDeviceResources();
         void CreateDeviceIndependentResources();
 
@@ -70,6 +62,14 @@ namespace MistThread
         void DisplayChanged(Core::WindowEvent &evnt);
 
       public:
+        /// <summary>
+        /// returns a read only copy of the default text format
+        /// </summary>
+        virtual const TextFormat &GetDefaultTextFormat() const override;
+        /// <summary>
+        /// returns a reference to the default text format
+        /// </summary>
+        virtual TextFormat &GetDefaultTextFormat() override;
         /// <summary>
         /// loads a bitmap from the specified file
         /// </summary>
@@ -83,13 +83,11 @@ namespace MistThread
         /// <exception cref="std::exception"> thrown when the image fails to load </exception>
         virtual void ReloadBitmap(Bitmap &bitmap);
         /// <summary>
-        /// Gets the default font
+        /// creates a text format with the given font name and size
         /// </summary>
-        virtual std::string GetDefaultFont() const override;
-        /// <summary>
-        /// Gets the default font size
-        /// </summary>
-        virtual float GetDefaultFontSize() const override;
+        /// <param name="fontName">the name of the font to use</param>
+        /// <param name="size">the size of the font</param>
+        virtual void CreateTextFormat(const std::string &fontName, float size, TextFormat &format);
         /// <summary>
         /// Gets the center of the window (in pixels)
         /// </summary>

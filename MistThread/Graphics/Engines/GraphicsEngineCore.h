@@ -8,7 +8,6 @@ namespace MistThread
 {
   namespace Graphics
   {
-    class Bitmap; //forward declaration
     namespace Engines
     {
       class GraphicsEngineCore : public LimitedGraphicsEngineCore
@@ -26,16 +25,7 @@ namespace MistThread
 //Methods
 //////////////////////////////////////////////////////////////
       public:
-        /// <summary>
-        /// loads a bitmap from the specified file
-        /// </summary>
-        /// <param name="path"> the path to the image file </param>
-        /// <param name="bitmap"> the bitmap to store the loaded image in </param>
-        virtual void LoadBitmapFromFile(const std::string &path, Bitmap & bitmap) __ABSTRACT;
-        /// <summary>
-        /// Reloads the given bitmap
-        /// </summary>
-        virtual void ReloadBitmap(Bitmap &bitmap) __ABSTRACT;
+
         /// <summary>
         /// begins the draw
         /// </summary>

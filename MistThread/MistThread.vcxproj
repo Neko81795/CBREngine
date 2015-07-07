@@ -33,7 +33,6 @@
     <ClCompile Include="Core\Size2f.cpp" />
     <ClCompile Include="Core\Vector2.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawTextComponent.cpp" />
-    <ClCompile Include="Input\InputEventHandlers.cpp" />
     <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
     <ClCompile Include="Graphics\Bitmap.cpp" />
     <ClCompile Include="Graphics\Color.cpp" />

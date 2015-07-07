@@ -5,6 +5,7 @@
 #include "../Color.h"
 #include "../Bitmap.h"
 #include <d2d1helper.h>
+#include "../TextFormat.h"
 
 
 namespace MistThread
@@ -13,6 +14,16 @@ namespace MistThread
   {
     namespace Engines
     {
+      const TextFormat &DirectXGraphicsEngine::GetDefaultTextFormat() const
+      {
+        return DefaultText;
+      }
+
+      TextFormat &DirectXGraphicsEngine::GetDefaultTextFormat()
+      {
+        return DefaultText;
+      }
+
       float DirectXGraphicsEngine::ConvertDIPToPoint(float DIPunits)
       {
         float DPIY;
@@ -34,35 +45,13 @@ namespace MistThread
         return point / 72 * DPIX;
       }
 
-      void DirectXGraphicsEngine::SetDefaultFont(const std::string &font)
-      {
-        std::wstring fontfam(font.begin(), font.end());
-        TextFactory->CreateTextFormat(fontfam.c_str(), NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, DefaultFont->GetFontSize(), L"", DefaultFont.ReleaseAndGetAddressOf());
-      }
-
-      void DirectXGraphicsEngine::SetDefaultFontSize(float size)
-      {
-        WCHAR fontFamily[50];
-        DefaultFont->GetFontFamilyName(fontFamily, sizeof(fontFamily) / sizeof(*fontFamily));
-        TextFactory->CreateTextFormat(fontFamily, NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", DefaultFont.ReleaseAndGetAddressOf());
-      }
-
       void DirectXGraphicsEngine::CreateDeviceResources()
       {
         RenderTarget->CreateSolidColorBrush(D2D1::ColorF(0, 0),
                                             SolidBrush.ReleaseAndGetAddressOf());
 
-        if(!DefaultFont)
-          TextFactory->CreateTextFormat(L"Calibri", NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, ConvertPointToDIP(10), L"", DefaultFont.ReleaseAndGetAddressOf());
-        else
-        {
-          WCHAR fontFamily[50];
-          DefaultFont->GetFontFamilyName(fontFamily, sizeof(fontFamily) / sizeof(*fontFamily));
-          TextFactory->CreateTextFormat(fontFamily, NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, DefaultFont->GetFontSize(), L"", DefaultFont.ReleaseAndGetAddressOf());
-        }
-          
-
-        GraphicsEvent evnt(*this);
+        DefaultText = TextFormat(this, "Calibri", 10);
+        GraphicsEvent evnt(this);
         DeviceRecreated(evnt);
       }
 
@@ -125,17 +114,10 @@ namespace MistThread
           throw std::exception("Failed to load Bitmap");
       }
 
-      std::string DirectXGraphicsEngine::GetDefaultFont() const
+      void Engines::DirectXGraphicsEngine::CreateTextFormat(const std::string & fontName, float size, TextFormat & format)
       {
-        WCHAR fontFamily[50];
-        DefaultFont->GetFontFamilyName(fontFamily, sizeof(fontFamily) / sizeof(*fontFamily));
-        std::wstring font(fontFamily);
-        return std::string(font.begin(), font.end());
-      }
-
-      float DirectXGraphicsEngine::GetDefaultFontSize() const
-      {
-        return DefaultFont->GetFontSize();
+        std::wstring fontfam(fontName.begin(), fontName.end());
+        TextFactory->CreateTextFormat(fontfam.c_str(), NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", format.Format_.ReleaseAndGetAddressOf());
       }
 
       Vector2 DirectXGraphicsEngine::GetWindowCenter() const
@@ -300,7 +282,7 @@ namespace MistThread
         std::wstring wtext(text.begin(), text.end());
         //the rectangle defines where it draws and it will wrap automatically
         //this box sets the center to the top left corner and will allow it to draw to the full size of the screen
-        RenderTarget->DrawTextA(wtext.c_str(), static_cast<UINT32>(text.length()), DefaultFont.Get(), D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), SolidBrush.Get());
+        RenderTarget->DrawTextA(wtext.c_str(), static_cast<UINT32>(text.length()), DefaultText.Format_.Get(), D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height), SolidBrush.Get());
       }
 
 

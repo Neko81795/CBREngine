@@ -15,7 +15,7 @@ namespace MistThread
       void operator=(GraphicsEvent &evnt);
     public:
       Engines::GraphicsEngineCore *Graphics;
-      GraphicsEvent(Engines::GraphicsEngineCore &graphics);
+      GraphicsEvent(Engines::GraphicsEngineCore *graphics);
     };
   }
 }

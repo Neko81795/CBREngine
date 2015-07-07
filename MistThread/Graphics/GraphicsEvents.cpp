@@ -6,9 +6,9 @@ namespace MistThread
   {
     void GraphicsEvent::operator=(GraphicsEvent &) {}
         
-    GraphicsEvent::GraphicsEvent(Engines::GraphicsEngineCore & graphics)
+    GraphicsEvent::GraphicsEvent(Engines::GraphicsEngineCore * graphics)
     {
-      Graphics = &graphics;
+      Graphics = graphics;
     }
   }
 }

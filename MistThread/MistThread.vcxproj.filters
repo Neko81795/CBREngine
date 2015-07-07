@@ -133,7 +133,6 @@
     <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
     <ClCompile Include="Input\MouseState.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
-    <ClCompile Include="Input\InputEventHandlers.cpp" />
     <ClCompile Include="Input\InputEvents.cpp" />
     <ClCompile Include="Audio\Spectrum.cpp">
       <Filter>Audio</Filter>

@@ -167,7 +167,7 @@ namespace MistThread
       {
         if(caller == this)
         {
-          Graphics::GraphicsEvent evnt(graphics);
+          Graphics::GraphicsEvent evnt(&graphics);
           DispatchEvent("Draw", &evnt);
         }
         else

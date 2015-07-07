@@ -10,6 +10,8 @@ namespace MistThread
 {
   namespace Graphics
   {
+    class Bitmap; //forward declaration
+    class TextFormat;
     namespace Engines
     {
       using Vector2 = MistThread::Core::Vector2;
@@ -28,25 +30,24 @@ namespace MistThread
         GraphicsEventHandler DeviceRecreated;
 
       protected:
-        /// <summary>
-        /// Sets the default font
-        /// </summary>
-        virtual void SetDefaultFont(const std::string& font) __ABSTRACT;
-        /// <summary>
-        /// Sets the default font size
-        /// </summary>
-        virtual void SetDefaultFontSize(float size) __ABSTRACT;
 
-      public:
-
+      public:        
         /// <summary>
-        /// Gets the default font
+        /// loads a bitmap from the specified file
         /// </summary>
-        virtual std::string GetDefaultFont() const __ABSTRACT;
+        /// <param name="path"> the path to the image file </param>
+        /// <param name="bitmap"> the bitmap to store the loaded image in </param>
+        virtual void LoadBitmapFromFile(const std::string &path, Bitmap & bitmap) __ABSTRACT;
         /// <summary>
-        /// Gets the default font size
+        /// Reloads the given bitmap
         /// </summary>
-        virtual float GetDefaultFontSize() const __ABSTRACT;
+        virtual void ReloadBitmap(Bitmap &bitmap) __ABSTRACT;
+        /// <summary>
+        /// creates a text format with the given font name and size
+        /// </summary>
+        /// <param name="fontName">the name of the font to use</param>
+        /// <param name="size">the size of the font</param>
+        virtual void CreateTextFormat(const std::string &fontName, float size, TextFormat &format) __ABSTRACT;
         /// <summary>
         /// Gets the center of the window (in pixels)
         /// </summary>
@@ -55,6 +56,14 @@ namespace MistThread
         /// Gets the size of the window
         /// </summary>
         virtual Size2 GetWindowBounds() const __ABSTRACT;
+        /// <summary>
+        /// returns a read only copy of the default text format
+        /// </summary>
+        virtual const TextFormat &GetDefaultTextFormat() const __ABSTRACT;
+        /// <summary>
+        /// returns a reference to the default text format
+        /// </summary>
+        virtual TextFormat &GetDefaultTextFormat() __ABSTRACT;
 
         /// <summary>
         /// returns the size of the text the string would display
