@@ -274,8 +274,10 @@
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Input\InputEventHandlers.h" />
     <ClInclude Include="Input\InputEvents.h" />
-    <ClInclude Include="Audio\Spectrum.h" />
     <ClInclude Include="Graphics\TextFormat.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawTextComponent.h" />
+    <ClInclude Include="Audio\Spectrum.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

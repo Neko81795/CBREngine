@@ -6,11 +6,13 @@
     <ClCompile Include="SinXComponent.cpp" />
     <ClCompile Include="ZLayerComponent.cpp" />
     <ClCompile Include="KeyMoveComponent.cpp" />
+    <ClCompile Include="SoundPulseComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpinComponent.h" />
     <ClInclude Include="SinXComponent.h" />
     <ClInclude Include="ZLayerComponent.h" />
     <ClInclude Include="KeyMoveComponent.h" />
+    <ClInclude Include="SoundPulseComponent.h" />
   </ItemGroup>
 </Project>

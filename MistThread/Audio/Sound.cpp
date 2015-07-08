@@ -102,7 +102,7 @@ namespace MistThread
         check(result);
 
         return playing;
-    }
+      }
       return false;
     }
 

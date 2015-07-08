@@ -21,9 +21,9 @@ namespace MistThread
 
       //Member Functions
       int GetSize() const;
+      void Scale(float scalar);
       float GetAt(int i) const;
       void SetAt(int i, float value);
-      void Scale(float scalar);
       //TODO: Implement an update function to make it much more efficient. Add some more variables to make this work, like FMOD_WINDOW enum and a channel ref.
 
     private:
@@ -43,6 +43,7 @@ namespace MistThread
       SpectrumProxy& operator+=(const SpectrumProxy &s);
       SpectrumProxy& operator-=(const SpectrumProxy &s);
       SpectrumProxy& operator*=(const SpectrumProxy &s);
+      SpectrumProxy& operator*=(int i);
       SpectrumProxy& operator/=(const SpectrumProxy &s);
 
     private:

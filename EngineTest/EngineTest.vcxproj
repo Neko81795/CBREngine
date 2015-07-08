@@ -87,6 +87,7 @@
     <ClCompile Include="KeyMoveComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SinXComponent.cpp" />
+    <ClCompile Include="SoundPulseComponent.cpp" />
     <ClCompile Include="SpinComponent.cpp" />
     <ClCompile Include="ZLayerComponent.cpp" />
   </ItemGroup>
@@ -98,6 +99,7 @@
   <ItemGroup>
     <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="SinXComponent.h" />
+    <ClInclude Include="SoundPulseComponent.h" />
     <ClInclude Include="SpinComponent.h" />
     <ClInclude Include="ZLayerComponent.h" />
   </ItemGroup>

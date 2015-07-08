@@ -113,6 +113,11 @@ namespace MistThread
       s_.SetAt(pos_, s_[pos_] * s.s_[s.pos_]);
       return *this;
     }
+    SpectrumProxy& SpectrumProxy::operator*=(int i)
+    {
+      s_.SetAt(pos_, s_.GetAt(pos_) * i);
+      return *this;
+    }
     SpectrumProxy& SpectrumProxy::operator/=(const SpectrumProxy &s)
     {
       s_.SetAt(pos_, s_[pos_] / s.s_[s.pos_]);

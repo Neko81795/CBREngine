@@ -2,11 +2,12 @@
 #include "../MistThread/Graphics.h"
 #include "SpinComponent.h"
 #include "SinXComponent.h"
-#include "../MistThread/Audio/Sound.h"
-#include "../MistThread/Audio/Engines/FMODAudioEngine.h"
 #include "ZLayerComponent.h"
 #include "KeyMoveComponent.h"
+#include "SoundPulseComponent.h"
 #include "../MistThread/Input.h"
+#include "../MistThread/Audio/Sound.h"
+#include "../MistThread/Audio/Engines/FMODAudioEngine.h"
 
 //TODO REMOVE THIS SHIT IT'S BAD PRACTICE
 using namespace MistThread;
@@ -31,14 +32,18 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   Game::RegisterComponent<SpinComponent>("Spin");
   Game::RegisterComponent<ZLayerComponent>("ZLayer");
   Game::RegisterComponent<SinXComponent>("SinX");
+  Game::RegisterComponent<SoundPulseComponent>("SoundPulse");
 
-  Sound s;
-  //s.Stream("AudioTest.ogg");
+  //Sound s;
+  //s.Play("AudioTest.ogg");
+  //Spectrum spec = s.GetSpectrum(SPECTRUM_64, FMOD_DSP_FFT_WINDOW_BLACKMAN);
 
   Space &mainSpace = game.FindSpaceByName("Main");
 
   graphics.GetDefaultTextFormat().SetFont("Wingdings");
 
+
+  //Tiny box that is tiny.
   GameObject &obj = mainSpace.CreateObject();
   TransformComponent& trans = *obj.AddComponentByName<TransformComponent>("Transform");
   trans.Position.X = 0;
@@ -53,6 +58,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   drawText.Font.SetFont("Calibri");
   drawText.Font.SetSize(35.0f);
 
+
+  //Magenta box
   GameObject &obj2 = mainSpace.CreateObject();
   TransformComponent& trans2 = *obj2.AddComponentByName<TransformComponent>("Transform");
   trans2.Position.X = 3;
@@ -67,7 +74,11 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   obj2.AddComponentByName<ZLayerComponent>("ZLayer");
   DrawTextComponent& drawText2 = *obj2.AddComponentByName<DrawTextComponent>("DrawText");
   drawText2.Text = "Hello there";
+  SoundPulseComponent& pulseit = *obj2.AddComponentByName<SoundPulseComponent>("SoundPulse");
+  pulseit.SetSound("AudioTest.ogg");
 
+
+  //Cyan Box
   GameObject &obj2_2 = mainSpace.CreateObject();
   TransformComponent& trans2_2 = *obj2_2.AddComponentByName<TransformComponent>("Transform");
   trans2_2.Position.X = 3;
@@ -80,6 +91,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   SpinComponent& spin2_2 = *obj2_2.AddComponentByName<SpinComponent>("Spin");
   spin2_2.RotationSpeed = -1;
 
+
+  //Yellow Ellipse
   GameObject &obj3 = mainSpace.CreateObject();
   TransformComponent& trans3 = *obj3.AddComponentByName<TransformComponent>("Transform");
   trans3.Position.X = 8;
@@ -98,6 +111,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   sin3.Scale = 9;
   sin3.Offset = 18;
 
+
+  //Yellow Box outline
   GameObject &obj4 = mainSpace.CreateObject();
   TransformComponent& trans4 = *obj4.AddComponentByName<TransformComponent>("Transform");
   trans4.Position.X = 8;
