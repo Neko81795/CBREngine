@@ -10,7 +10,7 @@ SoundPulseComponent::SoundPulseComponent(MistThread::Core::GameObjects::GameObje
 
 void SoundPulseComponent::Initialize()
 {
-  //Figure out what this shit is.
+  //Figure out what the pTransform and pDraw are.
   pTransform_ = static_cast<MistThread::Core::GameObjects::Components::TransformComponent*>(Owner.GetComponentByName("Transform"));
   pDraw_ = static_cast<MistThread::Core::GameObjects::Components::DrawComponent*>(Owner.GetComponentByName("Draw"));
 

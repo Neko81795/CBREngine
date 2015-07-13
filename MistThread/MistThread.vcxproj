@@ -50,6 +50,7 @@
     <ClCompile Include="Input\MouseState.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Graphics\TextFormat.cpp" />
+    <ClCompile Include="Audio\SpectrumProxy.cpp" />
     <ClCompile Include="Utilities\ContentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,7 @@
     <ClInclude Include="Input\MouseState.h" />
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Graphics\TextFormat.h" />
+    <ClInclude Include="Audio\SpectrumProxy.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
