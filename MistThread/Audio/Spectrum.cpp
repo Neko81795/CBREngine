@@ -1,5 +1,4 @@
 #include "Spectrum.h"
-#include "SpectrumProxy.h"
 
 
 
@@ -34,7 +33,7 @@ namespace MistThread
 
       return SpectrumProxy(*this, index);
     }
-    float Spectrum::operator[](const int index) const
+    float Spectrum::operator[](const int& index) const
     {
       if (index < 0 || index >= size_)
         throw("Accessing element out of range!");

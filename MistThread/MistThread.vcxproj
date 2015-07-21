@@ -107,7 +107,6 @@
     <ClInclude Include="Input\MouseState.h" />
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Graphics\TextFormat.h" />
-    <ClInclude Include="Audio\SpectrumProxy.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

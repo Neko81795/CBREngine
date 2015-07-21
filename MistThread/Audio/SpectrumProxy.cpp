@@ -1,4 +1,4 @@
-#include "SpectrumProxy.h"
+#include "Spectrum.h"
 
 
 
@@ -24,27 +24,27 @@ namespace MistThread
     }
     SpectrumProxy& SpectrumProxy::operator+=(const SpectrumProxy &s)
     {
-      s_.SetAt(pos_, s_[pos_] + s.s_[s.pos_]);
+      s_.SetAt(pos_, static_cast<float>(s_[pos_] + s.s_[s.pos_]));
       return *this;
     }
     SpectrumProxy& SpectrumProxy::operator-=(const SpectrumProxy &s)
     {
-      s_.SetAt(pos_, s_[pos_] - s.s_[s.pos_]);
+      s_.SetAt(pos_, static_cast<float>(s_[pos_] - s.s_[s.pos_]));
       return *this;
     }
     SpectrumProxy& SpectrumProxy::operator*=(const SpectrumProxy &s)
     {
-      s_.SetAt(pos_, s_[pos_] * s.s_[s.pos_]);
+      s_.SetAt(pos_, static_cast<float>(s_[pos_] * s.s_[s.pos_]));
       return *this;
     }
     SpectrumProxy& SpectrumProxy::operator/=(const SpectrumProxy &s)
     {
-      s_.SetAt(pos_, s_[pos_] / s.s_[s.pos_]);
+      s_.SetAt(pos_, static_cast<float>(s_[pos_] / s.s_[s.pos_]));
       return *this;
     }
     SpectrumProxy& SpectrumProxy::operator=(int i)
     {
-      s_.SetAt(pos_, i);
+      s_.SetAt(pos_, static_cast<float>(i));
       return *this;
     }
     SpectrumProxy& SpectrumProxy::operator+=(int i)

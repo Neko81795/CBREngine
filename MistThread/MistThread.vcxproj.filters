@@ -139,7 +139,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\TextFormat.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawTextComponent.cpp" />
-    <ClCompile Include="Audio\SpectrumProxy.cpp" />
+    <ClCompile Include="Audio\SpectrumProxy.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -280,6 +282,5 @@
     <ClInclude Include="Audio\Spectrum.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Audio\SpectrumProxy.h" />
   </ItemGroup>
 </Project>
