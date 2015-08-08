@@ -50,6 +50,7 @@
     <ClCompile Include="Input\MouseState.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Graphics\TextFormat.cpp" />
+    <ClCompile Include="Audio\SpectrumProxy.cpp" />
     <ClCompile Include="Utilities\ContentManager.cpp" />
     <ClCompile Include="IO\XML\XMLElement.cpp" />
     <ClCompile Include="IO\XML\XMLAttribute.cpp" />

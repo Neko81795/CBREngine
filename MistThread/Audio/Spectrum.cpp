@@ -1,5 +1,7 @@
 #include "Spectrum.h"
 
+
+
 namespace MistThread
 {
   namespace Audio
@@ -31,7 +33,7 @@ namespace MistThread
 
       return SpectrumProxy(*this, index);
     }
-    float Spectrum::operator[](const int index) const
+    float Spectrum::operator[](const int& index) const
     {
       if (index < 0 || index >= size_)
         throw("Accessing element out of range!");
@@ -80,48 +82,6 @@ namespace MistThread
     {
       for (int i = 0; i < size_; ++i)
         spectrum_[i] *= scalar;
-    }
-
-    //Spectrum Proxy member functions
-    SpectrumProxy::SpectrumProxy(Spectrum &s, int pos) : s_(s), pos_(pos)  { }
-    SpectrumProxy::operator float()
-    {
-      return s_.GetAt(pos_);
-    }
-
-    //Spectrum Proxy Operator Overloads.
-    SpectrumProxy& SpectrumProxy::operator=(const SpectrumProxy &s)
-    {
-      if (&s != this)
-      {
-        s_[pos_] = s.s_[s.pos_];
-      }
-      return *this;
-    }
-    SpectrumProxy& SpectrumProxy::operator+=(const SpectrumProxy &s)
-    {
-      s_.SetAt(pos_, s_[pos_] + s.s_[s.pos_]);
-      return *this;
-    }
-    SpectrumProxy& SpectrumProxy::operator-=(const SpectrumProxy &s)
-    {
-      s_.SetAt(pos_, s_[pos_] - s.s_[s.pos_]);
-      return *this;
-    }
-    SpectrumProxy& SpectrumProxy::operator*=(const SpectrumProxy &s)
-    {
-      s_.SetAt(pos_, s_[pos_] * s.s_[s.pos_]);
-      return *this;
-    }
-    SpectrumProxy& SpectrumProxy::operator*=(int i)
-    {
-      s_.SetAt(pos_, s_.GetAt(pos_) * i);
-      return *this;
-    }
-    SpectrumProxy& SpectrumProxy::operator/=(const SpectrumProxy &s)
-    {
-      s_.SetAt(pos_, s_[pos_] / s.s_[s.pos_]);
-      return *this;
     }
   }
 }

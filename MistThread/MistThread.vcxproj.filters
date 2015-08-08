@@ -142,6 +142,9 @@
     <ClCompile Include="IO\XML\XMLAttribute.cpp" />
     <ClCompile Include="IO\XML\XMLElement.cpp" />
     <ClCompile Include="IO\XML\XMLFile.cpp" />
+    <ClCompile Include="Audio\SpectrumProxy.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">

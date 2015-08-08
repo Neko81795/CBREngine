@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 namespace MistThread
 {
   namespace Audio
@@ -14,8 +16,8 @@ namespace MistThread
       ~Spectrum();
 
       //Operator Overloads
-      SpectrumProxy Spectrum::operator[](int index);
-      float Spectrum::operator[](int index) const;
+      SpectrumProxy operator[](int index);
+      float Spectrum::operator[](const int& index) const;
       Spectrum& operator=(const Spectrum &s);
       operator float*();
 
@@ -43,8 +45,12 @@ namespace MistThread
       SpectrumProxy& operator+=(const SpectrumProxy &s);
       SpectrumProxy& operator-=(const SpectrumProxy &s);
       SpectrumProxy& operator*=(const SpectrumProxy &s);
-      SpectrumProxy& operator*=(int i);
       SpectrumProxy& operator/=(const SpectrumProxy &s);
+      SpectrumProxy& operator=(int i);
+      SpectrumProxy& operator+=(int i);
+      SpectrumProxy& operator-=(int i);
+      SpectrumProxy& operator*=(int i);
+      SpectrumProxy& operator/=(int i);
 
     private:
       Spectrum &s_; //A reference to the spectrum object we are a proxy of.
