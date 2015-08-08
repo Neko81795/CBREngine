@@ -76,6 +76,7 @@ namespace MistThread
       /// </summary>
       Vector2 SwapVariables() const;
 
+      friend std::istream &operator>>(std::istream &stream, Vector2& vector);
       friend std::ostream &operator<<(std::ostream &stream, const Vector2& vector);
       Vector2 operator+(const Vector2 &rhs) const;
       Vector2 operator+(float rhs) const;

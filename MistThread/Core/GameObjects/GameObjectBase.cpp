@@ -103,12 +103,14 @@ namespace MistThread
         return (*const_cast<std::map<std::string, Components::Component*>*>(&Components))[name];
       }
 
+      //todo: don't allow people to remove things that are depended on
       void GameObjectBase::RemoveComponentByName(const std::string& name)
       {
         if(Components[name])
         {
-          delete Components[name];
+          Components::Component* comp = Components[name];
           Components.erase(name);
+          delete comp;
         }
       }
 

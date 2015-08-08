@@ -139,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\TextFormat.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawTextComponent.cpp" />
+    <ClCompile Include="IO\XML\XMLAttribute.cpp" />
+    <ClCompile Include="IO\XML\XMLElement.cpp" />
+    <ClCompile Include="IO\XML\XMLFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -274,10 +277,13 @@
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Input\InputEventHandlers.h" />
     <ClInclude Include="Input\InputEvents.h" />
+    <ClInclude Include="Audio\Spectrum.h" />
     <ClInclude Include="Graphics\TextFormat.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawTextComponent.h" />
-    <ClInclude Include="Audio\Spectrum.h">
-      <Filter>Audio</Filter>
-    </ClInclude>
+    <ClInclude Include="IO\XML\XMLAttribute.h" />
+    <ClInclude Include="IO\XML\XMLElement.h" />
+    <ClInclude Include="IO\XML\XMLFile.h" />
+    <ClInclude Include="IO.h" />
+    <ClInclude Include="IO\XML.h" />
   </ItemGroup>
 </Project>

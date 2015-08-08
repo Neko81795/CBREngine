@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "../../Delegate.h"
+#include "../../../IO/XML/XMLElement.h"
 
 namespace MistThread
 {
@@ -48,6 +49,16 @@ namespace MistThread
           /// Called when the level is loaded
           /// </summary>
           virtual void Initialize();
+          /// <summary>
+          /// Sets up the component from with the given XML Element
+          /// </summary>
+          /// <param name="element">the element with the data needed to initialize</param>
+          virtual void InitializeFromXML(IO::XML::XMLElement & element);
+          /// <summary>
+          /// Populates the given XML Element with data for saving
+          /// </summary>
+          /// <param name="element">the element to fill with data</param>
+          virtual void PopulateXML(IO::XML::XMLElement & element) const;
 
           ///////////////////////////////
           //Constructors

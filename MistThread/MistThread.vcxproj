@@ -51,6 +51,9 @@
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Graphics\TextFormat.cpp" />
     <ClCompile Include="Utilities\ContentManager.cpp" />
+    <ClCompile Include="IO\XML\XMLElement.cpp" />
+    <ClCompile Include="IO\XML\XMLAttribute.cpp" />
+    <ClCompile Include="IO\XML\XMLFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\Engines\AudioEngineCore.h" />
@@ -106,7 +109,12 @@
     <ClInclude Include="Input\MouseState.h" />
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Graphics\TextFormat.h" />
+    <ClInclude Include="IO.h" />
+    <ClInclude Include="IO\XML.h" />
     <ClInclude Include="Utilities\ContentManager.h" />
+    <ClInclude Include="IO\XML\XMLElement.h" />
+    <ClInclude Include="IO\XML\XMLAttribute.h" />
+    <ClInclude Include="IO\XML\XMLFile.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{708B0D22-6BFF-442B-8ED1-0C25710F544F}</ProjectGuid>

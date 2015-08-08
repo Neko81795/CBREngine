@@ -175,6 +175,52 @@ namespace MistThread
       return *this;
     }
 
+    std::istream &operator>>(std::istream &stream, Color& color)
+    {
+      float temp;
+      //(A
+      stream.get();
+      stream.get();
+
+      stream >> temp;
+      color.SetA(temp);
+
+      //,R
+      stream.get();
+      stream.get();
+
+
+      stream >> temp;
+      color.SetR(temp);
+
+      //,G
+      stream.get();
+      stream.get();
+
+
+      stream >> temp;
+      color.SetG(temp);
+
+      //,B
+      stream.get();
+      stream.get();
+
+
+      stream >> temp;
+      color.SetB(temp);
+
+      //)
+      stream.get();
+
+      return stream;
+    }
+
+    std::ostream &operator<<(std::ostream &stream, const Color& color)
+    {
+      stream << "(A" << color.A() << ",R" << color.R() << ",G" << color.G() << ",B" << color.B() << ")";
+      return stream;
+    }
+
 #if WIN32
     Color::operator D2D_COLOR_F&()
     {

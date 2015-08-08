@@ -11,23 +11,23 @@ namespace MistThread
     class EventHandler
     {
     private:
-      std::list<T2> ls;
+      std::list<T2*> ls;
     public:
-      EventHandler<T1, T2> &operator+=(T2 del)
+      EventHandler<T1, T2> &operator+=(T2 *del)
       {
         ls.push_back(del);
         return *this;
       }
-      EventHandler<T1, T2> &operator-=(T2 del)
+      EventHandler<T1, T2> &operator-=(T2 *del)
       {
         ls.remove(del);
         return *this;
       }
       void operator()(T1 evnt)
       {
-        for each (T2 func in ls)
+        for each (T2* func in ls)
         {
-          func(evnt);
+          (*func)(evnt);
         }
       }
       virtual ~EventHandler() {}

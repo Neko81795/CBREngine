@@ -39,6 +39,10 @@ namespace MistThread
 //////////////////////////////////////////////////////////////
 //Variables
 //////////////////////////////////////////////////////////////
+      private:
+        Core::Delegate<Core::WindowEvent &> *DisplayChangedCallback;
+        Core::Delegate<Core::WindowEvent &> *ResizeCallback;
+        Core::GameWindow &Window;
       protected:
         ComPtr<ID2D1Factory> Factory;
         ComPtr<ID2D1HwndRenderTarget> RenderTarget;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "../Core/Delegate.h"
 
 #if WIN32
 #pragma comment(lib, "d2d1")
@@ -43,6 +44,7 @@ namespace MistThread
 #endif
       std::string Font;
       float Size;
+      Core::Delegate<GraphicsEvent &> DeviceRecreatedCallback;
 
     public:
       void SetFont(const std::string &fontName);
@@ -51,8 +53,11 @@ namespace MistThread
       std::string GetFont() const;
       float GetSize() const;
 
+      friend std::istream &operator>>(std::istream &stream, TextFormat& color);
+      friend std::ostream &operator<<(std::ostream &stream, const TextFormat& color);
+
     private:
-      TextFormat() {}
+      TextFormat() : DeviceRecreatedCallback(NULL,NULL) {}
       /// <summary>
       /// creates a text format using the graphics given
       /// </summary>

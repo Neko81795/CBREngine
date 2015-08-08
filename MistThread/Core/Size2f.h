@@ -22,7 +22,8 @@ namespace MistThread
       /// </summary>
       Size2F SwapVariables() const;
 
-      friend std::ostream &operator<<(std::ostream &stream, const Size2F& vector);
+      friend std::istream &operator>>(std::istream &stream, Size2F& size);
+      friend std::ostream &operator<<(std::ostream &stream, const Size2F& size);
       Size2F operator+(const Size2F &rhs) const;
       Size2F operator+(float rhs) const;
       Size2F operator-(const Size2F &rhs) const;

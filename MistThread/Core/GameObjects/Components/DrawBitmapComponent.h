@@ -18,6 +18,8 @@ namespace MistThread
           ///////////////////////////////
           //Variables
           ///////////////////////////////
+        private:
+          std::string ImagePath;
         public:
           Graphics::Bitmap *Image;
           TransformComponent *Transform;
@@ -30,6 +32,16 @@ namespace MistThread
           void Draw(DrawEvent *drawEvent);
           void Initialize() override;
 
+          /// <summary>
+          /// Sets up the component from with the given XML Element
+          /// </summary>
+          /// <param name="element">the element with the data needed to initialize</param>
+          virtual void InitializeFromXML(IO::XML::XMLElement & element) override;
+          /// <summary>
+          /// Populates the given XML Element with data for saving
+          /// </summary>
+          /// <param name="element">the element to fill with data</param>
+          virtual void PopulateXML(IO::XML::XMLElement & element) const override;
 
           ///////////////////////////////
           //Constructors

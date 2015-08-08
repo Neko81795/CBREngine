@@ -1,6 +1,8 @@
 #include "DrawBitmapComponent.h"
 #include "../GameObject.h"
 #include "../Space.h"
+#include "../../../Utilities/ContentManager.h"
+#include <sstream>
 
 
 
@@ -29,6 +31,20 @@ namespace MistThread
             "Draw",
             [](void * obj, Event* event) { static_cast<DrawBitmapComponent *>(obj)->Draw(static_cast<DrawEvent *>(event)); },
             this);
+        }
+
+        void DrawBitmapComponent::InitializeFromXML(IO::XML::XMLElement & element)
+        {
+          Component::InitializeFromXML(element);
+
+          ImagePath = element.GetAttributeByName("Path").Value;
+          Image = &Utilities::ContentManager::LoadBitmapFile(ImagePath);
+        }
+
+        void DrawBitmapComponent::PopulateXML(IO::XML::XMLElement & element) const
+        {
+          Component::PopulateXML(element);
+          element.SetAttribute("Path", ImagePath);
         }
 
         DrawBitmapComponent::DrawBitmapComponent(GameObjects::GameObjectBase *owner) : Component(owner, "Transform")

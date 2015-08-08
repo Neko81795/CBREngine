@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 #if WIN32
 #pragma warning(disable: 4838) //disable conversion warnings
@@ -88,6 +89,9 @@ namespace MistThread
       Color &operator+=(const Color &other);
       Color &operator-=(const Color &other);
       Color &operator*=(const Color &other);
+
+      friend std::istream &operator>>(std::istream &stream, Color& color);
+      friend std::ostream &operator<<(std::ostream &stream, const Color& color);
 
 #if WIN32
       operator D2D_COLOR_F&();

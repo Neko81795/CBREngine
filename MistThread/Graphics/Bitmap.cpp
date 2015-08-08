@@ -13,14 +13,20 @@ namespace MistThread
 
     Bitmap::Bitmap(Engines::GraphicsEngineCore & engine)
     {
-      engine.DeviceRecreated += Core::Delegate<GraphicsEvent &>([](void * obj, GraphicsEvent & evnt)
+      DeviceRecreatedCallback = new Core::Delegate<GraphicsEvent &>([](void * obj, GraphicsEvent & evnt)
       {
         reinterpret_cast<Bitmap *>(obj)->Recreate(evnt);
       }, this);
+
+      engine.DeviceRecreated += DeviceRecreatedCallback;
+      Engine = &engine;
     }
 
     Bitmap::~Bitmap()
-    {}
+    {
+      Engine->DeviceRecreated -= DeviceRecreatedCallback;
+      delete DeviceRecreatedCallback;
+    }
 
     Core::Size2 Bitmap::GetSize()
     {

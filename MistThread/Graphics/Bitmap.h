@@ -1,5 +1,6 @@
 #pragma once
 #include "../Core/Size2.h"
+#include "../Core/Delegate.h"
 
 #if WIN32
 #include <wrl.h>
@@ -35,6 +36,8 @@ namespace MistThread
 
       friend class Engines::DirectXGraphicsEngine;
     private:
+      Core::Delegate<GraphicsEvent &> *DeviceRecreatedCallback;
+      Engines::GraphicsEngineCore *Engine;
       ComPtr<IWICFormatConverter> WICImage;
       ComPtr<ID2D1Bitmap> D2DImage;
 #endif

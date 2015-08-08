@@ -212,6 +212,21 @@ namespace MistThread
       Y = 0;
     }
 
+    std::istream & operator>>(std::istream & stream, Vector2 & vector)
+    {
+      char debug;
+      //(
+      stream.get(debug);
+      stream >> vector.X;
+      //, 
+      stream.get(debug);
+      stream.get(debug);
+      stream >> vector.Y;
+      //)
+      stream.get(debug);
+      return stream;
+    }
+
     std::ostream & operator<<(std::ostream & stream, const Vector2 & vector)
     {
       stream << "(" << vector.X << ", " << vector.Y << ")";

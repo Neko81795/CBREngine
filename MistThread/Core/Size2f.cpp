@@ -6,7 +6,6 @@ namespace MistThread
 {
   namespace Core
   {
-    static float PI = 3.141592653589793238f;
 
     Size2F Size2F::SwapVariables() const
     {
@@ -90,9 +89,22 @@ namespace MistThread
       Height = 0;
     }
 
-    std::ostream & operator<<(std::ostream & stream, const Size2F & vector)
+    std::istream &operator>>(std::istream &stream, Size2F& size)
     {
-      stream << "(" << vector.Width << ", " << vector.Height << ")";
+      //(
+      stream.get();
+      stream >> size.Width;
+      //,
+      stream.get();
+      stream >> size.Height;
+      //)
+      stream.get();
+      return stream;
+    }
+
+    std::ostream & operator<<(std::ostream & stream, const Size2F & size)
+    {
+      stream << "(" << size.Width << ", " << size.Height << ")";
       return stream;
     }
     Size2F operator*(float lhs, Size2F rhs)

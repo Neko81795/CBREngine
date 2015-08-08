@@ -43,22 +43,27 @@ namespace MistThread
         }
       }
 
-      DirectXInputEngine::DirectXInputEngine(Core::GameWindow& gameWindow)
+      DirectXInputEngine::DirectXInputEngine(Core::GameWindow& gameWindow) : GameWindow(gameWindow)
       {
-        gameWindow.OnKeyDown += Core::Delegate<KeyboardEvent&>([](void * obj, KeyboardEvent &evnt)
+        KeyDownCallback = new Core::Delegate<KeyboardEvent&>([](void * obj, KeyboardEvent &evnt)
         {
           static_cast<DirectXInputEngine*>(obj)->KeyDown(evnt);
         }, this);
+        gameWindow.OnKeyDown += KeyDownCallback;
 
-        gameWindow.OnKeyUp += Core::Delegate<KeyboardEvent&>([](void * obj, KeyboardEvent &evnt)
+        KeyUpCallback = new Core::Delegate<KeyboardEvent&>([](void * obj, KeyboardEvent &evnt)
         {
           static_cast<DirectXInputEngine*>(obj)->KeyUp(evnt);
         }, this);
+        gameWindow.OnKeyUp += KeyUpCallback;
       }
 
       DirectXInputEngine::~DirectXInputEngine()
       {
-        
+        GameWindow.OnKeyDown -= KeyDownCallback;
+        GameWindow.OnKeyUp -= KeyUpCallback;
+        delete KeyDownCallback;
+        delete KeyUpCallback;
       }
     }
   }

@@ -287,16 +287,18 @@ namespace MistThread
 
 
 
-      DirectXGraphicsEngine::DirectXGraphicsEngine(Core::GameWindow &window)
+      DirectXGraphicsEngine::DirectXGraphicsEngine(Core::GameWindow &window) : Window(window)
       {
-        window.OnResize += Core::Delegate<Core::WindowEvent &>([](void * obj, Core::WindowEvent &evnt)
+        ResizeCallback = new Core::Delegate<Core::WindowEvent &>([](void * obj, Core::WindowEvent &evnt)
         {
           static_cast<DirectXGraphicsEngine*>(obj)->WindowResized(evnt);
         }, this);
-        window.OnDisplayChange += Core::Delegate<Core::WindowEvent &>([](void * obj, Core::WindowEvent &evnt)
+        window.OnResize += ResizeCallback;
+        DisplayChangedCallback = new Core::Delegate<Core::WindowEvent &>([](void * obj, Core::WindowEvent &evnt)
         {
           static_cast<DirectXGraphicsEngine*>(obj)->DisplayChanged(evnt);
         }, this);
+        window.OnDisplayChange += DisplayChangedCallback;
 
         D2D1_FACTORY_OPTIONS fo = {};
 
@@ -318,6 +320,11 @@ namespace MistThread
 
       DirectXGraphicsEngine::~DirectXGraphicsEngine()
       {
+        Window.OnResize -= ResizeCallback;
+        Window.OnDisplayChange -= DisplayChangedCallback;
+        delete ResizeCallback;
+        delete DisplayChangedCallback;
+
         ImageFactory.Reset();
         CoUninitialize();
       }

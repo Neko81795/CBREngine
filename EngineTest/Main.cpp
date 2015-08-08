@@ -8,12 +8,15 @@
 #include "../MistThread/Input.h"
 #include "../MistThread/Audio/Sound.h"
 #include "../MistThread/Audio/Engines/FMODAudioEngine.h"
+#include "../MistThread/IO.h"
 
 //TODO REMOVE THIS SHIT IT'S BAD PRACTICE
 using namespace MistThread;
 using namespace MistThread::Core;
 using namespace MistThread::Core::GameObjects;
 using namespace MistThread::Core::GameObjects::Components;
+
+using XMLElement = MistThread::IO::XML::XMLElement;
 
 //YUP YUP MORE BAD PRACTICE HERE
 using namespace MistThread::Audio;
@@ -61,21 +64,55 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   //Magenta box
   GameObject &obj2 = mainSpace.CreateObject();
+  MistThread::IO::XML::XMLElement temp("");
+  std::vector<MistThread::IO::XML::XMLElement> elements;
+
   TransformComponent& trans2 = *obj2.AddComponentByName<TransformComponent>("Transform");
   trans2.Position.X = 3;
-  trans2.Position.Y = 3;
+  trans2.Position.Y = 3.893476192836f;
   trans2.Scale.Height = 16;
   trans2.Scale.Width = 2;
+  trans2.SetZLayer(-3.05f);
+  trans2.Rotation = 0.0125f;
+
+  temp = XMLElement(trans2.Name);
+  trans2.PopulateXML(temp);
+  elements.push_back(temp);
+
   DrawComponent& draw2 = *obj2.AddComponentByName<DrawComponent>("Draw");
   draw2.Color = Graphics::Color(0xFFFF00FF);
   draw2.Mode = DrawComponent::Fill;
+
+  temp = XMLElement(draw2.Name);
+  draw2.PopulateXML(temp);
+  elements.push_back(temp);
+
   SpinComponent& spin2 = *obj2.AddComponentByName<SpinComponent>("Spin");
   spin2.RotationSpeed = 1;
+
+  temp = XMLElement(spin2.Name);
+  spin2.PopulateXML(temp);
+  elements.push_back(temp);
+
   obj2.AddComponentByName<ZLayerComponent>("ZLayer");
   DrawTextComponent& drawText2 = *obj2.AddComponentByName<DrawTextComponent>("DrawText");
   drawText2.Text = "Hello there";
+
+  temp = XMLElement(drawText2.Name);
+  drawText2.PopulateXML(temp);
+  elements.push_back(temp);
+
   SoundPulseComponent& pulseit = *obj2.AddComponentByName<SoundPulseComponent>("SoundPulse");
-  pulseit.SetSound("AudioTest.ogg");
+  //pulseit.SetSound("AudioTest.ogg");
+  obj2.RemoveComponentByName(drawText2.Name);
+  obj2.RemoveComponentByName(spin2.Name);
+  obj2.RemoveComponentByName(draw2.Name);
+  obj2.RemoveComponentByName(trans2.Name);
+
+  for(auto el : elements)
+  {
+    obj2.AddComponentByName(el.Name)->InitializeFromXML(el);
+  }
 
 
   //Cyan Box
@@ -147,7 +184,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   ////sin5.Period = 1.01f;
   ////sin5.Scale = 9;
   ////sin5.Offset = 18;
-  
+
 
   game.Start();
 
