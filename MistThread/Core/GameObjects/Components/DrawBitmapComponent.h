@@ -32,11 +32,12 @@ namespace MistThread
           void Draw(DrawEvent *drawEvent);
           void Initialize() override;
 
+          void LoadImageFromFile(const std::string &path);
           /// <summary>
           /// Sets up the component from with the given XML Element
           /// </summary>
           /// <param name="element">the element with the data needed to initialize</param>
-          virtual void InitializeFromXML(IO::XML::XMLElement & element) override;
+          virtual void InitializeFromXML(const IO::XML::XMLElement & element) override;
           /// <summary>
           /// Populates the given XML Element with data for saving
           /// </summary>

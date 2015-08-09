@@ -15,4 +15,11 @@
     <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="SoundPulseComponent.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="bit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AudioTest.ogg" />
+    <None Include="fmodex64.dll" />
+  </ItemGroup>
 </Project>

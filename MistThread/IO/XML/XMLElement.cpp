@@ -6,7 +6,7 @@ namespace MistThread
   {
     namespace XML
     {
-      XMLElement & XMLElement::GetElementByName(std::string name)
+      XMLElement & XMLElement::GetElementByName(const std::string &name)
       {
         for(unsigned int i = 0; i < Elements.size(); i++)
         {
@@ -16,7 +16,7 @@ namespace MistThread
         throw std::exception("Could not find Element");
       }
 
-      XMLAttribute & XMLElement::GetAttributeByName(std::string name)
+      XMLAttribute & XMLElement::GetAttributeByName(const std::string &name)
       {
         for(unsigned int i = 0; i < Attributes.size(); i++)
         {
@@ -26,7 +26,17 @@ namespace MistThread
         throw std::exception("Could not find Attribute");
       }
 
-      std::vector<XMLElement *> XMLElement::GetElementsByName(std::string name)
+      const XMLAttribute & XMLElement::GetAttributeByName(const std::string & name) const
+      {
+        for(unsigned int i = 0; i < Attributes.size(); i++)
+        {
+          if(Attributes[i].Name == name)
+            return Attributes[i];
+        }
+        throw std::exception("Could not find Attribute");
+      }
+
+      std::vector<XMLElement *> XMLElement::GetElementsByName(const std::string &name)
       {
         std::vector<XMLElement*> elements;
 
@@ -39,7 +49,20 @@ namespace MistThread
         return elements;
       }
 
-      std::vector<XMLAttribute*> XMLElement::GetAttributesByName(std::string name)
+      std::vector<const XMLElement*> XMLElement::GetElementsByName(const std::string & name) const
+      {
+        std::vector<const XMLElement*> elements;
+
+        for(unsigned int i = 0; i < Elements.size(); i++)
+        {
+          if(Elements[i].Name == name)
+            elements.push_back(&Elements[i]);
+        }
+
+        return elements;
+      }
+
+      std::vector<XMLAttribute*> XMLElement::GetAttributesByName(const std::string &name)
       {
         std::vector<XMLAttribute*> attributes;
         for(unsigned int i = 0; i < Attributes.size(); i++)
@@ -50,13 +73,24 @@ namespace MistThread
         return attributes;
       }
 
-      XMLElement & XMLElement::AddElement(std::string name)
+      std::vector<const XMLAttribute*> XMLElement::GetAttributesByName(const std::string & name) const
+      {
+        std::vector<const XMLAttribute*> attributes;
+        for(unsigned int i = 0; i < Attributes.size(); i++)
+        {
+          if(Attributes[i].Name == name)
+            attributes.push_back(&Attributes[i]);
+        }
+        return attributes;
+      }
+
+      XMLElement & XMLElement::AddElement(const std::string &name)
       {
         Elements.push_back(XMLElement(name));
         return Elements.back();
       }
 
-      XMLAttribute & XMLElement::AddAttribute(std::string name, std::string value)
+      XMLAttribute & XMLElement::AddAttribute(const std::string &name, const std::string &value)
       {
         Attributes.push_back(XMLAttribute(name, value));
         return Attributes.back();
@@ -103,7 +137,7 @@ namespace MistThread
         return stream;
       }
 
-      void XMLElement::SetAttribute(std::string name, std::string value)
+      void XMLElement::SetAttribute(const std::string &name, const std::string &value)
       {
         std::vector<XMLAttribute*> attribs = GetAttributesByName(name);
         if(attribs.size() == 0)

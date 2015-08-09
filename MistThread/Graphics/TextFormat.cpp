@@ -45,7 +45,8 @@ namespace MistThread
     {
       stream >> font.Size;
       //,
-      stream.get();
+      char debug;
+      stream.get(debug);
       stream >> font.Font;
 
       font.SetSize(font.Size);
@@ -56,7 +57,7 @@ namespace MistThread
 
     std::ostream &operator<<(std::ostream &stream, const TextFormat& font)
     {
-      stream << font.Size << "," << font.Font;
+      stream << font.Size << ", " << font.Font;
       return stream;
     }
 

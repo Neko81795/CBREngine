@@ -20,16 +20,16 @@ namespace MistThread
 
         }
 
-        void Component::InitializeFromXML(IO::XML::XMLElement & element)
+        void Component::InitializeFromXML(const IO::XML::XMLElement & element)
         {
           //this doesn't actually have to be done, but I'm doing it anyway for an example
-          Name = element.GetAttributeByName("name").Value;
+          Name = element.GetAttributeByName("Name").Value;
         }
 
         void Component::PopulateXML(IO::XML::XMLElement & element) const
         {
           //set the name
-          element.SetAttribute("name", Name);
+          element.SetAttribute("Name", Name);
         }
 
         Component::Component(GameObjects::GameObjectBase * owner) : Owner(*owner), Space(owner->Space), Game(owner->Game)

@@ -28,6 +28,16 @@ namespace MistThread
 //////////////////////////////////////////////////////////////
       private:
         Space& operator=(const Space&) {}
+        /// <summary>
+        /// Loads a level from the given XML element
+        /// </summary>
+        /// <param name="element">the element with the level info</param>
+        void LoadXML(const IO::XML::XMLElement &element);
+        /// <summary>
+        /// saves the current level setup to the given XML element
+        /// </summary>
+        /// <param name="element">the element to store the info in</param>
+        void SaveXML(IO::XML::XMLElement &element);
       public:
         /// <summary>
         /// Updates all components listening to the update event
@@ -67,6 +77,16 @@ namespace MistThread
         /// value will be less than, greater than, or equal to 0.
         /// </summary>
         int CompareTo(const GameObjectBase* other)const override;
+        /// <summary>
+        /// Loads the level file at the given path
+        /// </summary>
+        /// <param name="path">the path to the file to load</param>
+        void LoadLevel(const std::string &path);
+        /// <summary>
+        /// Saves the level to the file at the given path
+        /// </summary>
+        /// <param name="path">the path to save to</param>
+        void SaveLevel(const std::string &path);
 
 //////////////////////////////////////////////////////////////
 //Constructors

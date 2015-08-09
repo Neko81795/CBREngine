@@ -23,12 +23,13 @@ namespace MistThread
           Owner.UpdateOwnDrawOrder();
         }
 
-        void TransformComponent::InitializeFromXML(IO::XML::XMLElement & element)
+        void TransformComponent::InitializeFromXML(const IO::XML::XMLElement & element)
         {
           Component::InitializeFromXML(element);
 
           std::stringstream str(element.GetAttributeByName("ZLayer").Value);
           str >> ZLayer;
+          SetZLayer(ZLayer);
           str = std::stringstream();
 
           str << element.GetAttributeByName("Position").Value;

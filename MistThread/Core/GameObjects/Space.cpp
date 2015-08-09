@@ -1,6 +1,10 @@
 #include "Space.h"
 #include "Components/UpdateEvent.h"
 #include "Components/TransformComponent.h"
+#include "../../IO/XML/XMLFile.h"
+#include "../../Utilities/ContentManager.h"
+
+#include <fstream>
 
 namespace MistThread
 {
@@ -8,6 +12,29 @@ namespace MistThread
   {
     namespace GameObjects
     {
+      void Space::LoadXML(const IO::XML::XMLElement &element)
+      {
+        for(auto el : element.GetElementsByName("GameObject"))
+        {
+          auto &obj = CreateObject();
+          obj.InitializeFromXML(*el);
+        }
+      }
+
+      void Space::SaveXML(IO::XML::XMLElement &element)
+      {
+        for(auto obj : Objects)
+        {
+          GameObject * ptr = dynamic_cast<GameObject*>(obj);
+          if(ptr)
+          {
+            IO::XML::XMLElement el("GameObject");
+            ptr->PopulateXML(el);
+            element.Elements.push_back(el);
+          }
+        }
+      }
+
       void Space::Update()
       {
         GameTime.Tick();
@@ -71,6 +98,35 @@ namespace MistThread
         const Space &s = *dynamic_cast<const Space*>(other);
 
         return this->SpaceLayer - s.SpaceLayer;
+      }
+
+      void Space::LoadLevel(const std::string &path)
+      {
+        IO::XML::XMLFile level(Utilities::ContentManager::RootFolder + path);
+        auto el = level.Elements.back();
+
+        for(int i = 0; i < Objects.size();)
+        {
+          if(!Objects[i]->Persistent)
+            RemoveGameObjectBaseByID(Objects[i]->ID);
+          else
+            ++i;
+        }
+        LoadXML(el);
+      }
+
+      void Space::SaveLevel(const std::string &path)
+      {
+        IO::XML::XMLElement level("Level");
+
+        SaveXML(level);
+
+        std::fstream file(Utilities::ContentManager::RootFolder + path, std::fstream::out);
+        
+
+        file << level;
+
+        file.close();
       }
 
       Space::Space(Core::Game & game) : GameObjectBase(game, *this)

@@ -74,12 +74,31 @@ namespace MistThread
         /// </summary>
         std::string Type;
       public:
+        /// <summary>
+        /// the count of all objects created since the game started
+        /// </summary>
         static long long Count;
 
+        /// <summary>
+        /// what you lost
+        /// </summary>
         Core::Game &Game;
+        /// <summary>
+        /// the space the object is contained in
+        /// </summary>
         GameObjects::Space &Space;
+        /// <summary>
+        /// the name of the object
+        /// </summary>
         std::string Name;
+        /// <summary>
+        /// the unique ID of the object
+        /// </summary>
         long long ID;
+        /// <summary>
+        /// whether or not the Gameobject is persistent across levels
+        /// </summary>
+        bool Persistent;
 
 //////////////////////////////////////////////////////////////
 //Methods
@@ -103,6 +122,11 @@ namespace MistThread
         /// </summary>
         /// <param name="name">the name of the object to remove</param>
         void RemoveGameObjectBaseByName(const std::string &name);
+        /// <summary>
+        /// removes the object with the id given
+        /// </summary>
+        /// <param name="id">the id of the object to remove</param>
+        void RemoveGameObjectBaseByID(long long id);
       public:
         /// <summary>
         /// Adds the component with the given name
@@ -216,7 +240,9 @@ namespace MistThread
       template <typename T>
       T* GameObjectBase::AddComponentByName(const std::string &name)
       {
-        return dynamic_cast<T*>(AddComponentByName(name));
+        Components::Component * ptr = AddComponentByName(name);
+        T* retptr = dynamic_cast<T*>(ptr);
+        return retptr;
       }
     }
   }

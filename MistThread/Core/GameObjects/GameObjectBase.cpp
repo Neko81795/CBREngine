@@ -55,6 +55,23 @@ namespace MistThread
           }
         }
       }
+
+      void GameObjectBase::RemoveGameObjectBaseByID(long long id)
+      {
+        for(int i = 0; i < Objects.size(); i++)
+        {
+          if(Objects[i]->ID == id)
+          {
+            if(Objects[i]->DrawnBy)
+              Objects[i]->DrawnBy->UnRegisterDraw(Objects[i]);
+
+            delete Objects[i];
+            Objects[i] = Objects[Objects.size() - 1];
+            Objects.pop_back();
+            return;
+          }
+        }
+      }
       
       Components::Component* GameObjectBase::AddComponentByName(const std::string &name)
       {
@@ -156,7 +173,8 @@ namespace MistThread
       {
         for(auto pair : Components)
         {
-          pair.second->Initialize();
+          if(pair.second)
+            pair.second->Initialize();
         }
 
         for(GameObjectBase * go : Objects)

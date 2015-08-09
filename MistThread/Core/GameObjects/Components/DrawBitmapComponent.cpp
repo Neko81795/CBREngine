@@ -33,7 +33,13 @@ namespace MistThread
             this);
         }
 
-        void DrawBitmapComponent::InitializeFromXML(IO::XML::XMLElement & element)
+        void DrawBitmapComponent::LoadImageFromFile(const std::string & path)
+        {
+          ImagePath = path;
+          Image = &Utilities::ContentManager::LoadBitmapFile(path);
+        }
+
+        void DrawBitmapComponent::InitializeFromXML(const IO::XML::XMLElement & element)
         {
           Component::InitializeFromXML(element);
 

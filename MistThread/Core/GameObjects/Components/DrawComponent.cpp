@@ -22,7 +22,7 @@ namespace MistThread
               else
                 drawEvent->Graphics.DrawRectangle(Transform->Position * 32, Transform->Scale * 32, Color, Stroke, Transform->Rotation, Transform->GetZLayer());
               break;
-            case DrawComponent::Elipse:
+            case DrawComponent::Ellipse:
               Vector2 center(Transform->Scale.Width * 16, Transform->Scale.Height * 16);
               if(Mode == DrawMode::Fill)
                 drawEvent->Graphics.FillEllipse(Transform->Position * 32, Transform->Scale * 32, Color, Transform->Rotation, center, Transform->GetZLayer());
@@ -43,7 +43,7 @@ namespace MistThread
             this);
         }
 
-        void DrawComponent::InitializeFromXML(IO::XML::XMLElement & element)
+        void DrawComponent::InitializeFromXML(const IO::XML::XMLElement & element)
         {
           Component::InitializeFromXML(element);
           

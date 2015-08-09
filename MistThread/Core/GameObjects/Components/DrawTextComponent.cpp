@@ -27,7 +27,7 @@ namespace MistThread
             this);
         }
 
-        void DrawTextComponent::InitializeFromXML(IO::XML::XMLElement & element)
+        void DrawTextComponent::InitializeFromXML(const IO::XML::XMLElement & element)
         {
           Component::InitializeFromXML(element);
 
@@ -36,7 +36,7 @@ namespace MistThread
           std::stringstream str(element.GetAttributeByName("Color").Value);
           str >> Color;
 
-          str << element.GetAttributeByName("Font").Value;
+          str = std::stringstream(element.GetAttributeByName("Font").Value);
           str >> Font;
         }
 

@@ -145,6 +145,7 @@
     <ClCompile Include="Audio\SpectrumProxy.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\AppInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -288,5 +289,7 @@
     <ClInclude Include="IO\XML\XMLFile.h" />
     <ClInclude Include="IO.h" />
     <ClInclude Include="IO\XML.h" />
+    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Utilities\AppInfo.h" />
   </ItemGroup>
 </Project>
