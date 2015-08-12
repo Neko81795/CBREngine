@@ -16,6 +16,16 @@ namespace MistThread
         throw std::exception("Could not find Element");
       }
 
+      const XMLElement & XMLElement::GetElementByName(const std::string &name) const
+      {
+        for (unsigned int i = 0; i < Elements.size(); i++)
+        {
+          if (Elements[i].Name == name)
+            return Elements[i];
+        }
+        throw std::exception("Could not find Element");
+      }
+
       XMLAttribute & XMLElement::GetAttributeByName(const std::string &name)
       {
         for(unsigned int i = 0; i < Attributes.size(); i++)

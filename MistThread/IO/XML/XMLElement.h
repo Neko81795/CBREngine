@@ -25,6 +25,12 @@ namespace MistThread
         /// <exception cref="std::exception">thrown when the element can't be found</exception>
         XMLElement &GetElementByName(const std::string &name);
         /// <summary>
+        /// returns the first element with the given name
+        /// </summary>
+        /// <param name="name">the name of the element to find</param>
+        /// <exception cref="std::exception">thrown when the element can't be found</exception>
+        const XMLElement &GetElementByName(const std::string &name) const;
+        /// <summary>
         /// returns the first attribute with the given name
         /// </summary>
         /// <param name="name">the name of the attribute to find</param>
