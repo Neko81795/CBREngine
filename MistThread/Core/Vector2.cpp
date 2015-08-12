@@ -49,10 +49,10 @@ namespace MistThread
 
     Vector2 Vector2::Normalize() const
     {
-      float inv = 1 / GetMagnitude();
+      float angle = GetAngleRadians();
       Vector2 normalizedVector;
-      normalizedVector.X = X * inv;
-      normalizedVector.Y = Y * inv;
+      normalizedVector.X = cosf(angle);
+      normalizedVector.Y = sinf(angle);
       return normalizedVector;
     }
 
