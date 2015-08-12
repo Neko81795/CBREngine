@@ -33,6 +33,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   AppInfo appInfo;
   std::string hostName = appInfo.GetHostName();
   std::string WorkingDir = appInfo.GetCurrentWorkingDirectory();
+
+  
   
   //note that this is not actually necessary as paths will default to this location
   ContentManager::RootFolder = WorkingDir;
@@ -55,6 +57,10 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   Space &mainSpace = game.FindSpaceByName("Main");
   mainSpace.LoadLevel("Level.xml");
 
+  if (hostName == "Nephele")
+  {
+    mainSpace.LoadLevel("Level2.xml");
+  }
   //start the game
   game.Start();
 

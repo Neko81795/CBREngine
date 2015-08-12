@@ -146,6 +146,7 @@
       <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="Utilities\AppInfo.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\ConsoleComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -291,5 +292,7 @@
     <ClInclude Include="IO\XML.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Utilities\AppInfo.h" />
+    <ClInclude Include="Core\GameObjects\Components\ConsoleComponent.h" />
+    <ClInclude Include="Core\GameObjects\Components\ObjectDestroyedEvent.h" />
   </ItemGroup>
 </Project>

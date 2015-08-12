@@ -209,11 +209,16 @@ namespace MistThread
 
       void GameObjectBase::UnRegisterDraw(GameObjectBase * object)
       {
-        while(object->DrawIndex != DrawOrder.size() - 1)
+        if (object->DrawnBy && object->DrawnBy == this)
         {
-          SwapDraw(object->DrawIndex, object->DrawIndex + 1);
+          while (object->DrawIndex != DrawOrder.size() - 1)
+          {
+            SwapDraw(object->DrawIndex, object->DrawIndex + 1);
+          }
+          object->DrawnBy = NULL;
+          object->DrawIndex = 0;
+          DrawOrder.pop_back();
         }
-        DrawOrder.pop_back();
       }
 
       void GameObjectBase::UpdateObjectDrawOrder(GameObjectBase* object)

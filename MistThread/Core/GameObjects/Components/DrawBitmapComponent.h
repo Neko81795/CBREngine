@@ -28,7 +28,7 @@ namespace MistThread
           ///////////////////////////////
           //Methods
           ///////////////////////////////
-       public:
+        public:
           void Draw(DrawEvent *drawEvent);
           void Initialize() override;
 

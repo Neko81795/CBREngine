@@ -132,6 +132,12 @@ namespace MistThread
         return Size2(static_cast<int>(size.width), static_cast<int>(size.height));
       }
 
+      RectangleF Engines::DirectXGraphicsEngine::GetWorldViewRectangle(const Core::Vector2 &position, float /*zLayer*/) const
+      {
+        Vector2 window = GetWindowCenter() * 32;
+        return RectangleF(position.X - window.X, position.Y - window.Y, window.X * 2, window.Y * 2);
+      }
+
       Vector2 DirectXGraphicsEngine::MeasureString(const std::string &/*text*/, const std::string &/*font*/, float /*size*/) const
       {
         return Vector2();

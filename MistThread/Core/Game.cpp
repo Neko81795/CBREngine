@@ -116,6 +116,9 @@ namespace MistThread
       RegisterComponent<GameObjects::Components::DrawBitmapComponent>("DrawBitmap");
       RegisterComponent<GameObjects::Components::DrawComponent>("Draw");
       RegisterComponent<GameObjects::Components::DrawTextComponent>("DrawText");
+      RegisterComponent<GameObjects::Components::ConsoleComponent>("Console");
+
+      AddComponentByName("Console");
 
     }
 

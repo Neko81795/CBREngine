@@ -35,35 +35,12 @@
     <Component Name="DrawBitmap" Path="bit.png"/>
     <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
     <Component Name="Spin" Rotation="1" Acceleration="0"/>
+    <GameObject Name="CBR">
+      <Component Name="Transform" ZLayer="-15" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
+      <Component Name="DrawBitmap" Path="bit.png"/>
+      <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
+      <Component Name="Spin" Rotation="1" Acceleration="0"/>
+    </GameObject>
   </GameObject>
-  <GameObject Name="CBR">
-    <Component Name="Transform" ZLayer="5" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
-    <Component Name="DrawBitmap" Path="bit.png"/>
-    <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
-    <Component Name="Spin" Rotation="1" Acceleration="0"/>
-  </GameObject>
-  <GameObject Name="CBR">
-    <Component Name="Transform" ZLayer="-5" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
-    <Component Name="DrawBitmap" Path="bit.png"/>
-    <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
-    <Component Name="Spin" Rotation="1" Acceleration="0"/>
-  </GameObject>
-  <GameObject Name="CBR">
-    <Component Name="Transform" ZLayer="-10" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
-    <Component Name="DrawBitmap" Path="bit.png"/>
-    <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
-    <Component Name="Spin" Rotation="1" Acceleration="0"/>
-  </GameObject>
-  <GameObject Name="CBR">
-    <Component Name="Transform" ZLayer="-15" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
-    <Component Name="DrawBitmap" Path="bit.png"/>
-    <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
-    <Component Name="Spin" Rotation="1" Acceleration="0"/>
-  </GameObject>
-  <GameObject Name="CBR">
-    <Component Name="Transform" ZLayer="-10" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
-    <Component Name="DrawBitmap" Path="bit.png"/>
-    <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
-    <Component Name="Spin" Rotation="1" Acceleration="0"/>
-  </GameObject>
+  <!--></!-->
 </Level>

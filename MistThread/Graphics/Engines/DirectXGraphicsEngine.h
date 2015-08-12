@@ -101,6 +101,12 @@ namespace MistThread
         /// </summary>
         virtual Size2 GetWindowBounds() const override;
         /// <summary>
+        /// Gets the Rectangle that the camera can see in the given space at the given zLayer
+        /// </summary>
+        /// <param name="space">the space to look at</param>
+        /// <param name="zLayer">the zLayer to get the rectangle at</param>
+        virtual RectangleF GetWorldViewRectangle(const Core::Vector2 &position, float zLayer) const override;
+        /// <summary>
         /// returns the size of the text the string would display
         /// </summary>
         /// <param name="text">the string</param>

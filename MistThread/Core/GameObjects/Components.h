@@ -1,5 +1,6 @@
 #pragma once
 #include "Components/Component.h"
+#include "Components\ConsoleComponent.h"
 #include "Components/DrawBitmapComponent.h"
 #include "Components/DrawComponent.h"
 #include "Components/DrawEvent.h"
