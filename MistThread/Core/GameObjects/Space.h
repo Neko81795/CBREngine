@@ -23,6 +23,7 @@ namespace MistThread
         int SpaceLayer;
       public:
         Core::GameTime GameTime;
+        GameObjects::GameObject *Camera;
 //////////////////////////////////////////////////////////////
 //Methods
 //////////////////////////////////////////////////////////////
@@ -37,7 +38,7 @@ namespace MistThread
         /// saves the current level setup to the given XML element
         /// </summary>
         /// <param name="element">the element to store the info in</param>
-        void SaveXML(IO::XML::XMLElement &element);
+        void SaveXML(IO::XML::XMLElement &element) const;
       public:
         /// <summary>
         /// Updates all components listening to the update event
@@ -73,6 +74,11 @@ namespace MistThread
         /// <param name="name">the name of the object to remove</param>
         void RemoveObjectByName(const std::string &name);
         /// <summary>
+        /// removes the object with a matching ID
+        /// </summary>
+        /// <param name="id">the ID of the object to remove</param>
+        void RemoveObjectByID(long long id);
+        /// <summary>
         /// compares this object to another for sorting
         /// value will be less than, greater than, or equal to 0.
         /// </summary>
@@ -86,7 +92,15 @@ namespace MistThread
         /// Saves the level to the file at the given path
         /// </summary>
         /// <param name="path">the path to save to</param>
-        void SaveLevel(const std::string &path);
+        void SaveLevel(const std::string &path) const;
+        /// <summary>
+        /// Sets the layer level for space to determine draw order
+        /// </summary>
+        void SetSpaceLayer(int layer);
+        /// <summary>
+        /// returns the layer this level draws on
+        /// </summary>
+        int GetSpaceLayer() const;
 
 //////////////////////////////////////////////////////////////
 //Constructors

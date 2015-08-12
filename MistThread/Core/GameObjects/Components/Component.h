@@ -60,6 +60,11 @@ namespace MistThread
           /// <param name="element">the element to fill with data</param>
           virtual void PopulateXML(IO::XML::XMLElement & element) const;
 
+          /// <summary>
+          /// called when the owner is destroyed
+          /// </summary>
+          virtual void Destroyed();
+
           ///////////////////////////////
           //Constructors
           ///////////////////////////////

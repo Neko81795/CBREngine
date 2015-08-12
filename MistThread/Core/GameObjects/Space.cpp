@@ -21,7 +21,7 @@ namespace MistThread
         }
       }
 
-      void Space::SaveXML(IO::XML::XMLElement &element)
+      void Space::SaveXML(IO::XML::XMLElement &element) const
       {
         for(auto obj : Objects)
         {
@@ -88,6 +88,11 @@ namespace MistThread
         RemoveGameObjectBaseByName(name);
       }
 
+      void Space::RemoveObjectByID(long long id)
+      {
+        RemoveObjectByID(id);
+      }
+
       int Space::CompareTo(const GameObjectBase* other)const
       {
         if(other->Type == "Game")
@@ -115,7 +120,7 @@ namespace MistThread
         LoadXML(el);
       }
 
-      void Space::SaveLevel(const std::string &path)
+      void Space::SaveLevel(const std::string &path) const
       {
         IO::XML::XMLElement level("Level");
 
@@ -127,6 +132,19 @@ namespace MistThread
         file << level;
 
         file.close();
+      }
+
+      void Space::SetSpaceLayer(int layer)
+      {
+        SpaceLayer = layer;
+        if (DrawnBy)
+          DrawnBy->UpdateObjectDrawOrder(this);
+        UpdateOwnDrawOrder();
+      }
+
+      int Space::GetSpaceLayer() const
+      {
+        return SpaceLayer;
       }
 
       Space::Space(Core::Game & game) : GameObjectBase(game, *this)

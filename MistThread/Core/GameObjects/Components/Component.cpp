@@ -32,6 +32,10 @@ namespace MistThread
           element.SetAttribute("Name", Name);
         }
 
+        void Component::Destroyed()
+        {
+        }
+
         Component::Component(GameObjects::GameObjectBase * owner) : Owner(*owner), Space(owner->Space), Game(owner->Game)
         {
           

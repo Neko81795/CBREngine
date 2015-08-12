@@ -2,6 +2,8 @@
 #include "../GraphicsEventHandlers.h"
 #include "../../Core/Vector2.h"
 #include "../../Core/Size2.h"
+#include "../../Core/RectangleF.h"
+#include "../../Core/GameObjects/Space.h"
 #include <string>
 
 #define __ABSTRACT = 0
@@ -16,6 +18,7 @@ namespace MistThread
     {
       using Vector2 = MistThread::Core::Vector2;
       using Size2 = MistThread::Core::Size2;
+      using RectangleF = MistThread::Core::RectangleF;
 
       /// <summary>
       /// All the fun of graphics, without the actual graphics.
@@ -53,9 +56,15 @@ namespace MistThread
         /// </summary>
         virtual Vector2 GetWindowCenter() const __ABSTRACT;
         /// <summary>
-        /// Gets the size of the window
+        /// Gets the size of the window in pixels
         /// </summary>
         virtual Size2 GetWindowBounds() const __ABSTRACT;
+        /// <summary>
+        /// Gets the Rectangle that the camera can see at the given zLayer
+        /// </summary>
+        /// <param name="position">the position of the camera</param>
+        /// <param name="zLayer">the zLayer to get the rectangle at</param>
+        virtual RectangleF GetWorldViewRectangle(const Core::Vector2 &position, float zLayer) const __ABSTRACT;
         /// <summary>
         /// returns a read only copy of the default text format
         /// </summary>

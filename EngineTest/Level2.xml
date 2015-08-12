@@ -1,0 +1,46 @@
+<Level>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="0" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="1" Color="(A1,R0,G0.415686,B0.415686)"/>
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+    <Component Name="KeyMove"/>
+  </GameObject>
+  <GameObject Name="Magenta box">
+    <Component Name="Transform" ZLayer="-3.05" Position="(3, 3.89348)" Scale="(2, 16)" Rotation="0.0125"/>
+    <Component Name="Draw" Type="0" Mode="1" Stroke="1" Color="(A1,R1,G0,B1)"/>
+    <Component Name="DrawText" Text="Hello there" Color="(A1,R0.15,G0.8,B1)" Font="72, Wingdings"/>
+    <Component Name="SoundPulse"/>
+    <Component Name="Spin" Rotation="1" Acceleration="0"/>
+    <Component Name="ZLayer"/>
+  </GameObject>
+  <GameObject Name="Cyan Box">
+    <Component Name="Transform" ZLayer="0" Position="(3, 3)" Scale="(2, 16)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="1" Stroke="1" Color="(A1,R0,G1,B1)"/>
+    <Component Name="Spin" Rotation="-1" Acceleration="0"/>
+  </GameObject>
+  <GameObject Name="Yellow Ellipse">
+    <Component Name="Transform" ZLayer="0" Position="(8, 8)" Scale="(6, 12)" Rotation="0"/>
+    <Component Name="Draw" Type="1" Mode="1" Stroke="1" Color="(A1,R1,G1,B0)"/>
+    <Component Name="SinX" Period="1" Scale="9" Offset="18"/>
+    <Component Name="Spin" Rotation="1" Acceleration="0.2"/>
+  </GameObject>
+  <GameObject Name="Yellow Ellipse Outline">
+    <Component Name="Transform" ZLayer="0" Position="(8, 8)" Scale="(6, 12)" Rotation="0"/>
+    <Component Name="Draw" Type="1" Mode="0" Stroke="30" Color="(A1,R0,G0.415686,B0.415686)"/>
+    <Component Name="SinX" Period="1.01" Scale="9" Offset="18"/>
+    <Component Name="Spin" Rotation="1" Acceleration="0.2"/>
+  </GameObject>
+  <GameObject Name="CBR">
+    <Component Name="Transform" ZLayer="0" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
+    <Component Name="DrawBitmap" Path="bit.png"/>
+    <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
+    <Component Name="Spin" Rotation="1" Acceleration="0"/>
+    <GameObject Name="CBR">
+      <Component Name="Transform" ZLayer="-15" Position="(8, 8)" Scale="(0.5, 0.5)" Rotation="0"/>
+      <Component Name="DrawBitmap" Path="bit.png"/>
+      <Component Name="SinX" Period="5" Scale="20" Offset="0"/>
+      <Component Name="Spin" Rotation="1" Acceleration="0"/>
+    </GameObject>
+  </GameObject>
+  <!--></!-->
+</Level>

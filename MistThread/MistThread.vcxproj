@@ -15,6 +15,7 @@
     <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
     <ClCompile Include="Audio\Sound.cpp" />
     <ClCompile Include="Audio\Spectrum.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\ConsoleComponent.cpp" />
     <ClCompile Include="Core\CoreEventHandlers.cpp" />
     <ClCompile Include="Core\CoreEvents.cpp" />
     <ClCompile Include="Core\Event.cpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
     <ClInclude Include="Audio\Sound.h" />
     <ClInclude Include="Audio\Spectrum.h" />
+    <ClInclude Include="Core\GameObjects\Components\ConsoleComponent.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Core\CoreEventHandlers.h" />
     <ClInclude Include="Core\CoreEvents.h" />
@@ -75,6 +77,7 @@
     <ClInclude Include="Core\GameObjects\Components\DrawBitmapComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawEvent.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawComponent.h" />
+    <ClInclude Include="Core\GameObjects\Components\ObjectDestroyedEvent.h" />
     <ClInclude Include="Core\GameObjects\Components\TransformComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\UpdateEvent.h" />
     <ClInclude Include="Core\GameObjects\GameObject.h" />
