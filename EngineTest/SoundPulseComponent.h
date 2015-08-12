@@ -33,9 +33,19 @@ class SoundPulseComponent : public MistThread::Core::GameObjects::Components::Co
     /// </summary>
     /// <param name="s"></param>
     void SetSound(std::string s);
-
+    /// <summary>
+    /// Sets up the component from with the given XML Element
+    /// </summary>
+    /// <param name="element">the element with the data needed to initialize</param>
+    virtual void InitializeFromXML(const MistThread::IO::XML::XMLElement & element) override;
+    /// <summary>
+    /// Populates the given XML Element with data for saving
+    /// </summary>
+    /// <param name="element">the element to fill with data</param>
+    virtual void PopulateXML(MistThread::IO::XML::XMLElement & element) const override;
 
   private:
+    std::string soundName_;
     MistThread::Audio::Sound sound_;
     MistThread::Core::GameObjects::Components::TransformComponent *pTransform_;
     MistThread::Core::GameObjects::Components::DrawComponent *pDraw_;

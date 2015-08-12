@@ -7,6 +7,8 @@
     <ClCompile Include="ZLayerComponent.cpp" />
     <ClCompile Include="KeyMoveComponent.cpp" />
     <ClCompile Include="SoundPulseComponent.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="ParticleData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpinComponent.h" />
@@ -14,6 +16,8 @@
     <ClInclude Include="ZLayerComponent.h" />
     <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="SoundPulseComponent.h" />
+    <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="ParticleData.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bit.png" />
