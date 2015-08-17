@@ -96,7 +96,7 @@ namespace MistThread
           if(!Components[dep])
           {
             delete ptr;
-            throw std::exception("Component dependency could not be found"); //TODO add what component was not found
+            throw std::exception(("Component dependency could not be found: " + dep).c_str());
           }
         }
 

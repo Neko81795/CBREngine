@@ -35,9 +35,8 @@ namespace MistThread
           if (obj->Name == name)
             return *dynamic_cast<GameObject*>(obj);
         }
-        //TODO add what the name of the object was.
-        std::string err("Could not find object: ");
-        err += name;
+
+        std::string err("Could not find object: " + name);
         throw std::exception(err.c_str());
       }
 
