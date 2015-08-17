@@ -61,7 +61,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   if (hostName == "Nephele")
   {
-    mainSpace.LoadLevel("Level2.xml");
+    mainSpace.LoadLevel("Level.xml");
   }
   //start the game
   game.Start();

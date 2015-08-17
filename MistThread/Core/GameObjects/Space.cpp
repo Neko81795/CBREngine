@@ -90,7 +90,7 @@ namespace MistThread
 
       void Space::RemoveObjectByID(long long id)
       {
-        RemoveObjectByID(id);
+        RemoveGameObjectBaseByID(id);
       }
 
       int Space::CompareTo(const GameObjectBase* other)const
