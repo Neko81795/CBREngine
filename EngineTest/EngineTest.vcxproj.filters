@@ -26,4 +26,7 @@
     <None Include="AudioTest.ogg" />
     <None Include="fmodex64.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Level3.xml" />
+  </ItemGroup>
 </Project>

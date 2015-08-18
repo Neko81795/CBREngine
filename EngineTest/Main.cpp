@@ -63,6 +63,10 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   {
     mainSpace.LoadLevel("Level.xml");
   }
+  if (hostName == "Ghost")
+  {
+    mainSpace.LoadLevel("Level3.xml");
+  }
   //start the game
   game.Start();
 

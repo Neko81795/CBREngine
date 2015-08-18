@@ -3,7 +3,7 @@
     <Component Name="Transform" ZLayer="0" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
     <Component Name="Draw" Type="0" Mode="0" Stroke="1" Color="(A1,R0,G0.415686,B0.415686)"/>
     <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
-    <Component Name="ParticleSystem" MaxParticles="20" MaxGeneratedPerFrame="2" GenerationRaduis="0" Life="1000" LifeVariation="500" EmissionDelay="100" Repeating="true" GeneratedImmediately="false">
+    <Component Name="ParticleSystem" MaxParticles="20" MaxGeneratedPerFrame="2" GenerationRadius="0" Life="1000" LifeVariation="500" EmissionDelay="100" Repeating="true" GeneratedImmediately="false">
       <GameObjectParticle Name="Magenta box">
         <Component Name="Transform" ZLayer="-3.05" Position="(3, 3.89348)" Scale="(2, 16)" Rotation="0.0125"/>
         <Component Name="Draw" Type="0" Mode="1" Stroke="1" Color="(A1,R1,G0,B1)"/>
