@@ -225,7 +225,7 @@ namespace MistThread
         RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
           D2D1::Matrix3x2F::Scale(scale * 32, scale * 32) *
           D2D1::Matrix3x2F::Rotation(rotation) *
-          D2D1::Matrix3x2F::Translation((rectangle.X - CameraPos.X) * 32, (rectangle.Y - CameraPos.Y) * 32) *
+          D2D1::Matrix3x2F::Translation((rectangle.X - CameraPos.X) * 32 * scale, (rectangle.Y - CameraPos.Y) * 32 * scale) *
           D2D1::Matrix3x2F::Scale(CameraScale, CameraScale) *
           D2D1::Matrix3x2F::Rotation(CameraRotation) *
           D2D1::Matrix3x2F::Translation(windowCenter.X, windowCenter.Y));
@@ -245,7 +245,7 @@ namespace MistThread
         RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
           D2D1::Matrix3x2F::Scale(scale * 32, scale * 32) *
           D2D1::Matrix3x2F::Rotation(rotation) *
-          D2D1::Matrix3x2F::Translation((position.X - CameraPos.X) * 32, (position.Y - CameraPos.Y) * 32) *
+          D2D1::Matrix3x2F::Translation((position.X - CameraPos.X) * 32 * scale, (position.Y - CameraPos.Y) * 32 * scale) *
           D2D1::Matrix3x2F::Scale(CameraScale, CameraScale) *
           D2D1::Matrix3x2F::Rotation(CameraRotation) *
           D2D1::Matrix3x2F::Translation(windowCenter.X, windowCenter.Y));
@@ -293,7 +293,7 @@ namespace MistThread
         RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
           D2D1::Matrix3x2F::Scale(scale * 32, scale * 32) *
           D2D1::Matrix3x2F::Rotation(rotation) *
-          D2D1::Matrix3x2F::Translation((position.X - CameraPos.X) * 32, (position.Y - CameraPos.Y) * 32) *
+          D2D1::Matrix3x2F::Translation((position.X - CameraPos.X) * 32 * scale, (position.Y - CameraPos.Y) * 32 * scale) *
           D2D1::Matrix3x2F::Scale(CameraScale, CameraScale) *
           D2D1::Matrix3x2F::Rotation(CameraRotation) *
           D2D1::Matrix3x2F::Translation(windowCenter.X, windowCenter.Y));
@@ -313,7 +313,7 @@ namespace MistThread
         RenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(-center.X, -center.Y) *
           D2D1::Matrix3x2F::Scale(scale * 32, scale * 32) *
           D2D1::Matrix3x2F::Rotation(rotation) *
-          D2D1::Matrix3x2F::Translation((rectangle.X - CameraPos.X) * 32, (rectangle.Y - CameraPos.Y) * 32) *
+          D2D1::Matrix3x2F::Translation((rectangle.X - CameraPos.X) * 32 * scale, (rectangle.Y - CameraPos.Y) * 32 * scale) *
           D2D1::Matrix3x2F::Scale(CameraScale, CameraScale) *
           D2D1::Matrix3x2F::Rotation(CameraRotation) *
           D2D1::Matrix3x2F::Translation(windowCenter.X, windowCenter.Y));
@@ -334,7 +334,7 @@ namespace MistThread
           scale = 1 / (-(zLayer - CameraZ) / 30);
         RenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(scale, scale) *
           D2D1::Matrix3x2F::Rotation(rotation) *
-          D2D1::Matrix3x2F::Translation((position.X - CameraPos.X) * 32, (position.Y - CameraPos.Y) * 32) *
+          D2D1::Matrix3x2F::Translation((position.X - CameraPos.X) * 32 * scale, (position.Y - CameraPos.Y) * 32 * scale) *
           D2D1::Matrix3x2F::Scale(CameraScale, CameraScale) *
           D2D1::Matrix3x2F::Rotation(CameraRotation) *
           D2D1::Matrix3x2F::Translation(windowCenter.X, windowCenter.Y));

@@ -6,5 +6,6 @@
 #include "Components/DrawComponent.h"
 #include "Components/DrawEvent.h"
 #include "Components/DrawTextComponent.h"
+#include "Components/ObjectDestroyedEvent.h"
 #include "Components/TransformComponent.h"
 #include "Components/UpdateEvent.h"
