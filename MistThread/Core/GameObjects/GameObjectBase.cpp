@@ -80,7 +80,7 @@ namespace MistThread
         //if we don't know about this component, complain
         if(!construct)
         {
-          std::string err("Component '" + name + "' does not exist")
+          std::string err("Component '" + name + "' does not exist");
           throw std::exception("Component does not exist");
         }
 
