@@ -1,13 +1,14 @@
 <Level>
   <GameObject Name="Camera">
     <Component Name="Transform" ZLayer="30" Position="(10, 0)" Scale="(1, 1)" Rotation="0"/>
-    <Component Name="SinX" Period=".03" Scale=".1" Offset="0" Size="20"/>
-    <Component Name="Camera"/>
+    <Component Name="SinX" Period=".03" Scale=".1" Offset="0"/>
+    <Component Name="Camera" Size="20"/>
   </GameObject>
   <GameObject Name="Tiny box that is tiny">
     <Component Name="Transform" ZLayer="0" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
     <Component Name="Draw" Type="0" Mode="0" Stroke="1" Color="(A1,R0,G0.415686,B0.415686)"/>
-    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+    <Component Name="DrawText" Text="GIT MEME'D!" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+    <Component Name="SoundPulse" Sound="ts.wav"/>
     <Component Name="ParticleSystem" MaxParticles="20000" MaxGeneratedPerFrame="10" GenerationRadius="0" Life="1" LifeVariation=".9" EmissionDelay=".1" Repeating="true" GeneratedImmediately="false">
       <GameObjectParticle Name="Magenta box">
         <Component Name="DrawText" Text="A" Color="(A1,R0.15,G0.8,B1)" Font="50, Wingdings"/>
