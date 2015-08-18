@@ -1,7 +1,11 @@
 <Level>
+  <GameObject Name="Camera">
+    <Component Name="Transform" ZLayer="30" Position="(0, 0)" Scale="(1, 1)" Rotation="0"/>
+    <Component Name="Camera"/>
+  </GameObject>
   <GameObject Name="Tiny box that is tiny">
     <Component Name="Transform" ZLayer="0" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
-    <Component Name="Draw" Type="0" Mode="0" Stroke="1" Color="(A1,R0,G0.415686,B0.415686)"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.0325" Color="(A1,R0,G0.415686,B0.415686)"/>
     <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
     <Component Name="ParticleSystem" MaxParticles="20" MaxGeneratedPerFrame="2" GenerationRadius="0" Life="1000" LifeVariation="500" EmissionDelay="100" Repeating="true" GeneratedImmediately="false">
       <GameObjectParticle Name="Magenta box">
@@ -36,7 +40,7 @@
   </GameObject>
   <GameObject Name="Yellow Ellipse Outline">
     <Component Name="Transform" ZLayer="0" Position="(8, 8)" Scale="(6, 12)" Rotation="0"/>
-    <Component Name="Draw" Type="1" Mode="0" Stroke="30" Color="(A1,R0,G0.415686,B0.415686)"/>
+    <Component Name="Draw" Type="1" Mode="0" Stroke="1" Color="(A1,R0,G0.415686,B0.415686)"/>
     <Component Name="SinX" Period="1.01" Scale="9" Offset="18"/>
     <Component Name="Spin" Rotation="1" Acceleration="0.2"/>
   </GameObject>
