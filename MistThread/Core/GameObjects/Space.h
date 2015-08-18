@@ -23,7 +23,7 @@ namespace MistThread
         int SpaceLayer;
       public:
         Core::GameTime GameTime;
-        GameObjects::GameObject *Camera;
+        GameObjects::GameObjectBase *Camera;
 //////////////////////////////////////////////////////////////
 //Methods
 //////////////////////////////////////////////////////////////
@@ -39,6 +39,8 @@ namespace MistThread
         /// </summary>
         /// <param name="element">the element to store the info in</param>
         void SaveXML(IO::XML::XMLElement &element) const;
+
+        void SetCamera();
       public:
         /// <summary>
         /// Updates all components listening to the update event
@@ -101,6 +103,8 @@ namespace MistThread
         /// returns the layer this level draws on
         /// </summary>
         int GetSpaceLayer() const;
+
+        void Draw(Graphics::Engines::GraphicsEngineCore &graphics, GameObjectBase* caller = NULL) override;
 
 //////////////////////////////////////////////////////////////
 //Constructors

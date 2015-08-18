@@ -14,7 +14,7 @@ namespace MistThread
       {
         void DrawTextComponent::Draw(DrawEvent * drawEvent)
         {
-          drawEvent->Graphics.DrawString(Text, Font, Transform->Position * 32, Color, Transform->Rotation, Transform->GetZLayer());
+          drawEvent->Graphics.DrawString(Text, Font, Transform->Position, Color, Transform->Rotation, Transform->GetZLayer());
         }
 
         void DrawTextComponent::Initialize()
