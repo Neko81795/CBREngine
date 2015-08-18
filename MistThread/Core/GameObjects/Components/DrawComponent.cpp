@@ -18,16 +18,16 @@ namespace MistThread
           {
             case DrawComponent::Rectangle:
               if(Mode == DrawMode::Fill)
-                drawEvent->Graphics.FillRectangle(Transform->Position * 32, Transform->Scale * 32, Color, Transform->Rotation, Transform->GetZLayer());
+                drawEvent->Graphics.FillRectangle(Transform->Position, Transform->Scale, Color, Transform->Rotation, Transform->GetZLayer());
               else
-                drawEvent->Graphics.DrawRectangle(Transform->Position * 32, Transform->Scale * 32, Color, Stroke, Transform->Rotation, Transform->GetZLayer());
+                drawEvent->Graphics.DrawRectangle(Transform->Position, Transform->Scale, Color, Stroke, Transform->Rotation, Transform->GetZLayer());
               break;
             case DrawComponent::Ellipse:
               Vector2 center(Transform->Scale.Width * 16, Transform->Scale.Height * 16);
               if(Mode == DrawMode::Fill)
-                drawEvent->Graphics.FillEllipse(Transform->Position * 32, Transform->Scale * 32, Color, Transform->Rotation, center, Transform->GetZLayer());
+                drawEvent->Graphics.FillEllipse(Transform->Position, Transform->Scale, Color, Transform->Rotation, center, Transform->GetZLayer());
               else
-                drawEvent->Graphics.DrawEllipse(Transform->Position * 32, Transform->Scale * 32, Color, Stroke, Transform->Rotation, center, Transform->GetZLayer());
+                drawEvent->Graphics.DrawEllipse(Transform->Position, Transform->Scale, Color, Stroke, Transform->Rotation, center, Transform->GetZLayer());
               break;
           }
         }

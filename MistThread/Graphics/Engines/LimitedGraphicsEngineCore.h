@@ -60,6 +60,14 @@ namespace MistThread
         /// </summary>
         virtual Size2 GetWindowBounds() const __ABSTRACT;
         /// <summary>
+        /// Gets the center of the window (in pixels)
+        /// </summary>
+        virtual Vector2 GetWindowCenter() __ABSTRACT;
+        /// <summary>
+        /// Gets the size of the window in pixels
+        /// </summary>
+        virtual Size2 GetWindowBounds() __ABSTRACT;
+        /// <summary>
         /// Gets the Rectangle that the camera can see at the given zLayer
         /// </summary>
         /// <param name="position">the position of the camera</param>

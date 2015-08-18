@@ -76,7 +76,7 @@ namespace MistThread
       GameObjects::Space *space = new GameObjects::Space(*this);
       space->Name = name;
 
-      auto &obj = space->CreateObjectAt(Vector2::Zero);
+      auto &obj = space->CreateObjectAt(Vector2::Zero, 30);
       obj.Name = "Camera";
       obj.AddComponentByName("Camera");
 
@@ -123,7 +123,7 @@ namespace MistThread
       Name = "Game";
       Space.Name = "Main";
 
-      auto &obj = Space.CreateObjectAt(Vector2::Zero);
+      auto &obj = Space.CreateObjectAt(Vector2::Zero, 30);
       obj.Name = "Camera";
       obj.AddComponentByName("Camera");
 

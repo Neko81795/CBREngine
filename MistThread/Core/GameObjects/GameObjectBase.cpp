@@ -163,7 +163,8 @@ namespace MistThread
           {
             for(auto e : d.second)
             {
-              this->DetachEventHandler(listener->DelegateIDs.find(e)->second, e, listener);
+              if(listener->DelegateIDs.size())
+                this->DetachEventHandler(listener->DelegateIDs.find(e)->second, e, listener);
             }
           }
         }

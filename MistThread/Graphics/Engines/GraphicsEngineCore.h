@@ -20,6 +20,8 @@ namespace MistThread
       public:
         float CameraZ = 30;
         Vector2 CameraPos;
+        float CameraScale;
+        float CameraRotation;
         bool ZLayeringAffectsScale = true;
 //////////////////////////////////////////////////////////////
 //Methods

@@ -157,6 +157,12 @@ namespace MistThread
         /// returns a pointer to the component who's name matches the one provided
         /// </summary>
         /// <param name="name">the name of the component to find</param>
+        template <typename T>
+        T* GetComponentByName(const std::string &name);
+        /// <summary>
+        /// returns a pointer to the component who's name matches the one provided
+        /// </summary>
+        /// <param name="name">the name of the component to find</param>
         const Components::Component* GetComponentByName(const std::string &name) const;
         /// <summary>
         /// Removes the component with the given name
@@ -198,7 +204,7 @@ namespace MistThread
         /// </summary>
         /// <param name="graphics">the graphics engine to use</param>
         /// <param name="caller">the one calling, used in logic</param>
-        void Draw(Graphics::Engines::GraphicsEngineCore &graphics, GameObjectBase* caller = NULL);
+        virtual void Draw(Graphics::Engines::GraphicsEngineCore &graphics, GameObjectBase* caller = NULL);
         /// <summary>
         /// adds the given object to this objects draw list
         /// </summary>
@@ -241,6 +247,18 @@ namespace MistThread
       T* GameObjectBase::AddComponentByName(const std::string &name)
       {
         Components::Component * ptr = AddComponentByName(name);
+        T* retptr = dynamic_cast<T*>(ptr);
+        return retptr;
+      }
+
+      /// <summary>
+      /// returns a pointer to the component who's name matches the one provided
+      /// </summary>
+      /// <param name="name">the name of the component to find</param>
+      template <typename T>
+      T* GameObjectBase::GetComponentByName(const std::string &name)
+      {
+        Components::Component *ptr = GetComponentByName(name);
         T* retptr = dynamic_cast<T*>(ptr);
         return retptr;
       }

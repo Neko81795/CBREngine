@@ -1,8 +1,10 @@
 #include "Space.h"
 #include "Components/UpdateEvent.h"
 #include "Components/TransformComponent.h"
+#include "Components/CameraComponent.h"
 #include "../../IO/XML/XMLFile.h"
 #include "../../Utilities/ContentManager.h"
+#include "../../Graphics/Engines/GraphicsEngineCore.h"
 
 #include <fstream>
 
@@ -35,8 +37,18 @@ namespace MistThread
         }
       }
 
+      void Space::SetCamera()
+      {
+        auto trans = Camera->GetComponentByName<Components::TransformComponent>("Transform");
+        Game.Graphics->CameraPos = trans->Position;
+        Game.Graphics->CameraRotation = trans->Rotation;
+        Game.Graphics->CameraZ = trans->GetZLayer();
+        Game.Graphics->CameraScale = Camera->GetComponentByName<Components::CameraComponent>("Camera")->CameraScale;
+      }
+
       void Space::Update()
       {
+        SetCamera();
         GameTime.Tick();
         Components::UpdateEvent ue(GameTime);
         DispatchEvent("Update", &ue);
@@ -147,6 +159,14 @@ namespace MistThread
       int Space::GetSpaceLayer() const
       {
         return SpaceLayer;
+      }
+
+      void Space::Draw(Graphics::Engines::GraphicsEngineCore &graphics, GameObjectBase* caller)
+      {
+        if(caller != this)
+          SetCamera();
+
+        GameObjectBase::Draw(graphics, caller);
       }
 
       Space::Space(Core::Game & game) : GameObjectBase(game, *this)

@@ -154,7 +154,6 @@ namespace MistThread
         else
           Space.RemoveObjectByID(ID);
 
-        delete this;
       }
 
       /// <summary>

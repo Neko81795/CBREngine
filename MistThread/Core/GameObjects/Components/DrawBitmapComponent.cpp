@@ -19,7 +19,7 @@ namespace MistThread
           if (Image != NULL)
           {
             Size2 size = Image->GetSize();
-            drawEvent->Graphics.DrawBitmap(*Image, Transform->Position * 32, 1, Vector2(static_cast<float>(size.Width)/2, static_cast<float>(size.Height) / 2), Transform->Rotation, Transform->Scale, NULL, Transform->GetZLayer());
+            drawEvent->Graphics.DrawBitmap(*Image, Transform->Position, 1, Vector2(static_cast<float>(size.Width)/2, static_cast<float>(size.Height) / 2), Transform->Rotation, Transform->Scale, NULL, Transform->GetZLayer());
           }
         }
 

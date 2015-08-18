@@ -101,6 +101,14 @@ namespace MistThread
         /// </summary>
         virtual Size2 GetWindowBounds() const override;
         /// <summary>
+        /// Gets the center of the window (in pixels)
+        /// </summary>
+        virtual Vector2 GetWindowCenter() override;
+        /// <summary>
+        /// Gets the size of the window
+        /// </summary>
+        virtual Size2 GetWindowBounds() override;
+        /// <summary>
         /// Gets the Rectangle that the camera can see in the given space at the given zLayer
         /// </summary>
         /// <param name="space">the space to look at</param>
