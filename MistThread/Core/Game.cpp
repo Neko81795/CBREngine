@@ -21,22 +21,31 @@ namespace MistThread
   {
     void Run(bool * run, Game * game)
     {
-      game->Initialize();
-
-      while(*run)
+      try
       {
-        game->Input->Update(game->Space.GameTime);
+        game->Initialize();
 
-        for(GameObjects::GameObjectBase *space : game->Objects)
+        while(*run)
         {
-          static_cast<GameObjects::Space*>(space)->Update();
+          game->Input->Update(game->Space.GameTime);
+
+          for(GameObjects::GameObjectBase *space : game->Objects)
+          {
+            static_cast<GameObjects::Space*>(space)->Update();
+          }
+          game->Graphics->BeginDraw();
+          game->Graphics->Clear(game->ClearColor);
+
+          game->Draw(*game->Graphics);
+
+          game->Graphics->EndDraw();
         }
-        game->Graphics->BeginDraw();
-        game->Graphics->Clear(game->ClearColor);
-
-        game->Draw(*game->Graphics);
-
-        game->Graphics->EndDraw();
+      }
+      catch ( std::exception ex)
+      {
+        //todo MAKE A WINDOW
+        int i = 0;
+        ++i;
       }
     }
 

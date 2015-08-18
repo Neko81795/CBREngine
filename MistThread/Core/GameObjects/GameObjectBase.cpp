@@ -79,7 +79,7 @@ namespace MistThread
 
         //if we don't know about this component, complain
         if(!construct)
-          throw std::exception("Component does not exist");
+          throw std::exception("Component does not exist");//todo explain
 
         Components::Component *ptr = construct(this);
 
@@ -87,7 +87,7 @@ namespace MistThread
         if(Components[ptr->Name])
         {
           delete ptr;
-          throw std::exception("Component already exists on this Object");
+          throw std::exception("Component already exists on this Object");//todo explain
         }
 
         //check that the dependencies are there
@@ -96,7 +96,7 @@ namespace MistThread
           if(!Components[dep])
           {
             delete ptr;
-            throw std::exception(("Component dependency could not be found: " + dep).c_str());
+            throw std::exception(("Component dependency could not be found: " + dep).c_str());//todo explain
           }
         }
 

@@ -59,9 +59,9 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   Space &mainSpace = game.FindSpaceByName("Main");
   mainSpace.LoadLevel("Level.xml");
 
-  if (hostName == "Nephele")
+  if (hostName == "Hera")
   {
-    mainSpace.LoadLevel("Level.xml");
+    mainSpace.LoadLevel("Level3.xml");
   }
   if (hostName == "Ghost")
   {
