@@ -81,7 +81,11 @@ void SoundPulseComponent::Update(UpdateEvent * event)
 
 void SoundPulseComponent::SetSound(std::string s)
 {
-  sound_.Play(s);
+  if (looping_)
+    sound_.Loop(s);
+  else
+    sound_.Play(s);
+  sound_.SetVolume(volume_);
 }
 
 SoundPulseComponent::~SoundPulseComponent()
@@ -93,7 +97,14 @@ void SoundPulseComponent::InitializeFromXML(const MistThread::IO::XML::XMLElemen
 
   std::stringstream str(element.GetAttributeByName("Sound").Value);
   str >> soundName_;
+
   str = std::stringstream();
+  str << element.GetAttributeByName("Volume").Value;
+  str >> volume_;
+
+  str = std::stringstream();
+  str << element.GetAttributeByName("Looping").Value;
+  str >> looping_;
 }
 
 
@@ -104,4 +115,12 @@ void SoundPulseComponent::PopulateXML(MistThread::IO::XML::XMLElement & element)
   std::stringstream str;
   str << soundName_;
   element.SetAttribute("Sound", str.str());
+
+  str = std::stringstream();
+  str << volume_;
+  element.SetAttribute("Volume", str.str());
+
+  str = std::stringstream();
+  str << volume_;
+  element.SetAttribute("Looping", str.str());
 }

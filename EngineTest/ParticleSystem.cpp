@@ -48,11 +48,12 @@ void ParticleSystem::CreateParticle()
   newObj.InitializeFromXML(elementXML_);
   newObj.Initialize();
 
-  //Random.
-
   ParticleDataComponent* part = newObj.AddComponentByName<ParticleDataComponent>("ParticleData");
   part->Initialize();
-
+  newObj.AttachEventHandler(
+    "ObjectDestroyed",
+    [](void * obj, Event* event) { static_cast<ParticleSystem *>(obj)->MonitorParticles(static_cast<ObjectDestroyedEvent *>(event)); },
+    this);
   //Handle Life.
   if (lifeVariation_ < life_)
     part->Life = life_ + Random::RandRange(-lifeVariation_, lifeVariation_);
@@ -64,10 +65,12 @@ void ParticleSystem::CreateParticle()
   ++activeParticles_;
 }
 
+
 ParticleSystem::ParticleSystem(MistThread::Core::GameObjects::GameObjectBase* owner) : Component(owner, "Transform"), elementXML_("ParticleSystem")
 {
   Name = "ParticleSystem";
 }
+
 
 void ParticleSystem::Initialize()
 {
@@ -80,6 +83,11 @@ void ParticleSystem::Initialize()
     this);
 }
 
+
+/// <summary>
+/// Sets up the component from with the given XML Element
+/// </summary>
+/// <param name="element">the element with the data needed to initialize</param>
 void ParticleSystem::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
 {
   Component::InitializeFromXML(element);
@@ -117,6 +125,11 @@ void ParticleSystem::InitializeFromXML(const MistThread::IO::XML::XMLElement & e
   str >> generateImmediately_;
 }
 
+
+/// <summary>
+/// Populates the given XML Element with data for saving
+/// </summary>
+/// <param name="element">the element to fill with data</param>
 void ParticleSystem::PopulateXML(MistThread::IO::XML::XMLElement & element) const
 {
   Component::PopulateXML(element);
@@ -154,4 +167,9 @@ void ParticleSystem::PopulateXML(MistThread::IO::XML::XMLElement & element) cons
   element.SetAttribute("GeneratedImmediately", str.str());
 
   element.Elements.push_back(elementXML_);
+}
+
+void ParticleSystem::MonitorParticles(ObjectDestroyedEvent * event)
+{
+  --activeParticles_;
 }

@@ -33,6 +33,10 @@ using namespace MistThread::Audio::Engines;
 
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nShowCmd)
 {
+  //TODO: (Matthew) -- Sound does not properly dispose when the component it is attached to is deleted. Check out the 
+  //destructor in the Sound object to make sure everything is properly disposing, and all handles are being
+  //delt with accordingly. Write test to do this.
+
   //get info about this application
   AppInfo appInfo;
   std::string hostName = appInfo.GetHostName();

@@ -8,17 +8,22 @@ using UpdateEvent = MistThread::Core::GameObjects::Components::UpdateEvent;
 
 struct ParticleDataComponent : public MistThread::Core::GameObjects::Components::Component
 {
-  //Constructors
-  ParticleDataComponent(MistThread::Core::GameObjects::GameObjectBase* owner);
-  ~ParticleDataComponent() { }
+  public:
+    //Constructors
+    ParticleDataComponent(MistThread::Core::GameObjects::GameObjectBase* owner);
+    ~ParticleDataComponent() { }
 
-  //Member Functions
-  void Initialize() override;
-  void Update(UpdateEvent * event);
+    //Member Functions
+    void Initialize() override;
+    void Update(UpdateEvent * event);
+    void AssociateWithObject(LONGLONG objectID);
 
-  //Variables
-  MistThread::Core::GameObjects::Components::TransformComponent* Transform;
-  MistThread::Core::Vector2 Velocity;
-  double Life;
-  double TimeStarted;
+    //Variables
+    MistThread::Core::GameObjects::Components::TransformComponent* Transform;
+    MistThread::Core::Vector2 Velocity;
+    double Life;
+    double TimeStarted;
+
+  private:
+    LONGLONG particleSystemID;
 };

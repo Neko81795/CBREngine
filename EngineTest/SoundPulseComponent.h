@@ -47,6 +47,8 @@ class SoundPulseComponent : public MistThread::Core::GameObjects::Components::Co
   private:
     std::string soundName_;
     MistThread::Audio::Sound sound_;
+    float volume_;
+    bool looping_;
     MistThread::Core::GameObjects::Components::TransformComponent *pTransform_;
     MistThread::Core::GameObjects::Components::DrawComponent *pDraw_;
 };
