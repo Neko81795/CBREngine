@@ -67,6 +67,10 @@ namespace MistThread
       GameObjects::Space *space = new GameObjects::Space(*this);
       space->Name = name;
 
+      auto &obj = space->CreateObjectAt(Vector2::Zero);
+      obj.Name = "Camera";
+      obj.AddComponentByName("Camera");
+
       Objects.push_back(space);
       RegisterDraw(space);
 
@@ -99,9 +103,21 @@ namespace MistThread
 
     Game::Game(GameWindow *window, Graphics::Engines::GraphicsEngineCore *graphics, Audio::Engines::AudioEngineCore *audio, Input::Engines::InputEngineCore *input) : GameObjectBase(*this, *new GameObjects::Space(*this)), ClearColor(75, 120, 255)
     {
+      RegisterComponent<GameObjects::Components::TransformComponent>("Transform");
+      RegisterComponent<GameObjects::Components::DrawBitmapComponent>("DrawBitmap");
+      RegisterComponent<GameObjects::Components::DrawComponent>("Draw");
+      RegisterComponent<GameObjects::Components::DrawTextComponent>("DrawText");
+      RegisterComponent<GameObjects::Components::ConsoleComponent>("Console");
+      RegisterComponent<GameObjects::Components::CameraComponent>("Camera");
+
       Type = "Game";
       Name = "Game";
       Space.Name = "Main";
+
+      auto &obj = Space.CreateObjectAt(Vector2::Zero);
+      obj.Name = "Camera";
+      obj.AddComponentByName("Camera");
+
       Objects.push_back(&Space);
       RegisterDraw(&Space);
       Graphics = graphics;
@@ -112,11 +128,6 @@ namespace MistThread
 
       Input = input;
 
-      RegisterComponent<GameObjects::Components::TransformComponent>("Transform");
-      RegisterComponent<GameObjects::Components::DrawBitmapComponent>("DrawBitmap");
-      RegisterComponent<GameObjects::Components::DrawComponent>("Draw");
-      RegisterComponent<GameObjects::Components::DrawTextComponent>("DrawText");
-      RegisterComponent<GameObjects::Components::ConsoleComponent>("Console");
 
       AddComponentByName("Console");
 

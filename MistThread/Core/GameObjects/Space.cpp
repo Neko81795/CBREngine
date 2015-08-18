@@ -118,6 +118,8 @@ namespace MistThread
             ++i;
         }
         LoadXML(el);
+
+        Initialize();
       }
 
       void Space::SaveLevel(const std::string &path) const
