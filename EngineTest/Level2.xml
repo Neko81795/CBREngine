@@ -6,7 +6,7 @@
   </GameObject>
   <GameObject Name="Tiny box that is tiny">
     <Component Name="Transform" ZLayer="0" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
-    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
     <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
   </GameObject>
   <GameObject Name="CBR">
