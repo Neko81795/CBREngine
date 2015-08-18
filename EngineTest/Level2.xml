@@ -1,12 +1,68 @@
 <Level>
   <GameObject Name="Camera">
     <Component Name="Transform" ZLayer="30" Position="(10, 0)" Scale="(1, 1)" Rotation="0"/>
-    <Component Name="SinX" Period="5.001" Scale="10" Offset="0"/>
+    <Component Name="SinX" Period="5.01" Scale="10" Offset="0"/>
     <Component Name="Camera" Size="20"/>
+    <Component Name="Spin" Rotation="1" Acceleration="0.2"/>
   </GameObject>
   <GameObject Name="Tiny box that is tiny">
     <Component Name="Transform" ZLayer="0" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
     <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-5" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-10" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-15" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-20" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-25" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-30" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-35" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-40" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-9" Position="(-5, 3)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="1" Mode="0" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-27" Position="(6, 8)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="0" Mode="1" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
+    <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
+  </GameObject>
+  <GameObject Name="Tiny box that is tiny">
+    <Component Name="Transform" ZLayer="-34" Position="(1, 4)" Scale="(3, 3)" Rotation="0"/>
+    <Component Name="Draw" Type="1" Mode="1" Stroke="0.03125" Color="(A1,R0,G0.415686,B0.415686)"/>.1
     <Component Name="DrawText" Text="How are you today?" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
   </GameObject>
   <GameObject Name="CBR">
