@@ -3,6 +3,8 @@
 #include "../../Game.h"
 #include "../../../Graphics/Engines/GraphicsEngineCore.h"
 
+#include <sstream>
+
 namespace MistThread
 {
   namespace Core
@@ -18,6 +20,23 @@ namespace MistThread
           Size2 windowSize = graphics.GetWindowBounds();
 
           CameraScale = (windowSize.Height / 32.0f) / Size;
+        }
+
+        void CameraComponent::InitializeFromXML(const IO::XML::XMLElement & element)
+        {
+          Component::InitializeFromXML(element);
+
+          std::stringstream str(element.GetAttributeByName("Size").Value);
+          str >> Size;
+        }
+
+        void CameraComponent::PopulateXML(IO::XML::XMLElement & element) const
+        {
+          Component::PopulateXML(element);
+
+          std::stringstream str;
+          str << Size;
+          element.SetAttribute("Size", str.str());
         }
 
         void CameraComponent::Initialize()

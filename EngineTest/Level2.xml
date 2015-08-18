@@ -2,7 +2,7 @@
   <GameObject Name="Camera">
     <Component Name="Transform" ZLayer="30" Position="(10, 0)" Scale="(1, 1)" Rotation="0"/>
     <Component Name="SinX" Period="5.001" Scale="10" Offset="0"/>
-    <Component Name="Camera"/>
+    <Component Name="Camera" Size="20"/>
   </GameObject>
   <GameObject Name="Tiny box that is tiny">
     <Component Name="Transform" ZLayer="0" Position="(0, 0)" Scale="(3, 3)" Rotation="0"/>
