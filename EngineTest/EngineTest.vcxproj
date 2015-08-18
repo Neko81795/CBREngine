@@ -86,11 +86,13 @@
   <ItemGroup>
     <ClCompile Include="KeyMoveComponent.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ParticleData.cpp" />
+    <ClCompile Include="ParticleDataComponent.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="SinXComponent.cpp" />
     <ClCompile Include="SoundPulseComponent.cpp" />
     <ClCompile Include="SpinComponent.cpp" />
+    <ClCompile Include="ForceComponent.cpp" />
     <ClCompile Include="ZLayerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -100,11 +102,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyMoveComponent.h" />
-    <ClInclude Include="ParticleData.h" />
+    <ClInclude Include="ParticleDataComponent.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="SinXComponent.h" />
     <ClInclude Include="SoundPulseComponent.h" />
     <ClInclude Include="SpinComponent.h" />
+    <ClInclude Include="ForceComponent.h" />
     <ClInclude Include="ZLayerComponent.h" />
   </ItemGroup>
   <ItemGroup>

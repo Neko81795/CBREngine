@@ -1,8 +1,7 @@
 #include "ParticleSystem.h"
-#include "ParticleData.h"
+#include "ParticleDataComponent.h"
 #include <sstream>
 #include <random>
-#include <chrono>
 
 
 void ParticleSystem::Update(UpdateEvent * event)
@@ -16,7 +15,7 @@ void ParticleSystem::Update(UpdateEvent * event)
       if (repeating_)
       {
         //Attempt to generate for the maximum number.
-        for (int i = 0; i < maxGeneratedPerFrame_; ++i)
+        for (unsigned int i = 0; i < maxGeneratedPerFrame_; ++i)
           //If we can still generate...
           if (activeParticles_ < maxParticles_)
             CreateParticle();
@@ -29,7 +28,7 @@ void ParticleSystem::Update(UpdateEvent * event)
         if (totalParticlesProduced_ < maxParticles_)
         {
           //Attempt to generate for max num.
-          for (int i = 0; i < maxGeneratedPerFrame_; ++i)
+          for (unsigned int i = 0; i < maxGeneratedPerFrame_; ++i)
             //If we can still generate...
             if (activeParticles_ < maxParticles_)
               CreateParticle();
@@ -37,26 +36,26 @@ void ParticleSystem::Update(UpdateEvent * event)
               break;
         }
       }
+
       lastGenerationTime_ = event->GameTime.TotalTime;
     }
 }
 
 void ParticleSystem::CreateParticle()
 {
-  //New object
+  //New object.
   MistThread::Core::GameObjects::GameObject &newObj = Space.CreateObjectAt(transform_->Position, transform_->GetZLayer());
   newObj.InitializeFromXML(elementXML_);
+  newObj.Initialize();
 
-  //random
-  std::uniform_real_distribution<double> distribution(-lifeVariation_, lifeVariation_);
-  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  std::default_random_engine generator(seed);
+  //Random.
 
-  ParticleData* part = newObj.AddComponentByName<ParticleData>("ParticleData");
-  
-  //Handle Life
+  ParticleDataComponent* part = newObj.AddComponentByName<ParticleDataComponent>("ParticleData");
+  part->Initialize();
+
+  //Handle Life.
   if (lifeVariation_ < life_)
-    part->Life = life_ + distribution(generator);
+    part->Life = life_ + Random::RandRange(-lifeVariation_, lifeVariation_);
   else
     part->Life = life_;
 
@@ -72,13 +71,13 @@ ParticleSystem::ParticleSystem(MistThread::Core::GameObjects::GameObjectBase* ow
 
 void ParticleSystem::Initialize()
 {
+  transform_ = static_cast<MistThread::Core::GameObjects::Components::TransformComponent*>(Owner.GetComponentByName("Transform"));
+
   //Attach the update event to all the objects.
   Space.AttachEventHandler(
     "Update",
     [](void * obj, Event* event) { static_cast<ParticleSystem *>(obj)->Update(static_cast<UpdateEvent *>(event)); },
     this);
-
-  transform_ = static_cast<MistThread::Core::GameObjects::Components::TransformComponent*>(Owner.GetComponentByName("Transform"));
 }
 
 void ParticleSystem::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)

@@ -6,6 +6,9 @@
 #include "KeyMoveComponent.h"
 #include "SoundPulseComponent.h"
 #include "ParticleSystem.h"
+#include "ParticleDataComponent.h"
+#include "ForceComponent.h"
+#include "Random.h"
 #include "../MistThread/Input.h"
 #include "../MistThread/Audio/Sound.h"
 #include "../MistThread/Audio/Engines/FMODAudioEngine.h"
@@ -54,6 +57,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   Game::RegisterComponent<SinXComponent>("SinX");
   Game::RegisterComponent<SoundPulseComponent>("SoundPulse");
   Game::RegisterComponent<ParticleSystem>("ParticleSystem");
+  Game::RegisterComponent<ParticleDataComponent>("ParticleData");
+  Game::RegisterComponent<ForceComponent>("Force");
 
   //get the space and load a level
   Space &mainSpace = game.FindSpaceByName("Main");

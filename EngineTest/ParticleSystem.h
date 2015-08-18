@@ -1,6 +1,8 @@
 #pragma once
 #include "../MistThread/Core.h"
-
+#include "Random.h"
+#include <chrono>
+#include <random>
 #include <list>
 
 using Event = MistThread::Core::Event;

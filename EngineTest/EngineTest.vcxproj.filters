@@ -8,7 +8,9 @@
     <ClCompile Include="KeyMoveComponent.cpp" />
     <ClCompile Include="SoundPulseComponent.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
-    <ClCompile Include="ParticleData.cpp" />
+    <ClCompile Include="ForceComponent.cpp" />
+    <ClCompile Include="ParticleDataComponent.cpp" />
+    <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpinComponent.h" />
@@ -17,7 +19,9 @@
     <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="SoundPulseComponent.h" />
     <ClInclude Include="ParticleSystem.h" />
-    <ClInclude Include="ParticleData.h" />
+    <ClInclude Include="ForceComponent.h" />
+    <ClInclude Include="ParticleDataComponent.h" />
+    <ClInclude Include="Random.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bit.png" />

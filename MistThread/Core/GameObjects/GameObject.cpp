@@ -153,8 +153,6 @@ namespace MistThread
           Parent->RemoveChildByID(ID);
         else
           Space.RemoveObjectByID(ID);
-
-        delete this;
       }
 
       /// <summary>
