@@ -81,7 +81,7 @@ namespace MistThread
         if(!construct)
         {
           std::string err("Component '" + name + "' does not exist");
-          throw std::exception("Component does not exist");
+          throw std::exception(err.c_str());
         }
 
         Components::Component *ptr = construct(this);
