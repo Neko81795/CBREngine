@@ -33,12 +33,11 @@ namespace MistThread
         }
 
         void Component::Destroyed()
-        {
-        }
+        {}
 
         Component::Component(GameObjects::GameObjectBase * owner) : Owner(*owner), Space(owner->Space), Game(owner->Game)
         {
-          
+
         }
 
         Component::Component(GameObjects::GameObjectBase * owner, const std::vector<std::string>& dependencies) : Owner(*owner), Space(owner->Space), Game(owner->Game)
@@ -50,8 +49,8 @@ namespace MistThread
         {
           std::stringstream stream;
           stream << dependencies;
-          
-          while (!stream.eof())
+
+          while(!stream.eof())
           {
             std::string str;
             stream >> str;
@@ -63,7 +62,7 @@ namespace MistThread
 
         Component::~Component()
         {
-          for (auto ed : EventDispatchers)
+          for(auto ed : EventDispatchers)
           {
             ed.first->DetachAllEventHandlers(this);
           }

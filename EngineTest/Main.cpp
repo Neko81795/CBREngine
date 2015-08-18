@@ -57,7 +57,6 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   //get the space and load a level
   Space &mainSpace = game.FindSpaceByName("Main");
-  mainSpace.LoadLevel("Level.xml");
 
   if (hostName == "Hera")
   {
@@ -66,6 +65,10 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   if (hostName == "Ghost")
   {
     mainSpace.LoadLevel("Level3.xml");
+  }
+  else
+  {
+    mainSpace.LoadLevel("Level.xml");
   }
   //start the game
   game.Start();

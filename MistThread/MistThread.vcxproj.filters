@@ -147,6 +147,7 @@
     </ClCompile>
     <ClCompile Include="Utilities\AppInfo.cpp" />
     <ClCompile Include="Core\GameObjects\Components\ConsoleComponent.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\CameraComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -294,5 +295,6 @@
     <ClInclude Include="Utilities\AppInfo.h" />
     <ClInclude Include="Core\GameObjects\Components\ConsoleComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\ObjectDestroyedEvent.h" />
+    <ClInclude Include="Core\GameObjects\Components\CameraComponent.h" />
   </ItemGroup>
 </Project>

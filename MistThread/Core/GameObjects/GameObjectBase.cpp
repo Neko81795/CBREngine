@@ -72,7 +72,7 @@ namespace MistThread
           }
         }
       }
-      
+
       Components::Component* GameObjectBase::AddComponentByName(const std::string &name)
       {
         GameObjects::Components::Component* (*construct)(GameObjectBase*) = Game::ComponetConstructors[name];
@@ -209,9 +209,9 @@ namespace MistThread
 
       void GameObjectBase::UnRegisterDraw(GameObjectBase * object)
       {
-        if (object->DrawnBy && object->DrawnBy == this)
+        if(object->DrawnBy && object->DrawnBy == this)
         {
-          while (object->DrawIndex != DrawOrder.size() - 1)
+          while(object->DrawIndex != DrawOrder.size() - 1)
           {
             SwapDraw(object->DrawIndex, object->DrawIndex + 1);
           }

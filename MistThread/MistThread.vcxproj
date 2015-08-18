@@ -15,6 +15,7 @@
     <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
     <ClCompile Include="Audio\Sound.cpp" />
     <ClCompile Include="Audio\Spectrum.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\CameraComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\ConsoleComponent.cpp" />
     <ClCompile Include="Core\CoreEventHandlers.cpp" />
     <ClCompile Include="Core\CoreEvents.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
     <ClInclude Include="Audio\Sound.h" />
     <ClInclude Include="Audio\Spectrum.h" />
+    <ClInclude Include="Core\GameObjects\Components\CameraComponent.h" />
     <ClInclude Include="Core\GameObjects\Components\ConsoleComponent.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Core\CoreEventHandlers.h" />
