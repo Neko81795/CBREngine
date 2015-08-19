@@ -146,27 +146,44 @@ namespace MistThread
         EventListeners[eventID].push_back(Delegate<Event*>(func, listener));
         listener->EventDispatchers[this].push_back(Delegate<Event*>(func, listener));
         listener->DelegateIDs[Delegate<Event*>(func, listener)] = eventID;
+        ComponentsListening.remove(listener);
+        ComponentsListening.push_back(listener);
       }
 
       void GameObjectBase::DetachEventHandler(const std::string & eventID, Delegate<Event*> delegate, GameObjects::Components::Component *listener)
       {
-        EventListeners[eventID].remove(delegate);
-        listener->EventDispatchers[this].remove(delegate);
-        listener->DelegateIDs.erase(delegate);
+        for(auto it = EventListeners[eventID].begin(); it != EventListeners[eventID].end(); it++)
+        {
+          if(*it == delegate)
+          {
+            EventListeners[eventID].erase(it);
+            listener->EventDispatchers[this].remove(delegate);
+            listener->DelegateIDs.erase(delegate);
+
+            if(listener->EventDispatchers[this].size() == 0)
+            {
+              ComponentsListening.remove(listener);
+            }
+
+            break;
+          }
+        }
       }
 
       void GameObjectBase::DetachAllEventHandlers(GameObjects::Components::Component *listener)
       {
-        for(auto d : listener->EventDispatchers)
+        while(listener->EventDispatchers[this].size())
         {
-          if(d.first == this)
+          auto e = listener->EventDispatchers[this].front();
+          if(listener->DelegateIDs.size())
           {
-            for(auto e : d.second)
-            {
-              if(listener->DelegateIDs.size())
-                this->DetachEventHandler(listener->DelegateIDs.find(e)->second, e, listener);
-            }
+            std::string eventID(listener->DelegateIDs[e]);
+            if(eventID.length())
+              this->DetachEventHandler(listener->DelegateIDs.find(e)->second, e, listener);
+            else
+              listener->DelegateIDs.erase(e);
           }
+
         }
       }
 
@@ -289,6 +306,11 @@ namespace MistThread
         {
           delete Objects[i];
           Objects.pop_back();
+        }
+        while(ComponentsListening.size())
+        {
+          ComponentsListening.front()->EventDispatchers.erase(this);
+          ComponentsListening.pop_front();
         }
       }
     }

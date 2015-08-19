@@ -64,7 +64,8 @@ namespace MistThread
         {
           for(auto ed : EventDispatchers)
           {
-            ed.first->DetachAllEventHandlers(this);
+            if(ed.second.size())
+              ed.first->DetachAllEventHandlers(this);
           }
         }
       }

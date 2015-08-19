@@ -46,6 +46,10 @@ namespace MistThread
         /// </summary>
         std::map<std::string, std::list<Delegate<Event *>>> EventListeners;
         /// <summary>
+        /// a list of the components that are listening for something
+        /// </summary>
+        std::list<Components::Component*> ComponentsListening;
+        /// <summary>
         /// the components this object should hold and run
         /// </summary>
         std::map<std::string, Components::Component*> Components;

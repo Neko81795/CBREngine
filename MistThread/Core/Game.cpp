@@ -41,7 +41,7 @@ namespace MistThread
           game->Graphics->EndDraw();
         }
       }
-      catch ( std::exception ex)
+      catch(std::exception ex)
       {
         //todo MAKE A WINDOW
         int i = 0;
@@ -56,7 +56,7 @@ namespace MistThread
       MSG msg;
 
       auto f = std::async(Run, &run, this);
-
+      
       while(run)
       {
         while(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -66,7 +66,7 @@ namespace MistThread
           if(msg.message == WM_QUIT)
             run = false;
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
       }
     }
 #endif
