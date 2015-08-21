@@ -13,6 +13,7 @@
 #include "Delegate.h"
 #include "GameObjects/Components.h"
 #include "../Input/Engines/InputEngineCore.h"
+#include "Exception.h"
 
 
 namespace MistThread
@@ -41,7 +42,7 @@ namespace MistThread
           game->Graphics->EndDraw();
         }
       }
-      catch(std::exception ex)
+      catch(Exception ex)
       {
         //todo MAKE A WINDOW
         int i = 0;
@@ -93,7 +94,7 @@ namespace MistThread
         if(space->Name == name)
           return *dynamic_cast<GameObjects::Space*>(space);
       }
-      throw std::exception("Space could not be found");
+      throw Exception("Space could not be found");
     }
 
     void Game::RemoveSpaceByName(const std::string &name)

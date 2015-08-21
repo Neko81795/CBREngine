@@ -1,6 +1,7 @@
 #include "Sound.h"
 #include "../Core/Game.h"
 #include "Engines/AudioEngineCore.h"
+#include "../Core/Exception.h"
 
 #include <fmod.hpp>
 #include <fmod_errors.h>
@@ -17,7 +18,7 @@ namespace MistThread
     {
       //If we are anything other than expected...
       if (result != FMOD_OK)
-        throw(std::exception(FMOD_ErrorString(result)));
+        throw(Core::Exception(FMOD_ErrorString(result)));
     }
 
     Sound::Sound()

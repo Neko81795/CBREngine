@@ -51,7 +51,7 @@ namespace MistThread
         /// Finds the first child with the given name. returns NULL if not found
         /// </summary>
         /// <param name="name">the name of the object to find</param>
-        /// <exception cref="std::exception">thrown when object doesn't exist</exception>
+        /// <exception cref="Core::Exception">thrown when object doesn't exist</exception>
         GameObject& FindChildByName(const std::string &name);
         /// <summary>
         /// removes the first child with a matching named

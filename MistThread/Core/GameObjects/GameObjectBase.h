@@ -136,15 +136,15 @@ namespace MistThread
         /// Adds the component with the given name
         /// </summary>
         /// <param name="name"> The name of the component to add </typeParam>
-        /// <exception cref="std::exception"> thrown if needed dependencies don't exist </exception>
-        /// <exception cref="std::exception"> thrown when component is already present on the object </exception>
+        /// <exception cref="Core::Exception"> thrown if needed dependencies don't exist </exception>
+        /// <exception cref="Core::Exception"> thrown when component is already present on the object </exception>
         Components::Component* AddComponentByName(const std::string &name);
         /// <summary>
         /// Adds the component with the given name and returns a pointer of the given type
         /// </summary>
         /// <param name="name"> The name of the component to add </typeParam>
-        /// <exception cref="std::exception"> thrown if needed dependencies don't exist </exception>
-        /// <exception cref="std::exception"> thrown when component is already present on the object </exception>
+        /// <exception cref="Core::Exception"> thrown if needed dependencies don't exist </exception>
+        /// <exception cref="Core::Exception"> thrown when component is already present on the object </exception>
         template <typename T>
         T* AddComponentByName(const std::string &name);
         /// <summary>
@@ -245,8 +245,8 @@ namespace MistThread
       /// Adds the component with the given name and returns a pointer of the given type
       /// </summary>
       /// <param name="name"> The name of the component to add </typeParam>
-      /// <exception cref="std::exception"> thrown if needed dependencies don't exist </exception>
-      /// <exception cref="std::exception"> thrown when component is already present on the object </exception>
+      /// <exception cref="Core::Exception"> thrown if needed dependencies don't exist </exception>
+      /// <exception cref="Core::Exception"> thrown when component is already present on the object </exception>
       template <typename T>
       T* GameObjectBase::AddComponentByName(const std::string &name)
       {

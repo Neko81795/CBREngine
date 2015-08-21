@@ -83,7 +83,7 @@ namespace MistThread
       /// returns a reference to the space named
       /// </summary>
       /// <param name="name">the name of the space to find</param>
-      /// <exception cref="std::exception">Thrown when the space cannot be found</exception>
+      /// <exception cref="Core::Exception">Thrown when the space cannot be found</exception>
       GameObjects::Space &FindSpaceByName(const std::string& name);
       /// <summary>
       /// removes the space with the name given
