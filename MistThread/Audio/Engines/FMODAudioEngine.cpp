@@ -1,4 +1,5 @@
 #include "FMODAudioEngine.h"
+#include "../../Core/Exception.h"
 
 #include <iostream>
 #include <string>
@@ -17,7 +18,7 @@ namespace MistThread
       {
         //If we are anything other than expected...
         if (result != FMOD_OK)
-          throw(std::exception(FMOD_ErrorString(result)));
+          throw(Core::Exception(FMOD_ErrorString(result)));
       }
 
       FMODAudioEngine::FMODAudioEngine()
@@ -40,7 +41,7 @@ namespace MistThread
           char messageBuffer[256];
           sprintf(messageBuffer, "Error! You are using an old version of FMOD %08x. This program requires %08x\n",
             Version, FMOD_VERSION);
-          throw(std::exception(messageBuffer));
+          throw(Core::Exception(messageBuffer));
         }
 
         //Check the sound cards in the system.
@@ -71,7 +72,7 @@ namespace MistThread
             //TODO: Figure out a better way to tell the user they may experience some audio issues.
             result = AudioSystem->setDSPBufferSize(1024, 10);
             check(result);
-            throw(std::exception("Audio acceleration not detected! Please adjust your settings and restart the application!"));
+            throw(Core::Exception("Audio acceleration not detected! Please adjust your settings and restart the application!"));
           }
 
           //Get the info for the sound device in place.

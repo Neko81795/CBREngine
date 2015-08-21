@@ -79,12 +79,12 @@ namespace MistThread
         /// </summary>
         /// <param name="path"> the path to the image file </param>
         /// <param name="bitmap"> the bitmap to store the loaded image in </param>
-        /// <exception cref="std::exception"> thrown when the image fails to load </exception>
+        /// <exception cref="Core::Exception"> thrown when the image fails to load </exception>
         virtual void LoadBitmapFromFile(const std::string &path, Bitmap &bitmap);
         /// <summary>
         /// Reloads the given bitmap
         /// </summary>
-        /// <exception cref="std::exception"> thrown when the image fails to load </exception>
+        /// <exception cref="Core::Exception"> thrown when the image fails to load </exception>
         virtual void ReloadBitmap(Bitmap &bitmap);
         /// <summary>
         /// creates a text format with the given font name and size

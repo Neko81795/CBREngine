@@ -35,6 +35,7 @@
     <ClCompile Include="Core\Size2f.cpp" />
     <ClCompile Include="Core\Vector2.cpp" />
     <ClCompile Include="Core\GameObjects\Components\DrawTextComponent.cpp" />
+    <ClCompile Include="Core\Exception.cpp" />
     <ClCompile Include="Utilities\AppInfo.cpp" />
     <ClCompile Include="Input\Engines\DirectXInputEngine.cpp" />
     <ClCompile Include="Graphics\Bitmap.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="Core\Size2f.h" />
     <ClInclude Include="Core\Vector2.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawTextComponent.h" />
+    <ClInclude Include="Core\Exception.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Utilities\AppInfo.h" />
     <ClInclude Include="Input\Engines.h" />

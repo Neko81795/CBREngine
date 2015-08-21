@@ -1,4 +1,5 @@
 #include "XMLElement.h"
+#include "../../Core/Exception.h"
 
 namespace MistThread
 {
@@ -13,7 +14,7 @@ namespace MistThread
           if(Elements[i].Name == name)
             return Elements[i];
         }
-        throw std::exception("Could not find Element");
+        throw Core::Exception("Could not find Element");
       }
 
       const XMLElement & XMLElement::GetElementByName(const std::string &name) const
@@ -23,7 +24,7 @@ namespace MistThread
           if (Elements[i].Name == name)
             return Elements[i];
         }
-        throw std::exception("Could not find Element");
+        throw Core::Exception("Could not find Element");
       }
 
       XMLAttribute & XMLElement::GetAttributeByName(const std::string &name)
@@ -33,7 +34,7 @@ namespace MistThread
           if(Attributes[i].Name == name)
             return Attributes[i];
         }
-        throw std::exception("Could not find Attribute");
+        throw Core::Exception("Could not find Attribute");
       }
 
       const XMLAttribute & XMLElement::GetAttributeByName(const std::string & name) const
@@ -43,7 +44,7 @@ namespace MistThread
           if(Attributes[i].Name == name)
             return Attributes[i];
         }
-        throw std::exception("Could not find Attribute");
+        throw Core::Exception("Could not find Attribute");
       }
 
       std::vector<XMLElement *> XMLElement::GetElementsByName(const std::string &name)

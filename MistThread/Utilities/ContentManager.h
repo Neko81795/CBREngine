@@ -5,6 +5,10 @@
 
 namespace MistThread
 {
+  namespace Core
+  {
+    class Game; //forward declaration
+  }
   namespace Graphics
   {
     class Bitmap; //forward declaration
@@ -13,6 +17,7 @@ namespace MistThread
   {
     class ContentManager
     {
+      friend class MistThread::Core::Game;
     private:
       template <typename T>
       class ContentInfo
@@ -46,6 +51,10 @@ namespace MistThread
       /// </summary>
       /// <param name="path">the path to the bitmap from the root folder</param>
       static Graphics::Bitmap& LoadBitmapFile(const std::string &path);
+      /// <summary>
+      /// unloads everything the content manager controls
+      /// </summary>
+      static void Unload();
     };
   }
 }

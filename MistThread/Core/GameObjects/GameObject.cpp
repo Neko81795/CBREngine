@@ -2,6 +2,7 @@
 #include "Components/DrawEvent.h"
 #include "Components/ObjectDestroyedEvent.h"
 #include "Components/TransformComponent.h"
+#include "../Exception.h"
 
 namespace MistThread
 {
@@ -37,7 +38,7 @@ namespace MistThread
         }
 
         std::string err("Could not find object: " + name);
-        throw std::exception(err.c_str());
+        throw Exception(err.c_str());
       }
 
       void GameObject::RemoveChildByName(const std::string &name)

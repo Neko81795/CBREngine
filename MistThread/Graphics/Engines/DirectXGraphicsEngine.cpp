@@ -6,6 +6,7 @@
 #include "../Bitmap.h"
 #include <d2d1helper.h>
 #include "../TextFormat.h"
+#include "../../Core/Exception.h"
 
 
 namespace MistThread
@@ -97,25 +98,25 @@ namespace MistThread
 
         if(FAILED((hr = ImageFactory->CreateDecoderFromFilename(reinterpret_cast<LPCWSTR>(d.c_str()), NULL, GENERIC_READ,
           WICDecodeMetadataCacheOnLoad, decoder.GetAddressOf()))))
-          throw std::exception("Failed to load Bitmap: ");
+          throw Core::Exception("Failed to load Bitmap: ");
 
         ComPtr<IWICBitmapFrameDecode> frame;
         if(FAILED(decoder->GetFrame(0, frame.GetAddressOf())))
-          throw std::exception("Failed to load Bitmap");
+          throw Core::Exception("Failed to load Bitmap");
 
 
         if(FAILED(ImageFactory->CreateFormatConverter(bitmap.WICImage.GetAddressOf())))
-          throw std::exception("Failed to load Bitmap");
+          throw Core::Exception("Failed to load Bitmap");
 
         if(FAILED(bitmap.WICImage->Initialize(frame.Get(), GUID_WICPixelFormat32bppPBGRA,
           WICBitmapDitherTypeNone, NULL, 0.0, WICBitmapPaletteTypeCustom)))
-          throw std::exception("Failed to load Bitmap");
+          throw Core::Exception("Failed to load Bitmap");
       }
 
       void DirectXGraphicsEngine::ReloadBitmap(Bitmap & bitmap)
       {
         if(FAILED(RenderTarget->CreateBitmapFromWicBitmap(bitmap.WICImage.Get(), bitmap.D2DImage.ReleaseAndGetAddressOf())))
-          throw std::exception("Failed to load Bitmap");
+          throw Core::Exception("Failed to load Bitmap");
       }
 
       void Engines::DirectXGraphicsEngine::CreateTextFormat(const std::string & fontName, float size, TextFormat & format)
@@ -368,10 +369,10 @@ namespace MistThread
 #endif
         //TODO add why we failed
         if(FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, fo, Factory.GetAddressOf())))
-          throw std::exception("Failed to create D2D");
+          throw Core::Exception("Failed to create D2D");
 
         if(FAILED(CoInitialize(NULL)))
-          throw std::exception("Failed to create D2D");
+          throw Core::Exception("Failed to create D2D");
 
         DefaultTextFormat.Font = "Calibri";
         DefaultTextFormat.Size = 10;

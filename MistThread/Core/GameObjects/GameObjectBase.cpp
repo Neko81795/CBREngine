@@ -1,6 +1,7 @@
 #include "GameObjectBase.h"
 #include "Components/Component.h"
 #include "Components/TransformComponent.h"
+#include "../Exception.h"
 #include "../Game.h"
 #include "Space.h"
 
@@ -79,7 +80,7 @@ namespace MistThread
 
         //if we don't know about this component, complain
         if(!construct)
-          throw std::exception(("Component '" + name + "' does not exist").c_str());
+          throw Exception(("Component '" + name + "' does not exist").c_str());
 
         Components::Component *ptr = construct(this);
 
@@ -87,7 +88,7 @@ namespace MistThread
         if(Components[ptr->Name])
         {
           delete ptr;
-          throw std::exception(("Component '" + name + "' already exists on this object").c_str());
+          throw Exception(("Component '" + name + "' already exists on this object").c_str());
         }
 
         //check that the dependencies are there
@@ -96,7 +97,7 @@ namespace MistThread
           if(!Components[dep])
           {
             delete ptr;
-            throw std::exception(("Component dependency could not be found: " + dep).c_str());
+            throw Exception(("Component dependency could not be found: " + dep).c_str());
           }
         }
 

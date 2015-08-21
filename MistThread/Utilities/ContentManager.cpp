@@ -38,5 +38,15 @@ namespace MistThread
       
       return *content->Content;
     }
+
+    void ContentManager::Unload()
+    {
+      while(LoadedBitmaps.size())
+      {
+        auto b = LoadedBitmaps.begin();
+        b->second->~ContentInfo();
+        LoadedBitmaps.erase(b);
+      }
+    }
   }
 }

@@ -69,7 +69,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
   if (hostName == "Hera")
   {
-    mainSpace.LoadLevel("Level3.xml");
+    mainSpace.LoadLevel("Level.xml");
   }
   else if (hostName == "Ghost")
   {

@@ -5,6 +5,7 @@
 #include "../../IO/XML/XMLFile.h"
 #include "../../Utilities/ContentManager.h"
 #include "../../Graphics/Engines/GraphicsEngineCore.h"
+#include "../Exception.h"
 
 #include <fstream>
 
@@ -81,7 +82,7 @@ namespace MistThread
             return *dynamic_cast<GameObject*>(obj);
         }
         //TODO add what the name of the object was.
-        throw std::exception("Could not find object");
+        throw Exception("Could not find object");
       }
 
       const std::list<GameObject *> Space::FindObjectsByName(const std::string &name)

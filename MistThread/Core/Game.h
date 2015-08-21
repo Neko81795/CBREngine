@@ -48,6 +48,11 @@ namespace MistThread
       /// Holds the constructors for all the components that have been registered
       /// </summary>
       static std::map < std::string, GameObjects::Components::Component*(*)(GameObjectBase*)> ComponetConstructors;
+      /// <summary>
+      /// the run loop of the game
+      /// </summary>
+      /// <param name="run">pointer to the indicator to run</param>
+      void Run(bool * run);
     public:
       static Game *CurrentGame;
 
@@ -83,7 +88,7 @@ namespace MistThread
       /// returns a reference to the space named
       /// </summary>
       /// <param name="name">the name of the space to find</param>
-      /// <exception cref="std::exception">Thrown when the space cannot be found</exception>
+      /// <exception cref="Core::Exception">Thrown when the space cannot be found</exception>
       GameObjects::Space &FindSpaceByName(const std::string& name);
       /// <summary>
       /// removes the space with the name given

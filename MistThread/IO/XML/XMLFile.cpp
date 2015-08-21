@@ -1,4 +1,5 @@
 #include "XMLFile.h"
+#include "../../Core/Exception.h"
 
 
 namespace MistThread
@@ -11,7 +12,7 @@ namespace MistThread
       {
         char c;
         if(!file.get(c))
-          throw std::exception("Invalid XML, End of file not expected");
+          throw Core::Exception("Invalid XML, End of file not expected");
         return c;
       }
 
@@ -19,7 +20,7 @@ namespace MistThread
       {
         std::fstream file(path);
         if(!file.is_open())
-          throw std::exception("Couldn't open file");
+          throw Core::Exception("Couldn't open file");
 
 
         int lineNumber = 1;
@@ -50,13 +51,13 @@ namespace MistThread
 
                 //if we reach the end of the line throw an exeption
                 if(currentChar == '\n' || currentChar == '\r')
-                  throw std::exception("Invalid XML, End of line not expected"); //todo give a line number
+                  throw Core::Exception("Invalid XML, End of line not expected"); //todo give a line number
 
               } while(currentChar != ' ' && currentChar != '>');
               if(ElementName == ActiveElements.top()->Name)
                 ActiveElements.pop();
               else
-                throw std::exception("Invalid XML, Active tag must be closed first!"); //todo say which tag and where
+                throw Core::Exception("Invalid XML, Active tag must be closed first!"); //todo say which tag and where
             }
             else
             {
@@ -71,7 +72,7 @@ namespace MistThread
 
                 //if we reach the end of the line throw an exeption
                 if(currentChar == '\n' || currentChar == '\r')
-                  throw std::exception("Invalid XML, End of line not expected"); //todo give a line number
+                  throw Core::Exception("Invalid XML, End of line not expected"); //todo give a line number
 
               } while(currentChar != ' ' && currentChar != '>' && currentChar != '/');
 
@@ -117,7 +118,7 @@ namespace MistThread
                   } while(currentChar == ' ' || currentChar == '=');
 
                   if(currentChar != '"')
-                    throw std::exception("invalid XML, Expected Attribute value"); //todo add a line number
+                    throw Core::Exception("invalid XML, Expected Attribute value"); //todo add a line number
 
                   currentChar = GetNextChar(file);
 
@@ -139,7 +140,7 @@ namespace MistThread
                   } while(currentChar == ' ' || currentChar == '=');
                   //if we reach the end of the line throw an exeption
                   if(currentChar == '\n' || currentChar == '\r')
-                    throw std::exception("Invalid XML, End of line not expected"); //todo give a line number
+                    throw Core::Exception("Invalid XML, End of line not expected"); //todo give a line number
 
                 } while(currentChar != '>' && currentChar != '/');
 
@@ -154,7 +155,7 @@ namespace MistThread
         }
 
         if(ActiveElements.size() != 0)
-          throw std::exception("Not all tags closed"); //todo add which one isn't
+          throw Core::Exception("Not all tags closed"); //todo add which one isn't
 
       }
 
