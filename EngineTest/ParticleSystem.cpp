@@ -126,10 +126,6 @@ void ParticleSystem::InitializeFromXML(const MistThread::IO::XML::XMLElement & e
 }
 
 
-/// <summary>
-/// Populates the given XML Element with data for saving
-/// </summary>
-/// <param name="element">the element to fill with data</param>
 void ParticleSystem::PopulateXML(MistThread::IO::XML::XMLElement & element) const
 {
   Component::PopulateXML(element);
@@ -168,6 +164,7 @@ void ParticleSystem::PopulateXML(MistThread::IO::XML::XMLElement & element) cons
 
   element.Elements.push_back(elementXML_);
 }
+
 
 void ParticleSystem::MonitorParticles(ObjectDestroyedEvent * event)
 {

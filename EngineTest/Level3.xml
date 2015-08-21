@@ -10,9 +10,8 @@
     <Component Name="Draw" Type="0" Mode="0" Stroke="1" Color="(A1,R0,G0.415686,B0.415686)"/>
     <Component Name="DrawText" Text="GIT MEME'D!" Color="(A1,R1,G1,B1)" Font="35, Calibri"/>
     <Component Name="SoundPulse" Sound="ts.wav" Volume=".1" Looping="1"/>
-    <Component Name="ParticleSystem" MaxParticles="100" MaxGeneratedPerFrame="100" GenerationRadius="0" Life="1" LifeVariation=".9" EmissionDelay="0" Repeating="1" GeneratedImmediately="0">
-      <GameObjectParticle Name="Magenta box">
-        <Component Name="DrawText" Text="A" Color="(A1,R0.15,G0.8,B1)" Font="50, Wingdings"/>
+    <Component Name="ParticleSystem" MaxParticles="50" MaxGeneratedPerFrame="10" GenerationRadius="0" Life="1" LifeVariation=".9" EmissionDelay="0" Repeating="1" GeneratedImmediately="0">
+      <GameObjectParticle Name="Feathers">
         <Component Name="Spin" Rotation="1" Acceleration="0"/>
         <Component Name="Force" Velocity="(0, 1)" RandomizationPercentage=".2" Speed="5" SpeedVariation="4.95" Drag="0"/>
       </GameObjectParticle>

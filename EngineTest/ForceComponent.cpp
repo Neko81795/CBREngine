@@ -20,8 +20,9 @@ void ForceComponent::Initialize()
     this);
 
   //Cap relevant values
+  double tempSpeed = speed_;
   if (speedVariation_ < speed_)
-    speed_ = speed_ + Random::RandRange(-speedVariation_, speedVariation_);
+    tempSpeed = speed_ + Random::RandRange(-speedVariation_, speedVariation_);
   if (randomizationPercentage_ > 1)
     randomizationPercentage_ = 1;
   else if (randomizationPercentage_ < 0)
@@ -31,7 +32,7 @@ void ForceComponent::Initialize()
   Velocity.X = requestedVel_.X * (1.0 - randomizationPercentage_) + randomVel_.X * randomizationPercentage_;
   Velocity.Y = requestedVel_.Y * (1.0 - randomizationPercentage_) + randomVel_.Y * randomizationPercentage_;
   Velocity = Velocity.Normalize();
-  Velocity *= speed_;
+  Velocity *= tempSpeed;
 }
 
 
@@ -41,10 +42,6 @@ void ForceComponent::Update(UpdateEvent * event)
 }
 
 
-/// <summary>
-/// Sets up the component from with the given XML Element
-/// </summary>
-/// <param name="element">the element with the data needed to initialize</param>
 void ForceComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
 {
   Component::InitializeFromXML(element);
@@ -66,10 +63,6 @@ void ForceComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & e
 }
 
 
-/// <summary>
-/// Populates the given XML Element with data for saving
-/// </summary>
-/// <param name="element">the element to fill with data</param>
 void ForceComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
 {
   Component::PopulateXML(element);

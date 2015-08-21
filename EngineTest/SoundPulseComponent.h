@@ -1,9 +1,9 @@
 #pragma once
-
 #include "../MistThread/Core.h"
 #include "../MistThread/Audio/Spectrum.h"
 #include "../MistThread/Audio/Sound.h"
 #include <string>
+#include <sstream>
 
 using Event = MistThread::Core::Event;
 using UpdateEvent = MistThread::Core::GameObjects::Components::UpdateEvent;
@@ -13,12 +13,15 @@ using UpdateEvent = MistThread::Core::GameObjects::Components::UpdateEvent;
 class SoundPulseComponent : public MistThread::Core::GameObjects::Components::Component
 {
   public:
+    //Constructors
     /// <summary>
     /// Retrieves the owner of the component.
     /// </summary>
     /// <param name="owner">The owner of this component.</param>
     SoundPulseComponent(MistThread::Core::GameObjects::GameObjectBase* owner);
     ~SoundPulseComponent();
+
+    //Member functions.
     /// <summary>
     /// Updates the sound pulse.
     /// </summary>
@@ -45,11 +48,16 @@ class SoundPulseComponent : public MistThread::Core::GameObjects::Components::Co
     virtual void PopulateXML(MistThread::IO::XML::XMLElement & element) const override;
 
   private:
-    std::string soundName_;
-    MistThread::Audio::Sound sound_;
-    float volume_;
-    bool looping_;
-    MistThread::Core::GameObjects::Components::TransformComponent *pTransform_;
-    MistThread::Core::GameObjects::Components::DrawComponent *pDraw_;
+    //Component Dependencies.
+    MistThread::Core::GameObjects::Components::TransformComponent *pTransform_; //A pointer to the transform component.
+    MistThread::Core::GameObjects::Components::DrawComponent *pDraw_;           //A pointer to the draw component.
+
+    //Internal Variables.
+    MistThread::Audio::Sound sound_; //The sound being used to play and parse data.
+
+    //Parsed Variables.
+    std::string soundName_; //The parsed name of the sound.
+    float volume_;          //The volume of the sound, from 0.0 to 1.0.
+    bool looping_;          //Whether or not the sound is looping.
 };
 

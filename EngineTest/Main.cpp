@@ -75,6 +75,10 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
   {
     mainSpace.LoadLevel("Level3.xml");
   }
+  else if (hostName == "Bird_Noises")
+  {
+    mainSpace.LoadLevel("Luna.xml");
+  }
   else
   {
     mainSpace.LoadLevel("Level.xml");

@@ -1,0 +1,27 @@
+<Level>
+  <GameObject Name="Camera">
+    <Component Name="Transform" ZLayer="30" Position="(10, 0)" Scale="(1, 1)" Rotation="0"/>
+    <Component Name="Camera" Size="15"/>
+  </GameObject>
+  <GameObject Name="Background">
+    <Component Name="Transform" ZLayer="0" Position="(9, 3)" Scale="(1, 1)" Rotation="0"/>
+    <Component Name="DrawBitmap" Path="lunabg.jpg"/>
+  </GameObject>
+  <GameObject Name="overlay">
+    <Component Name="Transform" ZLayer="0.0001" Position="(9, 3)" Scale="(1, 1)" Rotation="0"/>
+    <Component Name="DrawBitmap" Path="lunaoverlay.png"/>
+  </GameObject>
+  <GameObject Name="IN BECAUSE PRELOAD FEATHER">
+    <Component Name="Transform" ZLayer="0.0001" Position="(-20, 0)" Scale="(1, 1)" Rotation="0"/>
+    <Component Name="DrawBitmap" Path="featherluna.png"/>
+  </GameObject>
+  <GameObject Name="Particle Base">
+    <Component Name="Transform" ZLayer="0" Position="(10, -1)" Scale="(1, 1)" Rotation="0"/>
+    <Component Name="ParticleSystem" MaxParticles="15" MaxGeneratedPerFrame="1" GenerationRadius="0" Life="12" LifeVariation="8" EmissionDelay="1.2" Repeating="1" GeneratedImmediately="1">
+      <GameObjectParticle Name="overlay">
+        <Component Name="DrawBitmap" Path="featherluna.png"/>
+        <Component Name="Force" Velocity="(-1, 0)" RandomizationPercentage=".3" Speed=".02" SpeedVariation=".01" Drag="0"/>
+      </GameObjectParticle>
+    </Component>
+  </GameObject>
+</Level>

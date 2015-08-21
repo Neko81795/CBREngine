@@ -30,9 +30,3 @@ void ParticleDataComponent::Initialize()
     [](void * obj, Event* event) { static_cast<ParticleDataComponent *>(obj)->Update(static_cast<UpdateEvent *>(event)); },
     this);
 }
-
-
-void ParticleDataComponent::AssociateWithObject(LONGLONG objectID)
-{
-  particleSystemID = objectID;
-}

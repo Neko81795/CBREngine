@@ -84,6 +84,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FadeWithLife.cpp" />
     <ClCompile Include="KeyMoveComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParticleDataComponent.cpp" />
@@ -101,6 +102,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FadeWithLife.h" />
     <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="ParticleDataComponent.h" />
     <ClInclude Include="ParticleSystem.h" />
@@ -117,9 +119,15 @@
   <ItemGroup>
     <None Include="AudioTest.ogg" />
     <None Include="fmodex64.dll" />
+    <None Include="starlightwaltz.ogg" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Level3.xml" />
+    <Xml Include="Level3.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+    <Xml Include="Luna.xml">
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

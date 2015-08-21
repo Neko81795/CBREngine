@@ -11,6 +11,7 @@
     <ClCompile Include="ForceComponent.cpp" />
     <ClCompile Include="ParticleDataComponent.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="FadeWithLife.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpinComponent.h" />
@@ -22,6 +23,7 @@
     <ClInclude Include="ForceComponent.h" />
     <ClInclude Include="ParticleDataComponent.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="FadeWithLife.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bit.png" />
@@ -29,8 +31,10 @@
   <ItemGroup>
     <None Include="AudioTest.ogg" />
     <None Include="fmodex64.dll" />
+    <None Include="starlightwaltz.ogg" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Level3.xml" />
+    <Xml Include="Luna.xml" />
   </ItemGroup>
 </Project>

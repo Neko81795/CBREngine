@@ -1,5 +1,4 @@
 #include "SoundPulseComponent.h"
-#include <sstream>
 
 
 
@@ -65,9 +64,9 @@ void SoundPulseComponent::Update(UpdateEvent * event)
     max2 *= SCALAR;// .985f;
     max3 *= SCALAR;// .985f;
     float maxAvg = (max1 + max2 + max3) / 3;
-    static float maxMaxAvg = 0.1;
-    if (maxAvg > .1)
-      maxAvg = .1;
+    static float maxMaxAvg = 0.1f;
+    if (maxAvg > .1f)
+      maxAvg = .1f;
     //pDraw_->Color.SetA((maxAvg / maxMaxAvg));
     //pDraw_->Color.SetR(r / max1);
     //pDraw_->Color.SetG(g / max2);
@@ -79,6 +78,7 @@ void SoundPulseComponent::Update(UpdateEvent * event)
   }
 }
 
+
 void SoundPulseComponent::SetSound(std::string s)
 {
   if (looping_)
@@ -88,8 +88,10 @@ void SoundPulseComponent::SetSound(std::string s)
   sound_.SetVolume(volume_);
 }
 
+
 SoundPulseComponent::~SoundPulseComponent()
 { }
+
 
 void SoundPulseComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
 {

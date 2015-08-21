@@ -11,19 +11,49 @@ using UpdateEvent = MistThread::Core::GameObjects::Components::UpdateEvent;
 using ObjectDestroyedEvent = MistThread::Core::GameObjects::Components::ObjectDestroyedEvent;
 
 
+
 class ParticleSystem : public MistThread::Core::GameObjects::Components::Component
 {
 public:
+  //Constructors
+  /// <summary>
+  /// Constructs the component.
+  /// </summary>
+  /// <param name="owner">The Object this component is attached to.</param>
   ParticleSystem(MistThread::Core::GameObjects::GameObjectBase* owner);
+  /// <summary>
+  /// Default destructor for the component.
+  /// </summary>
   ~ParticleSystem() { }
 
+  //Member Functions
+  /// <summary>
+  /// Updates the component via UpdateEvent.
+  /// </summary>
+  /// <param name="event">An event dealing with the updating of this component.</param>
   void Update(UpdateEvent * event);
+  /// <summary>
+  /// Initializes the ParticleSystemComponent.
+  /// </summary>
   void Initialize() override;
+  /// <summary>
+  /// Creates a particle for the system with the specified parameters.
+  /// </summary>
   void CreateParticle();
+  /// <summary>
+  /// Recieves an event every time a particle dies- monitors the number alive.
+  /// </summary>
   void MonitorParticles(ObjectDestroyedEvent *event);
+  /// <summary>
+  /// Sets up the component from with the given XML Element.
+  /// </summary>
+  /// <param name="element">The element with the data needed to initialize.</param>
   virtual void InitializeFromXML(const MistThread::IO::XML::XMLElement & element) override;
+  /// <summary>
+  /// Populates the given XML Element with data for saving.
+  /// </summary>
+  /// <param name="element">The element to fill with data.</param>
   virtual void PopulateXML(MistThread::IO::XML::XMLElement & element) const override;
-
 
 private:
   //Other components
