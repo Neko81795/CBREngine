@@ -48,6 +48,11 @@ namespace MistThread
       /// Holds the constructors for all the components that have been registered
       /// </summary>
       static std::map < std::string, GameObjects::Components::Component*(*)(GameObjectBase*)> ComponetConstructors;
+      /// <summary>
+      /// the run loop of the game
+      /// </summary>
+      /// <param name="run">pointer to the indicator to run</param>
+      void Run(bool * run);
     public:
       static Game *CurrentGame;
 

@@ -14,32 +14,33 @@
 #include "GameObjects/Components.h"
 #include "../Input/Engines/InputEngineCore.h"
 #include "Exception.h"
+#include "../Utilities/ContentManager.h"
 
 
 namespace MistThread
 {
   namespace Core
   {
-    void Run(bool * run, Game * game)
+    void Game::Run(bool *run)
     {
       try
       {
-        game->Initialize();
+        Initialize();
 
         while(*run)
         {
-          game->Input->Update(game->Space.GameTime);
+          Input->Update(Space.GameTime);
 
-          for(GameObjects::GameObjectBase *space : game->Objects)
+          for(GameObjects::GameObjectBase *space : Objects)
           {
-            static_cast<GameObjects::Space*>(space)->Update();
+            dynamic_cast<GameObjects::Space*>(space)->Update();
           }
-          game->Graphics->BeginDraw();
-          game->Graphics->Clear(game->ClearColor);
+          Graphics->BeginDraw();
+          Graphics->Clear(ClearColor);
 
-          game->Draw(*game->Graphics);
+          Draw(*Graphics);
 
-          game->Graphics->EndDraw();
+          Graphics->EndDraw();
         }
       }
       catch(Exception ex)
@@ -48,6 +49,13 @@ namespace MistThread
         int i = 0;
         ++i;
       }
+      
+      Utilities::ContentManager::Unload();
+    }
+
+    void Run(bool * run, Game * game)
+    {
+      game->Run(run);
     }
 
 #if WIN32
@@ -56,7 +64,7 @@ namespace MistThread
       bool run;
       MSG msg;
 
-      auto f = std::async(Run, &run, this);
+      auto f = std::async(Core::Run, &run, this);
       
       while(run)
       {
