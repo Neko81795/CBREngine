@@ -122,6 +122,8 @@
     <None Include="starlightwaltz.ogg" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="Level.xml" />
+    <Xml Include="Level2.xml" />
     <Xml Include="Level3.xml">
       <SubType>Designer</SubType>
     </Xml>

@@ -23,6 +23,7 @@ namespace MistThread
         public:
           Graphics::Bitmap *Image;
           TransformComponent *Transform;
+          float Opacity;
 
 
           ///////////////////////////////

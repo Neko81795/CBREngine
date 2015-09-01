@@ -36,5 +36,7 @@
   <ItemGroup>
     <Xml Include="Level3.xml" />
     <Xml Include="Luna.xml" />
+    <Xml Include="Level2.xml" />
+    <Xml Include="Level.xml" />
   </ItemGroup>
 </Project>

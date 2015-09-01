@@ -19,7 +19,7 @@ namespace MistThread
           if (Image != NULL)
           {
             Size2 size = Image->GetSize();
-            drawEvent->Graphics.DrawBitmap(*Image, Transform->Position, 1, Vector2(static_cast<float>(size.Width)/2, static_cast<float>(size.Height) / 2), Transform->Rotation, Transform->Scale, NULL, Transform->GetZLayer());
+            drawEvent->Graphics.DrawBitmap(*Image, Transform->Position, Opacity, Vector2(static_cast<float>(size.Width)/2, static_cast<float>(size.Height) / 2), Transform->Rotation, Transform->Scale, NULL, Transform->GetZLayer());
           }
         }
 
@@ -45,12 +45,19 @@ namespace MistThread
 
           ImagePath = element.GetAttributeByName("Path").Value;
           Image = &Utilities::ContentManager::LoadBitmapFile(ImagePath);
+
+          std::stringstream str(element.GetAttributeByName("Opacity").Value);
+          str >> Opacity;
         }
 
         void DrawBitmapComponent::PopulateXML(IO::XML::XMLElement & element) const
         {
           Component::PopulateXML(element);
           element.SetAttribute("Path", ImagePath);
+
+          std::stringstream str;
+          str << Opacity;
+          element.SetAttribute("Opacity", str.str());
         }
 
         DrawBitmapComponent::DrawBitmapComponent(GameObjects::GameObjectBase *owner) : Component(owner, "Transform")
