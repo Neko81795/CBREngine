@@ -1,6 +1,7 @@
 #pragma once
 #include "../MistThread/Core.h"
-
+#include <sstream>
+#include "Random.h"
 
 using Event = MistThread::Core::Event;
 using UpdateEvent = MistThread::Core::GameObjects::Components::UpdateEvent;
@@ -10,6 +11,8 @@ class SpinComponent : public MistThread::Core::GameObjects::Components::Componen
 public:
   MistThread::Core::GameObjects::Components::TransformComponent* Transform;
   float RotationSpeed;
+  float RotationVariation;
+  float RotationVariationAmount;
   float Acceleration;
   void Update(UpdateEvent * event);
   void Initialize() override;

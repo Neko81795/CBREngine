@@ -16,10 +16,11 @@
     <Component Name="DrawBitmap" Path="featherluna.png"/>
   </GameObject>
   <GameObject Name="Particle Base">
-    <Component Name="Transform" ZLayer="0" Position="(10, -1)" Scale="(1, 1)" Rotation="0"/>
+    <Component Name="Transform" ZLayer="0" Position="(11, -1)" Scale="(1, 1)" Rotation="0"/>
     <Component Name="ParticleSystem" MaxParticles="15" MaxGeneratedPerFrame="1" GenerationRadius="0" Life="12" LifeVariation="8" EmissionDelay="1.2" Repeating="1" GeneratedImmediately="1">
       <GameObjectParticle Name="overlay">
         <Component Name="DrawBitmap" Path="featherluna.png"/>
+        <Component Name="Spin" Rotation="0" RotationVariation="10" Acceleration="0"/>
         <Component Name="Force" Velocity="(-1, 0)" RandomizationPercentage=".3" Speed=".02" SpeedVariation=".01" Drag="0"/>
       </GameObjectParticle>
     </Component>

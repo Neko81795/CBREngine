@@ -1,10 +1,10 @@
 #include "SpinComponent.h"
-#include <sstream>
+
 
 
 void SpinComponent::Update(UpdateEvent *)
 {
-  Transform->Rotation += RotationSpeed;
+  Transform->Rotation += (RotationSpeed + RotationVariationAmount);
   RotationSpeed += Acceleration;
 }
 
@@ -16,6 +16,8 @@ void SpinComponent::Initialize()
     "Update",
     [](void * obj, Event* event) { static_cast<SpinComponent *>(obj)->Update(static_cast<UpdateEvent *>(event)); },
     this);
+
+  RotationVariationAmount = Random::RandRange(-RotationVariation, RotationVariation);
 }
 
 void SpinComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
@@ -24,6 +26,10 @@ void SpinComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & el
 
   std::stringstream str(element.GetAttributeByName("Rotation").Value);
   str >> RotationSpeed;
+  str = std::stringstream(); //reset the stream
+
+  str << element.GetAttributeByName("RotationVariation").Value;
+  str >> RotationVariation;
   str = std::stringstream(); //reset the stream
 
   str << element.GetAttributeByName("Acceleration").Value;
@@ -37,6 +43,10 @@ void SpinComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
   std::stringstream str;
   str << RotationSpeed;
   element.SetAttribute("Rotation", str.str());
+
+  str = std::stringstream(); //reset the stream
+  str << RotationVariation;
+  element.SetAttribute("RotationVariation", str.str());
 
   str = std::stringstream(); //reset the stream
   str << Acceleration;
