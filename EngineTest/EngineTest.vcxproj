@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FadeWithLifeComponent.h" />
+    <ClInclude Include="GatherKeystrokesComponent.h" />
     <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="ParticleDataComponent.h" />
     <ClInclude Include="ParticleSystem.h" />
