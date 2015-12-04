@@ -34,7 +34,7 @@ namespace MistThread
         ConsoleComponent::ConsoleComponent(GameObjects::GameObjectBase *owner) : Component(owner)
         {
           ConsoleSpace = &Owner.Game.CreateNamedSpace("Console");
-          ConsoleSpace->SetSpaceLayer(1024);
+          ConsoleSpace->SetSpaceLayer(MAXINT);
           Game.UnRegisterDraw(ConsoleSpace);
 
           Console = &ConsoleSpace->CreateObjectAt(Vector2());

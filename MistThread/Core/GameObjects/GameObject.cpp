@@ -183,9 +183,6 @@ namespace MistThread
         {
           if (!AlreadyAdded(dep, element))
           {
-            //! GEEZE AGAIN!?!?!?!?!?!?! WTF MAN!! *not as panicked hoers noises*
-            //it's fine cause I'm not changing it though >.>
-            //or at least I shouldn't be because all the dependencies should be there in the first place
             const Components::Component& comp = *static_cast<std::map<std::string, Components::Component*>>(components)[dep];
 
             AddDependencys(comp, element, components);

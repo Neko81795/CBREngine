@@ -16,7 +16,7 @@ namespace MistThread
         return c;
       }
 
-      XMLFile::XMLFile(std::string path)
+      XMLFile::XMLFile(const std::string &path)
       {
         std::fstream file(path);
         if(!file.is_open())

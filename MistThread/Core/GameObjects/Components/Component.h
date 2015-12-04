@@ -31,7 +31,7 @@ namespace MistThread
         private:
           std::map<GameObjectBase *, std::list<Delegate<Event *>>> EventDispatchers;
           std::map<Delegate<Event *>, std::string> DelegateIDs;
-          Component& operator=(const Component&) {}
+          Component& operator=(const Component&) = delete;
         public:
           std::string Name;
           GameObjects::Space &Space;

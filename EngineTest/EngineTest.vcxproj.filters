@@ -11,7 +11,7 @@
     <ClCompile Include="ForceComponent.cpp" />
     <ClCompile Include="ParticleDataComponent.cpp" />
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="FadeWithLife.cpp" />
+    <ClCompile Include="FadeWithLifeComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpinComponent.h" />
@@ -23,7 +23,7 @@
     <ClInclude Include="ForceComponent.h" />
     <ClInclude Include="ParticleDataComponent.h" />
     <ClInclude Include="Random.h" />
-    <ClInclude Include="FadeWithLife.h" />
+    <ClInclude Include="FadeWithLifeComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bit.png" />

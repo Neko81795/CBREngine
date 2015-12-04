@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\GameObjects\Components\AnchorComponent.cpp" />
     <ClCompile Include="Audio\Engines\AudioEngineCore.cpp" />
     <ClCompile Include="Audio\Engines\FMODAudioEngine.cpp" />
     <ClCompile Include="Audio\Sound.cpp" />
@@ -61,6 +62,7 @@
     <ClCompile Include="IO\XML\XMLFile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\GameObjects\Components\AnchorComponent.h" />
     <ClInclude Include="Audio\Engines\AudioEngineCore.h" />
     <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
     <ClInclude Include="Audio\Sound.h" />
@@ -166,6 +168,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.lib</TargetExt>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)FMOD LIB</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;$(SolutionDir)FMOD LIB</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

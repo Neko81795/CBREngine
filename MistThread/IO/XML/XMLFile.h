@@ -16,7 +16,7 @@ namespace MistThread
       public:
         std::vector<XMLElement> Elements;
         std::stack<XMLElement *> ActiveElements;
-        XMLFile(std::string path);
+        XMLFile(const std::string &path);
         ~XMLFile();
       };
     }

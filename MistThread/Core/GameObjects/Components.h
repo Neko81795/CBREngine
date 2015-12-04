@@ -1,4 +1,5 @@
 #pragma once
+#include "Components/AnchorComponent.h"
 #include "Components/CameraComponent.h"
 #include "Components/Component.h"
 #include "Components/ConsoleComponent.h"

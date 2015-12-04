@@ -149,6 +149,7 @@
     <ClCompile Include="Core\GameObjects\Components\ConsoleComponent.cpp" />
     <ClCompile Include="Core\GameObjects\Components\CameraComponent.cpp" />
     <ClCompile Include="Core\Exception.cpp" />
+    <ClCompile Include="Core\GameObjects\Components\AnchorComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameWindow.h">
@@ -298,5 +299,6 @@
     <ClInclude Include="Core\GameObjects\Components\ObjectDestroyedEvent.h" />
     <ClInclude Include="Core\GameObjects\Components\CameraComponent.h" />
     <ClInclude Include="Core\Exception.h" />
+    <ClInclude Include="Core\GameObjects\Components\AnchorComponent.h" />
   </ItemGroup>
 </Project>
