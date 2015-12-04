@@ -97,16 +97,9 @@ void SoundPulseComponent::InitializeFromXML(const MistThread::IO::XML::XMLElemen
 {
   Component::InitializeFromXML(element);
 
-  std::stringstream str(element.GetAttributeByName("Sound").Value);
-  str >> soundName_;
-
-  str = std::stringstream();
-  str << element.GetAttributeByName("Volume").Value;
-  str >> volume_;
-
-  str = std::stringstream();
-  str << element.GetAttributeByName("Looping").Value;
-  str >> looping_;
+  soundName_ = element.GetAttributeValueByName("Sound");
+  volume_ = element.GetAttributeValueByName("Volume", 1.0f);
+  looping_ = element.GetAttributeValueByName("Looping", false);
 }
 
 

@@ -91,38 +91,16 @@ void ParticleSystem::Initialize()
 void ParticleSystem::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
 {
   Component::InitializeFromXML(element);
-  elementXML_ = element.GetElementByName("GameObjectParticle");
+  elementXML_ = *element.GetElementByName("GameObjectParticle");
 
-  std::stringstream str(element.GetAttributeByName("MaxParticles").Value);
-  str >> maxParticles_;
-  str = std::stringstream();
-
-  str << element.GetAttributeByName("MaxGeneratedPerFrame").Value;
-  str >> maxGeneratedPerFrame_;
-  str = std::stringstream();
-
-  str << element.GetAttributeByName("GenerationRadius").Value;
-  str >> generationRadius_;
-  str = std::stringstream();
-
-  str << element.GetAttributeByName("Life").Value;
-  str >> life_;
-  str = std::stringstream();
-
-  str << element.GetAttributeByName("LifeVariation").Value;
-  str >> lifeVariation_;
-  str = std::stringstream();
-  
-  str << element.GetAttributeByName("EmissionDelay").Value;
-  str >> emissionDelay_;
-  str = std::stringstream();
-
-  str << element.GetAttributeByName("Repeating").Value;
-  str >> repeating_;
-  str = std::stringstream();
-
-  str << element.GetAttributeByName("GeneratedImmediately").Value;
-  str >> generateImmediately_;
+  maxParticles_ = element.GetAttributeValueByName<unsigned int>("MaxParticles", 10);
+  maxGeneratedPerFrame_ = element.GetAttributeValueByName<unsigned int>("MaxGeneratedPerFrame", 1);
+  generationRadius_ = element.GetAttributeValueByName("GenerationRadius", 0.0);
+  life_ = element.GetAttributeValueByName("Life", 60000.0);
+  lifeVariation_ = element.GetAttributeValueByName<double>("LifeVariation");
+  emissionDelay_ = element.GetAttributeValueByName("EmissionDelay", 1000.0);
+  repeating_ = element.GetAttributeValueByName("Repeating", true);
+  generateImmediately_ = element.GetAttributeValueByName("GeneratedImmediately", true);
 }
 
 

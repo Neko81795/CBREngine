@@ -1,7 +1,7 @@
 #include "DrawTextComponent.h"
-#include "../GameObject.h"
-#include "../Space.h"
-#include "../../Game.h"
+#include "Core/GameObjects/GameObject.h"
+#include "Core/GameObjects/Space.h"
+#include "Core/Game.h"
 #include <sstream>
 
 namespace MistThread
@@ -31,13 +31,9 @@ namespace MistThread
         {
           Component::InitializeFromXML(element);
 
-          Text = element.GetAttributeByName("Text").Value;
-          
-          std::stringstream str(element.GetAttributeByName("Color").Value);
-          str >> Color;
-
-          str = std::stringstream(element.GetAttributeByName("Font").Value);
-          str >> Font;
+          Text = element.GetAttributeValueByName("Text");
+          Color = element.GetAttributeValueByName("Color", Graphics::Color(1, 1, 1, 1));
+          Font = element.GetAttributeValueByName("Font", Game.Graphics->GetDefaultTextFormat());
         }
 
         //! this is unsafe

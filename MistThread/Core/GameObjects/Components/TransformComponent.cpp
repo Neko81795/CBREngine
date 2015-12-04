@@ -27,19 +27,10 @@ namespace MistThread
         {
           Component::InitializeFromXML(element);
 
-          std::stringstream str(element.GetAttributeByName("ZLayer").Value);
-          str >> ZLayer;
-          SetZLayer(ZLayer);
-          str = std::stringstream();
-
-          str << element.GetAttributeByName("Position").Value;
-          str >> Position;
-
-          str = std::stringstream(element.GetAttributeByName("Scale").Value);
-          str >> Scale;
-
-          str = std::stringstream(element.GetAttributeByName("Rotation").Value);
-          str >> Rotation;
+          SetZLayer(element.GetAttributeValueByName("ZLayer", 0.0f));
+          Position = element.GetAttributeValueByName<Vector2>("Position");
+          Scale = element.GetAttributeValueByName("Scale", Size2F(1,1));
+          Rotation = element.GetAttributeValueByName("Rotation", 0.0f);
         }
 
         void TransformComponent::PopulateXML(IO::XML::XMLElement & element) const

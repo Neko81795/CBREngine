@@ -24,6 +24,7 @@
     <ClInclude Include="ParticleDataComponent.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="FadeWithLifeComponent.h" />
+    <ClInclude Include="GatherKeystrokesComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bit.png" />

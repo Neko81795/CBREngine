@@ -11,6 +11,12 @@ namespace MistThread
     void TextFormat::UpdateFormat(Engines::LimitedGraphicsEngineCore * eng)
     {
       Engines::LimitedGraphicsEngineCore * graphics = eng ? eng : Core::Game::CurrentGame->Graphics;
+      
+      if (Font.empty() && graphics)
+      {
+        Font = graphics->GetDefaultTextFormat().Font;
+        Size = graphics->GetDefaultTextFormat().Size;
+      }
 
       graphics->CreateTextFormat(Font, Size, *this);
     }
@@ -41,6 +47,27 @@ namespace MistThread
       return Size;
     }
 
+    TextFormat& TextFormat::operator=(const TextFormat& other)
+    {
+      if (other.Font.empty())
+        return *this;
+
+      Font = other.Font;
+      Size = other.Size;
+
+      Core::Game::CurrentGame->Graphics->DeviceRecreated -= &DeviceRecreatedCallback;
+
+      DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>(DevRecreate, this);
+
+      Core::Game::CurrentGame->Graphics->DeviceRecreated += &DeviceRecreatedCallback;
+
+#if WIN32
+      UpdateFormat();
+#endif
+
+      return *this;
+    }
+
     std::istream &operator>>(std::istream &stream, TextFormat& font)
     {
       stream >> font.Size;
@@ -61,15 +88,41 @@ namespace MistThread
       return stream;
     }
 
-    TextFormat::TextFormat(Engines::LimitedGraphicsEngineCore *graphics, const std::string &fontName, float size) : DeviceRecreatedCallback(NULL,NULL)
+    void DevRecreate(void * obj, GraphicsEvent & evnt)
+    {
+      reinterpret_cast<TextFormat *>(obj)->UpdateFormat(evnt.Graphics);
+    }
+
+    TextFormat::TextFormat() : DeviceRecreatedCallback(NULL, NULL)
+    {
+      if (Core::Game::CurrentGame)
+      {
+        TextFormat& def = Core::Game::CurrentGame->Graphics->GetDefaultTextFormat();
+        Font = def.Font;
+        Size = def.Size;
+
+        DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>(DevRecreate, this);
+
+        Core::Game::CurrentGame->Graphics->DeviceRecreated += &DeviceRecreatedCallback;
+
+#if WIN32
+        UpdateFormat();
+#endif
+      }
+      else
+      {
+        Font = "";
+        Size = 0;
+      }
+    }
+
+    TextFormat::TextFormat(Engines::LimitedGraphicsEngineCore *graphics, const std::string &fontName, float size) : DeviceRecreatedCallback(NULL, NULL)
     {
       Font = fontName;
       Size = size;
 
-      DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>([](void * obj, GraphicsEvent & evnt)
-      {
-        reinterpret_cast<TextFormat *>(obj)->UpdateFormat(evnt.Graphics);
-      }, this);
+      DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>(DevRecreate, this);
+
       graphics->DeviceRecreated += &DeviceRecreatedCallback;
 
 #if WIN32
@@ -82,10 +135,7 @@ namespace MistThread
       Font = fontName;
       Size = size;
 
-      DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>([](void * obj, GraphicsEvent & evnt)
-      {
-        reinterpret_cast<TextFormat *>(obj)->UpdateFormat(evnt.Graphics);
-      }, this);
+      DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>(DevRecreate, this);
 
       Core::Game::CurrentGame->Graphics->DeviceRecreated += &DeviceRecreatedCallback;
 
@@ -96,15 +146,15 @@ namespace MistThread
 
     TextFormat::TextFormat(const TextFormat & other) : DeviceRecreatedCallback(NULL, NULL)
     {
+      if (other.Font.empty())
+        return;
+
       Font = other.Font;
       Size = other.Size;
 
 
 
-      DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>([](void * obj, GraphicsEvent & evnt)
-      {
-        reinterpret_cast<TextFormat *>(obj)->UpdateFormat(evnt.Graphics);
-      }, this);
+      DeviceRecreatedCallback = Core::Delegate<GraphicsEvent &>(DevRecreate, this);
 
       Core::Game::CurrentGame->Graphics->DeviceRecreated += &DeviceRecreatedCallback;
 

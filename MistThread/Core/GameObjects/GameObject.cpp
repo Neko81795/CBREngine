@@ -128,11 +128,11 @@ namespace MistThread
 
       void GameObject::InitializeFromXML(const IO::XML::XMLElement & element)
       {
-        Name = element.GetAttributeByName("Name").Value;
+        Name = element.GetAttributeValueByName("Name");
 
         for (auto el : element.GetElementsByName("Component"))
         {
-          AddComponentByName(el->GetAttributeByName("Name").Value)->InitializeFromXML(*el);
+          AddComponentByName(el->GetAttributeValueByName("Name"))->InitializeFromXML(*el);
         }
 
         for (auto el : element.GetElementsByName("GameObject"))
@@ -165,7 +165,7 @@ namespace MistThread
       {
         for (auto el : element.GetElementsByName("Component"))
         {
-          if (el->GetAttributeByName("Name").Value == name)
+          if (el->GetAttributeValueByName("Name") == name)
             return true;
         }
 

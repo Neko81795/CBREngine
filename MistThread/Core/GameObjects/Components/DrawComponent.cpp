@@ -47,20 +47,10 @@ namespace MistThread
         {
           Component::InitializeFromXML(element);
           
-          std::stringstream str(element.GetAttributeByName("Mode").Value);
-          int temp;
-          str >> temp;
-          Mode = static_cast<DrawMode>(temp);
-
-          str = std::stringstream(element.GetAttributeByName("Type").Value);
-          str >> temp;
-          Type = static_cast<GeometryType>(temp);
-
-          str = std::stringstream(element.GetAttributeByName("Stroke").Value);
-          str >> Stroke;
-
-          str = std::stringstream(element.GetAttributeByName("Color").Value);
-          str >> Color;
+          Mode = static_cast<DrawMode>(element.GetAttributeValueByName<int>("Mode"));
+          Type = static_cast<GeometryType>(element.GetAttributeValueByName<int>("Type"));
+          Stroke = element.GetAttributeValueByName("Stroke", 1.0f);
+          Color = element.GetAttributeValueByName("Color", Graphics::Color(1,1,1,1));
         }
 
         void DrawComponent::PopulateXML(IO::XML::XMLElement & element) const

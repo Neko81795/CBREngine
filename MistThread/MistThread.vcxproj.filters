@@ -300,5 +300,7 @@
     <ClInclude Include="Core\GameObjects\Components\CameraComponent.h" />
     <ClInclude Include="Core\Exception.h" />
     <ClInclude Include="Core\GameObjects\Components\AnchorComponent.h" />
+    <ClInclude Include="Core\Exception.hpp" />
+    <ClInclude Include="IO\XML\XMLElement.hpp" />
   </ItemGroup>
 </Project>

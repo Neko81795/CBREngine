@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "GameObjects/GameObjectBase.h"
-#include "../Graphics/Color.h"
+#include "Graphics/Color.h"
 
 namespace MistThread
 {

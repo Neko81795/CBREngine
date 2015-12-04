@@ -26,8 +26,7 @@ namespace MistThread
         {
           Component::InitializeFromXML(element);
 
-          std::stringstream str(element.GetAttributeByName("Size").Value);
-          str >> Size;
+          Size = element.GetAttributeValueByName("Size", 20.0f);
         }
 
         void CameraComponent::PopulateXML(IO::XML::XMLElement & element) const

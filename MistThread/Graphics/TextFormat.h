@@ -33,6 +33,7 @@ namespace MistThread
     class TextFormat
     {
       friend Engines::LimitedGraphicsEngineCore;
+      friend void DevRecreate(void * obj, GraphicsEvent & evnt);
     private:
 #if WIN32
       friend Engines::DirectXGraphicsEngine;
@@ -53,11 +54,11 @@ namespace MistThread
       std::string GetFont() const;
       float GetSize() const;
 
+      TextFormat& operator=(const TextFormat& rhs);
       friend std::istream &operator>>(std::istream &stream, TextFormat& color);
       friend std::ostream &operator<<(std::ostream &stream, const TextFormat& color);
 
     private:
-      TextFormat() : DeviceRecreatedCallback(NULL,NULL) {}
       /// <summary>
       /// creates a text format using the graphics given
       /// </summary>
@@ -66,6 +67,10 @@ namespace MistThread
       /// <param name="size">the size in point that the font should be</param>
       TextFormat(Engines::LimitedGraphicsEngineCore *graphics, const std::string &fontName, float size);
     public:
+      /// <summary>
+      /// creates a default text format
+      /// </summary>
+      TextFormat();
       /// <summary>
       /// creates a text format using the graphics of the current game
       /// </summary>

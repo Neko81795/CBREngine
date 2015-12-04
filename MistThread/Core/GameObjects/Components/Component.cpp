@@ -23,7 +23,7 @@ namespace MistThread
         void Component::InitializeFromXML(const IO::XML::XMLElement & element)
         {
           //this doesn't actually have to be done, but I'm doing it anyway for an example
-          Name = element.GetAttributeByName("Name").Value;
+          Name = element.GetAttributeByName("Name")->Value;
         }
 
         void Component::PopulateXML(IO::XML::XMLElement & element) const

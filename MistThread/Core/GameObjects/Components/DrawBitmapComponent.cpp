@@ -1,7 +1,8 @@
 #include "DrawBitmapComponent.h"
-#include "../GameObject.h"
-#include "../Space.h"
-#include "../../../Utilities/ContentManager.h"
+#include "Core/GameObjects/GameObject.h"
+#include "Core/GameObjects/Space.h"
+#include "Utilities/ContentManager.h"
+#include "Core/Exception.h"
 #include <sstream>
 
 
@@ -43,11 +44,10 @@ namespace MistThread
         {
           Component::InitializeFromXML(element);
 
-          ImagePath = element.GetAttributeByName("Path").Value;
+          ImagePath = element.GetAttributeByName("Path")->Value;
           Image = &Utilities::ContentManager::LoadBitmapFile(ImagePath);
 
-          std::stringstream str(element.GetAttributeByName("Opacity").Value);
-          str >> Opacity;
+          Opacity = element.GetAttributeValueByName("Opacity", 1.0f);
         }
 
         void DrawBitmapComponent::PopulateXML(IO::XML::XMLElement & element) const

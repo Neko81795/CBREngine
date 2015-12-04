@@ -60,6 +60,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>
       </MinimalRebuild>
+      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -77,6 +78,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -106,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FadeWithLifeComponent.h" />
+    <ClInclude Include="GatherKeystrokesComponent.h" />
     <ClInclude Include="KeyMoveComponent.h" />
     <ClInclude Include="ParticleDataComponent.h" />
     <ClInclude Include="ParticleSystem.h" />
@@ -125,7 +128,9 @@
     <None Include="starlightwaltz.ogg" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Level.xml" />
+    <Xml Include="Level.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="Level2.xml" />
     <Xml Include="Level3.xml">
       <SubType>Designer</SubType>

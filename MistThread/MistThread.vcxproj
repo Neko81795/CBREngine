@@ -62,6 +62,10 @@
     <ClCompile Include="IO\XML\XMLFile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Exception.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Core\GameObjects\Components\AnchorComponent.h" />
     <ClInclude Include="Audio\Engines\AudioEngineCore.h" />
     <ClInclude Include="Audio\Engines\FMODAudioEngine.h" />
@@ -96,6 +100,10 @@
     <ClInclude Include="Core\Vector2.h" />
     <ClInclude Include="Core\GameObjects\Components\DrawTextComponent.h" />
     <ClInclude Include="Core\Exception.h" />
+    <ClInclude Include="IO\XML\XMLElement.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Utilities\AppInfo.h" />
     <ClInclude Include="Input\Engines.h" />
@@ -185,6 +193,7 @@
       <MinimalRebuild>
       </MinimalRebuild>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -203,6 +212,7 @@
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

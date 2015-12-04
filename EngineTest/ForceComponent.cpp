@@ -2,7 +2,7 @@
 
 
 
-ForceComponent::ForceComponent(MistThread::Core::GameObjects::GameObjectBase* owner) : Component(owner, "Transform"), randomVel_(Random::RandRange(-1, 1), Random::RandRange(-1, 1))
+ForceComponent::ForceComponent(MistThread::Core::GameObjects::GameObjectBase* owner) : Component(owner, "Transform"), randomVel_(static_cast<float>(Random::RandRange(-1, 1)), static_cast<float>(Random::RandRange(-1, 1)))
 {
   Name = "Force";
 }
@@ -29,10 +29,10 @@ void ForceComponent::Initialize()
     randomizationPercentage_ = 0;
 
   //Calculate velocity.
-  Velocity.X = requestedVel_.X * (1.0 - randomizationPercentage_) + randomVel_.X * randomizationPercentage_;
-  Velocity.Y = requestedVel_.Y * (1.0 - randomizationPercentage_) + randomVel_.Y * randomizationPercentage_;
+  Velocity.X = static_cast<float>(requestedVel_.X * (1.0 - randomizationPercentage_) + randomVel_.X * randomizationPercentage_);
+  Velocity.Y = static_cast<float>(requestedVel_.Y * (1.0 - randomizationPercentage_) + randomVel_.Y * randomizationPercentage_);
   Velocity = Velocity.Normalize();
-  Velocity *= tempSpeed;
+  Velocity *= static_cast<float>(tempSpeed);
 }
 
 
@@ -46,20 +46,10 @@ void ForceComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & e
 {
   Component::InitializeFromXML(element);
 
-  std::stringstream str(element.GetAttributeByName("Velocity").Value);
-  str >> requestedVel_;
-
-  str = std::stringstream();
-  str << element.GetAttributeByName("RandomizationPercentage").Value;
-  str >> randomizationPercentage_;
-
-  str = std::stringstream();
-  str << element.GetAttributeByName("Speed").Value;
-  str >> speed_;
-
-  str = std::stringstream();
-  str << element.GetAttributeByName("SpeedVariation").Value;
-  str >> speedVariation_;
+  requestedVel_ = element.GetAttributeValueByName<MistThread::Core::Vector2>("Velocity");
+  randomizationPercentage_ = element.GetAttributeValueByName<double>("RandomizationPercentage");
+  speed_ = element.GetAttributeValueByName<double>("Speed");
+  speedVariation_ = element.GetAttributeValueByName<double>("SpeedVariation");
 }
 
 

@@ -20,16 +20,9 @@ void SinXComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & el
 {
   Component::InitializeFromXML(element);
 
-  std::stringstream str(element.GetAttributeByName("Period").Value);
-  str >> Period;
-  str = std::stringstream(); //reset the stream
-
-  str << element.GetAttributeByName("Scale").Value;
-  str >> Scale;
-  str = std::stringstream(); //reset the stream
-
-  str << element.GetAttributeByName("Offset").Value;
-  str >> Offset;
+  Period = element.GetAttributeValueByName("Period", 1.0f);
+  Scale = element.GetAttributeValueByName("Scale", 1.0f);
+  Offset = element.GetAttributeValueByName<float>("Offset");
 }
 
 void SinXComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
