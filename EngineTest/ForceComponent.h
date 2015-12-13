@@ -35,12 +35,12 @@ struct ForceComponent : public MistThread::Core::GameObjects::Components::Compon
     /// Sets up the component from with the given XML Element.
     /// </summary>
     /// <param name="element">The element with the data needed to initialize.</param>
-    virtual void InitializeFromXML(const MistThread::IO::XML::XMLElement & element) override;
+    virtual void DeSerialize(const MistThread::IO::XML::XMLElement & element) override;
     /// <summary>
     /// Populates the given XML Element with data for saving.
     /// </summary>
     /// <param name="element">The element to fill with data.</param>
-    virtual void PopulateXML(MistThread::IO::XML::XMLElement & element) const override;
+    virtual void Serialize(MistThread::IO::XML::XMLElement & element) const override;
 
     //Variables
     MistThread::Core::Vector2 Velocity; //The publicly accessable velocity of the object, after all variables have been applied.

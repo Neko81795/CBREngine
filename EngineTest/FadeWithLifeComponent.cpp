@@ -28,13 +28,13 @@ void FadeWithLifeComponent::Update(UpdateEvent * event)
 }
 
 
-void FadeWithLifeComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
+void FadeWithLifeComponent::DeSerialize(const MistThread::IO::XML::XMLElement & element)
 {
-  Component::InitializeFromXML(element);
+  Component::DeSerialize(element);
 }
 
 
-void FadeWithLifeComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
+void FadeWithLifeComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
-  Component::PopulateXML(element);
+  Component::Serialize(element);
 }

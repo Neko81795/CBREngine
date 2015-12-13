@@ -126,18 +126,18 @@ namespace MistThread
           return 0;
       }
 
-      void GameObject::InitializeFromXML(const IO::XML::XMLElement & element)
+      void GameObject::DeSerialize(const IO::XML::XMLElement & element)
       {
         Name = element.GetAttributeValueByName("Name");
 
         for (auto el : element.GetElementsByName("Component"))
         {
-          AddComponentByName(el->GetAttributeValueByName("Name"))->InitializeFromXML(*el);
+          AddComponentByName(el->GetAttributeValueByName("Name"))->DeSerialize(*el);
         }
 
         for (auto el : element.GetElementsByName("GameObject"))
         {
-          CreateChild().InitializeFromXML(*el);
+          CreateChild().DeSerialize(*el);
         }
       }
 
@@ -188,13 +188,13 @@ namespace MistThread
             AddDependencys(comp, element, components);
 
             IO::XML::XMLElement el("Component");
-            comp.PopulateXML(el);
+            comp.Serialize(el);
             element.Elements.push_back(el);
           }
         }
       }
 
-      void GameObject::PopulateXML(IO::XML::XMLElement & element) const
+      void GameObject::Serialize(IO::XML::XMLElement & element) const
       {
         element.SetAttribute("Name", Name);
 
@@ -205,7 +205,7 @@ namespace MistThread
             AddDependencys(*comp.second, element, Components);
 
             IO::XML::XMLElement el("Component");
-            comp.second->PopulateXML(el);
+            comp.second->Serialize(el);
             element.Elements.push_back(el);
           }
         }
@@ -215,7 +215,7 @@ namespace MistThread
           if (obj)
           {
             IO::XML::XMLElement el("GameObject");
-            obj->PopulateXML(el);
+            obj->Serialize(el);
             element.Elements.push_back(el);
           }
         }

@@ -21,12 +21,12 @@ public:
   /// Sets up the component from with the given XML Element
   /// </summary>
   /// <param name="element">the element with the data needed to initialize</param>
-  virtual void InitializeFromXML(const MistThread::IO::XML::XMLElement & element) override;
+  virtual void DeSerialize(const MistThread::IO::XML::XMLElement & element) override;
   /// <summary>
   /// Populates the given XML Element with data for saving
   /// </summary>
   /// <param name="element">the element to fill with data</param>
-  virtual void PopulateXML(MistThread::IO::XML::XMLElement & element) const override;
+  virtual void Serialize(MistThread::IO::XML::XMLElement & element) const override;
 
   SpinComponent(MistThread::Core::GameObjects::GameObjectBase* owner);
   ~SpinComponent() {}

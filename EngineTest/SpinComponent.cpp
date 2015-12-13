@@ -20,18 +20,18 @@ void SpinComponent::Initialize()
   RotationVariationAmount = static_cast<float>(Random::RandRange(-RotationVariation, RotationVariation));
 }
 
-void SpinComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
+void SpinComponent::DeSerialize(const MistThread::IO::XML::XMLElement & element)
 {
-  Component::InitializeFromXML(element);
+  Component::DeSerialize(element);
 
   RotationSpeed = element.GetAttributeValueByName("Rotation", 1.0f);
   RotationVariation = element.GetAttributeValueByName<float>("RotationVariation");
   Acceleration = element.GetAttributeValueByName<float>("Acceleration");
 }
 
-void SpinComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
+void SpinComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
-  Component::PopulateXML(element);
+  Component::Serialize(element);
 
   std::stringstream str;
   str << RotationSpeed;

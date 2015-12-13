@@ -43,9 +43,9 @@ namespace MistThread
             this);
         }
 
-        void DrawComponent::InitializeFromXML(const IO::XML::XMLElement & element)
+        void DrawComponent::DeSerialize(const IO::XML::XMLElement & element)
         {
-          Component::InitializeFromXML(element);
+          Component::DeSerialize(element);
           
           Mode = static_cast<DrawMode>(element.GetAttributeValueByName<int>("Mode"));
           Type = static_cast<GeometryType>(element.GetAttributeValueByName<int>("Type"));
@@ -53,9 +53,9 @@ namespace MistThread
           Color = element.GetAttributeValueByName("Color", Graphics::Color(1,1,1,1));
         }
 
-        void DrawComponent::PopulateXML(IO::XML::XMLElement & element) const
+        void DrawComponent::Serialize(IO::XML::XMLElement & element) const
         {
-          Component::PopulateXML(element);
+          Component::Serialize(element);
           std::stringstream str;
           str << Type;
           element.SetAttribute("Type", str.str());

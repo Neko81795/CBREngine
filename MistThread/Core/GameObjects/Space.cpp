@@ -20,7 +20,7 @@ namespace MistThread
         for(auto el : element.GetElementsByName("GameObject"))
         {
           auto &obj = CreateObject();
-          obj.InitializeFromXML(*el);
+          obj.DeSerialize(*el);
         }
       }
 
@@ -32,7 +32,7 @@ namespace MistThread
           if(ptr)
           {
             IO::XML::XMLElement el("GameObject");
-            ptr->PopulateXML(el);
+            ptr->Serialize(el);
             element.Elements.push_back(el);
           }
         }

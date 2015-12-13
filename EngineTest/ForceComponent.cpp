@@ -42,9 +42,9 @@ void ForceComponent::Update(UpdateEvent * event)
 }
 
 
-void ForceComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
+void ForceComponent::DeSerialize(const MistThread::IO::XML::XMLElement & element)
 {
-  Component::InitializeFromXML(element);
+  Component::DeSerialize(element);
 
   requestedVel_ = element.GetAttributeValueByName<MistThread::Core::Vector2>("Velocity");
   randomizationPercentage_ = element.GetAttributeValueByName<double>("RandomizationPercentage");
@@ -53,9 +53,9 @@ void ForceComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & e
 }
 
 
-void ForceComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
+void ForceComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
-  Component::PopulateXML(element);
+  Component::Serialize(element);
 
   std::stringstream str;
   str << requestedVel_;

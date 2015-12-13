@@ -27,9 +27,9 @@ namespace MistThread
             this);
         }
 
-        void DrawTextComponent::InitializeFromXML(const IO::XML::XMLElement & element)
+        void DrawTextComponent::DeSerialize(const IO::XML::XMLElement & element)
         {
-          Component::InitializeFromXML(element);
+          Component::DeSerialize(element);
 
           Text = element.GetAttributeValueByName("Text");
           Color = element.GetAttributeValueByName("Color", Graphics::Color(1, 1, 1, 1));
@@ -37,9 +37,9 @@ namespace MistThread
         }
 
         //! this is unsafe
-        void DrawTextComponent::PopulateXML(IO::XML::XMLElement & element) const
+        void DrawTextComponent::Serialize(IO::XML::XMLElement & element) const
         {
-          Component::PopulateXML(element);
+          Component::Serialize(element);
 
           std::stringstream str;
           str << Text;

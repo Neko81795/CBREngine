@@ -23,9 +23,9 @@ namespace MistThread
           Owner.UpdateOwnDrawOrder();
         }
 
-        void TransformComponent::InitializeFromXML(const IO::XML::XMLElement & element)
+        void TransformComponent::DeSerialize(const IO::XML::XMLElement & element)
         {
-          Component::InitializeFromXML(element);
+          Component::DeSerialize(element);
 
           SetZLayer(element.GetAttributeValueByName("ZLayer", 0.0f));
           Position = element.GetAttributeValueByName<Vector2>("Position");
@@ -33,9 +33,9 @@ namespace MistThread
           Rotation = element.GetAttributeValueByName("Rotation", 0.0f);
         }
 
-        void TransformComponent::PopulateXML(IO::XML::XMLElement & element) const
+        void TransformComponent::Serialize(IO::XML::XMLElement & element) const
         {
-          Component::PopulateXML(element);
+          Component::Serialize(element);
 
           std::stringstream str; 
           str << ZLayer;

@@ -93,9 +93,9 @@ SoundPulseComponent::~SoundPulseComponent()
 { }
 
 
-void SoundPulseComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
+void SoundPulseComponent::DeSerialize(const MistThread::IO::XML::XMLElement & element)
 {
-  Component::InitializeFromXML(element);
+  Component::DeSerialize(element);
 
   soundName_ = element.GetAttributeValueByName("Sound");
   volume_ = element.GetAttributeValueByName("Volume", 1.0f);
@@ -103,9 +103,9 @@ void SoundPulseComponent::InitializeFromXML(const MistThread::IO::XML::XMLElemen
 }
 
 
-void SoundPulseComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
+void SoundPulseComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
-  Component::PopulateXML(element);
+  Component::Serialize(element);
 
   std::stringstream str;
   str << soundName_;

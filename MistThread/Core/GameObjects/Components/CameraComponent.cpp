@@ -22,16 +22,16 @@ namespace MistThread
           CameraScale = (windowSize.Height / 32.0f) / Size;
         }
 
-        void CameraComponent::InitializeFromXML(const IO::XML::XMLElement & element)
+        void CameraComponent::DeSerialize(const IO::XML::XMLElement & element)
         {
-          Component::InitializeFromXML(element);
+          Component::DeSerialize(element);
 
           Size = element.GetAttributeValueByName("Size", 20.0f);
         }
 
-        void CameraComponent::PopulateXML(IO::XML::XMLElement & element) const
+        void CameraComponent::Serialize(IO::XML::XMLElement & element) const
         {
-          Component::PopulateXML(element);
+          Component::Serialize(element);
 
           std::stringstream str;
           str << Size;

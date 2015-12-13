@@ -40,9 +40,9 @@ namespace MistThread
           Image = &Utilities::ContentManager::LoadBitmapFile(path);
         }
 
-        void DrawBitmapComponent::InitializeFromXML(const IO::XML::XMLElement & element)
+        void DrawBitmapComponent::DeSerialize(const IO::XML::XMLElement & element)
         {
-          Component::InitializeFromXML(element);
+          Component::DeSerialize(element);
 
           ImagePath = element.GetAttributeByName("Path")->Value;
           Image = &Utilities::ContentManager::LoadBitmapFile(ImagePath);
@@ -50,9 +50,9 @@ namespace MistThread
           Opacity = element.GetAttributeValueByName("Opacity", 1.0f);
         }
 
-        void DrawBitmapComponent::PopulateXML(IO::XML::XMLElement & element) const
+        void DrawBitmapComponent::Serialize(IO::XML::XMLElement & element) const
         {
-          Component::PopulateXML(element);
+          Component::Serialize(element);
           element.SetAttribute("Path", ImagePath);
 
           std::stringstream str;

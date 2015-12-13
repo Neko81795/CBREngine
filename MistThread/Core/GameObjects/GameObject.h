@@ -91,12 +91,12 @@ namespace MistThread
         /// Sets up the gameobject from with the given XML Element
         /// </summary>
         /// <param name="element">the element with the data needed to initialize</param>
-        virtual void InitializeFromXML(const IO::XML::XMLElement & element);
+        virtual void DeSerialize(const IO::XML::XMLElement & element);
         /// <summary>
         /// Populates the given XML Element with data for saving
         /// </summary>
         /// <param name="element">the element to fill with data</param>
-        virtual void PopulateXML(IO::XML::XMLElement & element) const;
+        virtual void Serialize(IO::XML::XMLElement & element) const;
 
         virtual void Destroy();
 

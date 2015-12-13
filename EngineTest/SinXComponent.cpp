@@ -16,18 +16,18 @@ void SinXComponent::Initialize()
     this);
 }
 
-void SinXComponent::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
+void SinXComponent::DeSerialize(const MistThread::IO::XML::XMLElement & element)
 {
-  Component::InitializeFromXML(element);
+  Component::DeSerialize(element);
 
   Period = element.GetAttributeValueByName("Period", 1.0f);
   Scale = element.GetAttributeValueByName("Scale", 1.0f);
   Offset = element.GetAttributeValueByName<float>("Offset");
 }
 
-void SinXComponent::PopulateXML(MistThread::IO::XML::XMLElement & element) const
+void SinXComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
-  Component::PopulateXML(element);
+  Component::Serialize(element);
 
   std::stringstream str;
   str << Period;

@@ -45,7 +45,7 @@ void ParticleSystem::CreateParticle()
 {
   //New object.
   MistThread::Core::GameObjects::GameObject &newObj = Space.CreateObjectAt(transform_->Position, transform_->GetZLayer());
-  newObj.InitializeFromXML(elementXML_);
+  newObj.DeSerialize(elementXML_);
   newObj.Initialize();
 
   ParticleDataComponent* part = newObj.AddComponentByName<ParticleDataComponent>("ParticleData");
@@ -88,9 +88,9 @@ void ParticleSystem::Initialize()
 /// Sets up the component from with the given XML Element
 /// </summary>
 /// <param name="element">the element with the data needed to initialize</param>
-void ParticleSystem::InitializeFromXML(const MistThread::IO::XML::XMLElement & element)
+void ParticleSystem::DeSerialize(const MistThread::IO::XML::XMLElement & element)
 {
-  Component::InitializeFromXML(element);
+  Component::DeSerialize(element);
   elementXML_ = *element.GetElementByName("GameObjectParticle");
 
   maxParticles_ = element.GetAttributeValueByName<unsigned int>("MaxParticles", 10);
@@ -104,9 +104,9 @@ void ParticleSystem::InitializeFromXML(const MistThread::IO::XML::XMLElement & e
 }
 
 
-void ParticleSystem::PopulateXML(MistThread::IO::XML::XMLElement & element) const
+void ParticleSystem::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
-  Component::PopulateXML(element);
+  Component::Serialize(element);
 
   std::stringstream str;
   str << maxParticles_;
