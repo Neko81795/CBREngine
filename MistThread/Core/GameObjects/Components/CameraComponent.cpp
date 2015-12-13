@@ -33,9 +33,7 @@ namespace MistThread
         {
           Component::Serialize(element);
 
-          std::stringstream str;
-          str << Size;
-          element.SetAttribute("Size", str.str());
+          element.SetAttribute("Size", Size);
         }
 
         void CameraComponent::Initialize()

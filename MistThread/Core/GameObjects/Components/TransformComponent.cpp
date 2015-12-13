@@ -37,21 +37,10 @@ namespace MistThread
         {
           Component::Serialize(element);
 
-          std::stringstream str; 
-          str << ZLayer;
-          element.SetAttribute("ZLayer", str.str());
-
-          str = std::stringstream(); //reset the stream
-          str << Position;
-          element.SetAttribute("Position", str.str());
-
-          str = std::stringstream(); //reset the stream
-          str << Scale;
-          element.SetAttribute("Scale", str.str());
-
-          str = std::stringstream(); //reset the stream
-          str << Rotation;
-          element.SetAttribute("Rotation", str.str());
+          element.SetAttribute("ZLayer", ZLayer);
+          element.SetAttribute("Position", Position);
+          element.SetAttribute("Scale", Scale);
+          element.SetAttribute("Rotation", Rotation);
         }
 
         TransformComponent::TransformComponent(GameObjects::GameObjectBase *owner) : Component(owner)

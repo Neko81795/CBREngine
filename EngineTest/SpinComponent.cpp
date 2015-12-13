@@ -33,17 +33,9 @@ void SpinComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
   Component::Serialize(element);
 
-  std::stringstream str;
-  str << RotationSpeed;
-  element.SetAttribute("Rotation", str.str());
-
-  str = std::stringstream(); //reset the stream
-  str << RotationVariation;
-  element.SetAttribute("RotationVariation", str.str());
-
-  str = std::stringstream(); //reset the stream
-  str << Acceleration;
-  element.SetAttribute("Acceleration", str.str());
+  element.SetAttribute("Rotation", RotationSpeed);
+  element.SetAttribute("RotationVariation", RotationVariation);
+  element.SetAttribute("Acceleration", Acceleration);
 }
 
 SpinComponent::SpinComponent(MistThread::Core::GameObjects::GameObjectBase * owner) : Component(owner, "Transform")

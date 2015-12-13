@@ -106,16 +106,7 @@ void SoundPulseComponent::DeSerialize(const MistThread::IO::XML::XMLElement & el
 void SoundPulseComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
   Component::Serialize(element);
-
-  std::stringstream str;
-  str << soundName_;
-  element.SetAttribute("Sound", str.str());
-
-  str = std::stringstream();
-  str << volume_;
-  element.SetAttribute("Volume", str.str());
-
-  str = std::stringstream();
-  str << volume_;
-  element.SetAttribute("Looping", str.str());
+  element.SetAttribute("Sound", soundName_);
+  element.SetAttribute("Volume", volume_);
+  element.SetAttribute("Looping", volume_);
 }

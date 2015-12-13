@@ -108,37 +108,14 @@ void ParticleSystem::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
   Component::Serialize(element);
 
-  std::stringstream str;
-  str << maxParticles_;
-  element.SetAttribute("MaxParticles", str.str());
-
-  str = std::stringstream();
-  str << maxGeneratedPerFrame_;
-  element.SetAttribute("MaxGeneratedPerFrame", str.str());
-
-  str = std::stringstream();
-  str << generationRadius_;
-  element.SetAttribute("GenerationRadius", str.str());
-
-  str = std::stringstream();
-  str << life_;
-  element.SetAttribute("Life", str.str());
-
-  str = std::stringstream();
-  str << lifeVariation_;
-  element.SetAttribute("LifeVariation", str.str());
-
-  str = std::stringstream();
-  str << emissionDelay_;
-  element.SetAttribute("EmissionDelay", str.str());
-
-  str = std::stringstream();
-  str << repeating_;
-  element.SetAttribute("Repeating", str.str());
-
-  str = std::stringstream();
-  str << generateImmediately_;
-  element.SetAttribute("GeneratedImmediately", str.str());
+  element.SetAttribute("MaxParticles", maxParticles_);
+  element.SetAttribute("MaxGeneratedPerFrame", maxGeneratedPerFrame_);
+  element.SetAttribute("GenerationRadius", generationRadius_);
+  element.SetAttribute("Life", life_);
+  element.SetAttribute("LifeVariation", lifeVariation_);
+  element.SetAttribute("EmissionDelay", emissionDelay_);
+  element.SetAttribute("Repeating", repeating_);
+  element.SetAttribute("GeneratedImmediately", generateImmediately_);
 
   element.Elements.push_back(elementXML_);
 }

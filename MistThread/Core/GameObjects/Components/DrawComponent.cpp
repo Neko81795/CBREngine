@@ -56,21 +56,11 @@ namespace MistThread
         void DrawComponent::Serialize(IO::XML::XMLElement & element) const
         {
           Component::Serialize(element);
-          std::stringstream str;
-          str << Type;
-          element.SetAttribute("Type", str.str());
 
-          str = std::stringstream();
-          str << Mode;
-          element.SetAttribute("Mode", str.str());
-
-          str = std::stringstream();
-          str << Stroke;
-          element.SetAttribute("Stroke", str.str());
-
-          str = std::stringstream();
-          str << Color;
-          element.SetAttribute("Color", str.str());
+          element.SetAttribute("Type", Type);
+          element.SetAttribute("Mode", Mode);
+          element.SetAttribute("Stroke", Stroke);
+          element.SetAttribute("Color", Color);
         }
 
         DrawComponent::DrawComponent(GameObjects::GameObjectBase * owner) : Component(owner, "Transform"), Color(1.0f, 1.0f, 1.0f)

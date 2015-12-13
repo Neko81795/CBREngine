@@ -29,17 +29,9 @@ void SinXComponent::Serialize(MistThread::IO::XML::XMLElement & element) const
 {
   Component::Serialize(element);
 
-  std::stringstream str;
-  str << Period;
-  element.SetAttribute("Period", str.str());
-
-  str = std::stringstream();
-  str << Scale;
-  element.SetAttribute("Scale", str.str());
-
-  str = std::stringstream();
-  str << Offset;
-  element.SetAttribute("Offset", str.str());
+  element.SetAttribute("Period", Period);
+  element.SetAttribute("Scale", Scale);
+  element.SetAttribute("Offset", Offset);
 }
 
 SinXComponent::SinXComponent(MistThread::Core::GameObjects::GameObjectBase * owner) : Component(owner, "Transform")

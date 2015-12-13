@@ -54,10 +54,7 @@ namespace MistThread
         {
           Component::Serialize(element);
           element.SetAttribute("Path", ImagePath);
-
-          std::stringstream str;
-          str << Opacity;
-          element.SetAttribute("Opacity", str.str());
+          element.SetAttribute("Opacity", Opacity);
         }
 
         DrawBitmapComponent::DrawBitmapComponent(GameObjects::GameObjectBase *owner) : Component(owner, "Transform")

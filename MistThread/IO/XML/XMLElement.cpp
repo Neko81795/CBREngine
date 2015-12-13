@@ -101,7 +101,7 @@ namespace MistThread
         return &Elements.back();
       }
 
-      XMLAttributeHandle XMLElement::AddAttribute(const std::string &name, const std::string &value)
+      XMLAttributeHandle XMLElement::AddAttribute(const std::string &name, const std::string& value)
       {
         Attributes.push_back(XMLAttribute(name, value));
         return XMLAttributeHandle(static_cast<int>(Attributes.size()) - 1, this);
@@ -146,15 +146,6 @@ namespace MistThread
         }
 
         return stream;
-      }
-
-      void XMLElement::SetAttribute(const std::string &name, const std::string &value)
-      {
-        std::vector<XMLAttributeHandle> attribs = GetAttributesByName(name);
-        if (attribs.size() == 0)
-          AddAttribute(name, value);
-        else
-          attribs[0]->Value = value;
       }
 
       XMLElement::XMLElement(const std::string &name)

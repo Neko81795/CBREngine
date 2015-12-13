@@ -41,18 +41,10 @@ namespace MistThread
         {
           Component::Serialize(element);
 
-          std::stringstream str;
-          str << Text;
           //todo make this safe
-          element.SetAttribute("Text", str.str());//! this is unsafe (Could invalidate XML) if "s are present
-
-          str = std::stringstream(); //reset the stream
-          str << Color;
-          element.SetAttribute("Color", str.str());
-
-          str = std::stringstream(); //reset the stream
-          str << Font;
-          element.SetAttribute("Font", str.str());
+          element.SetAttribute("Text", Text);//! this is unsafe (Could invalidate XML) if "s are present
+          element.SetAttribute("Color", Color);
+          element.SetAttribute("Font", Font);
         }
 
         DrawTextComponent::DrawTextComponent(GameObjects::GameObjectBase *owner) : Component(owner, "Transform"), Font(owner->Game.Graphics->GetDefaultTextFormat())

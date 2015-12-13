@@ -89,13 +89,21 @@ namespace MistThread
         /// </summary>
         /// <param name="name">the name of the new attribute</param>
         /// <param name="value">the value of the new attribute</param>
-        XMLAttributeHandle AddAttribute(const std::string &name, const std::string &value = "");
+        XMLAttributeHandle XMLElement::AddAttribute(const std::string &name, const std::string& value = "");
+        /// <summary>
+        /// Adds a new attribute with the given name and value and returns a reference
+        /// </summary>
+        /// <param name="name">the name of the new attribute</param>
+        /// <param name="value">the value of the new attribute</param>
+        template <typename T>
+        XMLAttributeHandle AddAttribute(const std::string &name, const T& value = T());
         /// <summary>
         /// Sets the value of the first attribute with the given name, creates one if it can't find it
         /// </summary>
         /// <param name="name">the name of the attribute to set</param>
         /// <param name="value">the new value</param>
-        void SetAttribute(const std::string &name, const std::string &value = "");
+        template <typename T>
+        void SetAttribute(const std::string& name, const T& value = T());
 
         friend std::ostream &operator<<(std::ostream &stream, const XMLElement& element);
 
