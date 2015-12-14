@@ -44,6 +44,7 @@ namespace MistThread
 //Variables
 //////////////////////////////////////////////////////////////
     private:
+      bool IsRunning;
       /// <summary>
       /// Holds the constructors for all the components that have been registered
       /// </summary>
@@ -75,6 +76,7 @@ namespace MistThread
       template<typename T>
       static void RegisterComponent(std::string name);
 
+      bool GetIsRunning();
       /// <summary>
       /// Starts the main game loop.
       /// Blocks until the game exits

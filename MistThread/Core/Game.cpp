@@ -58,12 +58,18 @@ namespace MistThread
       game->Run(run);
     }
 
+    bool Game::GetIsRunning()
+    {
+      return IsRunning;
+    }
+
 #if WIN32
     void Game::Start()
     {
       bool run;
       MSG msg;
 
+      IsRunning = true;
       auto f = std::async(Core::Run, &run, this);
       
       while(run)

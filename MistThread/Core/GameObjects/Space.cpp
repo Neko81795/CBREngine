@@ -132,7 +132,8 @@ namespace MistThread
         }
         LoadXML(el);
 
-        Initialize();
+        if(Game.GetIsRunning())
+          Initialize();
       }
 
       void Space::SaveLevel(const std::string &path) const
