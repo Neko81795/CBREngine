@@ -79,7 +79,7 @@ namespace MistThread
       return 0;
     }
 
-    LRESULT GameWindow::SysKeyDown(UINT msg, WPARAM key, LPARAM lParam, BOOL &)
+    LRESULT GameWindow::SysKeyDown(UINT, WPARAM key, LPARAM lParam, BOOL &)
     {
       if (lParam & 0x40000000 || !(lParam & (1 << 29)))
         return DefWindowProc(); //ignore repeats and messages from global space
