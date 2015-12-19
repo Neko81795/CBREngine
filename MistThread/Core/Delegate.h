@@ -3,25 +3,25 @@ namespace MistThread
 {
   namespace Core
   {
-    template <typename Param = Event>
+    template <typename Param = Event, typename Func = void(*)(void*, Param)>
     class Delegate
     {
     private:
       void *Obj;
-      void(*Func)(void*, Param);
+      Func Funct;
 
     public:
 
       void operator()(Param evnt) const
       {
-        Func(Obj, evnt);
+        Funct(Obj, evnt);
       }
 
       bool operator==(const Delegate<Param>& other) const
       {
         if (Obj != other.Obj)
           return false;
-        if (Func != other.Func)
+        if (Funct != other.Funct)
           return false;
 
         return true;
@@ -35,7 +35,7 @@ namespace MistThread
       bool operator<(const Delegate<Param>& other) const
       {
         if (Obj == other.Obj)
-          return Func < other.Func;
+          return Funct < other.Funct;
 
         return Obj < other.Obj;
       }
@@ -45,9 +45,9 @@ namespace MistThread
       //Constructors
       ///////////////////////////////
     public:
-      Delegate(void(*func)(void *, Param), void* obj)
+      Delegate(Func func, void* obj)
       {
-        Func = func;
+        Funct = func;
         Obj = obj;
       }
     };
