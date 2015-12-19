@@ -58,8 +58,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -90,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FadeWithLifeComponent.cpp" />
+    <ClCompile Include="GatherKeystrokesComponent.cpp" />
     <ClCompile Include="KeyMoveComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParticleDataComponent.cpp" />
@@ -107,6 +107,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Abbreviations.h" />
     <ClInclude Include="FadeWithLifeComponent.h" />
     <ClInclude Include="GatherKeystrokesComponent.h" />
     <ClInclude Include="KeyMoveComponent.h" />

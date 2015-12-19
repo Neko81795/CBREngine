@@ -1,29 +1,27 @@
 #pragma once
 #include "../MistThread/Core.h"
+#include "Abbreviations.h"
 #include <sstream>
-#include "ParticleDataComponent.h"
-
-using Event = MistThread::Core::Event;
-using UpdateEvent = MistThread::Core::GameObjects::Components::UpdateEvent;
+#include <vector>
+#include <mutex>
 
 
-
-struct GatherKeystrokesComponent : public MistThread::Core::GameObjects::Components::Component
+struct GatherKeystrokesComponent : public MT_COMP::Component
 {
   //Constructors
   /// <summary>
   /// Constructs the component.
   /// </summary>
   /// <param name="owner">The Object this component is attached to.</param>
-  GatherKeystrokesComponent(MistThread::Core::GameObjects::GameObjectBase* owner);
+  GatherKeystrokesComponent(MT_OBJ::GameObjectBase* owner) : Component(owner) { Name = "GatherKeystrokes"; }
   /// <summary>
   /// Default destructor for the component.
   /// </summary>
-  ~GatherKeystrokesComponent() { }
+  ~GatherKeystrokesComponent();
 
   //Member Functions
   /// <summary>
-  /// Initializes the FadeWithLifeComponent.
+  /// Initializes component.
   /// </summary>
   void Initialize() override;
   /// <summary>
@@ -31,6 +29,10 @@ struct GatherKeystrokesComponent : public MistThread::Core::GameObjects::Compone
   /// </summary>
   /// <param name="event">An event dealing with the updating of this component.</param>
   void Update(UpdateEvent * event);
+
+  void GetKBVals(MT_INPUT::KeyboardEvent &e);
+
+
   /// <summary>
   /// Sets up the component from with the given XML Element.
   /// </summary>
@@ -43,6 +45,12 @@ struct GatherKeystrokesComponent : public MistThread::Core::GameObjects::Compone
   virtual void Serialize(MistThread::IO::XML::XMLElement & element) const override;
 
 private:
-  std::string lastLine_;                                                        //Pointer to the particle data.
-  MistThread::Core::GameObjects::Components::DrawBitmapComponent *pDrawBitmap_; //Pointer to the image we are going to be playing with.
+  //std::string lastLine_;                                                        //Pointer to the particle data.
+  std::stringstream lastLine_;
+  std::vector<std::string> previousLines_;
+  MT_CORE::Delegate<MT_INPUT::KeyboardEvent &> *keyboardDel_;
+
+  // Static mutex for securing registry critical section when multithreading
+  // Note: std::lock_guard is exception safe, so use it over mutex.lock
+  std::mutex m_lastLine_;
 };

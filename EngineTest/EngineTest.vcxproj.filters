@@ -12,6 +12,7 @@
     <ClCompile Include="ParticleDataComponent.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="FadeWithLifeComponent.cpp" />
+    <ClCompile Include="GatherKeystrokesComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpinComponent.h" />
@@ -25,6 +26,7 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="FadeWithLifeComponent.h" />
     <ClInclude Include="GatherKeystrokesComponent.h" />
+    <ClInclude Include="Abbreviations.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bit.png" />
