@@ -89,7 +89,7 @@ namespace MistThread
         /// </summary>
         /// <param name="name">the name of the new attribute</param>
         /// <param name="value">the value of the new attribute</param>
-        XMLAttributeHandle XMLElement::AddAttribute(const std::string &name, const std::string& value = "");
+        XMLAttributeHandle AddAttribute(const std::string &name, const std::string& value = "");
         /// <summary>
         /// Adds a new attribute with the given name and value and returns a reference
         /// </summary>

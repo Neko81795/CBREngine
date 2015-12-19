@@ -39,18 +39,21 @@ namespace MistThread
         MESSAGE_HANDLER(WM_SIZE, Resize)
         MESSAGE_HANDLER(WM_DISPLAYCHANGE, DisplayChange)
         MESSAGE_HANDLER(WM_KEYDOWN, KeyDown)
+        MESSAGE_HANDLER(WM_SYSKEYDOWN, SysKeyDown)
         MESSAGE_HANDLER(WM_KEYUP, KeyUp)
         MESSAGE_HANDLER(WM_MOUSEMOVE, MouseMove)
       END_MSG_MAP()
 
       
-
+      Input::Key HandleKeyPress(WPARAM, LPARAM);
       LRESULT Paint(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT Destroy(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT Resize(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT DisplayChange(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT KeyDown(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT KeyUp(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT SysKeyDown(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT SysKeyUp(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT MouseMove(UINT, WPARAM, LPARAM, BOOL &);
 #endif
       //variables

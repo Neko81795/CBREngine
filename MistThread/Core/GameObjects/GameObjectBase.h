@@ -108,7 +108,7 @@ namespace MistThread
 //Methods
 //////////////////////////////////////////////////////////////
       private:
-        GameObjectBase& operator=(const GameObjectBase&) {}
+        GameObjectBase& operator=(const GameObjectBase&) { return *this; }
       protected:
         /// <summary>
         /// swaps the position of two objects in the draw list

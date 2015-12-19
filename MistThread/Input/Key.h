@@ -12,7 +12,7 @@ namespace MistThread
       LAlt = 0xA4,
       RControl = 0xA3,
       RShift = 0xA1,
-      RAlr = 0xA5,
+      RAlt = 0xA5,
       Break = 0x03,
       BackSpace = 0x08,
       CapsLock = 0x14,
