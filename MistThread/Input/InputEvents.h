@@ -17,6 +17,15 @@ namespace MistThread
       ~KeyboardEvent();
     };
 
+    class CharEvent : public Core::Event
+    {
+    public:
+      char Char;
+
+      CharEvent(char c);
+      ~CharEvent();
+    };
+
     class MouseEvent : public Core::Event
     {
     public:

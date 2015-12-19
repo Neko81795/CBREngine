@@ -41,6 +41,7 @@ namespace MistThread
         MESSAGE_HANDLER(WM_KEYDOWN, KeyDown)
         MESSAGE_HANDLER(WM_SYSKEYDOWN, SysKeyDown)
         MESSAGE_HANDLER(WM_KEYUP, KeyUp)
+        MESSAGE_HANDLER(WM_CHAR, Char)
         MESSAGE_HANDLER(WM_MOUSEMOVE, MouseMove)
       END_MSG_MAP()
 
@@ -54,6 +55,7 @@ namespace MistThread
       LRESULT KeyUp(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT SysKeyDown(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT SysKeyUp(UINT, WPARAM, LPARAM, BOOL &);
+      LRESULT Char(UINT, WPARAM, LPARAM, BOOL &);
       LRESULT MouseMove(UINT, WPARAM, LPARAM, BOOL &);
 #endif
       //variables
@@ -64,6 +66,7 @@ namespace MistThread
       WindowEventHandler OnDisplayChange;
       Input::KeyboardEventHandler OnKeyDown;
       Input::KeyboardEventHandler OnKeyUp;
+      Core::EventHandler<Input::CharEvent&> OnChar;
       Input::MouseEventHandler OnMouseMove;
 
       //Methods

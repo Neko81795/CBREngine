@@ -11,10 +11,10 @@ namespace MistThread
       Pressed = pressed;
     }
 
-    KeyboardEvent::~KeyboardEvent()
-    {
+    KeyboardEvent::~KeyboardEvent() {}
 
-    }
+    CharEvent::CharEvent(char c) : Char(c) {}
+    CharEvent::~CharEvent() {}
 
     MouseEvent::MouseEvent(const Core::Vector2 &position, bool leftDown, bool middleDown, bool rightDown, bool controlPressed, bool shiftPressed, bool altPressed, short wheel)
     {
@@ -28,9 +28,6 @@ namespace MistThread
       Wheel = wheel;
     }
 
-    MouseEvent::~MouseEvent()
-    {
-
-    }
+    MouseEvent::~MouseEvent() {}
   }
 }

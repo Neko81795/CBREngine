@@ -99,6 +99,13 @@ namespace MistThread
       return DefWindowProc();
     }
 
+
+    LRESULT GameWindow::Char(UINT, WPARAM c, LPARAM, BOOL &)
+    {
+      Input::CharEvent evnt(static_cast<decltype(Input::CharEvent::Char)>(c));
+      
+    }
+
     LRESULT GameWindow::MouseMove(UINT, WPARAM flag, LPARAM position, BOOL &)
     {
       Vector2 pos(static_cast<float>(GET_X_LPARAM(position)),
